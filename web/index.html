@@ -56,35 +56,41 @@ and open the template in the editor.
                     Here I am using the # css class attribute
 
                 -->
-                                <!-- Logo -->
+                                <!-- Header for the webpage that brings you back
+                                to the top-->
                         <div class="navbar-header">
                             <a href="index.html" class="navbar-brand" 
                                data-toggle="tooltip" title="Click to go back to the top">Ryan Rigato</a>
                         </div>
-
+                <!-- Gives the actual navbar elements, basically a link to 
+                each portion of the webpage-->
                 <div id="nav">
                      <ul class="nav navbar-nav">
-                         <li><a href="#about">About</a></li>
+                         
                          <li><a href="#portfolio">Portfolio</a></li>
                          <li><a href="#contact">Contact</a></li>
+                         <li><a href="#about" data-toggle="tooltip" 
+                                title="Click here to learn more about this website">About</a></li>
                      </ul>
                 </div>       
 
 
                 <!-- Each Div represents a new page -->
-                <div id="page1">
-                  <a id="about" class="smooth"></a>
-                    About page content goes here.
-                </div>
 
-                <div id="page2">
+
+                <div id="page1">
                   <a id="portfolio" class="smooth"></a>
                     Portfolio page content goes here.
                 </div>
 
-                <div id="page3">
+                <div id="page2">
                   <a id="contact" class="smooth"></a>
                     Contact page content goes here.
+                </div>
+                
+                 <div id="page3">
+                  <a id="about" class="smooth"></a>
+                    About page content goes here.
                 </div>
         </div>
     </body>
