@@ -84,6 +84,8 @@
                 </div>       
 
 
+        </div>
+        
                 <!-- Each Div represents a new page -->
 
 
@@ -101,6 +103,5 @@
                   <a id="about" class="smooth"></a>
                     About page content goes here.
                 </div>
-        </div>
     </body>
 </html>
