@@ -12,7 +12,7 @@ and open the template in the editor.
         
         <!--Importing javascript and css dependencies for bootstrap-->
         <link rel="stylesheet" href="include/styles/bootstrap.min.css" type="text/css"/>
-        <script src="include/styles/js/bootstrap.min.js"></script>
+        <script src="include/js/bootstrap.min.js"></script>
         
            <!-- Including jquery libraries -->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -47,35 +47,46 @@ and open the template in the editor.
            });
         </script>
     <body>
-        <!-- 
-            Creates a vertical scrolling webpage
-            Typically you have the navbar href attribute point to another webpage
-            Here I am using the # css class attribute
-            
-        -->
-        <div id="nav">
-             <ul>
-                 <li><a href="#about">About</a></li>
-                 <li><a href="#portfolio">Portfolio</a></li>
-                 <li><a href="#contact">Contact</a></li>
-             </ul>
-        </div>       
         
         
-        <!-- Each Div represents a new page -->
-        <div id="page1">
-          <a id="about" class="smooth"></a>
-            About page content goes here.
-        </div>
+        <div class="container-fluid">
+                <!-- 
+                    Creates a vertical scrolling webpage
+                    Typically you have the navbar href attribute point to another webpage
+                    Here I am using the # css class attribute
 
-        <div id="page2">
-          <a id="portfolio" class="smooth"></a>
-            Portfolio page content goes here.
-        </div>
+                -->
+                                <!-- Logo -->
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand" 
+                               data-toggle="tooltip" title="Click to go back to the top">Ryan Rigato</a>
+                        </div>
 
-        <div id="page3">
-          <a id="contact" class="smooth"></a>
-            Contact page content goes here.
+                <div id="nav">
+                     <ul class="nav navbar-nav">
+                         <li><a href="#about">About</a></li>
+                         <li><a href="#portfolio">Portfolio</a></li>
+                         <li><a href="#contact">Contact</a></li>
+                     </ul>
+                </div>       
+
+
+                <!-- Each Div represents a new page -->
+                <div id="page1">
+                  <a id="about" class="smooth"></a>
+                    About page content goes here.
+                </div>
+
+                <div id="page2">
+                  <a id="portfolio" class="smooth"></a>
+                    Portfolio page content goes here.
+                </div>
+
+                <div id="page3">
+                  <a id="contact" class="smooth"></a>
+                    Contact page content goes here.
+                </div>
         </div>
     </body>
 </html>
+
