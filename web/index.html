@@ -12,9 +12,12 @@ and open the template in the editor.
         
         <!--Importing javascript and css dependencies for bootstrap-->
         <link rel="stylesheet" href="include/styles/bootstrap.min.css" type="text/css"/>
-        <script src="include/js/jquery-1.12.0.js"></script>
-        <script src="include/js/bootstrap.min.js"></script>
+        <script src="include/styles/js/bootstrap.min.js"></script>
         
+           <!-- Including jquery libraries -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
+     
         <!--header.css = navbar css
             home.css = css for the actual homepage
         -->
@@ -22,6 +25,27 @@ and open the template in the editor.
         
         <link rel="stylesheet" href="include/styles/home.css" type="text/css"/>     
     </head>
+        <!--Function that allows for a smooth scroll between navbar elements
+            
+            credit on this function goes to this stack overflow post:
+        https://stackoverflow.com/questions/19833657/simple-html5-way-to-vertically-split-a-website-page-in-vertical-slides-with-navi
+        -->
+        <script>
+                $(function() {
+             $('a[href*=#]:not([href=#])').click(function() {
+               if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                 var target = $(this.hash);
+                 target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                 if (target.length) {
+                   $('html,body').animate({
+                     scrollTop: target.offset().top
+                   }, 1000);
+                   return false;
+                 }
+               }
+             });
+           });
+        </script>
     <body>
         <!-- 
             Creates a vertical scrolling webpage
