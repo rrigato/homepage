@@ -9,5 +9,15 @@ and open the template in the editor.
 */
 
 #page1{
-    height:1000px;
+/*    margin:100px;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#page2{
+/*    margin:100px;*/
+    position: absolute;
+    top: 100%;
+    left: 50%;
 }
