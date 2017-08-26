@@ -11,13 +11,21 @@ and open the template in the editor.
 #page1{
 /*    margin:100px;*/
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
 }
 
 #page2{
 /*    margin:100px;*/
     position: absolute;
-    top: 100%;
+    top: 140%;
+    left: 50%;
+}
+
+
+#page3{
+/*    margin:100px;*/
+    position: absolute;
+    top: 210%;
     left: 50%;
 }
