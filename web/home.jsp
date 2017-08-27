@@ -80,11 +80,13 @@
                          <li><a href="#about" data-toggle="tooltip" 
                                 title="Click here to learn more about this website">
                                  About</a></li>
-                     </ul>
+                     </ul>-
                 </div>       
 
 
         </div>
+        
+        <!--<div id ="startpage" ></div>-->
         
                 <!-- Each Div represents a new page -->
 

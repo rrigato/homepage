@@ -27,6 +27,7 @@ ul {
     overflow: hidden;
     background-color: #333;
     position:fixed;
+    height:10%;
     width:100%;
     
 }
