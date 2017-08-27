@@ -61,7 +61,7 @@
                                 <!-- Header for the webpage that brings you back
                                 to the top-->
                         <div class="navbar-header">
-                            <a href="#home" class="navbar-brand" 
+                            <a href="#page1" class="navbar-brand" 
                                data-toggle="tooltip" title="Click to go back to the top">Ryan Rigato</a>
                         </div>
                 <!-- Gives the actual navbar elements, basically a link to 
