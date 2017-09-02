@@ -18,14 +18,17 @@
         
            <!-- Including jquery libraries -->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
+        <script src="include/js/jquery.smooth-scroll.min.js"></script>
      
         <!--header.css = navbar css
             home.css = css for the actual homepage
         -->
         <link rel="stylesheet" href="include/styles/header.css" type="text/css"/>      
         
-        <link rel="stylesheet" href="include/styles/home.css" type="text/css"/>     
+        <link rel="stylesheet" href="include/styles/home.css" type="text/css"/>  
+        
+        <!--Library for plotly.js-->
+        <script src="include/js/plotly-latest.min.js"></script>
     </head>
         <!--Function that allows for a smooth scroll between navbar elements
             
@@ -94,6 +97,49 @@
                 <div id="page1">
                   <a id="portfolio" class="smooth"></a>
                     Portfolio page content goes here.
+                    <div id="myDiv">
+                        <script>
+                            Plotly.d3.csv('include/data/test.csv', function(err, rows){
+function unpack(rows, key) {
+	return rows.map(function(row)
+	{ return row[key]; });}
+
+var trace1 = {
+	x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
+	mode: 'markers',
+	marker: {
+		size: 12,
+		line: {
+		color: 'rgba(217, 217, 217, 0.14)',
+		width: 0.5},
+		opacity: 0.8},
+	type: 'scatter3d'
+};
+
+var trace2 = {
+	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
+	mode: 'markers',
+	marker: {
+		color: 'rgb(127, 127, 127)',
+		size: 12,
+		symbol: 'circle',
+		line: {
+		color: 'rgb(204, 204, 204)',
+		width: 1},
+		opacity: 0.8},
+	type: 'scatter3d'};
+
+var data = [trace1, trace2];
+var layout = {margin: {
+	l: 0,
+	r: 0,
+	b: 0,
+	t: 0
+  }};
+Plotly.newPlot('myDiv', data, layout);
+});
+                        </script>
+                    </div>
                 </div>
 
                 <div id="page2">
