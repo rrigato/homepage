@@ -191,9 +191,10 @@
                         
                         //layout of the graph
                         var layout = {
-                           width:850,
+                           autoscale:true,
+                           height:700,
                           //title at the top of the page
-                          title:'Samurai Jack 2017 Viewship totals',
+                          title:'Midnight slot viewership',
                           
                           //A scene object must be used to encapsulate
                           //each axis title, not sure why this is...
@@ -210,15 +211,15 @@
                                 },                         
                             
                                  zaxis:{
-                                    title:'% of 18-49 watching'
+                                    title:'Adults 18-49 in thousands'
                                 }
                           },
                            //pixel margin around the graph
                             margin: {
 
                                 l: 100,
-                                r: 50,
-                                b: 50,
+                                r: 100,
+                                b: 100,
                                 t: 50
                           }
                       };
