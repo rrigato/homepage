@@ -199,7 +199,10 @@
                           //each axis title, not sure why this is...
                           scene :{
                                 xaxis:{
-                                    title:'Viewers aged 18-49 in thousands'
+                                    title:'Year',
+                                    //Makes sure the ticks are every year
+                                    autotick:false,
+                                    dtick:1
                                 },
                             
                                    yaxis:{
