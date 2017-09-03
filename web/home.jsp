@@ -155,7 +155,7 @@
 
                                 l: 50,
                                 r: 50,
-                                b: 50,
+                                b: 0,
                                 t: 50
                           }
                       };
@@ -177,7 +177,12 @@
                     Contact page content goes here.
                     <div id="myDiv2">
                     <script>
+                        /*
+                         * Reads the csv from include/data/samJack.csv
+                         */                        
                     Plotly.d3.csv('include/data/annualRatings.csv', function(err, rows){
+                              //function that returns each individual value 
+                            //from a row
                                 function unpack(rows, key) {
                                     return rows.map(function(row) 
                                     { return row[key]; });
@@ -207,6 +212,7 @@
 
                           var data = [trace1];
                           var layout = {
+                              //title at the top of the page
                             title: '3D Line Plot',
                             autosize: true,
 
@@ -217,6 +223,8 @@
                               t: 50
                             }
                           };
+                        //populates the new plot with the string literal the
+                        //id of the div you want this plot in
                           Plotly.newPlot('myDiv2', data, layout); 
                           });
                    
