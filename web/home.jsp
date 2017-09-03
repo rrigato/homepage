@@ -103,8 +103,8 @@
                         /*
                          * Reads the csv from include/data/samJack.csv
                          */
-                        Plotly.d3.csv('include/data/samJack.csv', function(err, rows){
-                            
+                        Plotly.d3.csv('include/data/midnightBleach.csv', function(err, rows){
+                          Plotly.d3.csv('include/data/midnightDbzf.csv', function(err2, rows2){  
                             //function that returns each individual value 
                             //from a row
                         function unpack(rows, key) {
@@ -114,15 +114,14 @@
                         
                         //Traces data by mapping columns to x, y,z axis
                         var trace1 = {
-                                x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), 
-                                z: unpack(rows, 'AHousehold'),
+                                x:unpack(rows, 'Year'), y: unpack(rows, 'Total'), 
+                                z: unpack(rows, 'ATotal'),
                                 mode: 'markers',
-//                                marker: {
-//                                        size: 12,
-//                                        line: {
-//                                        color: 'rgba(217, 217, 217, 0.14)',
-//                                        width: 0.5},
-//                                        opacity: 0.8},
+                                marker: {
+                                       size: 8,
+
+                                       color: 'rgb(248, 134, 232)'
+                                        },
                                 type: 'scatter3d'
                         };
                             
@@ -164,7 +163,9 @@
                         //populates the new plot with the string literal the
                         //id of the div you want this plot in
                         Plotly.newPlot('scatterContainer', data, layout);
-                        });                        
+                        
+                            });  //end second csv
+                        });  //end first csv                        
                         
                         
                         
