@@ -105,6 +105,9 @@
                          */
                         Plotly.d3.csv('include/data/midnightBleach.csv', function(err, rows){
                           Plotly.d3.csv('include/data/midnightDbzf.csv', function(err2, rows2){  
+                              Plotly.d3.csv('include/data/midnightDbz.csv', function(err3, rows3){ 
+                                  Plotly.d3.csv('include/data/midnightOpm.csv', function(err4, rows4){ 
+                              
                             //function that returns each individual value 
                             //from a row
                         function unpack(rows, key) {
@@ -140,7 +143,7 @@
                                        color: 'rgb(248, 134, 232)'
                                         },
                                 //Gives the name for the legend
-                                name : 'DBZ Kai',
+                                name : 'DBZ Kai Final Chapters',
                                 type: 'scatter3d'
                         };                        
                         
@@ -184,6 +187,9 @@
                         //id of the div you want this plot in
                         Plotly.newPlot('scatterContainer', data, layout);
                         
+                                    });  //end fourth csv
+                               });  //end third csv                            
+                                
                             });  //end second csv
                         });  //end first csv                        
                         
