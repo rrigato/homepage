@@ -133,21 +133,21 @@
                         var layout = {
                             
                           //title at the top of the page
-                          title:'hello world',
+                          title:'Samurai Jack 2017 Viewship totals',
                           
                           //A scene object must be used to encapsulate
                           //each axis title, not sure why this is...
                           scene :{
                                 xaxis:{
-                                    title:'Hello World'
+                                    title:'Viewers aged 18-49 in thousands'
                                 },
                             
                                    yaxis:{
-                                    title:'Hello World'
+                                    title:'Total Viewers in thousands'
                                 },                         
                             
                                  zaxis:{
-                                    title:'Hello World'
+                                    title:'% of 18-49 watching'
                                 }
                           },
                            //pixel margin around the graph
