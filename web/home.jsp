@@ -187,21 +187,40 @@
                                 marker: {
                                         size: 12,
                                         line: {
-                                        color: unpack(rows, 'Time'),
+                                        color: 'rgba(217, 217, 217, 0.14)',
                                         width: 0.5},
                                         opacity: 0.8},
                                 type: 'scatter3d'
                         };
 
-                        
-                        var layout = {margin: {
-                                l: 0,
-                                r: 0,
-                                b: 0,
-                                t: 0
-                          }};
+                        var data = [trace1];
+                        var layout = {
+                            
+                          title:'hello world',
+                          scene :{
+                                xaxis:{
+                                    title:'Hello World'
+                                },
+                            
+                                   yaxis:{
+                                    title:'Hello World'
+                                },                         
+                            
+                                 zaxis:{
+                                    title:'Hello World'
+                                }
+                          },                         
+                            margin: {
+
+                                l: 50,
+                                r: 50,
+                                b: 50,
+                                t: 50
+                          }
+                      };
+                            console.log(layout);
                       
-                      data = [trace1]
+
                         Plotly.newPlot('scatterContainer', data, layout);
                         });                        
                         
