@@ -117,12 +117,12 @@
                                 x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), 
                                 z: unpack(rows, 'AHousehold'),
                                 mode: 'markers',
-                                marker: {
-                                        size: 12,
-                                        line: {
-                                        color: 'rgba(217, 217, 217, 0.14)',
-                                        width: 0.5},
-                                        opacity: 0.8},
+//                                marker: {
+//                                        size: 12,
+//                                        line: {
+//                                        color: 'rgba(217, 217, 217, 0.14)',
+//                                        width: 0.5},
+//                                        opacity: 0.8},
                                 type: 'scatter3d'
                         };
                             
