@@ -113,19 +113,39 @@
                             }
                         
                         //Traces data by mapping columns to x, y,z axis
-                        var trace1 = {
+                        var bleach = {
                                 x:unpack(rows, 'Year'), y: unpack(rows, 'Total'), 
                                 z: unpack(rows, 'ATotal'),
+                                mode: 'markers',
+                                marker: {
+                                       size: 8,
+                                       //Gives the color blue
+                                       color: 'rgb(0, 3, 232)'
+                                        },
+                                        
+                                //Gives the name for the legend
+                                name : 'Bleach',                                        
+                                type: 'scatter3d'
+                        };
+                        
+                        
+                        //Traces data by mapping columns to x, y,z axis
+                        var dbz_kai = {
+                                x:unpack(rows2, 'Year'), y: unpack(rows2, 'Total'), 
+                                z: unpack(rows2, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
                                        size: 8,
 
                                        color: 'rgb(248, 134, 232)'
                                         },
+                                //Gives the name for the legend
+                                name : 'DBZ Kai',
                                 type: 'scatter3d'
-                        };
+                        };                        
+                        
                             
-                        var data = [trace1];
+                        var data = [bleach, dbz_kai];
                         
                         
                         //layout of the graph
