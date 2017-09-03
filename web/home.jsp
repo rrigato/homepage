@@ -100,13 +100,22 @@
                     <div id="scatterContainer">
 
                     <script>
+                        /*
+                         * Reads the csv from include/data/samJack.csv
+                         */
                         Plotly.d3.csv('include/data/samJack.csv', function(err, rows){
+                            
+                            //function that returns each individual value 
+                            //from a row
                         function unpack(rows, key) {
                                 return rows.map(function(row)
-                                { return row[key]; });}
-
+                                { return row[key]; });
+                            }
+                        
+                        //Traces data by mapping columns to x, y,z axis
                         var trace1 = {
-                                x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), z: unpack(rows, 'AHousehold'),
+                                x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), 
+                                z: unpack(rows, 'AHousehold'),
                                 mode: 'markers',
                                 marker: {
                                         size: 12,
@@ -116,11 +125,18 @@
                                         opacity: 0.8},
                                 type: 'scatter3d'
                         };
-
+                            
                         var data = [trace1];
+                        
+                        
+                        //layout of the graph
                         var layout = {
                             
+                          //title at the top of the page
                           title:'hello world',
+                          
+                          //A scene object must be used to encapsulate
+                          //each axis title, not sure why this is...
                           scene :{
                                 xaxis:{
                                     title:'Hello World'
@@ -133,7 +149,8 @@
                                  zaxis:{
                                     title:'Hello World'
                                 }
-                          },                         
+                          },
+                           //pixel margin around the graph
                             margin: {
 
                                 l: 50,
@@ -144,7 +161,8 @@
                       };
                             console.log(layout);
                       
-
+                        //populates the new plot with the string literal the
+                        //id of the div you want this plot in
                         Plotly.newPlot('scatterContainer', data, layout);
                         });                        
                         
