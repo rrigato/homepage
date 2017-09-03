@@ -97,8 +97,74 @@
                 <div id="page1">
                   <a id="portfolio" class="smooth"></a>
                     Portfolio page content goes here.
+                    <div id="scatterContainer">
+
+                    <script>
+                        Plotly.d3.csv('include/data/samJack.csv', function(err, rows){
+                        function unpack(rows, key) {
+                                return rows.map(function(row)
+                                { return row[key]; });}
+
+                        var trace1 = {
+                                x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), z: unpack(rows, 'AHousehold'),
+                                mode: 'markers',
+                                marker: {
+                                        size: 12,
+                                        line: {
+                                        color: 'rgba(217, 217, 217, 0.14)',
+                                        width: 0.5},
+                                        opacity: 0.8},
+                                type: 'scatter3d'
+                        };
+
+                        var data = [trace1];
+                        var layout = {
+                            
+                          title:'hello world',
+                          scene :{
+                                xaxis:{
+                                    title:'Hello World'
+                                },
+                            
+                                   yaxis:{
+                                    title:'Hello World'
+                                },                         
+                            
+                                 zaxis:{
+                                    title:'Hello World'
+                                }
+                          },                         
+                            margin: {
+
+                                l: 50,
+                                r: 50,
+                                b: 50,
+                                t: 50
+                          }
+                      };
+                            console.log(layout);
+                      
+
+                        Plotly.newPlot('scatterContainer', data, layout);
+                        });                        
+                        
+                        
+                        
+                    </script>                        
+                    </div>
+                </div>
+
+                <div id="page2">
+                  <a id="contact" class="smooth"></a>
+                    Contact page content goes here.
+                </div>
+                
+                 <div id="page3">
+                  <a id="about" class="smooth"></a>
+                    About page content goes here.
                     <div id="myDiv">
-                        <script>
+                        
+                                                <script>
                         Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/3d-ribbon.json', function(figure){
 
                         var trace1 = {
@@ -163,70 +229,7 @@
                       Plotly.newPlot('myDiv', data, layout);
                       });
                         </script>
-                    </div>
-                </div>
 
-                <div id="page2">
-                  <a id="contact" class="smooth"></a>
-                    Contact page content goes here.
-                </div>
-                
-                 <div id="page3">
-                  <a id="about" class="smooth"></a>
-                    About page content goes here.
-                    <div id="scatterContainer">
-                    <script>
-                        Plotly.d3.csv('include/data/samJack.csv', function(err, rows){
-                        function unpack(rows, key) {
-                                return rows.map(function(row)
-                                { return row[key]; });}
-
-                        var trace1 = {
-                                x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), z: unpack(rows, 'AHousehold'),
-                                mode: 'markers',
-                                marker: {
-                                        size: 12,
-                                        line: {
-                                        color: 'rgba(217, 217, 217, 0.14)',
-                                        width: 0.5},
-                                        opacity: 0.8},
-                                type: 'scatter3d'
-                        };
-
-                        var data = [trace1];
-                        var layout = {
-                            
-                          title:'hello world',
-                          scene :{
-                                xaxis:{
-                                    title:'Hello World'
-                                },
-                            
-                                   yaxis:{
-                                    title:'Hello World'
-                                },                         
-                            
-                                 zaxis:{
-                                    title:'Hello World'
-                                }
-                          },                         
-                            margin: {
-
-                                l: 50,
-                                r: 50,
-                                b: 50,
-                                t: 50
-                          }
-                      };
-                            console.log(layout);
-                      
-
-                        Plotly.newPlot('scatterContainer', data, layout);
-                        });                        
-                        
-                        
-                        
-                    </script>
                     </div>
                 </div>
     </body>
