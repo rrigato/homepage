@@ -213,8 +213,24 @@
                           var data = [trace1];
                           var layout = {
                               //title at the top of the page
-                            title: '3D Line Plot',
+                            title: 'Average Annual Ratings for Toonami Block',
                             autosize: true,
+                            
+                          //A scene object must be used to encapsulate
+                          //each axis title, not sure why this is...                            
+                           scene :{
+                                xaxis:{
+                                    title:'Total Viewers in thousands'
+                                },
+                            
+                                   yaxis:{
+                                    title:'Age 18-49 Viewers in thousands'
+                                },                         
+                            
+                                 zaxis:{
+                                    title:'Year'
+                                }
+                          },
 
                             margin: {
                               l: 50,
