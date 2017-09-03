@@ -122,7 +122,7 @@
                                 mode: 'markers',
                                 marker: {
                                        size: 8,
-                                       //Gives the color blue
+                                       //Gives the color pink/purple
                                        color: 'rgb(0, 3, 232)'
                                         },
                                         
@@ -133,7 +133,7 @@
                         
                         
                         //Traces data by mapping columns to x, y,z axis
-                        var dbz_kai = {
+                        var dbz_final = {
                                 x:unpack(rows2, 'Year'), y: unpack(rows2, 'Total'), 
                                 z: unpack(rows2, 'ATotal'),
                                 mode: 'markers',
@@ -145,10 +145,28 @@
                                 //Gives the name for the legend
                                 name : 'DBZ Kai Final Chapters',
                                 type: 'scatter3d'
+                        };   
+                        
+                        
+                       //Traces data by mapping columns to x, y,z axis
+                        var dbz = {
+                                x:unpack(rows3, 'Year'), y: unpack(rows3, 'Total'), 
+                                z: unpack(rows3, 'ATotal'),
+                                mode: 'markers',
+                                marker: {
+                                       size: 8,
+                                       //Gives the color Red
+                                       color: 'rgb(204, 51, 0)'
+                                        },
+                                        
+                                //Gives the name for the legend
+                                name : 'DBZ Kai',                                        
+                                type: 'scatter3d'
                         };                        
                         
-                            
-                        var data = [bleach, dbz_kai];
+                        //concatenates all the individual points together so they can 
+                        //appear on the same plot
+                        var data = [bleach, dbz_final, dbz];
                         
                         
                         //layout of the graph
