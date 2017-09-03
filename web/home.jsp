@@ -158,20 +158,40 @@
                                        //Gives the color Red
                                        color: 'rgb(204, 51, 0)'
                                         },
+ 
                                         
                                 //Gives the name for the legend
                                 name : 'DBZ Kai',                                        
                                 type: 'scatter3d'
-                        };                        
+                        };                   
+                        
+                        
+                        //Traces data by mapping columns to x, y,z axis
+                        var opm = {
+                                x:unpack(rows4, 'Year'), y: unpack(rows4, 'Total'), 
+                                z: unpack(rows4, 'ATotal'),
+                                mode: 'markers',
+                                marker: {
+                                       size: 8,
+                                       //Gives the color black
+                                       color: 'rgb(0, 0, 0)'
+                                        },
+
+                                        
+                                //Gives the name for the legend
+                                name : 'One Punch Man',                                        
+                                type: 'scatter3d'
+                        };                          
+
                         
                         //concatenates all the individual points together so they can 
                         //appear on the same plot
-                        var data = [bleach, dbz_final, dbz];
+                        var data = [bleach, dbz_final, dbz, opm];
                         
                         
                         //layout of the graph
                         var layout = {
-                            
+
                           //title at the top of the page
                           title:'Samurai Jack 2017 Viewship totals',
                           
