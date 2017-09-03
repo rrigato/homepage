@@ -99,45 +99,69 @@
                     Portfolio page content goes here.
                     <div id="myDiv">
                         <script>
-                            Plotly.d3.csv('include/data/test.csv', function(err, rows){
-function unpack(rows, key) {
-	return rows.map(function(row)
-	{ return row[key]; });}
+                        Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/3d-ribbon.json', function(figure){
 
-var trace1 = {
-	x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
-	mode: 'markers',
-	marker: {
-		size: 12,
-		line: {
-		color: 'rgba(217, 217, 217, 0.14)',
-		width: 0.5},
-		opacity: 0.8},
-	type: 'scatter3d'
-};
+                        var trace1 = {
+                                x:figure.data[0].x, y:figure.data[0].y, z:figure.data[0].z,
+                                name: '',
+                            colorscale: figure.data[0].colorscale,
+                            showscale: false
+                        }
+                        var trace2 = {
+                                x:figure.data[1].x, y:figure.data[1].y, z:figure.data[1].z,
+                                name: '',
+                                colorscale: figure.data[1].colorscale,
+                                type: 'surface',
+                                showscale: false
+                        }
+                        var trace3 = {
+                                x:figure.data[2].x, y:figure.data[2].y, z:figure.data[2].z,
+                                colorscale: figure.data[2].colorscale,
+                                type: 'surface',
+                                showscale: false
+                        }
+                        var trace4 = {
+                                x:figure.data[3].x, y:figure.data[3].y, z:figure.data[3].z,
+                                colorscale: figure.data[3].colorscale,
+                                type: 'surface',
+                                showscale: false
+                        }
+                        var trace5 = {
+                                x:figure.data[4].x, y:figure.data[4].y, z:figure.data[4].z,
+                                colorscale: figure.data[4].colorscale,
+                                type: 'surface',
+                                showscale: false
+                        }
+                        var trace6 = {
+                                x:figure.data[5].x, y:figure.data[5].y, z:figure.data[5].z,
+                                colorscale: figure.data[5].colorscale,
+                                type: 'surface',
+                                showscale: false
+                        }
+                        var trace7 = {
+                                x:figure.data[6].x, y:figure.data[6].y, z:figure.data[6].z,
+                                name: '',
+                                colorscale: figure.data[6].colorscale,
+                                type: 'surface',
+                                showscale: false
+                        }
 
-var trace2 = {
-	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
-	mode: 'markers',
-	marker: {
-		color: 'rgb(127, 127, 127)',
-		size: 12,
-		symbol: 'circle',
-		line: {
-		color: 'rgb(204, 204, 204)',
-		width: 1},
-		opacity: 0.8},
-	type: 'scatter3d'};
+                      var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7];
 
-var data = [trace1, trace2];
-var layout = {margin: {
-	l: 0,
-	r: 0,
-	b: 0,
-	t: 0
-  }};
-Plotly.newPlot('myDiv', data, layout);
-});
+                      var layout = {
+                        title: 'Ribbon Plot',
+                        showlegend: false,
+                        autosize: true,
+                        width: 600,
+                        height: 600,
+                        scene: {
+                          xaxis: {title: 'Sample #'},
+                          yaxis: {title: 'Wavelength'},
+                          zaxis: {title: 'OD'}
+                        }
+                      };
+                      Plotly.newPlot('myDiv', data, layout);
+                      });
                         </script>
                     </div>
                 </div>
@@ -150,6 +174,52 @@ Plotly.newPlot('myDiv', data, layout);
                  <div id="page3">
                   <a id="about" class="smooth"></a>
                     About page content goes here.
+                    <div id="scatterContainer">
+                    <script>
+                        Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+                        function unpack(rows, key) {
+                                return rows.map(function(row)
+                                { return row[key]; });}
+
+                        var trace1 = {
+                                x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
+                                mode: 'markers',
+                                marker: {
+                                        size: 12,
+                                        line: {
+                                        color: 'rgba(217, 217, 217, 0.14)',
+                                        width: 0.5},
+                                        opacity: 0.8},
+                                type: 'scatter3d'
+                        };
+
+                        var trace2 = {
+                                x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
+                                mode: 'markers',
+                                marker: {
+                                        color: 'rgb(127, 127, 127)',
+                                        size: 12,
+                                        symbol: 'circle',
+                                        line: {
+                                        color: 'rgb(204, 204, 204)',
+                                        width: 1},
+                                        opacity: 0.8},
+                                type: 'scatter3d'};
+
+                        var data = [trace1, trace2];
+                        var layout = {margin: {
+                                l: 0,
+                                r: 0,
+                                b: 0,
+                                t: 0
+                          }};
+                        Plotly.newPlot('scatterContainer', data, layout);
+                        });                        
+                        
+                        
+                        
+                    </script>
+                    </div>
                 </div>
     </body>
 </html>
