@@ -176,43 +176,32 @@
                     About page content goes here.
                     <div id="scatterContainer">
                     <script>
-                        Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+                        Plotly.d3.csv('include/data/samJack.csv', function(err, rows){
                         function unpack(rows, key) {
                                 return rows.map(function(row)
                                 { return row[key]; });}
 
                         var trace1 = {
-                                x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
+                                x:unpack(rows, 'ATotal'), y: unpack(rows, 'Total'), z: unpack(rows, 'AHousehold'),
                                 mode: 'markers',
                                 marker: {
                                         size: 12,
                                         line: {
-                                        color: 'rgba(217, 217, 217, 0.14)',
+                                        color: unpack(rows, 'Time'),
                                         width: 0.5},
                                         opacity: 0.8},
                                 type: 'scatter3d'
                         };
 
-                        var trace2 = {
-                                x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
-                                mode: 'markers',
-                                marker: {
-                                        color: 'rgb(127, 127, 127)',
-                                        size: 12,
-                                        symbol: 'circle',
-                                        line: {
-                                        color: 'rgb(204, 204, 204)',
-                                        width: 1},
-                                        opacity: 0.8},
-                                type: 'scatter3d'};
-
-                        var data = [trace1, trace2];
+                        
                         var layout = {margin: {
                                 l: 0,
                                 r: 0,
                                 b: 0,
                                 t: 0
                           }};
+                      
+                      data = [trace1]
                         Plotly.newPlot('scatterContainer', data, layout);
                         });                        
                         
