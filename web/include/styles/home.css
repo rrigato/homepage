@@ -11,8 +11,9 @@ and open the template in the editor.
 #page1{
 /*    margin:100px;*/
     position: absolute;
-    top: 70%;
-    left: 50%;
+    top: 10%;
+    left: 10%;
+    width:70%;
     /*
         Padding is necessary to account for the fixed position of the 
         id"container-fluid" div navbar that will be fixed at the top of the page
@@ -24,8 +25,9 @@ and open the template in the editor.
 #page2{
 /*    margin:100px;*/
     position: absolute;
-    top: 140%;
-    left: 50%;
+    top: 100%;
+    left: 10%;
+    width:70%;
     /*
         Padding is necessary to account for the fixed position of the 
         id"container-fluid" div navbar that will be fixed at the top of the page
@@ -37,15 +39,16 @@ and open the template in the editor.
 #page3{
 /*    margin:100px;*/
     position: absolute;
-    top: 210%;
-    left: 50%;
+    top: 200%;
+    left: 10%;
     
-    height:60%;
+    width:70%;
     /*
         Padding is necessary to account for the fixed position of the 
         id"container-fluid" div navbar that will be fixed at the top of the page
     */
     padding-top:10%;
+    
 
 
 

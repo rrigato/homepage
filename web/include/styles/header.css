@@ -30,6 +30,10 @@ ul {
     height:10%;
     width:100%;
     
+    /*Ensures that the navbar stays on top of the div
+    So that the menu can always be selected*/
+    z-index: 100;
+    
 }
 
 li a {
