@@ -121,7 +121,7 @@
                                 z: unpack(rows, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
-                                       size: 8,
+                                       size: 6,
                                        //Gives the color pink/purple
                                        color: 'rgb(0, 3, 232)'
                                         },
@@ -138,7 +138,7 @@
                                 z: unpack(rows2, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
-                                       size: 8,
+                                       size: 6,
 
                                        color: 'rgb(248, 134, 232)'
                                         },
@@ -154,7 +154,7 @@
                                 z: unpack(rows3, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
-                                       size: 8,
+                                       size: 6,
                                        //Gives the color Red
                                        color: 'rgb(204, 51, 0)'
                                         },
@@ -172,7 +172,7 @@
                                 z: unpack(rows4, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
-                                       size: 8,
+                                       size: 6,
                                        //Gives the color black
                                        color: 'rgb(0, 0, 0)'
                                         },
