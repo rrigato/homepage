@@ -177,16 +177,16 @@
                     Contact page content goes here.
                     <div id="myDiv2">
                     <script>
-                    Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/_3d-line-plot.csv', function(err, rows){
+                    Plotly.d3.csv('include/data/annualRatings.csv', function(err, rows){
                                 function unpack(rows, key) {
                                     return rows.map(function(row) 
                                     { return row[key]; });
                                 }
 
                           var trace1 = {
-                            x: unpack(rows, 'x1'),
-                            y: unpack(rows, 'y1'),
-                            z: unpack(rows, 'z1'),
+                            x: unpack(rows, 'Total'),
+                            y: unpack(rows, 'ATotal'),
+                            z: unpack(rows, 'Year'),
                             mode: 'lines',
                             marker: {
 
@@ -194,12 +194,12 @@
                               symbol: 'circle',
                               line: {
                                 color: 'rgb(0,0,0)',
-                                width: 0
+                                width: 1
                               }},
                             line: {
-                              color: unpack(rows,'x2'),
-                                colorscale:'Viridis',
-                              width: 1
+                              color: unpack(rows,'Household'),
+                                colorscale:'Bluered',
+                              width: 6
                             },
                             type: 'scatter3d'
                           };
@@ -208,14 +208,13 @@
                           var data = [trace1];
                           var layout = {
                             title: '3D Line Plot',
-                            autosize: false,
-                            width: 700,
-                            height: 600,
+                            autosize: true,
+
                             margin: {
-                              l: 100,
-                              r: 100,
-                              b: 100,
-                              t: 100
+                              l: 50,
+                              r: 50,
+                              b: 50,
+                              t: 50
                             }
                           };
                           Plotly.newPlot('myDiv2', data, layout); 
