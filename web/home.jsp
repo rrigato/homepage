@@ -284,6 +284,7 @@
                               //title at the top of the page
                             title: 'Average Annual Ratings for Toonami Block',
                             autosize: true,
+                            height:700,
                             
                           //A scene object must be used to encapsulate
                           //each axis title, not sure why this is...                            
