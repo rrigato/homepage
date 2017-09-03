@@ -191,7 +191,7 @@
                         
                         //layout of the graph
                         var layout = {
-
+                           width:850,
                           //title at the top of the page
                           title:'Samurai Jack 2017 Viewship totals',
                           
@@ -216,9 +216,9 @@
                            //pixel margin around the graph
                             margin: {
 
-                                l: 50,
+                                l: 100,
                                 r: 50,
-                                b: 0,
+                                b: 50,
                                 t: 50
                           }
                       };
