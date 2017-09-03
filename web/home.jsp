@@ -189,7 +189,7 @@
                             z: unpack(rows, 'z1'),
                             mode: 'lines',
                             marker: {
-                              color: '#1f77b4',
+
                               size: 12,
                               symbol: 'circle',
                               line: {
@@ -197,63 +197,25 @@
                                 width: 0
                               }},
                             line: {
-                              color: '#1f77b4',
+                              color: unpack(rows,'x2'),
+                                colorscale:'Viridis',
                               width: 1
                             },
                             type: 'scatter3d'
                           };
 
-                          var trace2 = {
-                            x: unpack(rows, 'x2'),
-                            y: unpack(rows, 'y2'),
-                            z: unpack(rows, 'z2'),
-                            mode: 'lines',
-                            marker: {
-                              color: '#9467bd',
-                              size: 12,
-                              symbol: 'circle',
-                              line: {
-                                color: 'rgb(0,0,0)',
-                                width: 0
-                              }},
-                            line: {
-                              color: 'rgb(44, 160, 44)',
-                              width: 1
-                            },
-                            type: 'scatter3d'
-                          };
 
-                          var trace3 = {
-                            x: unpack(rows, 'x3'),
-                            y: unpack(rows, 'y3'),
-                            z: unpack(rows, 'z3'),
-                            mode: 'lines',
-                            marker: {
-                              color: '#bcbd22',
-                              size: 12,
-                              symbol: 'circle',
-                              line: {
-                                color: 'rgb(0,0,0)',
-                                width: 0
-                              }},
-                            line: {
-                              color: '#bcbd22',
-                              width: 1
-                            },
-                            type: 'scatter3d'
-                          };
-
-                          var data = [trace1, trace2, trace3];
+                          var data = [trace1];
                           var layout = {
                             title: '3D Line Plot',
                             autosize: false,
-                            width: 500,
-                            height: 500,
+                            width: 700,
+                            height: 600,
                             margin: {
-                              l: 0,
-                              r: 0,
-                              b: 0,
-                              t: 65
+                              l: 100,
+                              r: 100,
+                              b: 100,
+                              t: 100
                             }
                           };
                           Plotly.newPlot('myDiv2', data, layout); 
