@@ -244,87 +244,8 @@
                 <div id="page2">
                   <a id="contact" class="smooth"></a>
                     Contact page content goes here.
-                    <div id="myDiv2">
-                    <script>
-                        /*
-                         * Reads the csv from include/data/samJack.csv
-                         */                        
-                    Plotly.d3.csv('include/data/annualRatings.csv', function(err, rows){
-                              //function that returns each individual value 
-                            //from a row
-                                function unpack(rows, key) {
-                                    return rows.map(function(row) 
-                                    { return row[key]; });
-                                }
 
-                          var trace1 = {
-                            x: unpack(rows, 'Total'),
-                            y: unpack(rows, 'ATotal'),
-                            z: unpack(rows, 'Year'),
-                            mode: 'lines',
-                            marker: {
-
-                              size: 12,
-                              symbol: 'circle',
-                              line: {
-                                color: 'rgb(0,0,0)',
-                                width: 1
-                              }},
-                            line: {
-                              color: unpack(rows,'Household'),
-                                colorscale:'Bluered',
-                              width: 6
-                            },
-                            type: 'scatter3d'
-                          };
-
-
-                          var data = [trace1];
-                          var layout = {
-                              //title at the top of the page
-                            title: 'Average Annual Ratings for Toonami Block',
-                            autosize: true,
-                            height:700,
-                            
-                          //A scene object must be used to encapsulate
-                          //each axis title, not sure why this is...                            
-                           scene :{
-                                xaxis:{
-                                    title:'Total Viewers in thousands'
-                                },
-                            
-                                   yaxis:{
-                                    title:'Age 18-49 Viewers in thousands'
-                                },                         
-                            
-                                 zaxis:{
-                                    title:'Year'
-                                }
-                          },
-
-                            margin: {
-                              l: 50,
-                              r: 50,
-                              b: 50,
-                              t: 50
-                            }
-                          };
-                        //populates the new plot with the string literal the
-                        //id of the div you want this plot in
-                          Plotly.newPlot('myDiv2', data, layout); 
-                          });
-                   
-                        
-                        
-                        
-                    </script>
-                    </div>
-                </div>
-                
-                 <div id="page3">
-                  <a id="about" class="smooth"></a>
-                    About page content goes here.
-                    <div id="monthly-ratings">
+                                        <div id="monthly-ratings">
                         
                      <script>
                         Plotly.d3.csv('include/data/monthly-ratings/year2012.csv', function(err, rows){
@@ -504,6 +425,86 @@
 
                         </script>
 
+                    </div>
+                </div>
+                
+                 <div id="page3">
+                  <a id="about" class="smooth"></a>
+                    About page content goes here.
+                    <div id="myDiv2">
+                    <script>
+                        /*
+                         * Reads the csv from include/data/samJack.csv
+                         */                        
+                    Plotly.d3.csv('include/data/annualRatings.csv', function(err, rows){
+                              //function that returns each individual value 
+                            //from a row
+                                function unpack(rows, key) {
+                                    return rows.map(function(row) 
+                                    { return row[key]; });
+                                }
+
+                          var trace1 = {
+                            x: unpack(rows, 'Total'),
+                            y: unpack(rows, 'ATotal'),
+                            z: unpack(rows, 'Year'),
+                            mode: 'lines',
+                            marker: {
+
+                              size: 12,
+                              symbol: 'circle',
+                              line: {
+                                color: 'rgb(0,0,0)',
+                                width: 1
+                              }},
+                            line: {
+                              color: unpack(rows,'Household'),
+                                colorscale:'Bluered',
+                              width: 6
+                            },
+                            type: 'scatter3d'
+                          };
+
+
+                          var data = [trace1];
+                          var layout = {
+                              //title at the top of the page
+                            title: 'Average Annual Ratings for Toonami Block',
+                            autosize: true,
+                            height:700,
+                            
+                          //A scene object must be used to encapsulate
+                          //each axis title, not sure why this is...                            
+                           scene :{
+                                xaxis:{
+                                    title:'Total Viewers in thousands'
+                                },
+                            
+                                   yaxis:{
+                                    title:'Age 18-49 Viewers in thousands'
+                                },                         
+                            
+                                 zaxis:{
+                                    title:'Year'
+                                }
+                          },
+
+                            margin: {
+                              l: 50,
+                              r: 50,
+                              b: 50,
+                              t: 50
+                            }
+                          };
+                        //populates the new plot with the string literal the
+                        //id of the div you want this plot in
+                          Plotly.newPlot('myDiv2', data, layout); 
+                          });
+                   
+                        
+                        
+                        
+                    </script>
                     </div>
                 </div>
     </body>
