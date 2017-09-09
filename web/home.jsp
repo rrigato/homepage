@@ -330,6 +330,7 @@
                         Plotly.d3.csv('include/data/monthly-ratings/year2012.csv', function(err, rows){
                            Plotly.d3.csv('include/data/monthly-ratings/year2013.csv', function(err2013, rows2013){  
                               Plotly.d3.csv('include/data/monthly-ratings/year2014.csv', function(err2014, rows2014){
+                                Plotly.d3.csv('include/data/monthly-ratings/year2015.csv', function(err2015, rows2015){
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -405,14 +406,36 @@
                               mode: 'lines',
                               //Sets the color/width of the lines
                               line: {
-                                //gives the color green
-                                color: '#006400',
+                                //gives the color gold
+                                color: '#FFD700',
                                 width: 4
                               },
                               //Gives the name for the legend
                               name:'2015',                              
                               type: 'scatter3d'
                             };                            
+
+
+
+                            
+                            //This variable corresponds to the include/data/year2016.csv
+                            //file which gives the average monthly ratings for 2016
+                            var year2016 = {
+                              //unpacks the csv into the x, y, and z axis
+                              x: unpack(rows2016, 'Year'),
+                              y: unpack(rows2016, 'Month'),
+                              z: unpack(rows2016, 'Total'),
+                              mode: 'lines',
+                              //Sets the color/width of the lines
+                              line: {
+                                //gives the color gold
+                                color: '#FFD700',
+                                width: 4
+                              },
+                              //Gives the name for the legend
+                              name:'2016',                              
+                              type: 'scatter3d'
+                            };         
 
                             var data = [year2012, year2013, year2014, year2015];
                             var layout = {
@@ -446,7 +469,7 @@
                             
                             Plotly.newPlot('monthly-ratings', data, layout); 
                             
-                            
+                                });//End of 2015 csv
                             });//End of 2014 csv
                           });//End of 2013 csv
                          });//End of 2012 csv
