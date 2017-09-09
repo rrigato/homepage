@@ -338,19 +338,15 @@
                                     { return row[key]; });
                                 }
 
-
+                            //This variable corresponds to the include/data/year2012.csv
+                            //file which gives the average monthly ratings for 2012
                             var year2012 = {
+                                 //unpacks the csv into the x, y, and z axis
                               x: unpack(rows, 'Year'),
                               y: unpack(rows, 'Month'),
                               z: unpack(rows, 'Total'),
                               mode: 'lines',
-//                              marker: {
-//                                color: '#1f77b4',
-//                                size: 12,
-//                                symbol: 'circle',
-//                                line: {//                                  color: 'rgb(0,0,0)',
-//                                  width: 0
-//                                }},
+                              //Sets the color/width of the lines
                               line: {
                                 color: '#1f77b4',
                                 width: 4
@@ -358,22 +354,18 @@
                               type: 'scatter3d'
                             };
 
-                            var trace2 = {
-                              x: unpack(rows, 'x2'),
-                              y: unpack(rows, 'y2'),
-                              z: unpack(rows, 'z2'),
+                            //This variable corresponds to the include/data/year2013.csv
+                            //file which gives the average monthly ratings for 2013
+                            var year2013 = {
+                              //unpacks the csv into the x, y, and z axis
+                              x: unpack(rows, 'Year'),
+                              y: unpack(rows, 'Month'),
+                              z: unpack(rows, 'Total'),
                               mode: 'lines',
-                              marker: {
-                                color: '#9467bd',
-                                size: 12,
-                                symbol: 'circle',
-                                line: {
-                                  color: 'rgb(0,0,0)',
-                                  width: 0
-                                }},
+                              //Sets the color/width of the lines
                               line: {
-                                color: 'rgb(44, 160, 44)',
-                                width: 1
+                                color: '#1f77b4',
+                                width: 4
                               },
                               type: 'scatter3d'
                             };
