@@ -331,6 +331,7 @@
                            Plotly.d3.csv('include/data/monthly-ratings/year2013.csv', function(err2013, rows2013){  
                               Plotly.d3.csv('include/data/monthly-ratings/year2014.csv', function(err2014, rows2014){
                                 Plotly.d3.csv('include/data/monthly-ratings/year2015.csv', function(err2015, rows2015){
+                                    Plotly.d3.csv('include/data/monthly-ratings/year2016.csv', function(err2016, rows2016){
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -429,7 +430,7 @@
                               //Sets the color/width of the lines
                               line: {
                                 //gives the color gold
-                                color: '#FFD700',
+                                color: '#FF69B4',
                                 width: 4
                               },
                               //Gives the name for the legend
@@ -437,7 +438,8 @@
                               type: 'scatter3d'
                             };         
 
-                            var data = [year2012, year2013, year2014, year2015];
+                            //combines individual lines into one 3d graph
+                            var data = [year2012, year2013, year2014, year2015, year2016];
                             var layout = {
                               title: 'Average monthly ratings by year',
                               autosize: true,
@@ -447,11 +449,13 @@
                                  scene :{
                                       xaxis:{
                                           title:'Year',
+                                          //how far between tick marks on graph axis
                                           dtick : 1
                                       },
 
                                          yaxis:{
                                           title:'Month',
+                                          //how far between tick marks on graph axis
                                           dtick :1
                                       },                         
 
@@ -469,6 +473,7 @@
                             
                             Plotly.newPlot('monthly-ratings', data, layout); 
                             
+                                    });//End of 2016 csv
                                 });//End of 2015 csv
                             });//End of 2014 csv
                           });//End of 2013 csv
