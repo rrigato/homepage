@@ -437,9 +437,30 @@
                               name:'2016',                              
                               type: 'scatter3d'
                             };         
+                            
+                            
+                            
+                            //This variable corresponds to the include/data/year2017.csv
+                            //file which gives the average monthly ratings for 2017
+                            var year2017 = {
+                              //unpacks the csv into the x, y, and z axis
+                              x: unpack(rows2017, 'Year'),
+                              y: unpack(rows2017, 'Month'),
+                              z: unpack(rows2017, 'Total'),
+                              mode: 'lines',
+                              //Sets the color/width of the lines
+                              line: {
+                                //gives the color gold
+                                color: '#FF69B4',
+                                width: 4
+                              },
+                              //Gives the name for the legend
+                              name:'2017',                              
+                              type: 'scatter3d'
+                            };                                  
 
                             //combines individual lines into one 3d graph
-                            var data = [year2012, year2013, year2014, year2015, year2016];
+                            var data = [year2012, year2013, year2014, year2015, year2016, year2017];
                             var layout = {
                               title: 'Average monthly ratings by year',
                               autosize: true,
