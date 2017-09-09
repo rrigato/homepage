@@ -72,9 +72,9 @@
                 <div id="nav">
                      <ul class="nav navbar-nav">
                          
-                         <li><a href="#portfolio" data-toggle="tooltip" 
-                                title="Click here to learn more about this website">
-                                 Portfolio</a></li>
+                         <li><a href="#midnight" data-toggle="tooltip" 
+                                title="Click here to see ratings for the midnight slot of Adult Swim">
+                                 Midnight Ratings</a></li>
                                  
                          <li><a href="#contact" data-toggle="tooltip" 
                                 title="Click here to learn more about this website">
@@ -95,7 +95,7 @@
 
 
                 <div id="page1">
-                  <a id="portfolio" class="smooth"></a>
+                  <a id="midnight" class="smooth"></a>
                     Portfolio page content goes here.
                     <div id="scatterContainer">
 
