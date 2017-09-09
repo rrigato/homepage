@@ -324,11 +324,11 @@
                  <div id="page3">
                   <a id="about" class="smooth"></a>
                     About page content goes here.
-                    <div id="monthlyRatings">
+                    <div id="monthly-ratings">
                         
                      <script>
-                        Plotly.d3.csv('include/data/year2012.csv', function(err, rows){
-                           Plotly.d3.csv('include/data/year2013.csv', function(err2013, rows2013){  
+                        Plotly.d3.csv('include/data/monthly-ratings/year2012.csv', function(err, rows){
+                           Plotly.d3.csv('include/data/monthly-ratings/year2013.csv', function(err2013, rows2013){  
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -417,7 +417,7 @@
                               }
                             };
                             
-                            Plotly.newPlot('monthlyRatings', data, layout); 
+                            Plotly.newPlot('monthly-ratings', data, layout); 
                            
                           });//End of 2013 csv
                          });//End of 2012 csv
