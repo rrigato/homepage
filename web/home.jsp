@@ -328,7 +328,7 @@
                         
                         <script>
                             Plotly.d3.csv(
-                               'https://raw.githubusercontent.com/plotly/datasets/master/_3d-line-plot.csv', 
+                               'include/data/year2012.csv', 
                             function(err, rows){
                                 
                             //function that returns each individual value 
@@ -339,17 +339,16 @@
                                 }
 
 
-                            var trace1 = {
-                              x: unpack(rows, 'x1'),
-                              y: unpack(rows, 'y1'),
-                              z: unpack(rows, 'z1'),
+                            var year2012 = {
+                              x: unpack(rows, 'Year'),
+                              y: unpack(rows, 'Month'),
+                              z: unpack(rows, 'Total'),
                               mode: 'lines',
 //                              marker: {
 //                                color: '#1f77b4',
 //                                size: 12,
 //                                symbol: 'circle',
-//                                line: {
-//                                  color: 'rgb(0,0,0)',
+//                                line: {//                                  color: 'rgb(0,0,0)',
 //                                  width: 0
 //                                }},
                               line: {
@@ -399,7 +398,7 @@
 //                              type: 'scatter3d'
 //                            };
 
-                            var data = [trace1, trace2];
+                            var data = [year2012];
                             var layout = {
                               title: '3D Line Plot',
                               autosize: true,
