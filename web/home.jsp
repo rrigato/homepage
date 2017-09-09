@@ -76,9 +76,9 @@
                                 title="Click here to see ratings for the midnight slot of Adult Swim">
                                  Midnight Ratings</a></li>
                                  
-                         <li><a href="#contact" data-toggle="tooltip" 
-                                title="Click here to learn more about this website">
-                                 Contact</a></li>
+                         <li><a href="#monthly" data-toggle="tooltip" 
+                                title="Click here to see average monthly ratings for Toonami">
+                                 Historical Monthly Ratings</a></li>
                                  
                          <li><a href="#household" data-toggle="tooltip" 
                                 title="Click here to see average household ratings by year">
@@ -242,10 +242,10 @@
                 </div>
 
                 <div id="page2">
-                  <a id="contact" class="smooth"></a>
+                  <a id="monthly" class="smooth"></a>
                     Contact page content goes here.
 
-                                        <div id="monthly-ratings">
+                    <div id="monthly-ratings">
                         
                      <script>
                         Plotly.d3.csv('include/data/monthly-ratings/year2012.csv', function(err, rows){
