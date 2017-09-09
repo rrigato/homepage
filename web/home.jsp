@@ -80,9 +80,9 @@
                                 title="Click here to learn more about this website">
                                  Contact</a></li>
                                  
-                         <li><a href="#about" data-toggle="tooltip" 
-                                title="Click here to learn more about this website">
-                                 About</a></li>
+                         <li><a href="#household" data-toggle="tooltip" 
+                                title="Click here to see average household ratings by year">
+                                 Household Ratings</a></li>
                      </ul>-
                 </div>       
 
@@ -429,9 +429,9 @@
                 </div>
                 
                  <div id="page3">
-                  <a id="about" class="smooth"></a>
+                  <a id="household" class="smooth"></a>
                     About page content goes here.
-                    <div id="myDiv2">
+                    <div id="annual-ratings">
                     <script>
                         /*
                          * Reads the csv from include/data/samJack.csv
@@ -444,7 +444,7 @@
                                     { return row[key]; });
                                 }
 
-                          var trace1 = {
+                          var annualRatings = {
                             x: unpack(rows, 'Total'),
                             y: unpack(rows, 'ATotal'),
                             z: unpack(rows, 'Year'),
@@ -466,7 +466,7 @@
                           };
 
 
-                          var data = [trace1];
+                          var data = [annualRatings];
                           var layout = {
                               //title at the top of the page
                             title: 'Average Annual Ratings for Toonami Block',
@@ -498,7 +498,7 @@
                           };
                         //populates the new plot with the string literal the
                         //id of the div you want this plot in
-                          Plotly.newPlot('myDiv2', data, layout); 
+                          Plotly.newPlot('annual-ratings', data, layout); 
                           });
                    
                         
