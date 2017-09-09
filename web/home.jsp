@@ -326,11 +326,9 @@
                     About page content goes here.
                     <div id="monthlyRatings">
                         
-                        <script>
-                            Plotly.d3.csv(
-                               'include/data/year2012.csv', 
-                            function(err, rows){
-                                
+                     <script>
+                        Plotly.d3.csv('include/data/year2012.csv', function(err, rows){
+                           Plotly.d3.csv('include/data/year2013.csv', function(err2013, rows2013){  
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -348,6 +346,7 @@
                               mode: 'lines',
                               //Sets the color/width of the lines
                               line: {
+                                //gives color blue
                                 color: '#1f77b4',
                                 width: 4
                               },
@@ -358,13 +357,13 @@
                             //file which gives the average monthly ratings for 2013
                             var year2013 = {
                               //unpacks the csv into the x, y, and z axis
-                              x: unpack(rows, 'Year'),
-                              y: unpack(rows, 'Month'),
-                              z: unpack(rows, 'Total'),
+                              x: unpack(rows2013, 'Year'),
+                              y: unpack(rows2013, 'Month'),
+                              z: unpack(rows2013, 'Total'),
                               mode: 'lines',
                               //Sets the color/width of the lines
                               line: {
-                                color: '#1f77b4',
+                                color: 'red',
                                 width: 4
                               },
                               type: 'scatter3d'
@@ -390,7 +389,7 @@
 //                              type: 'scatter3d'
 //                            };
 
-                            var data = [year2012];
+                            var data = [year2012, year2013];
                             var layout = {
                               title: '3D Line Plot',
                               autosize: true,
@@ -399,11 +398,11 @@
                                 //each axis title, not sure why this is...                            
                                  scene :{
                                       xaxis:{
-                                          title:'Month'
+                                          title:'Year'
                                       },
 
                                          yaxis:{
-                                          title:'Year'
+                                          title:'Month'
                                       },                         
 
                                        zaxis:{
@@ -419,7 +418,9 @@
                             };
                             
                             Plotly.newPlot('monthlyRatings', data, layout); 
-                            });
+                           
+                          });//End of 2013 csv
+                         });//End of 2012 csv
 
                         </script>
 
