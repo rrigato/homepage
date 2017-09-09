@@ -351,6 +351,8 @@
                                 color: '#1f77b4',
                                 width: 4
                               },
+                              //Gives the name for the legend
+                              name:'2012',
                               type: 'scatter3d'
                             };
 
@@ -367,6 +369,8 @@
                                 color: 'red',
                                 width: 4
                               },
+                              //Gives the name for the legend
+                              name:'2013',
                               type: 'scatter3d'
                             };
 
@@ -383,23 +387,27 @@
                                 color: 'green',
                                 width: 4
                               },
+                              //Gives the name for the legend
+                              name:'2014',                              
                               type: 'scatter3d'
                             };
 
                             var data = [year2012, year2013, year2014];
                             var layout = {
-                              title: '3D Line Plot',
+                              title: 'Average monthly ratings by year',
                               autosize: true,
                               height: 700,
                                 //A scene object must be used to encapsulate
                                 //each axis title, not sure why this is...                            
                                  scene :{
                                       xaxis:{
-                                          title:'Year'
+                                          title:'Year',
+                                          dtick : 1
                                       },
 
                                          yaxis:{
-                                          title:'Month'
+                                          title:'Month',
+                                          dtick :1
                                       },                         
 
                                        zaxis:{
