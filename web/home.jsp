@@ -324,11 +324,13 @@
                  <div id="page3">
                   <a id="about" class="smooth"></a>
                     About page content goes here.
-                    <div id="myDiv">
+                    <div id="monthlyRatings">
                         
                         <script>
                             Plotly.d3.csv(
                                'https://raw.githubusercontent.com/plotly/datasets/master/_3d-line-plot.csv', 
+                            function(err, rows){
+                                
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -397,20 +399,35 @@
 //                              type: 'scatter3d'
 //                            };
 
-                            var data = [trace1, trace2, trace3];
+                            var data = [trace1, trace2];
                             var layout = {
                               title: '3D Line Plot',
-                              autosize: false,
-                              width: 500,
-                              height: 500,
+                              autosize: true,
+                              height: 700,
+                                //A scene object must be used to encapsulate
+                                //each axis title, not sure why this is...                            
+                                 scene :{
+                                      xaxis:{
+                                          title:'Month'
+                                      },
+
+                                         yaxis:{
+                                          title:'Year'
+                                      },                         
+
+                                       zaxis:{
+                                          title:'Viewers in Thousands'
+                                      }
+                                },                              
                               margin: {
-                                l: 0,
-                                r: 0,
-                                b: 0,
-                                t: 65
+                                l: 50,
+                                r: 50,
+                                b: 50,
+                                t: 50
                               }
                             };
-                            Plotly.newPlot('myDiv', data, layout); 
+                            
+                            Plotly.newPlot('monthlyRatings', data, layout); 
                             });
 
                         </script>
