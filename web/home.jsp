@@ -329,6 +329,7 @@
                      <script>
                         Plotly.d3.csv('include/data/monthly-ratings/year2012.csv', function(err, rows){
                            Plotly.d3.csv('include/data/monthly-ratings/year2013.csv', function(err2013, rows2013){  
+                              Plotly.d3.csv('include/data/monthly-ratings/year2014.csv', function(err2014, rows2014){
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -369,27 +370,23 @@
                               type: 'scatter3d'
                             };
 
-//                            var trace3 = {
-//                              x: unpack(rows, 'x3'),
-//                              y: unpack(rows, 'y3'),
-//                              z: unpack(rows, 'z3'),
-//                              mode: 'lines',
-//                              marker: {
-//                                color: '#bcbd22',
-//                                size: 12,
-//                                symbol: 'circle',
-//                                line: {
-//                                  color: 'rgb(0,0,0)',
-//                                  width: 0
-//                                }},
-//                              line: {
-//                                color: '#bcbd22',
-//                                width: 1
-//                              },
-//                              type: 'scatter3d'
-//                            };
+                            //This variable corresponds to the include/data/year2014.csv
+                            //file which gives the average monthly ratings for 2014
+                            var year2014 = {
+                              //unpacks the csv into the x, y, and z axis
+                              x: unpack(rows2014, 'Year'),
+                              y: unpack(rows2014, 'Month'),
+                              z: unpack(rows2014, 'Total'),
+                              mode: 'lines',
+                              //Sets the color/width of the lines
+                              line: {
+                                color: 'green',
+                                width: 4
+                              },
+                              type: 'scatter3d'
+                            };
 
-                            var data = [year2012, year2013];
+                            var data = [year2012, year2013, year2014];
                             var layout = {
                               title: '3D Line Plot',
                               autosize: true,
@@ -418,7 +415,9 @@
                             };
                             
                             Plotly.newPlot('monthly-ratings', data, layout); 
-                           
+                            
+                            
+                            });//End of 2014 csv
                           });//End of 2013 csv
                          });//End of 2012 csv
 
