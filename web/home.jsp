@@ -83,6 +83,10 @@
                          <li><a href="#household" data-toggle="tooltip" 
                                 title="Click here to see average household ratings by year">
                                  Household Ratings</a></li>
+                                 
+                         <li><a href="#about" data-toggle="tooltip" 
+                                title="Click here to learn more about this site">
+                                 About</a></li>
                      </ul>-
                 </div>       
 
@@ -506,6 +510,15 @@
                         
                     </script>
                     </div>
+                </div>
+                
+                
+
+                <div id="page4">
+                                      Hello World!
+                  <a id="about" class="smooth"></a>
+                  
+
                 </div>
     </body>
 </html>

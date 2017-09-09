@@ -53,3 +53,22 @@ and open the template in the editor.
 
 
 }
+
+
+#page4{
+/*    margin:100px;*/
+    position: absolute;
+    top: 400%;
+    left: 10%;
+    
+    width:70%;
+    /*
+        Padding is necessary to account for the fixed position of the 
+        id"container-fluid" div navbar that will be fixed at the top of the page
+    */
+    padding-top:10%;
+    
+
+
+
+}
