@@ -332,6 +332,7 @@
                               Plotly.d3.csv('include/data/monthly-ratings/year2014.csv', function(err2014, rows2014){
                                 Plotly.d3.csv('include/data/monthly-ratings/year2015.csv', function(err2015, rows2015){
                                     Plotly.d3.csv('include/data/monthly-ratings/year2016.csv', function(err2016, rows2016){
+                                         Plotly.d3.csv('include/data/monthly-ratings/year2017.csv', function(err2017, rows2017){
                             //function that returns each individual value 
                             //from a row
                                 function unpack(rows, key) {
@@ -429,7 +430,7 @@
                               mode: 'lines',
                               //Sets the color/width of the lines
                               line: {
-                                //gives the color gold
+                                //gives the color light purple
                                 color: '#FF69B4',
                                 width: 4
                               },
@@ -450,8 +451,8 @@
                               mode: 'lines',
                               //Sets the color/width of the lines
                               line: {
-                                //gives the color gold
-                                color: '#FF69B4',
+                                //gives the color gray
+                                color: '#808080',
                                 width: 4
                               },
                               //Gives the name for the legend
@@ -494,6 +495,7 @@
                             
                             Plotly.newPlot('monthly-ratings', data, layout); 
                             
+                                        });//End of 2016 csv
                                     });//End of 2016 csv
                                 });//End of 2015 csv
                             });//End of 2014 csv
