@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : ryan
 */
 
+/*
+    Gives the font size of the link in the top left of the 
+    navbar
+*/
 .navbar-brand{
     font-size: 25px;
 }
@@ -30,6 +34,11 @@ ul {
     overflow: hidden;
     background-color: #333;
     position:fixed;
+    
+    /*
+        Gives how much of the page the navbar takes up vertically and 
+        across the screen
+    */
     height:7%;
     width:100%;
     
