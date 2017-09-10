@@ -526,17 +526,20 @@
                                 <p>
                                     My name is Ryan Rigato and as you can probably guess I 
                                     am definitely not a web developer. However, I have found that
-                                    knowing the fundamentals of web development is skill which is
+                                    knowing the fundamentals of web development is
                                     very useful in the world of analytics. I built this site because
                                     I find 3-Dimensional graphing fascinating, I hope you feel the same!
 
                                 </p>
                                 <p>
-                                    The purpose of this site is to demonstrate how visualizing data
-                                    can impart ideas easier than the dataset itself. I developed this website
-                                    as an experiment in storytelling with data. Any feedback about the site
-                                    and the visualizations created is much appreciated.
-                                </p>
+                                    All graphes were built with the Plotly.js JavaScript framework.
+                                    I would like to say thank you to the plotly team for open sourceing
+                                    their graphing library. Additionally, this site would not of been 
+                                    possible without the wonderful <a href = https://www.w3schools.com/ > W3 Turtorials</a>
+                                    and the <a href = http://getbootstrap.com/> Bootstrap  Front End Framework</a>
+                                    Finally, the smooth transitions between views was built with <a> jQuery </a>
+                                        
+                                   </p>
 
 
 
@@ -544,6 +547,8 @@
 
 
                         <h3>Here is some information about me</h3>
+
+                        <a href ="http://ryanrigato-1252.appspot.com/">Check out my other website featuring D3.js</a>
                         <%--External link to GitHub--%>
                         <a href ="https://github.com/rrigato">Check out my GitHub account</a>
 
