@@ -545,10 +545,17 @@
 
                             </div>
 
+                        
+                        <br>       
+                        <br>   
 
                         <h3>Here is some information about me</h3>
 
                         <a href ="http://ryanrigato-1252.appspot.com/">Check out my other website featuring D3.js</a>
+                       
+                        <br>       
+                        <br>                        
+                        
                         <%--External link to GitHub--%>
                         <a href ="https://github.com/rrigato">Check out my GitHub account</a>
 
@@ -562,7 +569,7 @@
 
                         <br>
                         <br>
-                        <a href="https://github.com/rrigato/WebDev">Source Code for this website</a>
+                        <a href="https://github.com/rrigato/ratings">Source Code for this website</a>
                 </div>
 
                 </div>
