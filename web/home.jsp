@@ -112,10 +112,10 @@
                       </p>
                       
                       <!--Provides a blue info alert for the graph-->
-                    <div id ="info" class="alert alert-info">
-                        <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
-                        angle. Clicking on an entry in the legend will remove/add those data elements
-                    </div>
+                        <div id ="info" class="alert alert-info">
+                            <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
+                            angle. Clicking on an entry in the legend will remove/add those data elements
+                        </div>
                       
                       
                   </div>
@@ -283,7 +283,23 @@
 
                 <div id="page2">
                   <a id="monthly" class="smooth"></a>
-                    Contact page content goes here.
+                  <div class="description">
+                      <p>
+                          While a simple premise, the below line graph averages the
+                          ratings for Adult Swim's toonami block by month and year from middle 2012
+                          until 2017. As you rotate the graph it becomes apparent how succinctly
+                          3-dimensionsal graphing can compress and relate information.
+                          
+                      </p>
+                      
+                      <!--Provides a blue info alert for the graph-->
+                        <div id ="info" class="alert alert-info">
+                            <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
+                            angle. Clicking on an entry in the legend will remove/add those data elements
+                        </div>
+                      
+                      
+                  </div>
 
                     <div id="monthly-ratings">
                         
@@ -427,7 +443,7 @@
                               //<b> tag bolds the title
                               title: '<b> Average monthly ratings by year </b>',
                               autosize: true,
-                              height: 700,
+                              height: 800,
                                 //A scene object must be used to encapsulate
                                 //each axis title, not sure why this is...                            
                                  scene :{
