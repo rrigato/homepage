@@ -616,11 +616,15 @@
                 
 
                 <div id="page4">
+                    
+                  <!--This is where the navbar will transition to-->  
                   <a id="about" class="smooth"></a>
                   
+                  <!--Puts my image into the webpage-->  
                     <div class="me"/>
-                        <img src="images/myPhoto.jpg"  style="width:225px;height:225px;">
+                        <img src="images/myPhoto.jpg"  class ="myPhoto" >
                     </div>
+                  <!--Explains the website and provides external links to my other works-->  
                     <div class="words"/>
                         <h2>About this site</h2>
                             <div class ="explanation">
