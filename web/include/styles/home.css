@@ -72,3 +72,23 @@ and open the template in the editor.
 
 
 }
+
+
+
+/*
+Content for the 'about' page splits 30%/ 50% between
+the image and the words
+*/
+.words{
+    width:60%;
+    display:block;
+    float:left;
+    font-size: 20px;
+}
+
+.me{
+    display:block;
+    text-align: left;
+    width:30%;
+    float:left;
+}
