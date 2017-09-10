@@ -515,7 +515,6 @@
                 
 
                 <div id="page4">
-                                      Hello World!
                   <a id="about" class="smooth"></a>
                   
                     <div class="me"/>
@@ -525,10 +524,11 @@
                         <h2>About this site</h2>
                             <div class ="explanation">
                                 <p>
-                                    My name is Ryan Rigato and this is the site I developed. I 
-                                    built this site to demonstrate my abilities in Front End development,
-                                    with a focus on telling stories with data. If you would like 
-                                    to see more of my work, please take a look at the links below.
+                                    My name is Ryan Rigato and as you can probably guess I 
+                                    am definitely not a web developer. However, I have found that
+                                    knowing the fundamentals of web development is skill which is
+                                    very useful in the world of analytics. I built this site because
+                                    I find 3-Dimensional graphing fascinating, I hope you feel the same!
 
                                 </p>
                                 <p>
