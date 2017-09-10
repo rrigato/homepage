@@ -208,6 +208,8 @@
                                     //Makes sure the ticks are every year
                                     autotick:false,
                                     dtick:1
+                                    
+                                    
                                 },
                             
                                    yaxis:{
@@ -225,6 +227,12 @@
                                 r: 100,
                                 b: 100,
                                 t: 50
+                          },
+                          
+                          legend:{
+                              font:{
+                                  size:18
+                              }
                           }
                       };
                             console.log(layout);
@@ -415,7 +423,13 @@
                                 r: 50,
                                 b: 50,
                                 t: 50
-                              }
+                              },
+                          
+                             legend:{
+                                 font:{
+                                      size:18
+                                }
+                            }
                             };
                             
                             Plotly.newPlot('monthly-ratings', data, layout); 
