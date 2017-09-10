@@ -504,8 +504,30 @@
                 </div>
                 
                  <div id="page3">
+                     <!--Navbar will make a smooth transition to this anchor-->
                   <a id="household" class="smooth"></a>
-                    About page content goes here.
+                <!--Provides a description for the graph-->
+                  <div class="description">
+                      <p>
+                          The below graph provides some demographic information from 
+                          years 2012 until 2017 concerning the ratings for the
+                          toonami block for adult's aged 18-49. Additionally this graph 
+                          adds a fourth dimension which is the color of the line graph. The
+                          darker purple represents a higher average household rating (percentage 
+                          of televisions tuned into the broadcast) while the red represents a
+                          smaller household rating.
+                          
+                          
+                      </p>
+                      
+                      <!--Provides a blue info alert for the graph-->
+                        <div id ="info" class="alert alert-info">
+                            <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
+                            angle. 
+                        </div>
+                      
+                      
+                  </div>
                     <div id="annual-ratings">
                     <script>
                         /*
