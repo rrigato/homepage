@@ -99,7 +99,10 @@
 
 
                 <div id="page1">
+                     <!--Here is where the navbar transitions the view to when clicked-->
                   <a id="midnight" class="smooth"></a>
+                  
+                  <!--Provides a description for the graph-->
                   <div class="description">
                       <p>
                       The midnight slot is considered by many to be the premiere 
@@ -108,6 +111,7 @@
                       of various shows in the midnight time slot.
                       </p>
                       
+                      <!--Provides a blue info alert for the graph-->
                     <div id ="info" class="alert alert-info">
                         <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
                         angle. Clicking on an entry in the legend will remove/add those data elements
