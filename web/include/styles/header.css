@@ -8,6 +8,9 @@ and open the template in the editor.
     Author     : ryan
 */
 
+.navbar-brand{
+    font-size: 25px;
+}
 
 ul {
     list-style-type: none;
@@ -27,12 +30,13 @@ ul {
     overflow: hidden;
     background-color: #333;
     position:fixed;
-    height:10%;
+    height:7%;
     width:100%;
     
     /*Ensures that the navbar stays on top of the div
     So that the menu can always be selected*/
     z-index: 100;
+    font-size: 25px;
     
 }
 
