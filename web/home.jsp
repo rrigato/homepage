@@ -198,7 +198,8 @@
                            autoscale:true,
                            height:700,
                           //title at the top of the page
-                          title:'Midnight slot viewership',
+                          //<b> tag bolds the title
+                          title:'<b> Midnight slot viewership </b>',
                           
                           //A scene object must be used to encapsulate
                           //each axis title, not sure why this is...
@@ -228,6 +229,15 @@
                                 b: 100,
                                 t: 50
                           },
+
+        
+                              //sets the font size of the title
+                              
+                        "titlefont": {
+                              "size": 24,
+                           },
+                          
+                          //sets the font size of the legend        
                           
                           legend:{
                               font:{
@@ -396,7 +406,8 @@
                             //combines individual lines into one 3d graph
                             var data = [year2012, year2013, year2014, year2015, year2016, year2017];
                             var layout = {
-                              title: 'Average monthly ratings by year',
+                              //<b> tag bolds the title
+                              title: '<b> Average monthly ratings by year </b>',
                               autosize: true,
                               height: 700,
                                 //A scene object must be used to encapsulate
@@ -407,7 +418,7 @@
                                           //how far between tick marks on graph axis
                                           dtick : 1
                                       },
-
+    
                                          yaxis:{
                                           title:'Month',
                                           //how far between tick marks on graph axis
@@ -424,7 +435,14 @@
                                 b: 50,
                                 t: 50
                               },
+                              
+                              //sets the font size of the title
+                              
+                                "titlefont": {
+                                    "size": 24,
+                                  },
                           
+                          //sets the font size of the legend
                              legend:{
                                  font:{
                                       size:18
@@ -487,7 +505,8 @@
                           var data = [annualRatings];
                           var layout = {
                               //title at the top of the page
-                            title: 'Average Annual Ratings for Toonami Block',
+                              //<b> tag bolds the title
+                            title: '<b> Average Annual Ratings for Toonami Block </b>',
                             autosize: true,
                             height:700,
                             
@@ -506,6 +525,13 @@
                                     title:'Year'
                                 }
                           },
+                          
+                              //sets the font size of the title
+                              
+                        "titlefont": {
+                              "size": 24,
+                           },
+                                                    
 
                             margin: {
                               l: 50,
