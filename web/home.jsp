@@ -107,10 +107,10 @@
                         /*
                          * Reads the csv from include/data/samJack.csv
                          */
-                        Plotly.d3.csv('include/data/midnightBleach.csv', function(err, rows){
-                          Plotly.d3.csv('include/data/midnightDbzf.csv', function(err2, rows2){  
-                              Plotly.d3.csv('include/data/midnightDbz.csv', function(err3, rows3){ 
-                                  Plotly.d3.csv('include/data/midnightOpm.csv', function(err4, rows4){ 
+                        Plotly.d3.csv('include/data/midnight-slot/midnightBleach.csv', function(err, rows){
+                          Plotly.d3.csv('include/data/midnight-slot/midnightDbzf.csv', function(err2, rows2){  
+                              Plotly.d3.csv('include/data/midnight-slot/midnightDbz.csv', function(err3, rows3){ 
+                                  Plotly.d3.csv('include/data/midnight-slot/midnightOpm.csv', function(err4, rows4){ 
                               
                             //function that returns each individual value 
                             //from a row
