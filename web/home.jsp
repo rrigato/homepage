@@ -214,7 +214,7 @@
                         //layout of the graph
                         var layout = {
                            autoscale:true,
-                           height:700,
+                           height:750,
                           //title at the top of the page
                           //<b> tag bolds the title
                           title:'<b> Midnight slot viewership </b>',
@@ -282,7 +282,12 @@
                 </div>
 
                 <div id="page2">
+       
+                  <!--Here is where the navbar transitions the view to when clicked-->             
                   <a id="monthly" class="smooth"></a>
+                  
+                  
+                  <!--Provides a description for the graph-->
                   <div class="description">
                       <p>
                           While a simple premise, the below line graph averages the
