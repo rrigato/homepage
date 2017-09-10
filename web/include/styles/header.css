@@ -12,10 +12,8 @@ and open the template in the editor.
     Gives the font size of the link in the top left of the 
     navbar
 */
-
 .navbar-brand{
     font-size: 25px;
-    padding-right:25px;
 }
 
 ul {

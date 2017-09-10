@@ -92,7 +92,7 @@
 
 
         </div>
-        
+
         <!--<div id ="startpage" ></div>-->
         
                 <!-- Each Div represents a new page -->
@@ -100,8 +100,22 @@
 
                 <div id="page1">
                   <a id="midnight" class="smooth"></a>
-                    Portfolio page content goes here.
-                    <div id="scatterContainer">
+                  <div class="description">
+                      <p>
+                      The midnight slot is considered by many to be the premiere 
+                      Saturday night showtime for Adult Swim's toonami block.
+                      Below is a 3-D scatter plot which shows the ratings performance
+                      of various shows in the midnight time slot.
+                      </p>
+                      
+                    <div id ="info" class="alert alert-info">
+                        <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
+                        angle. Clicking on an entry in the legend will remove/add those data elements
+                    </div>
+                      
+                      
+                  </div>
+                   <div id="scatterContainer">
 
                     <script>
                         /*
