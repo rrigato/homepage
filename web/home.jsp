@@ -215,7 +215,7 @@
                         var layout = {
                            autoscale:false,
                           width:1200,
-                          height:825,
+                          height:725,
                           //title at the top of the page
                           //<b> tag bolds the title
                           title:'<b> Midnight slot viewership </b>',
@@ -453,10 +453,13 @@
                             //combines individual lines into one 3d graph
                             var data = [year2012, year2013, year2014, year2015, year2016, year2017];
                             var layout = {
+                                
+                           autoscale:false,
+                          width:1200,
+                          height:760,                                
                               //<b> tag bolds the title
                               title: '<b> Average monthly ratings by year </b>',
-                              autosize: true,
-                              height: 800,
+
                                 //A scene object must be used to encapsulate
                                 //each axis title, not sure why this is...                            
                                  scene :{
@@ -477,15 +480,15 @@
                                       }
                                 },                              
                               margin: {
-                                l: 50,
-                                r: 50,
-                                b: 50,
-                                t: 50
+                                l: 25,
+                                r: 25,
+                                b: 25,
+                                t: 40
                               },
                             //sets default font size for plot,
                             //will be overriden for more specific instances below
                             font:{
-                                size:15
+                                size:14
                             },
 
                               
@@ -498,7 +501,7 @@
                           //sets the font size of the legend
                              legend:{
                                  font:{
-                                      size:18
+                                      size:17
                                 }
                             }
                             };

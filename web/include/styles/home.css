@@ -108,6 +108,22 @@ the image and the words
     width:225px;
     height:225px;
 }
+
+/*
+Container div needed for each plotly.js plot
+*/
 #scatterContainer{
     width:1300px;
 }
+
+/*
+Container div needed for each plotly.js plot
+*/
+#monthly-ratings{
+     width:1300px;
+}
+
+
+/*
+Container div needed for each plotly.js plot
+*/
