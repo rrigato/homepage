@@ -213,8 +213,9 @@
                         
                         //layout of the graph
                         var layout = {
-                           autoscale:true,
-                           height:750,
+                           autoscale:false,
+                          width:1000,
+                          height:900,
                           //title at the top of the page
                           //<b> tag bolds the title
                           title:'<b> Midnight slot viewership </b>',
@@ -242,10 +243,15 @@
                            //pixel margin around the graph
                             margin: {
 
-                                l: 100,
-                                r: 100,
+                                l: 50,
+                                r: 50,
                                 b: 100,
                                 t: 50
+                          },
+                          //sets default font size for plot,
+                          //will be overriden for more specific instances below
+                          font:{
+                              size:15
                           },
 
         
@@ -254,6 +260,8 @@
                         "titlefont": {
                               "size": 24,
                            },
+                           
+
                           
                           //sets the font size of the legend        
                           
@@ -474,6 +482,12 @@
                                 b: 50,
                                 t: 50
                               },
+                            //sets default font size for plot,
+                            //will be overriden for more specific instances below
+                            font:{
+                                size:15
+                            },
+
                               
                               //sets the font size of the title
                               
@@ -586,7 +600,14 @@
                                     title:'Year'
                                 }
                           },
-                          
+
+                          //sets default font size for plot,
+                          //will be overriden for more specific instances below
+                          font:{
+                              size:15
+                          },
+        
+        
                               //sets the font size of the title
                               
                         "titlefont": {
