@@ -453,7 +453,8 @@
                             //combines individual lines into one 3d graph
                             var data = [year2012, year2013, year2014, year2015, year2016, year2017];
                             var layout = {
-                                
+                            
+                            //Turns off autoscaling and sets width height of the graph
                            autoscale:false,
                           width:1200,
                           height:760,                                
@@ -585,8 +586,10 @@
                               //title at the top of the page
                               //<b> tag bolds the title
                             title: '<b> Average Annual Ratings for Toonami Block </b>',
-                            autosize: true,
-                            height:700,
+                            //Turns off autoscaling and sets width height of the graph
+                           autoscale:false,
+                          width:1200,
+                          height:775,  
                             
                           //A scene object must be used to encapsulate
                           //each axis title, not sure why this is...                            
@@ -607,7 +610,7 @@
                           //sets default font size for plot,
                           //will be overriden for more specific instances below
                           font:{
-                              size:15
+                              size:14
                           },
         
         
@@ -619,8 +622,8 @@
                                                     
 
                             margin: {
-                              l: 50,
-                              r: 50,
+                              l: 25,
+                              r: 25,
                               b: 50,
                               t: 50
                             }

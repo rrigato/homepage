@@ -111,6 +111,7 @@ the image and the words
 
 /*
 Container div needed for each plotly.js plot
+page1
 */
 #scatterContainer{
     width:1300px;
@@ -118,6 +119,7 @@ Container div needed for each plotly.js plot
 
 /*
 Container div needed for each plotly.js plot
+page2 graph
 */
 #monthly-ratings{
      width:1300px;
@@ -126,4 +128,9 @@ Container div needed for each plotly.js plot
 
 /*
 Container div needed for each plotly.js plot
+page3 graph
 */
+
+#annual-ratings{
+     width:1300px;    
+}
