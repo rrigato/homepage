@@ -39,7 +39,7 @@ ul {
         Gives how much of the page the navbar takes up vertically and 
         across the screen
     */
-    height:7%;
+    height:65px;
     width:100%;
     
     /*Ensures that the navbar stays on top of the div
