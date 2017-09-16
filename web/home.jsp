@@ -684,7 +684,12 @@
                         <h3>Here is some information about me</h3>
 
                         <a href ="http://ryanrigato-1252.appspot.com/">Check out my other website featuring D3.js</a>
-                       
+
+                        <br>
+                        <br>
+                        <a href="https://github.com/rrigato/ratings">Source Code for this website</a>
+                        
+                        
                         <br>       
                         <br>                        
                         
@@ -699,9 +704,6 @@
                         <br>
                         <a href ="https://www.linkedin.com/in/ryan-rigato-a9248397">Connect with me on Linkedin </a>
 
-                        <br>
-                        <br>
-                        <a href="https://github.com/rrigato/ratings">Source Code for this website</a>
                 </div>
 
                 </div>
