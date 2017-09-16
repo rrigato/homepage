@@ -240,6 +240,7 @@
                                     title:'Adults 18-49 in thousands'
                                 }
                           },
+
                            //pixel margin around the graph
                             margin: {
 
@@ -298,8 +299,8 @@
                   <!--Provides a description for the graph-->
                   <div class="description">
                       <p>
-                          While a simple premise, the below line graph averages the
-                          ratings for Adult Swim's toonami block by month and year from middle 2012
+                          The below line graph presents the simple premise of averaging the
+                          ratings for Adult Swim's toonami block by month and year from the middle of 2012
                           until 2017. As you rotate the graph it becomes apparent how succinctly
                           3-dimensionsal graphing can compress and relate information.
                           
@@ -664,12 +665,13 @@
 
                                 </p>
                                 <p>
-                                    All graphes were built with the Plotly.js JavaScript framework.
+                                    All graphs were built with the Plotly.js JavaScript framework.
                                     I would like to say thank you to the plotly team for open sourceing
-                                    their graphing library. Additionally, this site would not of been 
+                                    their <a href =https://plot.ly/javascript/reference/ >
+                                            fantastic graphing library</a>. Additionally, this site would not of been 
                                     possible without the wonderful <a href = https://www.w3schools.com/ > W3 Turtorials</a>
                                     and the <a href = http://getbootstrap.com/> Bootstrap  Front End Framework</a>
-                                    Finally, the smooth transitions between views was built with <a> jQuery </a>
+                                    Finally, the smooth transitions between views was built with <a href =https://jquery.com/> jQuery </a>
                                         
                                    </p>
 
