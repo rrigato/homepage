@@ -214,8 +214,8 @@
                         //layout of the graph
                         var layout = {
                            autoscale:false,
-                          width:1000,
-                          height:900,
+                          width:1200,
+                          height:825,
                           //title at the top of the page
                           //<b> tag bolds the title
                           title:'<b> Midnight slot viewership </b>',
@@ -243,15 +243,15 @@
                            //pixel margin around the graph
                             margin: {
 
-                                l: 50,
-                                r: 50,
-                                b: 100,
+                                l: 25,
+                                r: 25,
+                                b: 50,
                                 t: 50
                           },
                           //sets default font size for plot,
                           //will be overriden for more specific instances below
                           font:{
-                              size:15
+                              size:14
                           },
 
         
