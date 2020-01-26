@@ -1,0 +1,625 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Creates a CodePipeline for a CI/CD pipeline
+Parameters:
+
+  ProdCrossAccountArn:
+    Default: arn/placeholder
+    Description:
+        Arn of the role that will be used to update prod resources
+    Type: String
+
+  #Default project name that
+  #the git repo will be called
+  ProjectName:
+    Type: String
+    Default: homepage
+
+  RepositoryBranch:
+    Type: String
+    Default: dev
+
+  RepositoryDescription:
+    Type: String
+    Default: Personal Website hosted using S3
+
+Resources:
+  #################################
+  #Everything from the InputArtifact
+  #and OutputArtifact for all CodeBuild stages
+  #will be stored in this s3 bucket
+  #################################
+  ArtifactStoreBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: BucketOwnerFullControl
+      BucketName:
+          !Join ['', ['artifacts-bucket-', !Ref ProjectName]]
+      Tags:
+        -
+          Key: stage
+          Value: dev
+        -
+          Key: retain
+          Value: "false"
+        -
+          Key: project
+          Value: !Ref ProjectName
+        -
+          Key: usedby
+          Value: CodePipelineBuildStages
+
+  GitRepo:
+    Type: AWS::CodeCommit::Repository
+    Properties:
+        RepositoryDescription:
+            !Join [' ', ['Repo for ', !Ref ProjectName,
+            !Ref RepositoryDescription]]
+        RepositoryName: !Ref ProjectName
+  ##########################
+  #Build logs for CodeBuildPythonTests
+  #CodeBuild stage
+  #
+  #
+  ##########################
+  DevArtifactsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        !Join ['', ['codebuild-dev-', !Ref ProjectName]]
+      Tags:
+        -
+          Key: stage
+          Value: dev
+        -
+          Key: retain
+          Value: "false"
+        -
+          Key: project
+          Value: !Ref ProjectName
+  ##########################
+  #Build logs for ProdCodeBuildDeploy
+  #CodeBuild stage
+  #
+  #
+  ##########################
+  ProdArtifactsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+         !Join ['', ['prod-build-', !Ref ProjectName]]
+      Tags:
+        -
+          Key: stage
+          Value: prod
+        -
+          Key: retain
+          Value: "false"
+        -
+          Key: project
+          Value: !Ref ProjectName
+
+
+  #################################
+  #Code Build Project that runs python
+  #unit/integration tests
+  #
+  ###################################
+  CodeBuildPythonTests:
+    #Need the DevArtifactsBucket Created first before This
+    #CodeBuild Project can start
+    DependsOn: DevArtifactsBucket
+    Type: AWS::CodeBuild::Project
+    Properties:
+      #Output location for the CodeBuild Project
+      Artifacts:
+        Type: S3
+        Location:
+            !Join ['', ['codebuild-dev-', !Ref ProjectName]]
+        Packaging: NONE
+      #Allows for git badge at top of git repo
+      BadgeEnabled: true
+
+      #Where logs are written to from code build
+      LogsConfig:
+          CloudWatchLogs:
+              Status: ENABLED
+              GroupName:
+                !Join ['', ['codebuild-dev-', !Ref ProjectName]]
+          S3Logs:
+              Status: ENABLED
+              Location:
+                !Join ['', ['codebuild-dev-', !Ref ProjectName,
+                '/buildlogs']]
+      #Standard Linux Image environment
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Type: LINUX_CONTAINER
+        Image: aws/codebuild/standard:2.0
+      Name:
+          !Join ['', ['dev-tests-', !Ref ProjectName]]
+      ServiceRole: !Ref CodeBuildRole
+      #CodeCommit Git repo used for CodeBuild
+      Source:
+        #Buildspec file to use for the dev build
+        BuildSpec: builds/buildspec_dev.yml
+        Location: !GetAtt GitRepo.CloneUrlHttp
+        Type: CODECOMMIT
+      TimeoutInMinutes: 5
+
+
+
+ #################################
+ #Production Code Build that runs python
+ #tests and deploys code to prod
+ #
+ ###################################
+  ProdCodeBuildDeploy:
+   #Need the ProdArtifactsBucket Created first before This
+   #CodeBuild Project can start
+   DependsOn: ProdArtifactsBucket
+   Type: AWS::CodeBuild::Project
+   Properties:
+     #Output location for the CodeBuild Project
+     Artifacts:
+       Type: S3
+       Location:
+        !Join ['', ['prod-build-', !Ref ProjectName]]
+       Packaging: NONE
+     #Allows for git badge at top of git repo
+     BadgeEnabled: true
+     #Where logs are written to from code build
+     LogsConfig:
+         CloudWatchLogs:
+             Status: ENABLED
+             GroupName:
+                !Join ['', ['prod-build-', !Ref ProjectName]]
+         S3Logs:
+             Status: ENABLED
+             Location:
+                 !Join ['', ['prod-build-', !Ref ProjectName,
+                  '/buildlogs']]
+     #Standard Linux Image environment
+     Environment:
+       ComputeType: BUILD_GENERAL1_SMALL
+       #Used to pass the production account arn
+       #to the builds/py/prod_stack_build.py
+       EnvironmentVariables:
+         -
+           Name: PROD_CROSS_ACCOUNT_ARN
+           Value: !Ref ProdCrossAccountArn
+       Image: aws/codebuild/standard:2.0
+       Type: LINUX_CONTAINER
+
+     Name:
+        !Join ['', ['prod-build-', !Ref ProjectName]]
+     ServiceRole: !Ref ProdCodeBuildRole
+     #CodeCommit Git repo used for CodeBuild
+     Source:
+       #Buildspec file to use for the prod build
+       BuildSpec: builds/buildspec_prod.yml
+       Location: !GetAtt GitRepo.CloneUrlHttp
+       Type: CODECOMMIT
+     TimeoutInMinutes: 5
+
+
+  ##########################################
+  #Code Pipeline Is broken down into stages
+  #that occur sequentially These can be
+  #the following ci/cd actions
+  # Source
+  # Build
+  # Test
+  # Deploy
+  # Approval
+  # Invoke
+  #
+  #Actions for this environment:
+  #Stage 1) Source = Get source code repository
+  #Stage 2) Build = Build and test a dev environment
+  #Generate html files from markdown, store output for next stage
+  #stage 3) Build = runs any configuration necessary
+  #to deploy built html files to prod
+  ###########################################
+  CodePipelineStack:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      RoleArn: !GetAtt [CodePipelineRole, Arn]
+      ArtifactStore:
+        Location:
+          Ref:
+            ArtifactStoreBucket
+        Type: S3
+      Stages:
+        ###############################
+        #Stage 1, gets the source control git repo
+        #
+        #
+        ###############################
+        - Name: SourceCodeRepo
+          Actions:
+            #The input artifact of an action must exactly
+            # match the output artifact declared
+            #in a preceding action
+            - InputArtifacts: []
+              Name: Source
+              ######################################
+              #List of valid action type providers
+              #by action can be found here:
+              #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers
+              ######################################
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Version: '1'
+                Provider: CodeCommit
+              OutputArtifacts:
+                - Name: !GetAtt GitRepo.Name
+            #Git repo for first stage
+            #########################################
+            #Configuration Details by provider can be found here:
+            #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#structure-configuration-examples
+            #
+            #########################################
+              Configuration:
+                BranchName: !Ref RepositoryBranch
+                RepositoryName: !GetAtt GitRepo.Name
+              #Run order within stage not between stages
+              RunOrder: 1
+        ###############################
+        #Stage 2 Builds the code in the
+        #Dev environment
+        #
+        ###############################
+        - Name: BuildDevEnvironment
+          Actions:
+          - Name: Build
+              ######################################
+              #List of valid action type providers
+              #by action can be found here:
+              #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers
+              ######################################
+            ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: '1'
+                Provider: CodeBuild
+
+            InputArtifacts:
+              - Name: !GetAtt GitRepo.Name
+            OutputArtifacts:
+              - Name: BuildDev
+
+
+            #########################################
+            #Configuration Details by provider can be found here:
+            #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#structure-configuration-examples
+            #
+            #########################################
+            Configuration:
+                ProjectName:
+                    !Join ['', ['dev-tests-', !Ref ProjectName]]
+            RunOrder: 1
+
+        ###############################
+        #Stage 4 Builds the prod
+        # environment by populating resources created
+        # in stage 3
+        ###############################
+        - Name: BuildProdEnvironment
+          Actions:
+          - Name: Test
+              ######################################
+              #List of valid action type providers
+              #by action can be found here:
+              #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers
+              ######################################
+            ActionTypeId:
+                Category: Test
+                Owner: AWS
+                Version: '1'
+                Provider: CodeBuild
+            InputArtifacts:
+              - Name: !GetAtt GitRepo.Name
+              - Name: BuildDev
+            OutputArtifacts:
+              - Name: BuildProd
+            #########################################
+            #Configuration Details by provider can be found here:
+            #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#structure-configuration-examples
+            #
+            #########################################
+            Configuration:
+                PrimarySource: !GetAtt GitRepo.Name
+                ProjectName:
+                  !Join ['', ['prod-build-', !Ref ProjectName]]
+
+            RunOrder: 1
+
+
+####################################
+#Role that will be assumed when
+#CodeBuild runs for dev
+#
+####################################
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [codebuild.amazonaws.com]
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSCodeCommitPowerUser
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+      Path: /
+      Policies:
+          - PolicyName: CodeBuildCustomerManaged
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Sid: IAMallow
+                  Effect: Allow
+                  #######################################
+                  #Allowing lambda to perform a PutItem on
+                  #DynamoDB
+                  #
+                  #######################################
+                  Action:
+                    - iam:PassRole
+                    - iam:CreateRole
+                    - iam:GetRole
+                    - iam:UpdateAssumeRolePolicy
+                    - iam:DetachRolePolicy
+                    - iam:DeleteRolePolicy
+                    - iam:PutRolePolicy
+                  Resource:
+                    - "*"
+                #######################
+                #Permissions needed for aws
+                #CodeBuild service to run
+                #######################
+                - Sid: S3WebsiteCreation
+                  Effect: Allow
+                  #######################################
+                  #Allowing CodeBuild to create
+                  #resources necessary for s3 static webpage
+                  #
+                  #######################################
+                  Action:
+                    - s3:CreateBucket
+                    - s3:DeleteBucket
+                    - s3:DeleteBucketPolicy
+                    - s3:DeleteObject
+                    - s3:GetBucketAcl
+                    - s3:GetBucketLocation
+                    - s3:GetObject
+                    - s3:GetObjectVersion
+                    - s3:ListBucket
+                    - s3:ListAllMyBuckets
+                    - s3:PutBucketCORS
+                    - s3:PutBucketPolicy
+                    - s3:PutBucketWebsite
+                    - s3:PutObject
+
+                  Resource:
+                    - "*"
+
+                #######################
+                #Permissions needed for aws
+                #CodeBuild to create/delete stacks
+                #######################
+                - Sid: CodeBuildCfCreation
+                  Effect: Allow
+                  #######################################
+                  #Allowing CodeBuild to create
+                  #resources necessary for s3 static webpage
+                  #
+                  #######################################
+                  Action:
+                    - cloudformation:CreateStack
+                    - cloudformation:DeleteStack
+                    - cloudformation:DescribeStacks
+                  Resource:
+                    - "*"
+
+
+####################################
+#Role that will be assumed when
+#CodeBuild runs for Prod
+#
+####################################
+  ProdCodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [codebuild.amazonaws.com]
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSCodeCommitPowerUser
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+
+      Path: /
+      Policies:
+          - PolicyName: CodeBuildCustomerManaged
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Sid: IAMallow
+                  Effect: Allow
+                  #######################################
+                  #Allowing lambda to perform a PutItem on
+                  #DynamoDB
+                  #
+                  #######################################
+                  Action:
+                    - iam:PassRole
+                    - iam:CreateRole
+                    - iam:GetRole
+                    - iam:UpdateAssumeRolePolicy
+                    - iam:DetachRolePolicy
+                    - iam:DeleteRolePolicy
+                    - iam:PutRolePolicy
+                  Resource:
+                    - "*"
+                #######################
+                #Permissions needed for aws
+                #CodeBuild service to run
+                #######################
+                - Sid: S3WebsiteCreation
+                  Effect: Allow
+                  #######################################
+                  #Allowing CodeBuild to create
+                  #resources necessary for s3 static webpage
+                  #
+                  #######################################
+                  Action:
+                    - s3:CreateBucket
+                    - s3:DeleteBucket
+                    - s3:DeleteBucketPolicy
+                    - s3:DeleteObject
+                    - s3:GetBucketAcl
+                    - s3:GetBucketLocation
+                    - s3:GetObject
+                    - s3:GetObjectVersion
+                    - s3:ListBucket
+                    - s3:ListAllMyBuckets
+                    - s3:PutBucketCORS
+                    - s3:PutBucketPolicy
+                    - s3:PutBucketWebsite
+                    - s3:PutObject
+
+                  Resource:
+                    - "*"
+
+                #######################
+                #Permissions needed for aws
+                #CodeBuild to create/delete stacks
+                #######################
+                - Sid: CodeBuildCfCreation
+                  Effect: Allow
+                  #######################################
+                  #Allowing CodeBuild to create
+                  #resources necessary for s3 static webpage
+                  #
+                  #######################################
+                  Action:
+                    - cloudformation:CreateStack
+                    - cloudformation:DeleteStack
+                    - cloudformation:DescribeStacks
+                  Resource:
+                    - "*"
+
+                #######################
+                #Permissions needed for aws
+                #CodeBuild to assume the production
+                #cross account role
+                #######################
+                - Sid: AssumeProdAccountRole
+                  Effect: Allow
+                  #######################################
+                  #Allowing CodeBuild to update
+                  #resources necessary for s3 static webpage
+                  #
+                  #######################################
+                  Action:
+                    - sts:AssumeRole
+                  Resource:
+                    - "*"
+
+  CFNRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [cloudformation.amazonaws.com]
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        #lambda full access managed policy also provides
+        #access to all dynamodb apis
+        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
+        - arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator
+        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+      Path: /
+      Policies:
+          - PolicyName: PassIamRole
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Sid: IAMallow
+                  Effect: Allow
+                  #######################################
+                  #Allowing iam role manipulation
+                  #
+                  #######################################
+                  Action:
+                    - iam:PassRole
+                    - iam:CreateRole
+                    - iam:GetRole
+                    - iam:UpdateAssumeRolePolicy
+                    - iam:DetachRolePolicy
+                    - iam:DeleteRolePolicy
+                    - iam:PutRolePolicy
+                  Resource:
+                    - "*"
+
+  CodePipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          Effect: Allow
+          Principal:
+            Service: codepipeline.amazonaws.com
+          Action: sts:AssumeRole
+      Path: /
+      #List of Policies for Code Pipeline
+      ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
+          - arn:aws:iam::aws:policy/AWSCodeCommitFullAccess
+          - arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess
+          - arn:aws:iam::aws:policy/AmazonS3FullAccess
+          - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+      Policies:
+          - PolicyName: PipelinePassRole
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Sid: IamPassRoleAllow
+                  Effect: Allow
+                  #######################################
+                  #Allowing lambda to perform a PutItem on
+                  #DynamoDB
+                  #
+                  #######################################
+                  Action:
+                    - iam:PassRole
+                  Resource:
+                    - "*"
+
+
+Outputs:
+  CodeCommitURL:
+    Description: CodeCommit URL
+    Value:
+      Fn::Join:
+        - ""
+        - - "https://console.aws.amazon.com/codepipeline/home?region="
+          - Ref: AWS::Region
+          - "#/repository/"
+          - Ref: AWS::StackName
+          - "/browse/HEAD/--/"
+  GitRepoName:
+    Description: Name of the git repository
+    Value: !GetAtt GitRepo.Name
