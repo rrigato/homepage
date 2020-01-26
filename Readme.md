@@ -1,7 +1,13 @@
-# ratings
-Personal website homepage. Originally a J2EE application hosted
-on google cloud engine, converted to 
 
+Personal website homepage. Originally a J2EE application hosted
+on google app engine.
+
+- 2016 Converted to AWS elasticbeanstalk (basically lift and shift)
+
+- 2017 Converted to statically hosted s3 bucket where the access point was cloudfront
+
+- 2020 Refactoring to get all (or at least most) resources into cloudformation now that you can import resources that were not originally created in cloudformation. 
+Creating a CI/CD code pipeline to accomplish this
 
 ### Development Tooling Overview
 #### cfn-lint (cloudformation Linting)
