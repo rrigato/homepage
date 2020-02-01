@@ -11,6 +11,9 @@ Personal website homepage.
     - Adding a CI/CD code pipeline to accomplish this
 
 ### Development Tooling Overview
+
+Followed [this aws example](https://forums.aws.amazon.com/thread.jspa?threadID=228206) on how to have multiple rsa key pairs in the same local machine being used with different accounts
+
 #### cfn-lint (cloudformation Linting)
 [cfn-lint](https://github.com/aws-cloudformation/cfn-python-lint.git) Provides yaml/json cloudformation validation and checks for best practices
 
