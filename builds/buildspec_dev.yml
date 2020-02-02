@@ -44,6 +44,9 @@ phases:
        --template-body file://templates/static_webpage.yml
        --capabilities CAPABILITY_NAMED_IAM
 
+      #Waits until the stack has been successfully created
+      - aws cloudformation wait stack-create-complete
+        --stack-name dev-homepage-webpage
 
       ###########################################
       #Copying web files from repo to s3 bucket
