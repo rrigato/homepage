@@ -9,7 +9,7 @@ import unittest
 
 ENVIRON_DEF = "dev"
 
-HOMEPAGE_URL = 'http://dev-static-site-homepage.s3-website-us-east-1.amazonaws.com/'
+HOMEPAGE_URL = "http://dev-static-site-homepage.s3-website-us-east-1.amazonaws.com/"
 WORKING_DIRECTORY = os.getcwd()
 
 def get_logger():
@@ -32,14 +32,14 @@ def get_logger():
         the extension
     """
     logging.basicConfig(
-        filename=os.path.join(WORKING_DIRECTORY, 'logs/',
-        os.path.basename(__file__).split('.')[0]),
-        format='%(asctime)s %(message)s',
-         datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG
+        filename=os.path.join(WORKING_DIRECTORY, "logs/",
+        os.path.basename(__file__).split(".")[0]),
+        format="%(asctime)s %(message)s",
+         datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.DEBUG
          )
-    logging.info('\n')
+    logging.info("\n")
 
-def get_boto_clients(resource_name, region_name='us-east-1'):
+def get_boto_clients(resource_name, region_name="us-east-1"):
     """Returns the boto client for various cloudformation resources
         Parameters
         ----------
@@ -117,5 +117,5 @@ class WebappLive(unittest.TestCase):
 
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
