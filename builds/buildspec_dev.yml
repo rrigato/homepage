@@ -44,9 +44,13 @@ phases:
        --template-body file://templates/static_webpage.yml
        --capabilities CAPABILITY_NAMED_IAM
 
-      #runs static code test to make sure /docs directory follows
-      #build rules
-      - python tests/test_dev_markdown_build.py
+
+      ###########################################
+      #Copying web files from repo to s3 bucket
+      ############################################
+      - aws s3 cp ./web s3://dev-static-site-homepage --recursive
+
+
 
 
 
