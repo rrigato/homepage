@@ -7,8 +7,8 @@ Description:
 Parameters:
   BucketName:
     Type: String
-    Default: homepage
-    Description: The name for the bucket hosting the devdocs info
+    Default: homepage-static-site
+    Description: The name for the bucket hosting the static website
 
   NamePrefix:
     Type: String

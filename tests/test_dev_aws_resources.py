@@ -10,7 +10,7 @@ import unittest
 
 ENVIRON_DEF = "dev"
 
-HOMEPAGE_URL = 'http://dev-sneakpeek.s3-website-us-east-1.amazonaws.com/'
+HOMEPAGE_URL = 'http://homepage-static-site.s3-website-us-east-1.amazonaws.com/'
 WORKING_DIRECTORY = os.getcwd()
 
 def get_logger():
