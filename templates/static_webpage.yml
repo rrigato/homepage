@@ -7,12 +7,12 @@ Description:
 Parameters:
   BucketName:
     Type: String
-    Default: homepage-static-site
+    Default: homepage
     Description: The name for the bucket hosting the static website
 
   NamePrefix:
     Type: String
-    Default: dev
+    Default: dev-static-site
     Description: String for prefixing resources to differentiate prod/dev
 
 
