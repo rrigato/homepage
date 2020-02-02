@@ -57,7 +57,7 @@ phases:
       #deleting bucket and stack after testing
       - aws s3 rm s3://dev-static-site-homepage --recursive
 
-      - aws cloudformation delete-stack --stack-name dev-devdocs-homepage
+      - aws cloudformation delete-stack --stack-name dev-homepage-webpage
 
 
 
