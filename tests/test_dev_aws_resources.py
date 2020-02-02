@@ -4,7 +4,6 @@ import boto3
 import json
 import logging
 import os
-import pandas as pd
 import requests
 import unittest
 
@@ -14,7 +13,7 @@ HOMEPAGE_URL = 'http://dev-static-site-homepage.s3-website-us-east-1.amazonaws.c
 WORKING_DIRECTORY = os.getcwd()
 
 def get_logger():
-    '''Returns a boto cloudformation describe_stacks api call
+    """Returns a boto cloudformation describe_stacks api call
         Parameters
         ----------
         stack_name: str
@@ -27,7 +26,7 @@ def get_logger():
 
         Raises
         ------
-    '''
+    """
     """
         Adds the file name to the logs/ directory without
         the extension
@@ -41,7 +40,7 @@ def get_logger():
     logging.info('\n')
 
 def get_boto_clients(resource_name, region_name='us-east-1'):
-    '''Returns the boto client for various cloudformation resources
+    """Returns the boto client for various cloudformation resources
         Parameters
         ----------
         resource_name : str
@@ -57,12 +56,12 @@ def get_boto_clients(resource_name, region_name='us-east-1'):
 
         Raises
         ------
-    '''
+    """
     return(boto3.client(resource_name, region_name))
 
 
 class WebappLive(unittest.TestCase):
-    '''Tests that the aws resources necessary for the webpage are running
+    """Tests that the aws resources necessary for the webpage are running
 
         Note that if any of the below unit tests fail,
         The python script will have a non-zero exit code
@@ -79,10 +78,10 @@ class WebappLive(unittest.TestCase):
 
         Raises
         ------
-    '''
+    """
     @classmethod
     def setUpClass(self):
-        '''Unitest function that is run once for the class
+        """Unitest function that is run once for the class
             Gets the arguements passed from the user
 
             Parameters
@@ -93,11 +92,11 @@ class WebappLive(unittest.TestCase):
 
             Raises
             ------
-        '''
+        """
         get_logger()
 
     def test_home_page(self):
-        '''Tests that the aws resources necessary for the webpage are running
+        """Tests that the aws resources necessary for the webpage are running
 
             Parameters
             ----------
@@ -108,7 +107,7 @@ class WebappLive(unittest.TestCase):
 
             Raises
             ------
-        '''
+        """
         logging.info("Testing if the website is alive")
         r = requests.get(
             HOMEPAGE_URL
@@ -119,12 +118,4 @@ class WebappLive(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    '''
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                        help='an integer for the accumulator')
-    args = parser.parse_args()
-
-    print(args.integers)
-    '''
     unittest.main()
