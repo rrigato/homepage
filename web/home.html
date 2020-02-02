@@ -1,37 +1,38 @@
-<%-- 
+<!--
     Document   : home
     Created on : Aug 26, 2017, 3:43:47 PM
     Author     : ryan
---%>
+    <! contentType="text/html" pageEncoding="UTF-8">
+-->
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>3-D Graphing</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <!--Importing javascript and css dependencies for bootstrap-->
         <link rel="stylesheet" href="include/styles/bootstrap.min.css" type="text/css"/>
         <script src="include/js/bootstrap.min.js"></script>
-        
+
            <!-- Including jquery libraries -->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="include/js/jquery.smooth-scroll.min.js"></script>
-     
+
         <!--header.css = navbar css
             home.css = css for the actual homepage
         -->
-        <link rel="stylesheet" href="include/styles/header.css" type="text/css"/>      
-        
-        <link rel="stylesheet" href="include/styles/home.css" type="text/css"/>  
-        
+        <link rel="stylesheet" href="include/styles/header.css" type="text/css"/>
+
+        <link rel="stylesheet" href="include/styles/home.css" type="text/css"/>
+
         <!--Library for plotly.js-->
         <script src="include/js/plotly-latest.min.js"></script>
     </head>
         <!--Function that allows for a smooth scroll between navbar elements
-            
+
             credit on this function goes to this stack overflow post:
         https://stackoverflow.com/questions/19833657/simple-html5-way-to-vertically-split-a-website-page-in-vertical-slides-with-navi
         -->
@@ -52,10 +53,10 @@
            });
         </script>
     <body>
-        
-        
+
+
         <div class="container-fluid" id ="home">
-                <!-- 
+                <!--
                     Creates a vertical scrolling webpage
                     Typically you have the navbar href attribute point to another webpage
                     Here I am using the # css class attribute
@@ -64,60 +65,60 @@
                                 <!-- Header for the webpage that brings you back
                                 to the top-->
                         <div class="navbar-header">
-                            <a href="#page1" class="navbar-brand" 
+                            <a href="#page1" class="navbar-brand"
                                data-toggle="tooltip" title="Click to go back to the top">Ryan Rigato</a>
                         </div>
-                <!-- Gives the actual navbar elements, basically a link to 
+                <!-- Gives the actual navbar elements, basically a link to
                 each portion of the webpage-->
                 <div id="nav">
                      <ul class="nav navbar-nav">
-                         
-                         <li><a href="#midnight" data-toggle="tooltip" 
+
+                         <li><a href="#midnight" data-toggle="tooltip"
                                 title="Click here to see ratings for the midnight slot of Adult Swim">
                                  Midnight Ratings</a></li>
-                                 
-                         <li><a href="#monthly" data-toggle="tooltip" 
+
+                         <li><a href="#monthly" data-toggle="tooltip"
                                 title="Click here to see average monthly ratings for Toonami">
                                  Historical Monthly Ratings</a></li>
-                                 
-                         <li><a href="#household" data-toggle="tooltip" 
+
+                         <li><a href="#household" data-toggle="tooltip"
                                 title="Click here to see average household ratings by year">
                                  Household Ratings</a></li>
-                                 
-                         <li><a href="#about" data-toggle="tooltip" 
+
+                         <li><a href="#about" data-toggle="tooltip"
                                 title="Click here to learn more about this site">
                                  About</a></li>
                      </ul>-
-                </div>       
+                </div>
 
 
         </div>
 
         <!--<div id ="startpage" ></div>-->
-        
+
                 <!-- Each Div represents a new page -->
 
 
                 <div id="page1">
                      <!--Here is where the navbar transitions the view to when clicked-->
                   <a id="midnight" class="smooth"></a>
-                  
+
                   <!--Provides a description for the graph-->
                   <div class="description">
                       <p>
-                      The midnight slot is considered by many to be the premiere 
+                      The midnight slot is considered by many to be the premiere
                       Saturday night showtime for Adult Swim's toonami block.
                       Below is a 3-D scatter plot which shows the ratings performance
                       of various shows in the midnight time slot.
                       </p>
-                      
+
                       <!--Provides a blue info alert for the graph-->
                         <div id ="info" class="alert alert-info">
                             <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
                             angle. Clicking on an entry in the legend will remove/add those data elements
                         </div>
-                      
-                      
+
+
                   </div>
                    <div id="scatterContainer">
 
@@ -126,20 +127,20 @@
                          * Reads the csv from include/data/samJack.csv
                          */
                         Plotly.d3.csv('include/data/midnight-slot/midnightBleach.csv', function(err, rows){
-                          Plotly.d3.csv('include/data/midnight-slot/midnightDbzf.csv', function(err2, rows2){  
-                              Plotly.d3.csv('include/data/midnight-slot/midnightDbz.csv', function(err3, rows3){ 
-                                  Plotly.d3.csv('include/data/midnight-slot/midnightOpm.csv', function(err4, rows4){ 
-                              
-                            //function that returns each individual value 
+                          Plotly.d3.csv('include/data/midnight-slot/midnightDbzf.csv', function(err2, rows2){
+                              Plotly.d3.csv('include/data/midnight-slot/midnightDbz.csv', function(err3, rows3){
+                                  Plotly.d3.csv('include/data/midnight-slot/midnightOpm.csv', function(err4, rows4){
+
+                            //function that returns each individual value
                             //from a row
                         function unpack(rows, key) {
                                 return rows.map(function(row)
                                 { return row[key]; });
                             }
-                        
+
                         //Traces data by mapping columns to x, y,z axis
                         var bleach = {
-                                x:unpack(rows, 'Year'), y: unpack(rows, 'Total'), 
+                                x:unpack(rows, 'Year'), y: unpack(rows, 'Total'),
                                 z: unpack(rows, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
@@ -147,16 +148,16 @@
                                        //Gives the color pink/purple
                                        color: 'rgb(0, 3, 232)'
                                         },
-                                        
+
                                 //Gives the name for the legend
-                                name : 'Bleach',                                        
+                                name : 'Bleach',
                                 type: 'scatter3d'
                         };
-                        
-                        
+
+
                         //Traces data by mapping columns to x, y,z axis
                         var dbz_final = {
-                                x:unpack(rows2, 'Year'), y: unpack(rows2, 'Total'), 
+                                x:unpack(rows2, 'Year'), y: unpack(rows2, 'Total'),
                                 z: unpack(rows2, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
@@ -167,12 +168,12 @@
                                 //Gives the name for the legend
                                 name : 'DBZ Kai Final Chapters',
                                 type: 'scatter3d'
-                        };   
-                        
-                        
+                        };
+
+
                        //Traces data by mapping columns to x, y,z axis
                         var dbz = {
-                                x:unpack(rows3, 'Year'), y: unpack(rows3, 'Total'), 
+                                x:unpack(rows3, 'Year'), y: unpack(rows3, 'Total'),
                                 z: unpack(rows3, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
@@ -180,17 +181,17 @@
                                        //Gives the color Red
                                        color: 'rgb(204, 51, 0)'
                                         },
- 
-                                        
+
+
                                 //Gives the name for the legend
-                                name : 'DBZ Kai',                                        
+                                name : 'DBZ Kai',
                                 type: 'scatter3d'
-                        };                   
-                        
-                        
+                        };
+
+
                         //Traces data by mapping columns to x, y,z axis
                         var opm = {
-                                x:unpack(rows4, 'Year'), y: unpack(rows4, 'Total'), 
+                                x:unpack(rows4, 'Year'), y: unpack(rows4, 'Total'),
                                 z: unpack(rows4, 'ATotal'),
                                 mode: 'markers',
                                 marker: {
@@ -199,18 +200,18 @@
                                        color: 'rgb(0, 0, 0)'
                                         },
 
-                                        
-                                //Gives the name for the legend
-                                name : 'One Punch Man',                                        
-                                type: 'scatter3d'
-                        };                          
 
-                        
-                        //concatenates all the individual points together so they can 
+                                //Gives the name for the legend
+                                name : 'One Punch Man',
+                                type: 'scatter3d'
+                        };
+
+
+                        //concatenates all the individual points together so they can
                         //appear on the same plot
                         var data = [bleach, dbz_final, dbz, opm];
-                        
-                        
+
+
                         //layout of the graph
                         var layout = {
                            autoscale:false,
@@ -219,7 +220,7 @@
                           //title at the top of the page
                           //<b> tag bolds the title
                           title:'<b> Midnight slot viewership </b>',
-                          
+
                           //A scene object must be used to encapsulate
                           //each axis title, not sure why this is...
                           scene :{
@@ -228,14 +229,14 @@
                                     //Makes sure the ticks are every year
                                     autotick:false,
                                     dtick:1
-                                    
-                                    
+
+
                                 },
-                            
+
                                    yaxis:{
                                     title:'Total Viewers in thousands'
-                                },                         
-                            
+                                },
+
                                  zaxis:{
                                     title:'Adults 18-49 in thousands'
                                 }
@@ -255,17 +256,17 @@
                               size:14
                           },
 
-        
+
                               //sets the font size of the title
-                              
+
                         "titlefont": {
                               "size": 24,
                            },
-                           
 
-                          
-                          //sets the font size of the legend        
-                          
+
+
+                          //sets the font size of the legend
+
                           legend:{
                               font:{
                                   size:18
@@ -273,29 +274,29 @@
                           }
                       };
                             console.log(layout);
-                      
+
                         //populates the new plot with the string literal the
                         //id of the div you want this plot in
                         Plotly.newPlot('scatterContainer', data, layout);
-                        
+
                                     });  //end fourth csv
-                               });  //end third csv                            
-                                
+                               });  //end third csv
+
                             });  //end second csv
-                        });  //end first csv                        
-                        
-                        
-                        
-                    </script>                        
+                        });  //end first csv
+
+
+
+                    </script>
                     </div>
                 </div>
 
                 <div id="page2">
-       
-                  <!--Here is where the navbar transitions the view to when clicked-->             
+
+                  <!--Here is where the navbar transitions the view to when clicked-->
                   <a id="monthly" class="smooth"></a>
-                  
-                  
+
+
                   <!--Provides a description for the graph-->
                   <div class="description">
                       <p>
@@ -303,31 +304,31 @@
                           ratings for Adult Swim's toonami block by month and year from the middle of 2012
                           until 2017. As you rotate the graph it becomes apparent how succinctly
                           3-dimensionsal graphing can compress and relate information.
-                          
+
                       </p>
-                      
+
                       <!--Provides a blue info alert for the graph-->
                         <div id ="info" class="alert alert-info">
                             <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
                             angle. Clicking on an entry in the legend will remove/add those data elements
                         </div>
-                      
-                      
+
+
                   </div>
 
                     <div id="monthly-ratings">
-                        
+
                      <script>
                         Plotly.d3.csv('include/data/monthly-ratings/year2012.csv', function(err, rows){
-                           Plotly.d3.csv('include/data/monthly-ratings/year2013.csv', function(err2013, rows2013){  
+                           Plotly.d3.csv('include/data/monthly-ratings/year2013.csv', function(err2013, rows2013){
                               Plotly.d3.csv('include/data/monthly-ratings/year2014.csv', function(err2014, rows2014){
                                 Plotly.d3.csv('include/data/monthly-ratings/year2015.csv', function(err2015, rows2015){
                                     Plotly.d3.csv('include/data/monthly-ratings/year2016.csv', function(err2016, rows2016){
                                          Plotly.d3.csv('include/data/monthly-ratings/year2017.csv', function(err2017, rows2017){
-                            //function that returns each individual value 
+                            //function that returns each individual value
                             //from a row
                                 function unpack(rows, key) {
-                                    return rows.map(function(row) 
+                                    return rows.map(function(row)
                                     { return row[key]; });
                                 }
 
@@ -384,11 +385,11 @@
                                 width: 4
                               },
                               //Gives the name for the legend
-                              name:'2014',                              
+                              name:'2014',
                               type: 'scatter3d'
                             };
-                            
-                            
+
+
                             //This variable corresponds to the include/data/year2015.csv
                             //file which gives the average monthly ratings for 2015
                             var year2015 = {
@@ -404,13 +405,13 @@
                                 width: 4
                               },
                               //Gives the name for the legend
-                              name:'2015',                              
+                              name:'2015',
                               type: 'scatter3d'
-                            };                            
+                            };
 
 
 
-                            
+
                             //This variable corresponds to the include/data/year2016.csv
                             //file which gives the average monthly ratings for 2016
                             var year2016 = {
@@ -426,12 +427,12 @@
                                 width: 4
                               },
                               //Gives the name for the legend
-                              name:'2016',                              
+                              name:'2016',
                               type: 'scatter3d'
-                            };         
-                            
-                            
-                            
+                            };
+
+
+
                             //This variable corresponds to the include/data/year2017.csv
                             //file which gives the average monthly ratings for 2017
                             var year2017 = {
@@ -447,40 +448,40 @@
                                 width: 4
                               },
                               //Gives the name for the legend
-                              name:'2017',                              
+                              name:'2017',
                               type: 'scatter3d'
-                            };                                  
+                            };
 
                             //combines individual lines into one 3d graph
                             var data = [year2012, year2013, year2014, year2015, year2016, year2017];
                             var layout = {
-                            
+
                             //Turns off autoscaling and sets width height of the graph
                            autoscale:false,
                           width:1200,
-                          height:760,                                
+                          height:760,
                               //<b> tag bolds the title
                               title: '<b> Average monthly ratings by year </b>',
 
                                 //A scene object must be used to encapsulate
-                                //each axis title, not sure why this is...                            
+                                //each axis title, not sure why this is...
                                  scene :{
                                       xaxis:{
                                           title:'Year',
                                           //how far between tick marks on graph axis
                                           dtick : 1
                                       },
-    
+
                                          yaxis:{
                                           title:'Month',
                                           //how far between tick marks on graph axis
                                           dtick :1
-                                      },                         
+                                      },
 
                                        zaxis:{
                                           title:'Viewers in Thousands'
                                       }
-                                },                              
+                                },
                               margin: {
                                 l: 25,
                                 r: 25,
@@ -493,13 +494,13 @@
                                 size:14
                             },
 
-                              
+
                               //sets the font size of the title
-                              
+
                                 "titlefont": {
                                     "size": 24,
                                   },
-                          
+
                           //sets the font size of the legend
                              legend:{
                                  font:{
@@ -507,9 +508,9 @@
                                 }
                             }
                             };
-                            
-                            Plotly.newPlot('monthly-ratings', data, layout); 
-                            
+
+                            Plotly.newPlot('monthly-ratings', data, layout);
+
                                         });//End of 2016 csv
                                     });//End of 2016 csv
                                 });//End of 2015 csv
@@ -521,42 +522,42 @@
 
                     </div>
                 </div>
-                
+
                  <div id="page3">
                      <!--Navbar will make a smooth transition to this anchor-->
                   <a id="household" class="smooth"></a>
                 <!--Provides a description for the graph-->
                   <div class="description">
                       <p>
-                          The below graph provides some demographic information from 
+                          The below graph provides some demographic information from
                           years 2012 until 2017 concerning the ratings for the
-                          toonami block for adult's aged 18-49. Additionally this graph 
+                          toonami block for adult's aged 18-49. Additionally this graph
                           adds a fourth dimension which is the color of the line graph. The
-                          darker purple represents a higher average household rating (percentage 
+                          darker purple represents a higher average household rating (percentage
                           of televisions tuned into the broadcast) while the red represents a
                           smaller household rating.
-                          
-                          
+
+
                       </p>
-                      
+
                       <!--Provides a blue info alert for the graph-->
                         <div id ="info" class="alert alert-info">
                             <strong>Info!</strong> Try clicking and dragging the graph to manipulate the viewing
-                            angle. 
+                            angle.
                         </div>
-                      
-                      
+
+
                   </div>
                     <div id="annual-ratings">
                     <script>
                         /*
                          * Reads the csv from include/data/samJack.csv
-                         */                        
+                         */
                     Plotly.d3.csv('include/data/annualRatings.csv', function(err, rows){
-                              //function that returns each individual value 
+                              //function that returns each individual value
                             //from a row
                                 function unpack(rows, key) {
-                                    return rows.map(function(row) 
+                                    return rows.map(function(row)
                                     { return row[key]; });
                                 }
 
@@ -590,19 +591,19 @@
                             //Turns off autoscaling and sets width height of the graph
                            autoscale:false,
                           width:1200,
-                          height:775,  
-                            
+                          height:775,
+
                           //A scene object must be used to encapsulate
-                          //each axis title, not sure why this is...                            
+                          //each axis title, not sure why this is...
                            scene :{
                                 xaxis:{
                                     title:'Total Viewers in thousands'
                                 },
-                            
+
                                    yaxis:{
                                     title:'Age 18-49 Viewers in thousands'
-                                },                         
-                            
+                                },
+
                                  zaxis:{
                                     title:'Year'
                                 }
@@ -613,14 +614,14 @@
                           font:{
                               size:14
                           },
-        
-        
+
+
                               //sets the font size of the title
-                              
+
                         "titlefont": {
                               "size": 24,
                            },
-                                                    
+
 
                             margin: {
                               l: 25,
@@ -631,33 +632,33 @@
                           };
                         //populates the new plot with the string literal the
                         //id of the div you want this plot in
-                          Plotly.newPlot('annual-ratings', data, layout); 
+                          Plotly.newPlot('annual-ratings', data, layout);
                           });
-                   
-                        
-                        
-                        
+
+
+
+
                     </script>
                     </div>
                 </div>
-                
-                
+
+
 
                 <div id="page4">
-                    
-                  <!--This is where the navbar will transition to-->  
+
+                  <!--This is where the navbar will transition to-->
                   <a id="about" class="smooth"></a>
-                  
-                  <!--Puts my image into the webpage-->  
+
+                  <!--Puts my image into the webpage-->
                     <div class="me"/>
                         <img src="images/myPhoto.jpg"  class ="myPhoto" >
                     </div>
-                  <!--Explains the website and provides external links to my other works-->  
+                  <!--Explains the website and provides external links to my other works-->
                     <div class="words"/>
                         <h2>About this site</h2>
                             <div class ="explanation">
                                 <p>
-                                    My name is Ryan Rigato and as you can probably guess I 
+                                    My name is Ryan Rigato and as you can probably guess I
                                     am definitely not a web developer. However, I have found that
                                     knowing the fundamentals of web development is
                                     very useful in the world of analytics. I built this site because
@@ -668,20 +669,20 @@
                                     All graphs were built with the Plotly.js JavaScript framework.
                                     I would like to say thank you to the plotly team for open sourceing
                                     their <a href =https://plot.ly/javascript/reference/ >
-                                            fantastic graphing library</a>. Additionally, this site would not of been 
+                                            fantastic graphing library</a>. Additionally, this site would not of been
                                     possible without the wonderful <a href = https://www.w3schools.com/ > W3 Turtorials</a>
                                     and the <a href = http://getbootstrap.com/> Bootstrap  Front End Framework</a>
                                     Finally, the smooth transitions between views was built with <a href =https://jquery.com/> jQuery </a>
-                                        
+
                                    </p>
 
 
 
                             </div>
 
-                        
-                        <br>       
-                        <br>   
+
+                        <br>
+                        <br>
 
                         <h3>Here is some information about me</h3>
 
@@ -690,19 +691,19 @@
                         <br>
                         <br>
                         <a href="https://github.com/rrigato/ratings">Source Code for this website</a>
-                        
-                        
-                        <br>       
-                        <br>                        
-                        
-                        <%--External link to GitHub--%>
+
+
+                        <br>
+                        <br>
+
+                        <!--External link to GitHub-->
                         <a href ="https://github.com/rrigato">Check out my GitHub account</a>
 
-                        <br>       
+                        <br>
                         <br>
                         <a href ="https://www.kaggle.com/ryanrigato">Take a look at my Kaggle Profile </a>
 
-                        <br>       
+                        <br>
                         <br>
                         <a href ="https://www.linkedin.com/in/ryan-rigato-a9248397">Connect with me on Linkedin </a>
 
