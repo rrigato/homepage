@@ -110,7 +110,7 @@ class WebappLive(unittest.TestCase):
         """
         logging.info("Testing if the website is alive")
         r = requests.get(
-            HOMEPAGE_URL
+            HOMEPAGE_URL + "home.html"
         )
         self.assertEqual(r.status_code, 200)
         logging.info("The website is live")
