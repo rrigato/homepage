@@ -338,6 +338,37 @@ class WebappLive(unittest.TestCase):
             logging.info("The request was upgraded to https")
 
 
+    def test_homepage_image(self):
+        """Tests that the homepage image loaded
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        photo_request = requests.get(
+            HOMEPAGE_URL + "images/myPhoto.jpg"
+        )
+
+        self.assertEqual(photo_request.status_code, 200)
+
+        logging.info("Photo is present on page")
+
+
+        '''
+            Ensuring that the content-type of the response
+            is a jpg
+        '''
+        self.assertEqual(
+            "image/jpeg",
+            photo_request.headers.get('Content-Type').split(';')[0]
+        )
+
+        logging.info("Image is a jpg mime type")
 
 
 if __name__ == "__main__":
