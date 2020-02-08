@@ -33,6 +33,8 @@ phases:
       - echo Build started on `date`
 
 
+      - python tests/test_prod_aws_resources.py
+
       #merges dev branch into master now that all tests have
       #been passed and artifacts created
       - aws codecommit merge-branches-by-fast-forward
