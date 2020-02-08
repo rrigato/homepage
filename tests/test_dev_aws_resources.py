@@ -109,10 +109,10 @@ class WebappLive(unittest.TestCase):
             ------
         """
         logging.info("Testing if the website is alive")
-        r = requests.get(
+        homepage_request = requests.get(
             HOMEPAGE_URL + "home.html"
         )
-        self.assertEqual(r.status_code, 200)
+        self.assertEqual(homepage_request.status_code, 200)
         logging.info("The website is live")
 
 
@@ -128,7 +128,9 @@ class WebappLive(unittest.TestCase):
             Raises
             ------
         """
-
+        homepage_request = requests.get(
+            HOMEPAGE_URL + "home.html"
+        )
         '''
             Getting a BeautifulSoup object to
             test content of the html page
@@ -148,27 +150,6 @@ class WebappLive(unittest.TestCase):
             {"href":"https://github.com/rrigato"}).text,
             "Check out my GitHub account"
         )
-
-            '''
-                Testing that we have 3 info boxes
-            '''
-            self.assertEqual(
-                len(bsObj.findAll("div", {"id":"info"})),
-                3
-            )
-
-            logging.info("Validated the content of the homepage")
-
-            '''
-                Request started as http
-                This check ensures it ended up as
-                https
-            '''
-            self.assertEqual(
-                homepage_request.url[0:5],
-                "https"
-            )
-            logging.info("The request was upgraded to https")
 
 
 
