@@ -11,7 +11,7 @@ import unittest
 
 ENVIRON_DEF = "prod"
 
-HOMEPAGE_URL = "https://ryanrigato.com"
+HOMEPAGE_URL = "https://ryanrigato.com/"
 '''
     Defaults to $CODEBUILD_SRC_DIR
     which is the working directory where the
@@ -161,7 +161,7 @@ class WebappLive(unittest.TestCase):
         logging.info("Testing if the standards webpage is alive")
 
         standards_test = (
-            domain_url + "/docs/v1/standards/standards.html"
+            domain_url + "docs/v1/standards/standards.html"
         )
         logging.info(standards_test)
 
