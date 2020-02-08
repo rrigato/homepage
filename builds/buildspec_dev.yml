@@ -49,6 +49,12 @@ phases:
         --stack-name dev-homepage-webpage
 
       ###########################################
+      #Making sure the dev bucket replicates prod
+      #Will copy over the latest version
+      ############################################
+      - aws s3 sync s3://ryanrigato.com s3://dev-static-site-homepage
+
+      ###########################################
       #Copying web files from repo to s3 bucket
       ############################################
       - aws s3 cp ./web s3://dev-static-site-homepage --recursive
