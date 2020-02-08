@@ -66,9 +66,10 @@ phases:
       #--delete option deletes any files in the destination
       #that are not in the source
       ##########################################
-      - aws s3 sync
+      - aws s3 sync ./web s3://dev-static-site-homepage
+        --exclude "*" --include "include/*" --delete
 
-
+      - python tests/test_dev_aws_resources.py
 
   post_build:
     commands:
