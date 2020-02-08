@@ -34,10 +34,10 @@ def get_logger():
         Raises
         ------
     """
-    """
+    '''
         Adds the file name to the logs/ directory without
         the extension
-    """
+    '''
     logging.basicConfig(
         filename=os.path.join(WORKING_DIRECTORY, "logs/",
         os.path.basename(__file__).split(".")[0]),
@@ -191,55 +191,55 @@ class WebappLive(unittest.TestCase):
 
 
 
-        """
+        '''
             Makes sure that http is redirected
             to more secure https
-        """
+        '''
         for domain_name in REDIRECT_DOMAINS:
             logging.info("Domain name: ")
             logging.info(domain_name)
 
             homepage_request = requests.get(domain_name)
-            """
+            '''
                 Tests that the request was successfull
-            """
+            '''
             self.assertEqual(
                 homepage_request.status_code, 200
             )
 
             logging.info("Homepage call successful")
-            """
+            '''
                 Ensuring the original request got a 301
                 redirect
                 .history = list of request history
-            """
+            '''
             self.assertEqual(
                 homepage_request.history[0].status_code,
                 301
             )
 
-            """
+            '''
                 Getting a BeautifulSoup object to
                 test content of the html page
-            """
+            '''
             bsObj = BeautifulSoup(homepage_request.text,
                 "html.parser")
 
             logging.info("Homepage call was redirected")
 
 
-            """
+            '''
                 Testing the text value of an html link
-            """
+            '''
             self.assertEqual(
                 bsObj.find("a",
                 {"href":"https://github.com/rrigato"}).text,
                 "Check out my GitHub account"
             )
 
-            """
+            '''
                 Testing that we have 3 info boxes
-            """
+            '''
             self.assertEqual(
                 len(bsObj.findAll("div", {"id":"info"})),
                 3
@@ -247,11 +247,11 @@ class WebappLive(unittest.TestCase):
 
             logging.info("Validated the content of the homepage")
 
-            """
+            '''
                 Request started as http
                 This check ensures it ended up as
                 https
-            """
+            '''
             self.assertEqual(
                 homepage_request.url[0:5],
                 "https"
@@ -278,18 +278,18 @@ class WebappLive(unittest.TestCase):
 
 
 
-        """
+        '''
             Makes sure that https requests are routed
             correctly
-        """
+        '''
         for domain_name in REDIRECT_DOMAINS:
             logging.info("Domain name: ")
             logging.info(domain_name)
 
             homepage_request = requests.get(domain_name)
-            """
+            '''
                 Tests that the request was successfull
-            """
+            '''
             self.assertEqual(
                 homepage_request.status_code, 200
             )
@@ -297,28 +297,28 @@ class WebappLive(unittest.TestCase):
             logging.info("Homepage call successful")
 
 
-            """
+            '''
                 Getting a BeautifulSoup object to
                 test content of the html page
-            """
+            '''
             bsObj = BeautifulSoup(homepage_request.text,
                 "html.parser")
 
             logging.info("Homepage call was redirected")
 
 
-            """
+            '''
                 Testing the text value of an html link
-            """
+            '''
             self.assertEqual(
                 bsObj.find("a",
                 {"href":"https://github.com/rrigato"}).text,
                 "Check out my GitHub account"
             )
 
-            """
+            '''
                 Testing that we have 3 info boxes
-            """
+            '''
             self.assertEqual(
                 len(bsObj.findAll("div", {"id":"info"})),
                 3
@@ -326,11 +326,11 @@ class WebappLive(unittest.TestCase):
 
             logging.info("Validated the content of the homepage")
 
-            """
+            '''
                 Request started as http
                 This check ensures it ended up as
                 https
-            """
+            '''
             self.assertEqual(
                 homepage_request.url[0:5],
                 "https"
