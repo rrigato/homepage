@@ -131,7 +131,7 @@ class WebappLive(unittest.TestCase):
         photo_request = requests.get(
             HOMEPAGE_URL + "images/myPhoto.jpg"
         )
-        import pdb; pdb.set_trace()
+
         self.assertEqual(photo_request.status_code, 200)
 
         logging.info("Photo is present on page")
@@ -142,10 +142,11 @@ class WebappLive(unittest.TestCase):
             is a jpg
         '''
         self.assertEqual(
-            "application/jpg",
+            "image/jpeg",
             photo_request.headers.get('Content-Type').split(';')[0]
         )
 
+        logging.info("Image is a jpg mime type")
 
 
 
