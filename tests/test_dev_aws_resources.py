@@ -116,6 +116,88 @@ class WebappLive(unittest.TestCase):
         logging.info("The website is live")
 
 
+    def test_homepage_image(self):
+        """Tests that the homepage image loaded
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        REDIRECT_DOMAINS = [
+            "https://ryanrigato.com",
+            "https://www.ryanrigato.com"
+        ]
+        logging.info("Testing if the https homepage is alive")
+
+
+
+        """
+            Makes sure that https requests are routed
+            correctly
+        """
+        for domain_name in REDIRECT_DOMAINS:
+            logging.info("Domain name: ")
+            logging.info(domain_name)
+
+            homepage_request = requests.get(domain_name)
+            """
+                Tests that the request was successfull
+            """
+            self.assertEqual(
+                homepage_request.status_code, 200
+            )
+
+            logging.info("Homepage call successful")
+
+
+            """
+                Getting a BeautifulSoup object to
+                test content of the html page
+            """
+            bsObj = BeautifulSoup(homepage_request.text,
+                "html.parser")
+
+            logging.info("Homepage call was redirected")
+
+
+            """
+                Testing the text value of an html link
+            """
+            self.assertEqual(
+                bsObj.find("a",
+                {"href":"https://github.com/rrigato"}).text,
+                "Check out my GitHub account"
+            )
+
+            """
+                Testing that we have 3 info boxes
+            """
+            self.assertEqual(
+                len(bsObj.findAll("div", {"id":"info"})),
+                3
+            )
+
+            logging.info("Validated the content of the homepage")
+
+            """
+                Request started as http
+                This check ensures it ended up as
+                https
+            """
+            self.assertEqual(
+                homepage_request.url[0:5],
+                "https"
+            )
+            logging.info("The request was upgraded to https")
+
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
