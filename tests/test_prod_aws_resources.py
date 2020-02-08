@@ -222,7 +222,7 @@ class WebappLive(unittest.TestCase):
                 Getting a BeautifulSoup object to
                 test content of the html page
             '''
-            bsObj = BeautifulSoup(homepage_request.text,
+            bs_obj = BeautifulSoup(homepage_request.text,
                 "html.parser")
 
             logging.info("Homepage call was redirected")
@@ -232,7 +232,7 @@ class WebappLive(unittest.TestCase):
                 Testing the text value of an html link
             '''
             self.assertEqual(
-                bsObj.find("a",
+                bs_obj.find("a",
                 {"href":"https://github.com/rrigato"}).text,
                 "Check out my GitHub account"
             )
@@ -241,7 +241,7 @@ class WebappLive(unittest.TestCase):
                 Testing that we have 3 info boxes
             '''
             self.assertEqual(
-                len(bsObj.findAll("div", {"id":"info"})),
+                len(bs_obj.findAll("div", {"id":"info"})),
                 3
             )
 
@@ -301,7 +301,7 @@ class WebappLive(unittest.TestCase):
                 Getting a BeautifulSoup object to
                 test content of the html page
             '''
-            bsObj = BeautifulSoup(homepage_request.text,
+            bs_obj = BeautifulSoup(homepage_request.text,
                 "html.parser")
 
             logging.info("Homepage call was redirected")
@@ -311,7 +311,7 @@ class WebappLive(unittest.TestCase):
                 Testing the text value of an html link
             '''
             self.assertEqual(
-                bsObj.find("a",
+                bs_obj.find("a",
                 {"href":"https://github.com/rrigato"}).text,
                 "Check out my GitHub account"
             )
@@ -320,7 +320,7 @@ class WebappLive(unittest.TestCase):
                 Testing that we have 3 info boxes
             '''
             self.assertEqual(
-                len(bsObj.findAll("div", {"id":"info"})),
+                len(bs_obj.findAll("div", {"id":"info"})),
                 3
             )
 

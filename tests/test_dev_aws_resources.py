@@ -135,18 +135,18 @@ class WebappLive(unittest.TestCase):
             Getting a BeautifulSoup object to
             test content of the html page
         '''
-        bsObj = BeautifulSoup(homepage_request.text,
+        bs_obj = BeautifulSoup(homepage_request.text,
             "html.parser")
 
         logging.info("Homepage call was redirected")
 
-
+        import pdb; pdb.set_trace()
         '''
             Testing the value of an html image
             tab
         '''
         self.assertEqual(
-            bsObj.find("a",
+            bs_obj.find("a",
             {"href":"https://github.com/rrigato"}).text,
             "Check out my GitHub account"
         )
