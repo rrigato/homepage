@@ -22,15 +22,18 @@ phases:
       - echo Entered the install phase...
 
       - BUILD_ENVIRONMENT=prod
+      - DESTINATION_BUCKET=dev-static-site-homepage
+      - STATIC_WEBPAGE_STACK=dev-homepage-webpage
       - pip install -r tests/requirements.txt
       - ls -l
     finally:
 
   build:
     commands:
+      - echo Defined build variables
       - echo $BUILD_ENVIRONMENT
-      - echo Entered the build phase...
-      - echo Build started on `date`
+      - echo $DESTINATION_BUCKET
+      - echo $STATIC_WEBPAGE_STACK
 
       ###########################################
       #Copying web files from repo to s3 bucket
