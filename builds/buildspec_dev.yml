@@ -29,26 +29,24 @@ phases:
 
       - BUILD_ENVIRONMENT=dev
       - DESTINATION_BUCKET=dev-static-site-homepage
+      - STATIC_WEBPAGE_STACK=dev-homepage-webpage
       - pip install -r tests/requirements.txt
       - ls -l
-    finally:
-      - echo This always runs even if the update or install command fails
-
   build:
     commands:
+      - echo Defined build variables
       - echo $BUILD_ENVIRONMENT
       - echo $DESTINATION_BUCKET
-      - echo Entered the build phase...
-      - echo Build started on `date`
+      - echo $STATIC_WEBPAGE_STACK
 
       #static s3 bucket for testing upload code
-      - aws cloudformation create-stack --stack-name dev-homepage-webpage
+      - aws cloudformation create-stack --stack-name $STATIC_WEBPAGE_STACK
        --template-body file://templates/static_webpage.yml
        --capabilities CAPABILITY_NAMED_IAM
 
       #Waits until the stack has been successfully created
       - aws cloudformation wait stack-create-complete
-        --stack-name dev-homepage-webpage
+        --stack-name $STATIC_WEBPAGE_STACK
 
       ###########################################
       #Making sure the dev bucket replicates prod
@@ -80,7 +78,7 @@ phases:
       #deleting bucket and stack after testing
       - aws s3 rm s3://$DESTINATION_BUCKET --recursive
 
-      - aws cloudformation delete-stack --stack-name dev-homepage-webpage
+      - aws cloudformation delete-stack --stack-name $STATIC_WEBPAGE_STACK
 
 
 
