@@ -38,7 +38,6 @@ phases:
       ###########################################
       #Copying default root object for webpage from repo to s3 bucket
       ############################################
-      - aws s3 cp ./web/home.html s3://$DESTINATION_BUCKET/home.html
       - aws s3 cp ./web/index.html s3://$DESTINATION_BUCKET/index.html
 
       ###########################################
