@@ -23,7 +23,7 @@ phases:
 
       - BUILD_ENVIRONMENT=prod
       - DESTINATION_BUCKET=ryanrigato.com
-      - REPO_NAME=master
+      - REPO_NAME=homepage
       - pip install -r tests/requirements.txt
       - ls -l
     finally:
