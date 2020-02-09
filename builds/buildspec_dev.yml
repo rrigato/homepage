@@ -55,7 +55,7 @@ phases:
       - aws s3 sync s3://ryanrigato.com s3://$DESTINATION_BUCKET
 
       ###########################################
-      #Copying web files from repo to s3 bucket
+      #Copying default root object for webpage from repo to s3 bucket
       ############################################
       - aws s3 cp ./web/index.html s3://$DESTINATION_BUCKET/index.html
 
