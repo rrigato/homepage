@@ -35,7 +35,17 @@ phases:
       ###########################################
       #Copying web files from repo to s3 bucket
       ############################################
-      - aws s3 cp ./web s3://ryanrigato.com --recursive
+      - aws s3 cp ./web/home.html s3://dev-static-site-homepage/home.html
+
+      ###########################################
+      #Exclude and include parameters for sync are
+      #evaluated against the source directory
+      #The last filter applied takes precedence
+      #--delete option deletes any files in the destination
+      #that are not in the source
+      ##########################################
+      - aws s3 sync ./web s3://dev-static-site-homepage
+        --exclude "*" --include "include/*" --delete
 
       - python tests/test_prod_aws_resources.py
 
