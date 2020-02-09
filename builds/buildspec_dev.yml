@@ -28,6 +28,7 @@ phases:
       - echo Entered the install phase...
 
       - BUILD_ENVIRONMENT=dev
+      - DESTINATION_BUCKET=dev-static-site-homepage
       - pip install -r tests/requirements.txt
       - ls -l
     finally:
@@ -36,6 +37,7 @@ phases:
   build:
     commands:
       - echo $BUILD_ENVIRONMENT
+      - echo $DESTINATION_BUCKET
       - echo Entered the build phase...
       - echo Build started on `date`
 
@@ -52,12 +54,12 @@ phases:
       #Making sure the dev bucket replicates prod
       #Will copy over the latest version
       ############################################
-      - aws s3 sync s3://ryanrigato.com s3://dev-static-site-homepage
+      - aws s3 sync s3://ryanrigato.com s3://$DESTINATION_BUCKET
 
       ###########################################
       #Copying web files from repo to s3 bucket
       ############################################
-      - aws s3 cp ./web/home.html s3://dev-static-site-homepage/home.html
+      - aws s3 cp ./web/home.html s3://$DESTINATION_BUCKET/home.html
 
       ###########################################
       #Exclude and include parameters for sync are
@@ -66,7 +68,7 @@ phases:
       #--delete option deletes any files in the destination
       #that are not in the source
       ##########################################
-      - aws s3 sync ./web s3://dev-static-site-homepage
+      - aws s3 sync ./web s3://$DESTINATION_BUCKET
         --exclude "*" --include "include/*" --delete
 
       - python tests/test_dev_aws_resources.py
@@ -76,7 +78,7 @@ phases:
       - echo cleaning up resources if build was successful
 
       #deleting bucket and stack after testing
-      - aws s3 rm s3://dev-static-site-homepage --recursive
+      - aws s3 rm s3://$DESTINATION_BUCKET --recursive
 
       - aws cloudformation delete-stack --stack-name dev-homepage-webpage
 
