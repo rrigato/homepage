@@ -1,0 +1,9 @@
+ [
+ {
+    "ResourceType":"AWS::S3::Bucket",
+    "LogicalResourceId":"WebsiteBucket",
+    "ResourceIdentifier":{
+        "BucketName":"ryanrigato.com"
+     }
+ }
+ ]
