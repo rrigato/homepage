@@ -328,10 +328,10 @@ Resources:
               #Fn:GetParam pass it the Artifact name,
               #json file name and the parameter in that file
               #And it will retrieve it for parameter overrides
-              ParameterOverrides: |
-                {
-                   "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
-                }
+              # ParameterOverrides: |
+              #   {
+              #      "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
+              #   }
               RoleArn: !GetAtt [S3WebpageRole, Arn]
               StackName: !Ref ProdStackName
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
@@ -475,6 +475,26 @@ Resources:
                     - cloudformation:DescribeStacks
                   Resource:
                     - "*"
+
+####################
+#Role assumed by cloudformation
+#in stage 3 of the CodePipeline to
+#create/update the templates/prod_resource_import.yml stack
+####################
+ProdCodeDeployRole:
+  Type: AWS::IAM::Role
+  Properties:
+    AssumeRolePolicyDocument:
+      Statement:
+      - Action: ['sts:AssumeRole']
+        Effect: Allow
+        Principal:
+          Service: [cloudformation.amazonaws.com]
+      Version: '2012-10-17'
+    ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/AmazonS3FullAccess
+    Path: /
+
 
 
 ####################################
