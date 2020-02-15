@@ -489,20 +489,19 @@ Resources:
 #in stage 3 of the CodePipeline to
 #create/update the templates/prod_resource_import.yml stack
 ####################
-ProdCodeDeployRole:
-  Type: AWS::IAM::Role
-  Properties:
-    AssumeRolePolicyDocument:
-      Statement:
-      - Action: ['sts:AssumeRole']
-        Effect: Allow
-        Principal:
-          Service: [cloudformation.amazonaws.com]
-      Version: '2012-10-17'
-    ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/AmazonS3FullAccess
-    Path: /
-
+  ProdCodeDeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [cloudformation.amazonaws.com]
+        Version: '2012-10-17'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      Path: /
 
 
 ####################################
