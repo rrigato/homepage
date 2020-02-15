@@ -217,7 +217,9 @@ Resources:
   #Stage 1) Source = Get source code repository
   #Stage 2) Build = Build and test a dev environment
   #Generate html files from markdown, store output for next stage
-  #stage 3) Build = runs any configuration necessary
+  #stage 3) Deploy create/updates the
+  #templates/prod_resource_import.yml
+  #stage 4) Build = runs any configuration necessary
   #to deploy built html files to prod
   ###########################################
   CodePipelineStack:
@@ -299,20 +301,19 @@ Resources:
         ############################
         #First action of this deploy prod stage
         #Creates/updates the templates/static_webpage.yml
-        #cloudformation template to create a static
-        #S3 webpage for hosting
+        #cloudformation template which was an import
+        #existing cloudresources
         ############################
-          - Name: DeployBucket
+          - Name: DeployProdImport
             ActionTypeId:
               Category: Deploy
               Owner: AWS
               Provider: CloudFormation
               Version: '1'
             InputArtifacts:
-              - Name: BuildDev
-              - Name: sneakpeek
+              - Name: !GetAtt GitRepo.Name
             OutputArtifacts:
-              - Name: WebProdCf
+              - Name: ProdImportCf
             ##########################################
             #configuration properties documentation:
             #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-action-reference.html
@@ -331,7 +332,6 @@ Resources:
                 {
                    "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
                 }
-                  #'{"BucketName": "prod-sneakpeek"}'
               RoleArn: !GetAtt [S3WebpageRole, Arn]
               StackName: !Ref ProdStackName
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
