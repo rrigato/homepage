@@ -297,6 +297,16 @@ Resources:
             OutputArtifacts:
               - Name: BuildDev
 
+            #########################################
+            #Configuration Details by provider can be found here:
+            #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#structure-configuration-examples
+            #
+            #########################################
+            Configuration:
+                ProjectName:
+                    !Join ['', ['dev-tests-', !Ref ProjectName]]
+            RunOrder: 1
+
           ###################################
           #Stage 3) Deploys to production
           #by updating or creating a stack as
@@ -348,15 +358,6 @@ Resources:
                   !Join ['::', [!Ref ProjectName, 'templates/prod_resource_import.yml']]
             RunOrder: 1
 
-            #########################################
-            #Configuration Details by provider can be found here:
-            #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#structure-configuration-examples
-            #
-            #########################################
-            Configuration:
-                ProjectName:
-                    !Join ['', ['dev-tests-', !Ref ProjectName]]
-            RunOrder: 1
 
         ###############################
         #Stage 4 Builds the prod
