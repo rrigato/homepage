@@ -96,7 +96,12 @@ Provides information on each directory/ source file
 
 #### devops
 
+#### legacy
+awscli bash scripts used to import existing resources into
+cloudformation templates.
 
+Since the website implementation was originally created outside of
+cloudformation
 
 #### logs
 - directory for python log files
@@ -123,8 +128,8 @@ only be deleted and recereated when in [ROLLBACK_COMPLETE state](https://stackov
 
 #### tests
 
-
-
+#### web
+Static html/js/css hosted in the s3 bucket
 
 #### Setup Continuous Integration
 
