@@ -103,6 +103,10 @@ cloudformation templates.
 Since the website implementation was originally created outside of
 cloudformation
 
+[List of resources that can be imported into cloudformation](
+    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html
+    )
+
 #### logs
 - directory for python log files
 

@@ -19,7 +19,9 @@ Parameters:
   WebsiteDomainName:
     Type: String
     Default: "http://*.amazonaws.com"
-    Description: String for prefixing resources to differentiate prod/dev
+    Description: |
+        Necessary to allow Cross Origin Resource Sharing
+        for JS to call html/css from the same domain
 
 
 
