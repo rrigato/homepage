@@ -344,7 +344,8 @@ Resources:
               #Artifact::template_file_name
               #is what the deploy stage is expecting as input for the
               #cloudformation template location
-              TemplatePath: sneakpeek::templates/prod.yml
+              TemplatePath:
+                  !Join ['::', [!Ref ProjectName, 'templates/prod_resource_import.yml']]
             RunOrder: 1
 
             #########################################
