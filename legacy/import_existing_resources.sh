@@ -15,5 +15,5 @@ aws cloudformation get-template-summary \
 aws cloudformation create-change-set \
     --stack-name prod-homepage --change-set-name S3ImportChangeSet \
     --change-set-type IMPORT \
-    --resources-to-import "[{\"ResourceType\":\"AWS::S3::Bucket\",\"LogicalResourceId\":\"WebsiteBucket\",\"ResourceIdentifier\":{\"BucketName\":\"ryanrigato.com\"}}]" \
-    --template-body file://templateToImport.json
+    --resources-to-import file://legacy/resources/resources_to_import.txt \
+    --template-body file://legacy/resources/legacy_resources.yml
