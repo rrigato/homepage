@@ -7,8 +7,14 @@ Description:
 
 Resources:
   WebsiteBucket:
+    DeletionPolicy: Retain
     Properties:
       BucketName: ryanrigato.com
+      # LoggingConfiguration:
+      #   DestinationBucketName: logs.ryanrigato.com
+      #   LogFilePrefix: /root
+      VersioningConfiguration:
+        Status: Enabled
       WebsiteConfiguration:
         IndexDocument: index.html
     Type: "AWS::S3::Bucket"
