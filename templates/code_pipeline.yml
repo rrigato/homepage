@@ -14,6 +14,12 @@ Parameters:
     Type: String
     Default: homepage
 
+  #Name of the stack that imported
+  #existing aws resources
+  ProdStackName:
+    Type: String
+    Default: prod-homepage
+
   RepositoryBranch:
     Type: String
     Default: dev
@@ -332,13 +338,13 @@ Resources:
               #   {
               #      "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
               #   }
-              RoleArn: !GetAtt [S3WebpageRole, Arn]
+              RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
               StackName: !Ref ProdStackName
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
               #Artifact::template_file_name
               #is what the deploy stage is expecting as input for the
               #cloudformation template location
-              TemplatePath: sneakpeek::templates/static_webpage.yml
+              TemplatePath: sneakpeek::templates/prod.yml
             RunOrder: 1
 
             #########################################
