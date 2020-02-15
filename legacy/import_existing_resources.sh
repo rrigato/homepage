@@ -17,3 +17,10 @@ aws cloudformation create-change-set \
     --change-set-type IMPORT \
     --resources-to-import file://legacy/resources/resources_to_import.txt \
     --template-body file://legacy/resources/legacy_resources.yml
+
+
+aws cloudformation describe-change-set \
+--change-set-name S3ImportChangeSet --stack-name prod-homepage
+
+aws cloudformation execute-change-set \
+--change-set-name S3ImportChangeSet --stack-name prod-homepage
