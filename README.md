@@ -1,3 +1,4 @@
+![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiOEdUdVZ2KzI0d3MxRXZvMGVXWDhnb0lRUnViZ0U0ZURrVFJDSnRSbHlqMEtRaWllWHZ0ZlVqZlBZdWZzNDdsMWNGOU5YWHF2VVBjYTlHclYydHhQelc0PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF0ZnVhSFdWWE8zREdVMTAiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 Personal website homepage.
 
@@ -21,7 +22,12 @@ The AWS re:Invent 2019 announcement to allow you to import existing resources no
 
 One issue I wanted to document is that if the stack you imported has some drift detected after the import, the code pipeline deploy stage will not provide an intuitive error message
 
-![]
+![Code Pipelin CloudFormation Deploy Action](devops/images/error_if_stack_import_has_drift.jpg)
+
+I am unsure if this generic InternalFailure error was because the stack was in IMPORT_COMPLETE status and had the drift present in the stack is the or just any stack with drift cannot be updated via a Deploy ActionTypeID in Code Pipeline.
+
+Best practice going forward will be to ensure all stacks do not have any drift when being updated by a CodePipeline Stage.
+
 ### Development Tooling Overview
 
 Followed [this aws example](https://forums.aws.amazon.com/thread.jspa?threadID=228206) on how to have multiple rsa key pairs in the same local machine being used with different accounts
