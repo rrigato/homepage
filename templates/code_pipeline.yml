@@ -330,7 +330,6 @@ Resources:
               Version: '1'
             InputArtifacts:
               - Name: !GetAtt GitRepo.Name
-              - Name: BuildDev
             OutputArtifacts:
               - Name: ProdImportCf
             ##########################################

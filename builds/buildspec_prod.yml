@@ -24,7 +24,6 @@ phases:
       - BUILD_ENVIRONMENT=prod
       - DESTINATION_BUCKET=ryanrigato.com
       - REPO_NAME=homepage
-      - STATIC_WEBPAGE_STACK=prod-homepage
       - pip install -r tests/requirements.txt
       - ls -l
     finally:
@@ -35,11 +34,7 @@ phases:
       - echo $BUILD_ENVIRONMENT
       - echo $DESTINATION_BUCKET
       - echo $REPO_NAME
-      - echo $STATIC_WEBPAGE_STACK
 
-      # - aws cloudformation create-change-set --stack-name $STATIC_WEBPAGE_STACK \
-      #    --template-body file://templates/prod_resource_import.yml \
-      #    --change-set-name ProdHomepageChangeSet
 
       ###########################################
       #Copying default root object for webpage from repo to s3 bucket
