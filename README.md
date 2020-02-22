@@ -10,6 +10,18 @@ Personal website homepage.
 - 2020 Refactoring to get all (or at least most) resources into cloudformation now that you can import resources that were not originally created in cloudformation.
     - Adding a CI/CD code pipeline to accomplish this
 
+
+### Importing Existing Resources into CloudFormation
+CloudFormation is a best practice that allows you to
+define your aws resources as code.
+
+Unfortunately I did not always use CloudFormation and it really came back to haunt me when refactoring my webpage to accomdate a more test driven development style.
+
+The AWS re:Invent 2019 announcement to allow you to import existing resources not backed by cloudformation templates to be [imported into cloudformation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import.html) is a great opportunity for refactoring.
+
+One issue I wanted to document is that if the stack you imported has some drift detected after the import, the code pipeline deploy stage will not provide an intuitive error message
+
+![]
 ### Development Tooling Overview
 
 Followed [this aws example](https://forums.aws.amazon.com/thread.jspa?threadID=228206) on how to have multiple rsa key pairs in the same local machine being used with different accounts
@@ -95,6 +107,9 @@ Provides information on each directory/ source file
 
 
 #### devops
+
+##### images
+Repository for images that relate to resources for our code pipeline
 
 #### legacy
 awscli bash scripts used to import existing resources into
