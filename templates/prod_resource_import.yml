@@ -12,17 +12,26 @@ Parameters:
 
   RetainProperty:
     Type: String
-    Default: Retain
+    Default: "Retain"
     Description: Whether to retain cf resources when the stack is deleted
 
+Conditions:
+  RetainResourcesCreated:
+      !Equals [ !Ref BucketName, ryanrigato.com ]
 
 Resources:
   WebsiteBucket:
-    DeletionPolicy: !Ref RetainProperty
+    Condition: RetainResourcesCreated
+    DeletionPolicy: Retain
     Properties:
       BucketName: !Ref BucketName
       LoggingConfiguration:
-        DestinationBucketName: logs.ryanrigato.com
+        DestinationBucketName: !Join
+                      - '.'
+                      #The second argument is a list
+                      - - 'logs'
+                        - !Ref BucketName
+
         LogFilePrefix: root/
       Tags:
           -
