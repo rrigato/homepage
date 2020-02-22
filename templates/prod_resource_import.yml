@@ -12,7 +12,7 @@ Resources:
       BucketName: ryanrigato.com
       LoggingConfiguration:
         DestinationBucketName: logs.ryanrigato.com
-        LogFilePrefix: /root
+        LogFilePrefix: root/
       Tags:
           -
               Key: websiteReason
