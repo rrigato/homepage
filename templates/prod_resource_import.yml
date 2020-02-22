@@ -3,13 +3,24 @@ AWSTemplateFormatVersion: "2010-09-09"
 
 Description:
   Importing existing S3 Bucket and Route53 hosted zone to cloudformation
+Parameters:
+
+  BucketName:
+    Type: String
+    Default: ryanrigato.com
+    Description: The name for the bucket hosting the static website
+
+  RetainProperty:
+    Type: String
+    Default: Retain
+    Description: Whether to retain cf resources when the stack is deleted
 
 
 Resources:
   WebsiteBucket:
-    DeletionPolicy: Retain
+    DeletionPolicy: !Ref RetainProperty
     Properties:
-      BucketName: ryanrigato.com
+      BucketName: !Ref BucketName
       LoggingConfiguration:
         DestinationBucketName: logs.ryanrigato.com
         LogFilePrefix: root/
@@ -38,3 +49,40 @@ Resources:
   #           Action: s3:GetObject
   #           Resource: !Sub "arn:aws:s3:::${WebsiteBucket}/*"
   #   Type: "AWS::S3::BucketPolicy"
+
+  # SslCloudfrontCert:
+  #   Type: AWS::CertificateManager::Certificate
+  #   Properties:
+  #     DomainName: !Ref 'AmazonConnectDomainName'
+  #     DomainValidationOptions:
+  #       - DomainName: !Ref 'AmazonConnectDomainName'
+  #         ValidationDomain: !Ref 'HostedZone'
+  #     ValidationMethod: DNS
+
+# StaticWebpageCdn:
+#     Type: AWS::CloudFront::Distribution
+#     Properties:
+#       DistributionConfig:
+#         Comment: CDN for S3-backed website
+#         Aliases:
+#           - !Join
+#             - ''
+#             - - !Ref 'AmazonConnectDomainName'
+#         Enabled: 'true'
+#         DefaultCacheBehavior:
+#           ForwardedValues:
+#             QueryString: 'true'
+#           TargetOriginId: only-origin
+#           ViewerProtocolPolicy: redirect-to-https
+#         DefaultRootObject: index.html
+#         Origins:
+#           - CustomOriginConfig:
+#               HTTPPort: '80'
+#               HTTPSPort: '443'
+#               OriginProtocolPolicy: http-only
+#             DomainName: !GetAtt 'S3BucketForWebsiteContent.DomainName'
+#             Id: only-origin
+#         ViewerCertificate:
+#           AcmCertificateArn: !Ref 'CertificateForCDN'
+#           SslSupportMethod: sni-only
+#         PriceClass: PriceClass_100
