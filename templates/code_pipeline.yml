@@ -349,7 +349,7 @@ Resources:
               #      "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
               #   }
               RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
-              StackName: !Ref ProdStackName
+              StackName: prod-homepage
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
               #Artifact::template_file_name
               #is what the deploy stage is expecting as input for the
@@ -501,7 +501,7 @@ Resources:
         Version: '2012-10-17'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
-        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+        - arn:aws:iam::aws:policy/AdministratorAccess
       Path: /
 
 
