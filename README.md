@@ -12,7 +12,9 @@ Personal website homepage.
     - Adding a CI/CD code pipeline to accomplish this
 
 
-### Importing Existing Resources into CloudFormation
+### CloudFormation Limitations
+
+#### Deploying Stack Updates from CodePipeline
 CloudFormation is a best practice that allows you to
 define your aws resources as code.
 
@@ -27,6 +29,10 @@ One issue I wanted to document is that if the stack you imported has some drift 
 I am unsure if this generic InternalFailure error was because the stack was in IMPORT_COMPLETE status and had the drift present in the stack is the or just any stack with drift cannot be updated via a Deploy ActionTypeID in Code Pipeline.
 
 Best practice going forward will be to ensure all stacks do not have any drift when being updated by a CodePipeline Stage.
+
+#### DeletionPolicy attribute must be string
+[According to this forum post](https://forums.aws.amazon.com/message.jspa?messageID=560586)
+The DeletionPolicy must be a string, this limits flexibility when trying to pass it as a parameter dependent on environment...
 
 ### Development Tooling Overview
 
