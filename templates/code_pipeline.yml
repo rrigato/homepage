@@ -328,6 +328,7 @@ Resources:
               Version: '1'
             InputArtifacts:
               - Name: !GetAtt GitRepo.Name
+              - Name: BuildDev
             OutputArtifacts:
               - Name: ProdImportCf
             ##########################################
@@ -501,7 +502,6 @@ Resources:
         Version: '2012-10-17'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
-        - arn:aws:iam::aws:policy/AdministratorAccess
       Path: /
 
 
