@@ -46,61 +46,41 @@ Resources:
         IndexDocument: index.html
     Type: "AWS::S3::Bucket"
 
-  # WebsiteBucketPolicy:
+
+  # StaticWebpageCdn:
+  #   DependsOn: CloudFrontOai
+  #   Type: AWS::CloudFront::Distribution
   #   Properties:
-  #     Bucket: !Ref WebsiteBucket
-  #     PolicyDocument:
-  #       Version: 2012-10-17
-  #       Statement:
-  #         -
-  #           Effect: Allow
-  #           Principal: "*"
-  #           Action: s3:GetObject
-  #           Resource: !Sub "arn:aws:s3:::${WebsiteBucket}/*"
-  #   Type: "AWS::S3::BucketPolicy"
+  #     DistributionConfig:
+  #       Comment: CDN for S3-backed website
+  #       #Essientially a cname record to
+  #       #what you want your url name to be
+  #       Aliases:
+  #         - 'test.ryanrigato.com'
+  #       Enabled: true
+  #       DefaultCacheBehavior:
+  #         ForwardedValues:
+  #           QueryString: true
+  #         TargetOriginId: only-origin
+  #         ViewerProtocolPolicy: redirect-to-https
+  #       DefaultRootObject: index.html
+  #       Origins:
+  #         - DomainName: 'www.ryanrigato.s3.amazonaws.com'
+  #           Id: only-origin
+  #           S3OriginConfig:
+  #               OriginAccessIdentity: !Ref CloudFrontOai
+  #       ViewerCertificate:
+  #         AcmCertificateArn: 'test'
+  #         #     !Join ['',
+  #         # ['arn:aws:iam::',
+  #         # !Ref AWS::AccountId,
+  #         # ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7'
+  #         # ]]
+  #         SslSupportMethod: sni-only
+  #       PriceClass: PriceClass_100
 
-  # SslCloudfrontCert:
-  #   Type: AWS::CertificateManager::Certificate
-  #   Properties:
-  #     DomainName: !Ref 'AmazonConnectDomainName'
-  #     DomainValidationOptions:
-  #       - DomainName: !Ref 'AmazonConnectDomainName'
-  #         ValidationDomain: !Ref 'HostedZone'
-  #     ValidationMethod: DNS
-
-  StaticWebpageCdn:
-    Type: AWS::CloudFront::Distribution
-    Properties:
-      DistributionConfig:
-        Comment: CDN for S3-backed website
-        #Essientially a cname record to
-        #what you want your url name to be
-        Aliases:
-          - 'test.ryanrigato.com'
-        Enabled: true
-        DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: true
-          TargetOriginId: only-origin
-          ViewerProtocolPolicy: redirect-to-https
-        DefaultRootObject: index.html
-        Origins:
-          - DomainName: 'www.ryanrigato.s3.amazonaws.com'
-            Id: only-origin
-            S3OriginConfig:
-                OriginAccessIdentity: !Ref cloudfrontoriginaccessidentity
-        ViewerCertificate:
-          AcmCertificateArn: 'test'
-          #     !Join ['',
-          # ['arn:aws:iam::',
-          # !Ref AWS::AccountId,
-          # ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7'
-          # ]]
-          SslSupportMethod: sni-only
-        PriceClass: PriceClass_100
-
-  cloudfrontoriginaccessidentity:
+  CloudFrontOai:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: string-value
+        Comment: OAI to ensure S3 bucket can only be accessed from distribution
