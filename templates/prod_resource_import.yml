@@ -68,30 +68,28 @@ Resources:
   #         ValidationDomain: !Ref 'HostedZone'
   #     ValidationMethod: DNS
 
-# StaticWebpageCdn:
-#     Type: AWS::CloudFront::Distribution
-#     Properties:
-#       DistributionConfig:
-#         Comment: CDN for S3-backed website
-#         Aliases:
-#           - !Join
-#             - ''
-#             - - !Ref 'AmazonConnectDomainName'
-#         Enabled: 'true'
-#         DefaultCacheBehavior:
-#           ForwardedValues:
-#             QueryString: 'true'
-#           TargetOriginId: only-origin
-#           ViewerProtocolPolicy: redirect-to-https
-#         DefaultRootObject: index.html
-#         Origins:
-#           - CustomOriginConfig:
-#               HTTPPort: '80'
-#               HTTPSPort: '443'
-#               OriginProtocolPolicy: http-only
-#             DomainName: !GetAtt 'S3BucketForWebsiteContent.DomainName'
-#             Id: only-origin
-#         ViewerCertificate:
-#           AcmCertificateArn: !Ref 'CertificateForCDN'
-#           SslSupportMethod: sni-only
-#         PriceClass: PriceClass_100
+StaticWebpageCdn:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: CDN for S3-backed website
+        #Essientially a cname record to
+        #what you want your url name to be
+        Aliases:
+          - 'test.ryanrigato.com'
+        Enabled: 'true'
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: 'true'
+          TargetOriginId: only-origin
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Origins:
+          - DomainName: 'www.ryanrigato.s3.amazonaws.com'
+            Id: only-origin
+        ViewerCertificate:
+          AcmCertificateArn:
+                !Join ['', ['arn:aws:iam::',
+                       !Ref AWS::AccountId, ':user/*']]
+          SslSupportMethod: sni-only
+        PriceClass: PriceClass_100
