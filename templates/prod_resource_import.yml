@@ -71,10 +71,9 @@ Resources:
             S3OriginConfig:
                 OriginAccessIdentity: '' #!Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
         ViewerCertificate:
-          AcmCertificateArn: arn:aws:acm:us-east-1:972323850308:certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7
-              # !Join ['', ['arn:aws:acm:us-east-1:',
-              # !Ref AWS::AccountId,
-              # ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7']]
+          AcmCertificateArn: !Join ['', ['arn:aws:acm:us-east-1:', !Ref 'AWS::AccountId', ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7']]
+        #'arn:aws:acm:us-east-1:972323850308:certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7'
+
           #Server Name Identification (SNI) =
           #Allow cloudfront edge servers to
           #present multiple ssl certs to client, this is
@@ -84,6 +83,8 @@ Resources:
         #lowest price class
         PriceClass: PriceClass_100
 
+  #OAI ensures an s3 public statically hosted bucket can
+  #only be accessed through its cloudfront distribution
   CloudFrontOai:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
