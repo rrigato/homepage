@@ -68,7 +68,7 @@ Resources:
   #         ValidationDomain: !Ref 'HostedZone'
   #     ValidationMethod: DNS
 
-StaticWebpageCdn:
+  StaticWebpageCdn:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
@@ -77,19 +77,30 @@ StaticWebpageCdn:
         #what you want your url name to be
         Aliases:
           - 'test.ryanrigato.com'
-        Enabled: 'true'
+        Enabled: true
         DefaultCacheBehavior:
           ForwardedValues:
-            QueryString: 'true'
+            QueryString: true
           TargetOriginId: only-origin
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html
         Origins:
           - DomainName: 'www.ryanrigato.s3.amazonaws.com'
             Id: only-origin
+            S3OriginConfig:
+                OriginAccessIdentity: !Ref cloudfrontoriginaccessidentity
         ViewerCertificate:
-          AcmCertificateArn:
-                !Join ['', ['arn:aws:iam::',
-                       !Ref AWS::AccountId, ':user/*']]
+          AcmCertificateArn: 'test'
+          #     !Join ['',
+          # ['arn:aws:iam::',
+          # !Ref AWS::AccountId,
+          # ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7'
+          # ]]
           SslSupportMethod: sni-only
         PriceClass: PriceClass_100
+
+  cloudfrontoriginaccessidentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: string-value
