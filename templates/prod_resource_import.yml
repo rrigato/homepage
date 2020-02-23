@@ -64,17 +64,24 @@ Resources:
           TargetOriginId: only-origin
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html
+        #Origin is an S3 bucket
         Origins:
           - DomainName: 'www.ryanrigato.s3.amazonaws.com'
             Id: only-origin
             S3OriginConfig:
-                OriginAccessIdentity: '' #!Ref CloudFrontOai
+                OriginAccessIdentity: '' #!Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
         ViewerCertificate:
-          AcmCertificateArn: |
-              !Join ['', ['arn:aws:iam::',
-              !Ref AWS::AccountId,
-              ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7']]
+          AcmCertificateArn: arn:aws:acm:us-east-1:972323850308:certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7
+              # !Join ['', ['arn:aws:acm:us-east-1:',
+              # !Ref AWS::AccountId,
+              # ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7']]
+          #Server Name Identification (SNI) =
+          #Allow cloudfront edge servers to
+          #present multiple ssl certs to client, this is
+          #lower cost than having only 1 ssl cert per CloudFront
+          #point of prescense
           SslSupportMethod: sni-only
+        #lowest price class
         PriceClass: PriceClass_100
 
   CloudFrontOai:
