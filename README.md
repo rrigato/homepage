@@ -172,6 +172,9 @@ aws route53 list-resource-record-sets
 --hosted-zone-id <hosted_zone_id>
 ```
 
+Note that the domain servers associated with your NS
+record set must match what is listed for the domain
+names you own in Route53 "Registered Domains" listing
 
 #### logs
 - directory for python log files
