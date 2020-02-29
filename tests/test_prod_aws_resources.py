@@ -370,6 +370,47 @@ class WebappLive(unittest.TestCase):
 
         logging.info("Image is a jpg mime type")
 
+    def test_cloudfront_dist(self):
+        """Tests the cloudfront distribution is live
+
+            After changing from a cloudfront distribution
+            outside of cloudformation to one that was monitored
+            by it, this test ensures the new cloudfront
+            distribution is alive
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        CLOUDFRONT_DIST_URL = """
+
+        """
+        photo_request = requests.get(
+            HOMEPAGE_URL + "images/myPhoto.jpg"
+        )
+
+        self.assertEqual(photo_request.status_code, 200)
+
+        logging.info("Photo is present on page")
+
+
+        '''
+            Ensuring that the content-type of the response
+            is a jpg
+        '''
+        self.assertEqual(
+            "image/jpeg",
+            photo_request.headers.get('Content-Type').split(';')[0]
+        )
+
+        logging.info("Image is a jpg mime type")
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
