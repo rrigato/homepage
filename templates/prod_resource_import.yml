@@ -59,13 +59,13 @@ Resources:
           - !Join
               - '.'
               #domain without www.
-              #ex: example.com
+              #ex: ryanrigato.com
               - - 'test'
                 - !Ref BucketName
           - !Join
               - '.'
               #domain with www.
-              #ex: example.com
+              #ex: www.ryanrigato.com
               - - 'www'
                 - 'test'
                 - !Ref BucketName
@@ -78,7 +78,18 @@ Resources:
         DefaultRootObject: index.html
         #Origin is an S3 bucket
         Origins:
-          - DomainName: 'www.ryanrigato.com.s3.amazonaws.com'
+        #############
+        #Domain name of S3 Origin:
+        #Ex: 'www.ryanrigato.com.s3.amazonaws.com'
+        #############
+          - DomainName: !Join
+                  - '.'
+                  #domain with www.
+                  #ex: www.ryanrigato.com
+                  #remove 'www for prod'
+                  - - 'www'
+                    - !Ref BucketName
+                    - 's3.amazonaws.com'
             Id: s3-homepage-origin
             S3OriginConfig:
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
