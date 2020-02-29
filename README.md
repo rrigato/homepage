@@ -159,6 +159,20 @@ aws cloudfront update-distribution \
 --if-match <ETag_value_returned_by_get_config>
 ```
 
+Get the existing Route53 hosted zone and associated
+record sets using the following cli command:
+
+```
+#hosted zone info
+aws route53 get-hosted-zone \
+--id <hosted_zone_id>
+
+#record set info
+aws route53 list-resource-record-sets
+--hosted-zone-id <hosted_zone_id>
+```
+
+
 #### logs
 - directory for python log files
 
