@@ -134,6 +134,24 @@ cloudformation
     https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html
     )
 
+##### Prepare Existing CloudFront for migration
+
+Documenting various one-time setup procedures that
+were required when creating a new cloudfront distribution
+via cloudformation because cloudformation resource import
+does not support cloudfront
+
+Get the existing CloudFront Distribution config via
+the cli:
+
+```
+aws cloudfront get-distribution-config
+--id <distribution_id> > distribution_config_backup.json
+```
+
+Change the default and max ttl as you prepare to
+change the distribution
+
 #### logs
 - directory for python log files
 
