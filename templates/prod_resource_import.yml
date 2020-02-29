@@ -46,7 +46,11 @@ Resources:
         IndexDocument: index.html
     Type: "AWS::S3::Bucket"
 
-
+###########################
+#Content delivery network
+#for the static (html/css/js) content
+#
+##########################
   StaticWebpageCdn:
     DependsOn: CloudFrontOai
     Type: AWS::CloudFront::Distribution
