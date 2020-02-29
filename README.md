@@ -145,12 +145,19 @@ Get the existing CloudFront Distribution config via
 the cli:
 
 ```
-aws cloudfront get-distribution-config
+aws cloudfront get-distribution-config \
 --id <distribution_id> > distribution_config_backup.json
 ```
 
-Change the default and max ttl as you prepare to
-change the distribution
+Lower the default and max ttl (time to live ) json file from the get-distribution-config api call as you prepare to
+change the distribution.
+
+```
+aws cloudfront update-distribution \
+--id <distribution_id> \
+--distribution-config file://<new_distribution_config.json>\
+--if-match <ETag_value_returned_by_get_config>
+```
 
 #### logs
 - directory for python log files
