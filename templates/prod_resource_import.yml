@@ -10,10 +10,6 @@ Parameters:
     Default: ryanrigato.com
     Description: The name for the bucket hosting the static website
 
-  RetainProperty:
-    Type: String
-    Default: "Retain"
-    Description: Whether to retain cf resources when the stack is deleted
 
 Conditions:
   RetainResourcesCreated:
@@ -68,9 +64,9 @@ Resources:
                 - !Ref BucketName
           - !Join
               - '.'
-              #domain without www.
+              #domain with www.
               #ex: example.com
-              - -'www'
+              - - 'www'
                 - 'test'
                 - !Ref BucketName
         Enabled: true
