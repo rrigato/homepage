@@ -386,26 +386,26 @@ class WebappLive(unittest.TestCase):
             Raises
             ------
         """
-        CLOUDFRONT_DIST_URL = """
-
-        """
-        photo_request = requests.get(
-            HOMEPAGE_URL + "images/myPhoto.jpg"
+        CLOUDFRONT_DIST_URL = (
+        "https://d175hmh3aj7by5.cloudfront.net/"
+        )
+        root_object_response = requests.get(
+            CLOUDFRONT_DIST_URL
         )
 
-        self.assertEqual(photo_request.status_code, 200)
+        self.assertEqual(root_object_response.status_code, 200)
 
-        logging.info("Photo is present on page")
+        logging.info("New Cloudfront Distribution is live")
 
 
         '''
             Ensuring that the content-type of the response
             is a jpg
         '''
-        self.assertEqual(
-            "image/jpeg",
-            photo_request.headers.get('Content-Type').split(';')[0]
-        )
+        # self.assertEqual(
+        #     "image/jpeg",
+        #     photo_request.headers.get('Content-Type').split(';')[0]
+        # )
 
         logging.info("Image is a jpg mime type")
 
