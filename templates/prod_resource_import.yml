@@ -65,13 +65,13 @@ Resources:
         DefaultCacheBehavior:
           ForwardedValues:
             QueryString: true
-          TargetOriginId: only-origin
+          TargetOriginId: s3-homepage-origin
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html
         #Origin is an S3 bucket
         Origins:
-          - DomainName: 'www.ryanrigato.s3.amazonaws.com'
-            Id: only-origin
+          - DomainName: 'www.ryanrigato.com.s3.amazonaws.com'
+            Id: s3-homepage-origin
             S3OriginConfig:
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
         ViewerCertificate:
