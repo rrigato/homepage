@@ -505,6 +505,21 @@ Resources:
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
         - arn:aws:iam::aws:policy/CloudFrontFullAccess
       Path: /
+      #Ability to create record sets in Route53
+      Policies:
+          - PolicyName: DeployRoute53
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Sid: RecordSetsOneHostedZone
+                  Effect: Allow
+                  Action:
+                    - route53:ChangeResourceRecordSets
+                    - route53:GetHostedZone
+                    - route53:ListResourceRecordSets
+
+                  Resource:
+                    - "*"
 
 
 ####################################
