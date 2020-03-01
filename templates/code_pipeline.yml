@@ -525,13 +525,8 @@ Resources:
                   Effect: Allow
                   Action:
                     - route53:ChangeResourceRecordSets
-                  Condition:
-                      StringEquals:
-                        "route53:hostedZoneId": "Z2FDTNDATAQYW2"
-
-
                   Resource:
-                    - "*"
+                    - "arn:aws:route53:::hostedzone/Z3K3UR6983C2YB"
 ####################################
 #Role that will be assumed when
 #CodeBuild runs for Prod
