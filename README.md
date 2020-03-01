@@ -173,8 +173,16 @@ aws route53 list-resource-record-sets
 ```
 
 Note that the domain servers associated with your NS
-record set must match what is listed for the domain
-names you own in Route53 "Registered Domains" listing
+and SOA record sets must match what is listed for the domain
+names you own in Route53 "Registered Domains" listing.
+
+You can create a new hosted zone for a subdomain
+Ex:
+example.com
+test.example.com
+
+Each having a distinct hosted zone, just the
+NS and SOA record sets must match
 
 #### logs
 - directory for python log files
