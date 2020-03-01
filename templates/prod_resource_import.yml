@@ -42,17 +42,17 @@ Resources:
         IndexDocument: index.html
     Type: "AWS::S3::Bucket"
 
-  HomepageHostedZone:
-    Type: AWS::Route53::HostedZone
-    Properties:
-        DeletionPolicy: Retain
-        HostedZoneConfig:
-            Comment: HostedZone created by Route53 Registrar
-        #For some reason you need a trailing dot here
-        #ex: ryanrigato.com.
-        Name:
-            !Join ['', [!Ref BucketName, '.']]
-
+  # HomepageHostedZone:
+  #   Type: AWS::Route53::HostedZone
+  #   Properties:
+  #       DeletionPolicy: Retain
+  #       HostedZoneConfig:
+  #           Comment: HostedZone created by Route53 Registrar
+  #       #For some reason you need a trailing dot here
+  #       #ex: ryanrigato.com.
+  #       Name:
+  #           !Join ['', [!Ref BucketName, '.']]
+  #
 ##################################
 #Hosted Zone that handles domain name
 #mapping, originally created outside of
