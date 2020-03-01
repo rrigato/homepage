@@ -57,13 +57,17 @@ HomepageDns:
         !Join ['', [!Ref BucketName, '.']]
     Comment: HostedZone created by Route53 Registrar
     RecordSets:
-    - Name: mysite.example.com.
-      Type: CNAME
-      TTL: '900'
-      SetIdentifier: Frontend One
-      Weight: '4'
-      ResourceRecords:
-      - example-ec2.amazonaws.com
+    #Alias record mapping ryanrigato.com to
+    #cloudfront distribution
+    - Name:
+        !Join ['', [!Ref BucketName, '.']]
+      Type: A
+      #Alias record, special type of A Record
+      AliasTarget:
+        #Hosted Zone of cloudfront distribution
+        HostedZoneId: !GetAtt 'myELB.CanonicalHostedZoneNameID'
+        #DNS name of cloudfront distribution
+        DNSName: d106qzia6wbern.cloudfront.net.
     - Name: mysite.example.com.
       Type: CNAME
       TTL: '900'
