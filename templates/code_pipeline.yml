@@ -527,7 +527,7 @@ Resources:
                     - route53:ChangeResourceRecordSets
                   Condition:
                       StringEquals:
-                        hostedZoneId: Z2FDTNDATAQYW2
+                        "route53:hostedZoneId": "Z2FDTNDATAQYW2"
 
 
                   Resource:
