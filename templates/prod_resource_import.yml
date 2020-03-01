@@ -56,21 +56,23 @@ Resources:
         #Essientially a cname record to
         #what you want your url name to be
         Aliases:
-          - !Join
-              - '.'
-              #domain without www.
-              #ex: ryanrigato.com
-              #remove 'test' for prod
-              - - 'test'
-                - !Ref BucketName
-          - !Join
-              - '.'
-              #domain with www.
-              #ex: www.ryanrigato.com
-              - - 'www'
-              #remove 'test' for prod
-                - 'test'
-                - !Ref BucketName
+            - test.ryanrigato.com
+            - www.test.ryanrigato.com
+          # - !Join
+          #     - '.'
+          #     #domain without www.
+          #     #ex: ryanrigato.com
+          #     #remove 'test' for prod
+          #     - - 'test'
+          #       - !Ref BucketName
+          # - !Join
+          #     - '.'
+          #     #domain with www.
+          #     #ex: www.ryanrigato.com
+          #     - - 'www'
+          #     #remove 'test' for prod
+          #       - 'test'
+          #       - !Ref BucketName
         Enabled: true
         DefaultCacheBehavior:
           ForwardedValues:
