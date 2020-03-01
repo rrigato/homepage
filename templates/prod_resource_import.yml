@@ -56,15 +56,14 @@ Resources:
         #Essientially a cname record to
         #what you want your url name to be
         Aliases:
-            - test.ryanrigato.com
-            - www.test.ryanrigato.com
-          # - !Join
-          #     - '.'
-          #     #domain without www.
-          #     #ex: ryanrigato.com
-          #     #remove 'test' for prod
-          #     - - 'test'
-          #       - !Ref BucketName
+          - !Join
+              - '.'
+              #domain without www.
+              #ex: ryanrigato.com
+              #remove 'test' for prod
+              - - 'test'
+                - !Ref BucketName
+        #remove
           # - !Join
           #     - '.'
           #     #domain with www.
