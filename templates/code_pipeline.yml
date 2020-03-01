@@ -514,14 +514,19 @@ Resources:
                 - Sid: RecordSetsOneHostedZone
                   Effect: Allow
                   Action:
-                    - route53:ChangeResourceRecordSets
                     - route53:GetHostedZone
                     - route53:ListResourceRecordSets
-
                   Resource:
                     - "*"
 
-
+                #Change Record Sets but limit
+                #to one hosted zone
+                - Sid: WriteRecordSetsOneHostedZone
+                  Effect: Allow
+                  Action:
+                    - route53:ChangeResourceRecordSets
+                  Resource:
+                    - "*"
 ####################################
 #Role that will be assumed when
 #CodeBuild runs for Prod
