@@ -60,6 +60,7 @@ Resources:
               - '.'
               #domain without www.
               #ex: ryanrigato.com
+              #remove 'test' for prod
               - - 'test'
                 - !Ref BucketName
           - !Join
@@ -67,6 +68,7 @@ Resources:
               #domain with www.
               #ex: www.ryanrigato.com
               - - 'www'
+              #remove 'test' for prod
                 - 'test'
                 - !Ref BucketName
         Enabled: true
@@ -92,6 +94,7 @@ Resources:
                     - 's3.amazonaws.com'
             Id: s3-homepage-origin
             S3OriginConfig:
+                #Substitutes the origin access identity CloudFrontOai created below
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
         ViewerCertificate:
           AcmCertificateArn: !Join ['', ['arn:aws:acm:us-east-1:', !Ref 'AWS::AccountId', ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7']]
