@@ -42,39 +42,53 @@ Resources:
         IndexDocument: index.html
     Type: "AWS::S3::Bucket"
 
+HomepageHostedZone:
+  Type: AWS::Route53::HostedZone
+  Properties:
+    HostedZoneConfig:
+    HostedZoneConfig
+    HostedZoneTags:
+    - HostedZoneTag
+    #For some reason you need a trailing dot here
+    #ex: ryanrigato.com.
+    Name:
+        !Join ['', [!Ref BucketName, '.']]
+    QueryLoggingConfig:
+    QueryLoggingConfig
+
 ##################################
 #Hosted Zone that handles domain name
 #mapping, originally created outside of
 #cloudformation but imported into
 #cloudformation in March, 2020
 ##################################
-HomepageDns:
-  Type: AWS::Route53::RecordSetGroup
-  Properties:
-    #For some reason you need a trailing dot here
-    #ex: ryanrigato.com.
-    HostedZoneName:
-        !Join ['', [!Ref BucketName, '.']]
-    Comment: HostedZone created by Route53 Registrar
-    RecordSets:
-    #Alias record mapping ryanrigato.com to
-    #cloudfront distribution
-    - Name:
-        !Join ['', [!Ref BucketName, '.']]
-      Type: A
-      #Alias record, special type of A Record
-      AliasTarget:
-        #Hosted Zone of cloudfront distribution
-        HostedZoneId: !GetAtt 'myELB.CanonicalHostedZoneNameID'
-        #DNS name of cloudfront distribution
-        DNSName: d106qzia6wbern.cloudfront.net.
-    - Name: mysite.example.com.
-      Type: CNAME
-      TTL: '900'
-      SetIdentifier: Frontend Two
-      Weight: '6'
-      ResourceRecords:
-      - example-ec2-larger.amazonaws.com
+# HomepageDns:
+#   Type: AWS::Route53::RecordSetGroup
+#   Properties:
+#     #For some reason you need a trailing dot here
+#     #ex: ryanrigato.com.
+#     HostedZoneName:
+#         !Join ['', [!Ref BucketName, '.']]
+#     Comment: HostedZone created by Route53 Registrar
+#     RecordSets:
+#     #Alias record mapping ryanrigato.com to
+#     #cloudfront distribution
+#     - Name:
+#         !Join ['', [!Ref BucketName, '.']]
+#       Type: A
+#       #Alias record, special type of A Record
+#       AliasTarget:
+#         #Hosted Zone of cloudfront distribution
+#         HostedZoneId: Z2FDTNDATAQYW2
+#         #DNS name of cloudfront distribution
+#         DNSName: d106qzia6wbern.cloudfront.net.
+#     - Name: mysite.example.com.
+#       Type: CNAME
+#       TTL: '900'
+#       SetIdentifier: Frontend Two
+#       Weight: '6'
+#       ResourceRecords:
+#       - example-ec2-larger.amazonaws.com
 
 ###########################
 #Content delivery network
