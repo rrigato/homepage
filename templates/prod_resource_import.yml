@@ -51,8 +51,11 @@ Resources:
 HomepageDns:
   Type: AWS::Route53::RecordSetGroup
   Properties:
-    HostedZoneName: example.com.
-    Comment: Weighted RR for my frontends.
+    #For some reason you need a trailing dot here
+    #ex: ryanrigato.com.
+    HostedZoneName:
+        !Join ['', [!Ref BucketName, '.']]
+    Comment: HostedZone created by Route53 Registrar
     RecordSets:
     - Name: mysite.example.com.
       Type: CNAME
