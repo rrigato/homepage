@@ -525,6 +525,11 @@ Resources:
                   Effect: Allow
                   Action:
                     - route53:ChangeResourceRecordSets
+                  Condition:
+                      StringEquals:
+                        hostedZoneId: Z2FDTNDATAQYW2
+
+
                   Resource:
                     - "*"
 ####################################
