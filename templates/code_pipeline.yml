@@ -525,6 +525,8 @@ Resources:
                   Effect: Allow
                   Action:
                     - route53:ChangeResourceRecordSets
+                #Name of the hosted zone to allow Record
+                #sets to be changed on
                   Resource:
                     - "arn:aws:route53:::hostedzone/Z3K3UR6983C2YB"
 ####################################
