@@ -523,6 +523,7 @@ Resources:
                   Effect: Allow
                   Action:
                     - acm:RequestCertificate
+                    - acm:DeleteCertificate
                   Resource:
                     - "*"
                 #Change Record Sets but limit
