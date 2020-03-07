@@ -168,5 +168,5 @@ Resources:
     Properties:
       DomainName: !Join ['', ['dev.', !Ref BucketName]]
       DomainValidationOptions:
-          - DomainName: !Ref BucketName
+          - DomainName: !Join ['', ['dev.', !Ref BucketName]]
             ValidationDomain: !Ref BucketName
