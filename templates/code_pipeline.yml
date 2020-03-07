@@ -524,6 +524,7 @@ Resources:
                   Action:
                     - acm:RequestCertificate
                     - acm:DeleteCertificate
+                    - acm:DescribeCertificate 
                   Resource:
                     - "*"
                 #Change Record Sets but limit
