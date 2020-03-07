@@ -59,26 +59,26 @@ Resources:
 #cloudformation but imported into
 #cloudformation in March, 2020
 ##################################
-# HomepageDns:
-#   Type: AWS::Route53::RecordSetGroup
-#   Properties:
-#     #For some reason you need a trailing dot here
-#     #ex: ryanrigato.com.
-#     HostedZoneName:
-#         !Join ['', [!Ref BucketName, '.']]
-#     Comment: HostedZone created by Route53 Registrar
-#     RecordSets:
-#     #Alias record mapping ryanrigato.com to
-#     #cloudfront distribution
-#     - Name:
-#         !Join ['', [!Ref BucketName, '.']]
-#       Type: A
-#       #Alias record, special type of A Record
-#       AliasTarget:
-#         #Hosted Zone of cloudfront distribution
-#         HostedZoneId: Z2FDTNDATAQYW2
-#         #DNS name of cloudfront distribution
-#         DNSName: d106qzia6wbern.cloudfront.net.
+  # HomepageDns:
+  #   Type: AWS::Route53::RecordSetGroup
+  #   Properties:
+  #       #For some reason you need a trailing dot here
+  #       #ex: ryanrigato.com.
+  #       HostedZoneName:
+  #           !Join ['', [!Ref BucketName, '.']]
+  #       Comment: HostedZone created by Route53 Registrar
+  #       RecordSets:
+  #       #Alias record mapping ryanrigato.com to
+  #       #cloudfront distribution
+  #       - Name:
+  #           !Join ['', [!Ref BucketName, '.']]
+  #         Type: A
+  #         #Alias record, special type of A Record
+  #         AliasTarget:
+  #           #Hosted Zone of cloudfront distribution
+  #           HostedZoneId: Z2FDTNDATAQYW2
+  #           #DNS name of cloudfront distribution
+  #           DNSName: d106qzia6wbern.cloudfront.net.
 #     - Name: mysite.example.com.
 #       Type: CNAME
 #       TTL: '900'
@@ -161,3 +161,12 @@ Resources:
     Properties:
       CloudFrontOriginAccessIdentityConfig:
         Comment: OAI to ensure S3 bucket can only be accessed from distribution
+
+
+  DevCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Join ['', ['dev.', !Ref BucketName]]
+      DomainValidationOptions:
+          - DomainName: !Ref BucketName
+            ValidationDomain: !Ref BucketName
