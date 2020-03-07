@@ -516,6 +516,7 @@ Resources:
                   Action:
                     - route53:GetHostedZone
                     - route53:ListResourceRecordSets
+                    - route53:ListHostedZones
                   Resource:
                     - "*"
 
@@ -524,7 +525,7 @@ Resources:
                   Action:
                     - acm:RequestCertificate
                     - acm:DeleteCertificate
-                    - acm:DescribeCertificate 
+                    - acm:DescribeCertificate
                   Resource:
                     - "*"
                 #Change Record Sets but limit
