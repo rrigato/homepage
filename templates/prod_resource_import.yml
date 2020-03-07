@@ -166,7 +166,7 @@ Resources:
   DevCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
-      DomainName: !Join ['', ['test.','dev.', !Ref BucketName]]
+      DomainName: !Join ['', ['dev.', !Ref BucketName]]
       DomainValidationOptions:
           - DomainName: !Join ['', ['test.','dev.', !Ref BucketName]]
             ValidationDomain: !Ref BucketName
