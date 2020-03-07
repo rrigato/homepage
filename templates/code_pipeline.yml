@@ -519,6 +519,12 @@ Resources:
                   Resource:
                     - "*"
 
+                - Sid: RequestAcmCertificate
+                  Effect: Allow
+                  Action:
+                    - acm:RequestCertificate
+                  Resource:
+                    - "*"
                 #Change Record Sets but limit
                 #to one hosted zone
                 - Sid: WriteRecordSetsOneHostedZone
