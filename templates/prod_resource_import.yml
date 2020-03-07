@@ -166,7 +166,15 @@ Resources:
   DevCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
-      DomainName: !Join ['', ['dev.', !Ref BucketName]]
+      DomainName: !Join ['', ['test.','dev.', !Ref BucketName]]
       DomainValidationOptions:
-          - DomainName: !Join ['', ['dev.', !Ref BucketName]]
+          - DomainName: !Join ['', ['test.','dev.', !Ref BucketName]]
+            ValidationDomain: !Ref BucketName
+
+  DevWwwCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Join ['', ['www.','dev.', !Ref BucketName]]
+      DomainValidationOptions:
+          - DomainName: !Join ['', ['www.','dev.', !Ref BucketName]]
             ValidationDomain: !Ref BucketName
