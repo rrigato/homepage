@@ -128,15 +128,13 @@ Resources:
         Origins:
         #############
         #Domain name of S3 Origin:
-        #Ex: 'www.ryanrigato.com.s3.amazonaws.com'
+        #Ex: 'ryanrigato.com.s3.amazonaws.com'
         #############
           - DomainName: !Join
                   - '.'
-                  #domain with www.
-                  #ex: www.ryanrigato.com
-                  #remove 'www for prod'
-                  - - 'www'
-                    - !Ref BucketName
+                  #domain name for origin bucket
+                  #ex: ryanrigato.com
+                  - - !Ref BucketName
                     - 's3.amazonaws.com'
             Id: s3-homepage-origin
             S3OriginConfig:
