@@ -79,13 +79,6 @@ Resources:
             HostedZoneId: Z2FDTNDATAQYW2
             #DNS name of cloudfront distribution
             DNSName: !GetAtt StaticWebpageCdn.DomainName
-#     - Name: mysite.example.com.
-#       Type: CNAME
-#       TTL: '900'
-#       SetIdentifier: Frontend Two
-#       Weight: '6'
-#       ResourceRecords:
-#       - example-ec2-larger.amazonaws.com
 
 ###########################
 #Content delivery network
