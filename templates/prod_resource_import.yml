@@ -10,6 +10,11 @@ Parameters:
     Default: ryanrigato.com
     Description: The name for the bucket hosting the static website
 
+  CertificateId:
+    Type: String
+    Default: 111bbdc6-2f76-4b67-adf7-393f6391e6e7
+    Description: ID associated with SSL cert in ACM
+
   HostedZone:
     Type: String
     Default: Z2FDTNDATAQYW2
@@ -141,7 +146,8 @@ Resources:
                 #Substitutes the origin access identity CloudFrontOai created below
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
         ViewerCertificate:
-          AcmCertificateArn: !Join ['', ['arn:aws:acm:us-east-1:', !Ref 'AWS::AccountId', ':certificate/111bbdc6-2f76-4b67-adf7-393f6391e6e7']]
+          AcmCertificateArn: !Join ['', ['arn:aws:acm:us-east-1:', !Ref 'AWS::AccountId',
+          ':certificate/', !Ref CertificateId]]
 
           #Server Name Identification (SNI) =
           #Allow cloudfront edge servers to
