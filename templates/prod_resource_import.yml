@@ -105,22 +105,15 @@ Resources:
         #Essientially a cname record to
         #what you want your url name to be
         Aliases:
+          #ryanrigato.com
+          - !Ref BucketName
           - !Join
               - '.'
-              #domain without www.
-              #ex: ryanrigato.com
+              #domain with www.
+              #ex: www.ryanrigato.com
+              - - 'www'
               #remove 'test' for prod
-              - - 'dev'
                 - !Ref BucketName
-        #remove
-          # - !Join
-          #     - '.'
-          #     #domain with www.
-          #     #ex: www.ryanrigato.com
-          #     - - 'www'
-          #     #remove 'test' for prod
-          #       - 'test'
-          #       - !Ref BucketName
         Enabled: true
         DefaultCacheBehavior:
           ForwardedValues:
