@@ -124,7 +124,6 @@ Resources:
               #domain with www.
               #ex: www.ryanrigato.com
               - - 'www'
-              #remove 'test' for prod
                 - !Ref BucketName
         Enabled: true
         DefaultCacheBehavior:
@@ -179,10 +178,4 @@ Resources:
   #         - DomainName: !Join ['', ['test.','dev.', !Ref BucketName]]
   #           ValidationDomain: !Ref BucketName
   #
-  # DevWwwCertificate:
-  #   Type: AWS::CertificateManager::Certificate
-  #   Properties:
-  #     DomainName: !Join ['', ['www.','dev.', !Ref BucketName]]
-  #     DomainValidationOptions:
-  #         - DomainName: !Join ['', ['www.','dev.', !Ref BucketName]]
-  #           ValidationDomain: !Ref BucketName
+  
