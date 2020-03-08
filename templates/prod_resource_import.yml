@@ -30,7 +30,6 @@ Conditions:
 Resources:
   WebsiteBucket:
     Condition: RetainResourcesCreated
-    DeletionPolicy: Retain
     Properties:
       BucketName: !Ref BucketName
       LoggingConfiguration:
