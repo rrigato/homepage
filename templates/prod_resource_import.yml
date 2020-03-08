@@ -106,7 +106,7 @@ Resources:
               #domain without www.
               #ex: ryanrigato.com
               #remove 'test' for prod
-              - - 'test'
+              - - 'dev'
                 - !Ref BucketName
         #remove
           # - !Join
