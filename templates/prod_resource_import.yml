@@ -71,7 +71,7 @@ Resources:
         #Alias record mapping ryanrigato.com to
         #cloudfront distribution
         - Name:
-            !Join ['', [ 'dev.', !Ref BucketName, '.']]
+            !Join ['', [ 'dev.', !Ref BucketName]]
           Type: A
           #Alias record, special type of A Record
           AliasTarget:

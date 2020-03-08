@@ -517,6 +517,7 @@ Resources:
                     - route53:GetHostedZone
                     - route53:ListResourceRecordSets
                     - route53:ListHostedZones
+                    - route53:GetChange
                   Resource:
                     - "*"
 
