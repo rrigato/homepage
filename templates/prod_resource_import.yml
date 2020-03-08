@@ -82,7 +82,19 @@ Resources:
         #Alias record mapping ryanrigato.com to
         #cloudfront distribution
         - Name:
-            !Join ['', [ 'dev.', !Ref BucketName]]
+            !Join ['', [!Ref BucketName]]
+          Type: A
+          #Alias record, special type of A Record
+          AliasTarget:
+            #Hosted Zone of cloudfront distribution
+            HostedZoneId: !Ref HostedZone
+            #DNS name of cloudfront distribution
+            DNSName: !GetAtt StaticWebpageCdn.DomainName
+
+        #Alias record mapping www.ryanrigato.com to
+        #cloudfront distribution
+        - Name:
+            !Join ['', [ 'www.', !Ref BucketName]]
           Type: A
           #Alias record, special type of A Record
           AliasTarget:
