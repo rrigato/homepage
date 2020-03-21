@@ -90,7 +90,7 @@ class WebappLive(unittest.TestCase):
         os.chdir(WORKING_DIRECTORY)
 
     @unittest.skip("Skipping for now")
-    def test_oath_key(self):
+    def test_get_oath_key(self):
         """Tests oath key returned from reddit api
 
             Parameters
@@ -102,19 +102,9 @@ class WebappLive(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Testing if the website bucket stack exists")
-
-
-        webpage_stack = describe_stacks_response(
-            stack_name=stack_name)
-
-        self.assertEqual(
-            webpage_stack["Outputs"][0]["OutputValue"],
-            HOMEPAGE_URL
-        )
-        logging.info("Output url for webpage is correct")
-
-
+        logging.info("Beginning test of oath key")
+        oath_key = get_oauth_key()
+        self.assertEqual(len(oath_key), 128)
 
 
 if __name__ == "__main__":
