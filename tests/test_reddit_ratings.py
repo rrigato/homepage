@@ -8,11 +8,10 @@ import requests
 import unittest
 
 '''
-    Defaults to $CODEBUILD_SRC_DIR
-    which is the working directory where the
-    code repository is built in codebuild
+Where the python script was executed from
 '''
 WORKING_DIRECTORY = os.getcwd()
+
 
 def get_logger():
     """Returns a boto cloudformation describe_stacks api call
@@ -89,7 +88,7 @@ class WebappLive(unittest.TestCase):
         """
         os.chdir(WORKING_DIRECTORY)
 
-    @unittest.skip("Skipping for now")
+    
     def test_get_oath_token(self):
         """Tests oath token returned from reddit api
 
@@ -103,13 +102,14 @@ class WebappLive(unittest.TestCase):
             ------
         """
         logging.info("Beginning test of oath key")
-        from lambda.reddit_ratings import get_oauth_token
+        from scripts.reddit_ratings import get_oauth_token
         self.assertIsNotNone(os.environ.get(
             "REDDIT_CLIENT_KEY"
         ))
         self.assertIsNotNone(os.environ.get(
             "REDDIT_CLIENT_SECRET"
         ))
+        logging.info("Validated environment variables")
         #oath_response = get_oauth_token()
         #self.assertEqual(len(oath_response), 128)
 
