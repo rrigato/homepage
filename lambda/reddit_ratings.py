@@ -29,11 +29,16 @@ def get_logger():
          )
     logging.info("\n")
 
-def get_oauth_token():
+def get_oauth_token(client_key, client_secret):
     """Gets an Oath token from the reddit API
 
         Parameters
         ----------
+        client_key : str
+            Key for the reddit api
+
+        client_secret : str
+            Secret for the reddit api
 
         Returns
         -------
@@ -48,6 +53,7 @@ def get_oauth_token():
         Raises
         ------
     """
+    pass
 
 def main():
     """Entry point into the script
@@ -61,7 +67,8 @@ def main():
         ------
     """
     get_logger()
-
-
+    REDDIT_CLIENT_KEY = os.environ.get("REDDIT_CLIENT_KEY")
+    REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET")
+    
 if __name__ == "__main__":
     main()
