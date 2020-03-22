@@ -1,3 +1,7 @@
+import logging
+import os
+import requests
+
 def get_logger():
     """Returns a boto cloudformation describe_stacks api call
         Parameters
@@ -24,6 +28,26 @@ def get_logger():
          datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.DEBUG
          )
     logging.info("\n")
+
+def get_oauth_token():
+    """Gets an Oath token from the reddit API
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        oauth_response : dict
+            Dictionary with the oauth_token and expires_in
+            keys. Ex:
+            {
+                "access_token": "-CL6wD3y7Y3ea9se9d84oXeom5ak",
+                "expires_in": 3600
+            }
+
+        Raises
+        ------
+    """
 
 def main():
     """Entry point into the script
