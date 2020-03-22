@@ -88,7 +88,7 @@ class WebappLive(unittest.TestCase):
         """
         os.chdir(WORKING_DIRECTORY)
 
-    
+
     def test_get_oath_token(self):
         """Tests oath token returned from reddit api
 
@@ -113,6 +113,19 @@ class WebappLive(unittest.TestCase):
         #oath_response = get_oauth_token()
         #self.assertEqual(len(oath_response), 128)
 
+    def test_html_table_parse(self):
+        """Tests that we are able to parse an html table
 
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        logging.info("Beginning test of oath key")
+        from scripts.reddit_ratings import html_table_parse
 if __name__ == "__main__":
     unittest.main()

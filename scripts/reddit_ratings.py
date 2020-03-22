@@ -55,6 +55,25 @@ def get_oauth_token(client_key, client_secret):
     """
     pass
 
+def get_html_table_parse(reddit_post_html):
+    """Parses reddit html post to get data from table
+
+        Parameters
+        ----------
+        reddit_post_html : str
+            HTML post for the table
+
+
+        Returns
+        -------
+
+
+        Raises
+        ------
+    """
+    pass
+
+
 def main():
     """Entry point into the script
         Parameters
