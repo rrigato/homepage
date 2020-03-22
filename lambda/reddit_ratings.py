@@ -69,6 +69,22 @@ def main():
     get_logger()
     REDDIT_CLIENT_KEY = os.environ.get("REDDIT_CLIENT_KEY")
     REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET")
-    
+    '''
+        API Query Parameter explanation
+        q=flair:news
+            Searching posts with a flair of new
+        limit=10
+            limit of how many posts to return
+        sort=new
+            sort by new posts
+        restrict_sr=on
+            restrict subreddit on to only search /r/toonami
+        t=all
+            time period, all
+        raw_json=1
+            Converts &lt; &gt; and &amp;
+            to < > and & in response body
+    '''
+
 if __name__ == "__main__":
     main()
