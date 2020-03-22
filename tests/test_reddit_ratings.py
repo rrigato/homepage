@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from unittest.mock import MagicMock
 from unittest.mock import patch
+from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 import json
 import logging
 import os
@@ -110,11 +111,15 @@ class WebappLive(unittest.TestCase):
         #oath_response = get_oauth_token()
         #self.assertEqual(len(oath_response), 128)
 
-    def test_handle_table_header(self):
+    def test_handle_table_header(self,
+        mock_rating_table=REDDIT_RATING_TABLE_2019):
         """Tests columns are retrieved from html table header
 
             Parameters
             ----------
+            mock_rating_table : str
+                Example of an html table returned by the
+                reddit api
 
             Returns
             -------
@@ -124,6 +129,14 @@ class WebappLive(unittest.TestCase):
         """
         logging.info("Beginning test of oath key")
         from scripts.reddit_ratings import handle_table_header
+        header_columns = handle_table_header(mock_rating_table)
+        self.assertEqual(header_columns,
+            [
+                "Time", "Show", "Viewers (000)",
+                "18-49 Rating", "18-49 Views (000)"
+            ]
+        )
+        logging.info("validated header columns returned from rest api")
 
     def test_html_table_parse(self):
         """Tests that we are able to parse an html table
