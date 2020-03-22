@@ -90,8 +90,8 @@ class WebappLive(unittest.TestCase):
         os.chdir(WORKING_DIRECTORY)
 
     @unittest.skip("Skipping for now")
-    def test_get_oath_key(self):
-        """Tests oath key returned from reddit api
+    def test_get_oath_token(self):
+        """Tests oath token returned from reddit api
 
             Parameters
             ----------
@@ -103,8 +103,15 @@ class WebappLive(unittest.TestCase):
             ------
         """
         logging.info("Beginning test of oath key")
-        oath_key = get_oauth_key()
-        self.assertEqual(len(oath_key), 128)
+        from lambda.reddit_ratings import get_oauth_token
+        self.assertIsNotNone(os.environ.get(
+            "REDDIT_CLIENT_KEY"
+        ))
+        self.assertIsNotNone(os.environ.get(
+            "REDDIT_CLIENT_SECRET"
+        ))
+        #oath_response = get_oauth_token()
+        #self.assertEqual(len(oath_response), 128)
 
 
 if __name__ == "__main__":
