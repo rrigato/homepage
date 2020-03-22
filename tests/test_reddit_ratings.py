@@ -1,17 +1,19 @@
 from bs4 import BeautifulSoup
 from unittest.mock import MagicMock
 from unittest.mock import patch
-from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 import json
 import logging
 import os
 import requests
 import unittest
 
+
 '''
 Where the python script was executed from
 '''
 WORKING_DIRECTORY = os.getcwd()
+os.sys.path.append(WORKING_DIRECTORY)
+from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 
 
 def get_logger():
@@ -38,15 +40,8 @@ def get_logger():
          )
     logging.info("\n")
 
-class WebappLive(unittest.TestCase):
-    """Tests that the aws resources necessary for the webpage are running
-
-        Note that if any of the below unit tests fail,
-        The python script will have a non-zero exit code
-
-        This will cause any CodeBuild Builds to fail out
-
-        Preventing the Code Pipeline from continuing to delivery
+class RedditApi(unittest.TestCase):
+    """Testing the reddit api pull
 
         Parameters
         ----------
@@ -71,20 +66,6 @@ class WebappLive(unittest.TestCase):
             ------
         """
         get_logger()
-        os.sys.path.append(WORKING_DIRECTORY)
-
-    def setUp(self):
-        """Unitest function that is run once before each function
-            Parameters
-            ----------
-
-            Returns
-            -------
-
-            Raises
-            ------
-        """
-        os.chdir(WORKING_DIRECTORY)
 
 
     def test_get_oath_token(self):
