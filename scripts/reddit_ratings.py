@@ -65,17 +65,27 @@ def handle_table_header(bs_obj):
 
         Returns
         -------
-        header_columns : dict
-            Dict of header columns parsed from html table
+        header_columns : list
+            list of header columns parsed from html table header
 
         Raises
         ------
     """
     '''
-        Gets all table header tags
+        Gets all table header html tags
+        And putting the contents of each of those in a
+        list
     '''
-    print(bs_obj.find("thead").findAll("th"))
-    pass
+    all_th_tags = bs_obj.find("thead").findAll("th"))
+    logging.info("Found the following table headers: ")
+    logging.info(all_th_tags)
+
+    header_columns = []
+    for th_tag in all_th_tags:
+        header_columns.append(th_tag.content)
+
+    import pdb; pdb.set_trace()
+    return(header_columns)
 
 def html_table_parse(reddit_post_html):
     """Parses reddit html post to get data from table
@@ -94,6 +104,7 @@ def html_table_parse(reddit_post_html):
         ------
     """
     bs_obj = BeautifulSoup(reddit_post_html, "html5lib")
+    handle_table_header
     import pdb; pdb.set_trace()
 
 
