@@ -2,17 +2,16 @@ import logging
 import os
 import requests
 
-def get_logger():
-    """Returns a boto cloudformation describe_stacks api call
+def get_logger(working_directory=os.getcwd()):
+    """Sets up logger
+
         Parameters
         ----------
-        stack_name: str
-            Name of the stack
+        working_directory: str
+            Where to put logger, defaults to cwd
 
         Returns
         -------
-        cf_response : dict
-                Dictionary output of the describe_stacks api call
 
         Raises
         ------
@@ -22,7 +21,7 @@ def get_logger():
         the extension
     '''
     logging.basicConfig(
-        filename=os.path.join(WORKING_DIRECTORY, "logs/",
+        filename=os.path.join(working_directory, "logs/",
         os.path.basename(__file__).split(".")[0]),
         format="%(asctime)s %(message)s",
          datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.DEBUG
@@ -71,7 +70,7 @@ def get_html_table_parse(reddit_post_html):
         Raises
         ------
     """
-    pass
+    import pdb; pdb.set_trace()
 
 
 def main():
@@ -104,6 +103,7 @@ def main():
             Converts &lt; &gt; and &amp;
             to < > and & in response body
     '''
+    html_table_parse("""<!-- SC_OFF --><div class=\"md\"><table><thead>\n<tr>\n<th align=\"center\">Time</th>\n<th align=\"center\">Show</th>\n<th align=\"center\">Viewers (000)</th>\n<th align=\"center\">18-49 Rating</th>\n<th align=\"center\">18-49 Views (000)</th>\n</tr>\n</thead><tbody>\n<tr>\n<td align=\"center\">11:30</td>\n<td align=\"center\">My Hero Academia</td>\n<td align=\"center\">543</td>\n<td align=\"center\">0.26</td>\n<td align=\"center\">332</td>\n</tr>\n<tr>\n<td align=\"center\">12:00a</td>\n<td align=\"center\">Sword Art Online: Alicization - War of Underworld</td>\n<td align=\"center\">385</td>\n<td align=\"center\">0.19</td>\n<td align=\"center\">245</td>\n</tr>\n<tr>\n<td align=\"center\">12:30a</td>\n<td align=\"center\">Demon Slayer</td>\n<td align=\"center\">358</td>\n<td align=\"center\">0.18</td>\n<td align=\"center\">232</td>\n</tr>\n<tr>\n<td align=\"center\">1:00a</td>\n<td align=\"center\">Food Wars!</td>\n<td align=\"center\">306</td>\n<td align=\"center\">0.16</td>\n<td align=\"center\">207</td>\n</tr>\n<tr>\n<td align=\"center\">1:30a</td>\n<td align=\"center\">Black Clover</td>\n<td align=\"center\">275</td>\n<td align=\"center\">0.15</td>\n<td align=\"center\">196</td>\n</tr>\n<tr>\n<td align=\"center\">2:00a</td>\n<td align=\"center\">Jojo’s Bizarre Adventure: Golden Wind</td>\n<td align=\"center\">235</td>\n<td align=\"center\">0.13</td>\n<td align=\"center\">170</td>\n</tr>\n<tr>\n<td align=\"center\">2:30a</td>\n<td align=\"center\">Naruto: Shippuden</td>\n<td align=\"center\">236</td>\n<td align=\"center\">0.13</td>\n<td align=\"center\">170</td>\n</tr>\n</tbody></table>\n\n<p>Source: <a href=\"https://programminginsider.com/saturday-final-ratings-hbo-premiere-of-hobbs-shaw-beats-nbc-telecast-of-its-parent-2017-film-the-fate-of-the-furious-among-adults-18-49/\">https://programminginsider.com/saturday-final-ratings-hbo-premiere-of-hobbs-shaw-beats-nbc-telecast-of-its-parent-2017-film-the-fate-of-the-furious-among-adults-18-49/</a></p>\n</div><!-- SC_ON -->""")
 
 if __name__ == "__main__":
     main()

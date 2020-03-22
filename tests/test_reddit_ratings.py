@@ -14,16 +14,13 @@ WORKING_DIRECTORY = os.getcwd()
 
 
 def get_logger():
-    """Returns a boto cloudformation describe_stacks api call
+    """Sets up logger
+
         Parameters
         ----------
-        stack_name: str
-            Name of the stack
 
         Returns
         -------
-        cf_response : dict
-                Dictionary output of the describe_stacks api call
 
         Raises
         ------
