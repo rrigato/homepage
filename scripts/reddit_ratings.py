@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 import logging
 import os
 import requests
@@ -54,7 +55,29 @@ def get_oauth_token(client_key, client_secret):
     """
     pass
 
-def get_html_table_parse(reddit_post_html):
+def handle_table_header(bs_obj):
+    """Converts table header for the html table into dict
+
+        Parameters
+        ----------
+        bs_obj : bs4.BeautifulSoup
+            BeautifulSoup Object to parse table header
+
+        Returns
+        -------
+        header_columns : dict
+            Dict of header columns parsed from html table
+
+        Raises
+        ------
+    """
+    '''
+        Gets all table header tags
+    '''
+    print(bs_obj.find("thead").findAll("th"))
+    pass
+
+def html_table_parse(reddit_post_html):
     """Parses reddit html post to get data from table
 
         Parameters
@@ -70,6 +93,7 @@ def get_html_table_parse(reddit_post_html):
         Raises
         ------
     """
+    bs_obj = BeautifulSoup(reddit_post_html, "html5lib")
     import pdb; pdb.set_trace()
 
 

@@ -110,6 +110,21 @@ class WebappLive(unittest.TestCase):
         #oath_response = get_oauth_token()
         #self.assertEqual(len(oath_response), 128)
 
+    def test_handle_table_header(self):
+        """Tests columns are retrieved from html table header
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        logging.info("Beginning test of oath key")
+        from scripts.reddit_ratings import handle_table_header
+
     def test_html_table_parse(self):
         """Tests that we are able to parse an html table
 
