@@ -85,7 +85,9 @@ def handle_table_header(bs_obj):
     for th_tag in all_th_tags:
         header_columns.append(th_tag.text)
 
-    import pdb; pdb.set_trace()
+    logging.info("header columns parsed: ")
+    logging.info(header_columns)
+    
     return(header_columns)
 
 def html_table_parse(reddit_post_html):
