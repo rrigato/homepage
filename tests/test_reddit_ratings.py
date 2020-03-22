@@ -129,7 +129,16 @@ class WebappLive(unittest.TestCase):
         """
         logging.info("Beginning test of oath key")
         from scripts.reddit_ratings import handle_table_header
-        header_columns = handle_table_header(mock_rating_table)
+
+        '''
+            Creating BeautifulSoup object from
+            a test reddit html table post
+            and validating the handle_table_header
+            function returns a list of column names
+        '''
+        bs_obj = BeautifulSoup(mock_rating_table, "html5lib")
+        header_columns = handle_table_header(bs_obj)
+
         self.assertEqual(header_columns,
             [
                 "Time", "Show", "Viewers (000)",
