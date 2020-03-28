@@ -80,7 +80,7 @@ def get_oauth_token(client_key, client_secret):
     )
     return(oauth_token.json())
 
-def get_news_flair(access_token, fullname_before):
+def get_news_flair(access_token, fullname_before=None):
     """Retrieves toonami subreddit posts before a given reddit post
         Post must have a flair of News
         fullname_before is a reddit unique id called a fullname,
@@ -122,8 +122,23 @@ def get_news_flair(access_token, fullname_before):
             to < > and & in response body
     '''
     url_param_dict = {
-
+        "q":"flair:news",
     }
+    reddit_search_url = "https://oauth.reddit.com/r/toonami/search.json?raw_json=1"
+    '''
+        Iterating over the dict if the value is
+        null that url parameter is not included
+    '''
+    for url_param in url_param_dict.keys():
+        if (url_param_dict[url_param] is not None):
+            reddit_search_url = (
+                reddit_search_url + "&" +
+                url_param + "=" +
+                url_param_dict[url_param]
+            )
+    logging.info("Final search url:")
+    logging.info(reddit_search_url)
+
 
 def handle_table_header(bs_obj):
     """Converts table header for the html table into list
