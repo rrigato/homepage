@@ -53,7 +53,27 @@ def get_oauth_token(client_key, client_secret):
         Raises
         ------
     """
-    pass
+    '''
+        user agent specification outlined here:
+        https://github.com/reddit-archive/reddit/wiki/API
+    '''
+    reddit_headers = {"user-agent":
+        "Lambda:toonamiratings:v1.0 (by /u/toonamiratings)"
+    }
+    logging.info("Custom Headers: ")
+    logging.info(reddit_headers)
+    '''
+        grant_type=client_credentials is
+        x-www-form-urlencoded which is what indicates
+        this is a application only with no
+        user sign in
+    '''
+    oauth_token = requests.post(
+        "https://www.reddit.com/api/v1/access_token",
+        data={"grant_type":"client_credentials"},
+        headers=reddit_headers
+    )
+    import pdb; pdb.set_trace()
 
 def handle_table_header(bs_obj):
     """Converts table header for the html table into list
@@ -90,7 +110,7 @@ def handle_table_header(bs_obj):
 
     return(header_columns)
 
-def handle_table_body(bs_obj):
+def handle_table_body(bs_obj, header_columns):
     """Converts table body for the html table into dict
 
         Parameters
@@ -98,9 +118,12 @@ def handle_table_body(bs_obj):
         bs_obj : bs4.BeautifulSoup
             BeautifulSoup Object to parse table header
 
+        header_columns : list
+            list of header columns parsed from html table header
+
         Returns
         -------
-        show_ratings : dict
+        show_ratings : list
             dict of one saturday nights ratings where the key
             is from the header_columns list and the value
             is from the <tb> html tag
@@ -117,15 +140,6 @@ def handle_table_body(bs_obj):
     logging.info("Found the following table headers: ")
     logging.info(all_th_tags)
 
-    header_columns = []
-
-    for th_tag in all_th_tags:
-        header_columns.append(th_tag.text)
-
-    logging.info("header columns parsed: ")
-    logging.info(header_columns)
-
-    return(header_columns)
 
 
 

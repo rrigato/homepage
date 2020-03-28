@@ -89,7 +89,10 @@ class RedditApi(unittest.TestCase):
             "REDDIT_CLIENT_SECRET"
         ))
         logging.info("Validated environment variables")
-        #oath_response = get_oauth_token()
+        oath_response = get_oauth_token(
+            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
+            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
+        )
         #self.assertEqual(len(oath_response), 128)
 
     def test_handle_table_header(self,
@@ -152,10 +155,20 @@ class RedditApi(unittest.TestCase):
             Creating BeautifulSoup object from
             a test reddit html table post
             and validating the handle_table_body
-            function returns a list of column names
+            function returns a list of ratings
         '''
         bs_obj = BeautifulSoup(mock_rating_table, "html5lib")
-        show_ratings = handle_table_body(bs_obj)
+        '''
+            Stub of header columns to pass to
+            handle_table_body
+        '''
+        header_columns = [
+            "Time", "Show", "Viewers (000)",
+            "18-49 Rating", "18-49 Views (000)"
+        ]
+        show_ratings = handle_table_body(
+            bs_obj=bs_obj,
+            header_columns=header_columns)
 
 
         logging.info("validated dict of table_body")
