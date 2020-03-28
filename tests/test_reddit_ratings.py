@@ -128,6 +128,7 @@ class RedditApi(unittest.TestCase):
         )
         logging.info("validated header columns returned from rest api")
 
+    @unittest.skip("Skipping for now")
     def test_handle_table_body(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
         """Tests dict from html body handler
@@ -145,16 +146,16 @@ class RedditApi(unittest.TestCase):
             ------
         """
         logging.info("Beginning test of oath key")
-        from scripts.reddit_ratings import handle_table_header
+        from scripts.reddit_ratings import handle_table_body
 
         '''
             Creating BeautifulSoup object from
             a test reddit html table post
-            and validating the handle_table_header
+            and validating the handle_table_body
             function returns a list of column names
         '''
         bs_obj = BeautifulSoup(mock_rating_table, "html5lib")
-        header_columns = handle_table_header(bs_obj)
+        show_ratings = handle_table_body(bs_obj)
 
 
         logging.info("validated dict of table_body")

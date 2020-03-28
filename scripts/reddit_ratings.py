@@ -56,7 +56,7 @@ def get_oauth_token(client_key, client_secret):
     pass
 
 def handle_table_header(bs_obj):
-    """Converts table header for the html table into dict
+    """Converts table header for the html table into list
 
         Parameters
         ----------
@@ -89,6 +89,46 @@ def handle_table_header(bs_obj):
     logging.info(header_columns)
 
     return(header_columns)
+
+def handle_table_body(bs_obj):
+    """Converts table body for the html table into dict
+
+        Parameters
+        ----------
+        bs_obj : bs4.BeautifulSoup
+            BeautifulSoup Object to parse table header
+
+        Returns
+        -------
+        show_ratings : dict
+            dict of one saturday nights ratings where the key
+            is from the header_columns list and the value
+            is from the <tb> html tag
+
+        Raises
+        ------
+    """
+    '''
+        Gets all table header html tags
+        And putting the contents of each of those in a
+        list
+    '''
+    all_th_tags = bs_obj.find("thead").findAll("th")
+    logging.info("Found the following table headers: ")
+    logging.info(all_th_tags)
+
+    header_columns = []
+
+    for th_tag in all_th_tags:
+        header_columns.append(th_tag.text)
+
+    logging.info("header columns parsed: ")
+    logging.info(header_columns)
+
+    return(header_columns)
+
+
+
 
 def html_table_parse(reddit_post_html):
     """Parses reddit html post to get data from table
