@@ -80,17 +80,21 @@ def get_oauth_token(client_key, client_secret):
     )
     return(oauth_token.json())
 
-def get_news_flair(access_token, fullname_after):
-    """Retrieves toonami subreddit posts after a given reddit post
+def get_news_flair(access_token, fullname_before):
+    """Retrieves toonami subreddit posts before a given reddit post
         Post must have a flair of News
+        fullname_before is a reddit unique id called a fullname,
+        more info is provided in the docs here:
+        https://www.reddit.com/dev/api/#fullnames
 
         Parameters
         ----------
         access_token : str
             access_token retrieved from get_oauth_token
 
-        client_secret : str
-            Secret for the reddit api
+        fullname_before : str
+            Optional arguement to only include posts
+            before a given fullname
 
         Returns
         -------
@@ -116,7 +120,7 @@ def get_news_flair(access_token, fullname_after):
         raw_json=1
             Converts &lt; &gt; and &amp;
             to < > and & in response body
-    '''    
+    '''
     url_param_dict = {
 
     }
