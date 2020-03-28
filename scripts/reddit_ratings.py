@@ -80,6 +80,28 @@ def get_oauth_token(client_key, client_secret):
     )
     return(oauth_token.json())
 
+def get_news_flair(access_token, fullname_after):
+    """Retrieves toonami subreddit posts after a given reddit post
+        Post must have a flair of News
+
+        Parameters
+        ----------
+        access_token : str
+            access_token retrieved from get_oauth_token
+
+        client_secret : str
+            Secret for the reddit api
+
+        Returns
+        -------
+        news_flair_posts : dict
+            Dict of all posts after fullname_after
+            
+
+        Raises
+        ------
+    """
+
 def handle_table_header(bs_obj):
     """Converts table header for the html table into list
 
