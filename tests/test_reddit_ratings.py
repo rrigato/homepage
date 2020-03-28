@@ -89,11 +89,13 @@ class RedditApi(unittest.TestCase):
             "REDDIT_CLIENT_SECRET"
         ))
         logging.info("Validated environment variables")
-        oath_response = get_oauth_token(
+        oauth_token = get_oauth_token(
             client_key=os.environ.get("REDDIT_CLIENT_KEY"),
             client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
         )
-        #self.assertEqual(len(oath_response), 128)
+        self.assertIsNotNone(oauth_token["access_token"])
+        
+        logging.info("Got an oauth token")
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):

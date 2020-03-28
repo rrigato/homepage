@@ -42,12 +42,14 @@ def get_oauth_token(client_key, client_secret):
 
         Returns
         -------
-        oauth_response : dict
+        oauth_token : dict
             Dictionary with the oauth_token and expires_in
             keys. Ex:
             {
-                "access_token": "-CL6wD3y7Y3ea9se9d84oXeom5ak",
-                "expires_in": 3600
+                "access_token": "<token_value>",
+                "token_type": "bearer",
+                "expires_in": 3600,
+                "scope": "*"
             }
 
         Raises
@@ -67,13 +69,16 @@ def get_oauth_token(client_key, client_secret):
         x-www-form-urlencoded which is what indicates
         this is a application only with no
         user sign in
+        auth basic auth where key is reddit client key
+        and password is reddit client secret
     '''
     oauth_token = requests.post(
         "https://www.reddit.com/api/v1/access_token",
+        auth=(client_key, client_secret),
         data={"grant_type":"client_credentials"},
         headers=reddit_headers
     )
-    import pdb; pdb.set_trace()
+    return(oauth_token.json())
 
 def handle_table_header(bs_obj):
     """Converts table header for the html table into list
