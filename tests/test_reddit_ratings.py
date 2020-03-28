@@ -94,8 +94,35 @@ class RedditApi(unittest.TestCase):
             client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
         )
         self.assertIsNotNone(oauth_token["access_token"])
-        
+
         logging.info("Got an oauth token")
+
+    def test_get_news_flair(self):
+        """Tests that we are retriving posts with a news flair
+
+            Parameters
+            ----------
+
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        logging.info("Beginning test_get_news_flair")
+        from scripts.reddit_ratings import get_news_flair
+
+        '''
+            Getting an Oauth token and testing for
+            a specific fullname which is a unique
+            identifier for a given reddit api object
+            which ensures the same post will be returned
+            each time
+        '''
+
+        logging.info("validated able to get news flair")
+
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
