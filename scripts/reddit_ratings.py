@@ -3,6 +3,14 @@ import logging
 import os
 import requests
 
+'''
+    Special user agent that is recommended according to the
+    api docs
+    <platform>:<app ID>:<version string> (by /u/<reddit username>)
+'''
+REDDIT_USER_AGENT = "Lambda:toonamiratings:v1.0 (by /u/toonamiratings)"
+
+
 def get_logger(working_directory=os.getcwd()):
     """Sets up logger
 
@@ -59,8 +67,8 @@ def get_oauth_token(client_key, client_secret):
         user agent specification outlined here:
         https://github.com/reddit-archive/reddit/wiki/API
     '''
-    reddit_headers = {"user-agent":
-        "Lambda:toonamiratings:v1.0 (by /u/toonamiratings)"
+    reddit_headers = {
+        "user-agent":REDDIT_USER_AGENT
     }
     logging.info("Custom Headers: ")
     logging.info(reddit_headers)
@@ -138,6 +146,21 @@ def get_news_flair(access_token, fullname_before=None):
             )
     logging.info("Final search url:")
     logging.info(reddit_search_url)
+
+    reddit_search_headers = {
+        "user-agent":REDDIT_USER_AGENT,
+        "Authorization":("Bearer " + oauth_token)
+    }
+    '''
+        passing oauth token and user-agent as headers
+    '''
+    news_flair_posts = requests.get(
+        reddit_search_url,
+        headers={
+
+        }
+    )
+
 
 
 def handle_table_header(bs_obj):
