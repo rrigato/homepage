@@ -87,7 +87,7 @@ def handle_table_header(bs_obj):
 
     logging.info("header columns parsed: ")
     logging.info(header_columns)
-    
+
     return(header_columns)
 
 def html_table_parse(reddit_post_html):
@@ -107,7 +107,8 @@ def html_table_parse(reddit_post_html):
         ------
     """
     bs_obj = BeautifulSoup(reddit_post_html, "html5lib")
-    handle_table_header
+    header_columns = handle_table_header(bs_obj)
+    body_dict = handle_table_body(bs_obj)
     import pdb; pdb.set_trace()
 
 
