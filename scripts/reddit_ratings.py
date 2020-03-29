@@ -175,8 +175,28 @@ def get_news_flair(access_token,
         headers=reddit_search_headers
     )
     logging.info("Successfully made search request")
-    
+
     return(news_flair_posts.json())
+
+def get_ratings_post():
+    """Retrieves
+
+        Parameters
+        ----------
+        news_flair_posts : dict
+            Dict of all posts after fullname_after
+
+        Returns
+        -------
+        ratings_post_list : list
+            list providing the elements of the reddit
+            search api response that are ratings posts
+
+        Raises
+        ------
+    """
+    ratings_post_list = []
+    return(ratings_post_list)
 
 
 def handle_table_header(bs_obj):
