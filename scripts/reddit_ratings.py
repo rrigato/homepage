@@ -196,9 +196,25 @@ def get_ratings_post(news_flair_posts):
         ------
     """
     ratings_post_list = []
+    element_counter = 0
+    '''
+        Iterates over every reddit post looking for
+    '''
     for reddit_post in news_flair_posts["data"]["children"]:
-        if (reddit_post["title"].lower().find("ratings") != (-1)):
-            logging.info()
+
+        '''
+            If the string "ratings" is in the title of the
+            post after lowercasing the title string
+            then we count that as a ratings related post
+        '''
+        if (reddit_post["data"]["title"].lower().find("ratings")
+            != (-1)):
+            logging.info("Rating post found")
+            logging.info(reddit_post["data"]["title"])
+            logging.info(reddit_post["data"]["name"])
+
+            ratings_post_list.append(element_counter)
+        element_counter += 1
     return(ratings_post_list)
 
 
