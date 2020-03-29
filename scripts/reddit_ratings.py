@@ -178,7 +178,7 @@ def get_news_flair(access_token,
 
     return(news_flair_posts.json())
 
-def get_ratings_post():
+def get_ratings_post(news_flair_posts):
     """Retrieves
 
         Parameters
@@ -196,6 +196,9 @@ def get_ratings_post():
         ------
     """
     ratings_post_list = []
+    for reddit_post in news_flair_posts["data"]["children"]:
+        if (reddit_post["title"].lower().find("ratings") != (-1)):
+            logging.info()
     return(ratings_post_list)
 
 
