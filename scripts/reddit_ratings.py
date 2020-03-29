@@ -159,13 +159,13 @@ def get_news_flair(access_token,
                 url_param + "=" +
                 str(url_param_dict[url_param])
             )
-    #import pdb; pdb.set_trace()
+
     logging.info("Final search url:")
     logging.info(reddit_search_url)
 
     reddit_search_headers = {
         "user-agent":REDDIT_USER_AGENT,
-        "Authorization":("Bearer " + oauth_token)
+        "Authorization":("Bearer " + access_token)
     }
     '''
         passing oauth token and user-agent as headers
@@ -174,7 +174,9 @@ def get_news_flair(access_token,
         reddit_search_url,
         headers=reddit_search_headers
     )
-    return(news_flair_posts)
+    logging.info("Successfully made search request")
+    
+    return(news_flair_posts.json())
 
 
 def handle_table_header(bs_obj):

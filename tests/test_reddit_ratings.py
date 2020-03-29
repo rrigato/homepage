@@ -125,7 +125,7 @@ class RedditApi(unittest.TestCase):
             client_key=os.environ.get("REDDIT_CLIENT_KEY"),
             client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
         )
-        logging.info("validated able to get news flair")
+        logging.info("got oauth token for /search api call")
         '''
             The fullname will anchor this search to
             ensure the api always returns the same news
@@ -142,9 +142,25 @@ class RedditApi(unittest.TestCase):
             list
         '''
         self.assertEqual(
-            news_search["data"]["children"][6]["created_utc"],
-            1570559167
+            news_search["data"]["children"][6]["data"]["created_utc"],
+            1570559167.0
         )
+        '''
+            Testing there is 7 posts returned
+        '''
+        self.assertEqual(
+            len(news_search["data"]["children"]),
+            7
+        )
+        logging.info("Validated the last post returned")
+        '''
+            Unique id of the first post returned
+        '''
+        self.assertEqual(
+            news_search["data"]["children"][0]["data"]["name"],
+            "t3_dlyuen"
+        )
+        logging.info("Validated get_news_flair function")
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
