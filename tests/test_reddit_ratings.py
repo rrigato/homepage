@@ -120,9 +120,30 @@ class RedditApi(unittest.TestCase):
             which ensures the same post will be returned
             each time
         '''
-
+        oauth_token = get_oauth_token(
+            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
+            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
+        )
         logging.info("validated able to get news flair")
+        '''
+            The fullname will anchor this search to
+            ensure the api always returns the same news
+            posts
+        '''
+        news_search = get_news_flair(
+            oauth_token=oauth_token,
+            posts_to_return=7,
+            fullname_after="t3_dm3brn"
+        )
 
+        '''
+            testing last reddit post in the
+            list
+        '''
+        self.assertEqual(
+            news_search["data"]["children"][6]["created_utc"],
+            1570559167
+        )
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
