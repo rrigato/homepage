@@ -162,6 +162,22 @@ class RedditApi(unittest.TestCase):
         )
         logging.info("Validated get_news_flair function")
 
+    def test_get_ratings_post(self):
+        """Tests that only reddit ratings news posts are returned
+
+            Parameters
+            ----------
+
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        logging.info("Beginning test_get_news_flair")
+        from scripts.reddit_ratings import get_ratings_post
+
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
         """Tests columns are retrieved from html table header
