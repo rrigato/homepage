@@ -134,10 +134,17 @@ def get_news_flair(access_token,
         raw_json=1
             Converts &lt; &gt; and &amp;
             to < > and & in response body
+        after=fullname_after
+            fullname is a unique identifier
+            of a reddit api object
     '''
     url_param_dict = {
         "q":"flair:news",
         "limit":posts_returned,
+        "sort":"new",
+        "restrict_sr":"on",
+        "t":"all",
+        "after":fullname_after
 
     }
     reddit_search_url = "https://oauth.reddit.com/r/toonami/search.json?raw_json=1"
