@@ -111,6 +111,7 @@ class RedditApi(unittest.TestCase):
             ------
         """
         logging.info("Beginning test_get_news_flair")
+        from scripts.reddit_ratings import get_oauth_token
         from scripts.reddit_ratings import get_news_flair
 
         '''
@@ -131,7 +132,7 @@ class RedditApi(unittest.TestCase):
             posts
         '''
         news_search = get_news_flair(
-            oauth_token=oauth_token,
+            access_token=oauth_token["access_token"],
             posts_to_return=7,
             fullname_after="t3_dm3brn"
         )

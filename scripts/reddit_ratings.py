@@ -89,7 +89,7 @@ def get_oauth_token(client_key, client_secret):
     return(oauth_token.json())
 
 def get_news_flair(access_token,
-    posts_returned, fullname_after=None):
+    posts_to_return, fullname_after=None):
     """Retrieves toonami subreddit posts before a given reddit post
         Post must have a flair of News
         fullname_after is a reddit unique id called a fullname,
@@ -101,7 +101,7 @@ def get_news_flair(access_token,
         access_token : str
             access_token retrieved from get_oauth_token
 
-        posts_returned : int
+        posts_to_return : int
             Number of reddit posts to return. Defaults
             to 25
 
@@ -140,7 +140,7 @@ def get_news_flair(access_token,
     '''
     url_param_dict = {
         "q":"flair:news",
-        "limit":posts_returned,
+        "limit":posts_to_return,
         "sort":"new",
         "restrict_sr":"on",
         "t":"all",
@@ -157,8 +157,9 @@ def get_news_flair(access_token,
             reddit_search_url = (
                 reddit_search_url + "&" +
                 url_param + "=" +
-                url_param_dict[url_param]
+                str(url_param_dict[url_param])
             )
+    #import pdb; pdb.set_trace()
     logging.info("Final search url:")
     logging.info(reddit_search_url)
 
