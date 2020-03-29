@@ -212,7 +212,8 @@ only be deleted and recereated when in [ROLLBACK_COMPLETE state](https://stackov
 ##### util
 - reddit_search_response.json = Reddit search api json response using the
 following api query:
-https://oauth.reddit.com/r/toonami/search.json?limit=15&q=flair:news&sort=new&restrict_sr=on&t=all&raw_json=1&after=t3_ammylw
+https://oauth.reddit.com/r/toonami/search.json?limit=25&q=flair:news&sort=new&restrict_sr=on&t=all&raw_json=1&after=t3_a19qyq
+
 #### web
 Static html/js/css hosted in the s3 bucket
 
