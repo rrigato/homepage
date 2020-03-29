@@ -185,7 +185,14 @@ class RedditApi(unittest.TestCase):
         with open("util/reddit_search_response.json") as static_response:
             mock_response = json.load(static_response)
             logging.info("Loaded mock reddit api response")
-            #import pdb; pdb.set_trace()
+            ratings_post_list = get_ratings_post(mock_response)
+        '''
+            Elements of the ["data"]["children"]
+            list that are ratings posts
+        '''
+        self.assertEqual(ratings_post_list,
+            [0, 4, 13, 17, 19, 20, 22, 23])
+        logging.info("All ratings post in reddit search response")
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
