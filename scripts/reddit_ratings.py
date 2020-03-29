@@ -88,10 +88,11 @@ def get_oauth_token(client_key, client_secret):
     )
     return(oauth_token.json())
 
-def get_news_flair(access_token, fullname_before=None):
+def get_news_flair(access_token,
+    posts_returned, fullname_after=None):
     """Retrieves toonami subreddit posts before a given reddit post
         Post must have a flair of News
-        fullname_before is a reddit unique id called a fullname,
+        fullname_after is a reddit unique id called a fullname,
         more info is provided in the docs here:
         https://www.reddit.com/dev/api/#fullnames
 
@@ -100,9 +101,14 @@ def get_news_flair(access_token, fullname_before=None):
         access_token : str
             access_token retrieved from get_oauth_token
 
-        fullname_before : str
+        posts_returned : int
+            Number of reddit posts to return. Defaults
+            to 25
+
+        fullname_after : str
             Optional arguement to only include posts
-            before a given fullname
+            before a given fullname. Defautls to None
+
 
         Returns
         -------
@@ -131,6 +137,8 @@ def get_news_flair(access_token, fullname_before=None):
     '''
     url_param_dict = {
         "q":"flair:news",
+        "limit":posts_returned,
+
     }
     reddit_search_url = "https://oauth.reddit.com/r/toonami/search.json?raw_json=1"
     '''
@@ -156,11 +164,9 @@ def get_news_flair(access_token, fullname_before=None):
     '''
     news_flair_posts = requests.get(
         reddit_search_url,
-        headers={
-
-        }
+        headers=reddit_search_headers
     )
-
+    return(news_flair_posts)
 
 
 def handle_table_header(bs_obj):
