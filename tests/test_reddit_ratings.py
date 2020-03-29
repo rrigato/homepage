@@ -177,6 +177,15 @@ class RedditApi(unittest.TestCase):
         """
         logging.info("Beginning test_get_news_flair")
         from scripts.reddit_ratings import get_ratings_post
+        '''
+            loading a mock reddit api response to
+            test if we are returning the correct number of
+            ratings related posts
+        '''
+        with open("util/reddit_search_response.json") as static_response:
+            mock_response = json.load(static_response)
+            logging.info("Loaded mock reddit api response")
+            #import pdb; pdb.set_trace()
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
