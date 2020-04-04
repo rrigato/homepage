@@ -280,9 +280,32 @@ def handle_table_body(bs_obj, header_columns):
         list
     '''
     all_tr_tags = bs_obj.find("tbody").findAll("tr")
-    
+
     logging.info("Found this many shows: ")
     logging.info(len(all_tr_tags))
+
+    saturday_ratings = []
+    '''
+        First iteration is over list of <tr>
+        table rows
+
+        individual_show = list ofbs4.element.Tag
+    '''
+    for individual_show in all_tr_tags:
+        show_dict = {}
+        '''
+        Second iteration
+        is the columns that will be used for key values
+        of each dict in the list
+
+        Iterating over the column name and
+        the associated td which will be the value
+        of the dict 
+        dict_key = str
+        '''
+        for dict_key in zip(header_columns,
+            individual_show.findAll("td")):
+            import pdb; pdb.set_trace()
 
 
 
