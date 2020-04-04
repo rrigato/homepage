@@ -266,10 +266,10 @@ def handle_table_body(bs_obj, header_columns):
 
         Returns
         -------
-        show_ratings : list
-            dict of one saturday nights ratings where the key
+        saturday_ratings : list
+            list of dict of one saturday nights ratings where the key
             is from the header_columns list and the value
-            is from the <tb> html tag
+            is from the <tr> html tag
 
         Raises
         ------
@@ -280,8 +280,9 @@ def handle_table_body(bs_obj, header_columns):
         list
     '''
     all_tr_tags = bs_obj.find("tbody").findAll("tr")
+    
     logging.info("Found this many shows: ")
-    logging.info(all_tr_tags)
+    logging.info(len(all_tr_tags))
 
 
 
