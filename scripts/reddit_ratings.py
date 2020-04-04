@@ -279,9 +279,9 @@ def handle_table_body(bs_obj, header_columns):
         And putting the contents of each of those in a
         list
     '''
-    all_th_tags = bs_obj.find("thead").findAll("th")
-    logging.info("Found the following table headers: ")
-    logging.info(all_th_tags)
+    all_tr_tags = bs_obj.find("tbody").findAll("tr")
+    logging.info("Found this many shows: ")
+    logging.info(all_tr_tags)
 
 
 

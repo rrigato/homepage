@@ -230,7 +230,6 @@ class RedditApi(unittest.TestCase):
         )
         logging.info("validated header columns returned from rest api")
 
-    @unittest.skip("Skipping for now")
     def test_handle_table_body(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
         """Tests dict from html body handler
@@ -265,12 +264,24 @@ class RedditApi(unittest.TestCase):
             "Time", "Show", "Viewers (000)",
             "18-49 Rating", "18-49 Views (000)"
         ]
-        show_ratings = handle_table_body(
+        saturday_ratings = handle_table_body(
             bs_obj=bs_obj,
             header_columns=header_columns)
 
+        self.assertEqual(
+            saturday_ratings[0]["Time"],
+            "11:00"
+        )
+        self.assertEqual(
+            saturday_ratings[7]["18-49 Rating"],
+            .12
+        )
+        self.assertEqual(
+            saturday_ratings[9]["Viewers (000)"],
+            282
+        )
 
-        logging.info("validated dict of table_body")
+        logging.info("validated list of table_body")
 
 
     def test_html_table_parse(self):
