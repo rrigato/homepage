@@ -274,11 +274,11 @@ class RedditApi(unittest.TestCase):
         )
         self.assertEqual(
             saturday_ratings[7]["18-49 Rating"],
-            .12
+            "0.12"
         )
         self.assertEqual(
             saturday_ratings[9]["Viewers (000)"],
-            282
+            "282"
         )
 
         logging.info("validated list of table_body")

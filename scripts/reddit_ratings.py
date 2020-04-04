@@ -289,7 +289,7 @@ def handle_table_body(bs_obj, header_columns):
         First iteration is over list of <tr>
         table rows
 
-        individual_show = list ofbs4.element.Tag
+        individual_show = list of bs4.element.Tag
     '''
     for individual_show in all_tr_tags:
         show_dict = {}
@@ -300,15 +300,28 @@ def handle_table_body(bs_obj, header_columns):
 
         Iterating over the column name and
         the associated td which will be the value
-        of the dict 
-        dict_key = str
+        of the dict
+
+        These two lists will always be the same length
+        becuase each <td> (table data) needs a corresponding
+        <tr> (table row)
+
+        dict_key : str
+        dict_value : bs4.element.Tag
         '''
-        for dict_key in zip(header_columns,
+        for dict_key, dict_value in zip(header_columns,
             individual_show.findAll("td")):
-            import pdb; pdb.set_trace()
+            '''
+                will be something like
+                show_dict["Time"] = "11:00"
+                Taking text from td tag
+            '''
+            show_dict[dict_key] = dict_value.text
 
+        ''' Append dict to list '''
+        saturday_ratings.append(show_dict)
 
-
+    return(saturday_ratings)
 
 
 def html_table_parse(reddit_post_html):
