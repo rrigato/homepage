@@ -309,6 +309,21 @@ class RedditApi(unittest.TestCase):
         #     rating_call_counter=0
         # )
 
+    def test_ratings_iteration(self):
+        """Tests that we can iterate over most recent posts
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        logging.info("Beginning test_ratings_iteration")
+        from scripts.reddit_ratings import ratings_iteration
+        ratings_iteration()
 
 if __name__ == "__main__":
     unittest.main()

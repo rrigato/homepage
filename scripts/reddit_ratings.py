@@ -350,6 +350,24 @@ def handle_table_clean(reddit_post_html, rating_call_counter):
         header_columns=header_columns)
     return(body_dict)
 
+def ratings_iteration(number_posts=None):
+    """Handles rating iteration
+
+        Parameters
+        ----------
+        number_posts : int
+            Optional arguement, if this is not None
+            we only go looking for the most recent ratings,
+            otherwise we iterate all posts
+
+        Returns
+        -------
+
+
+        Raises
+        ------
+    """
+    pass
 
 def main():
     """Entry point into the script
