@@ -376,10 +376,21 @@ def ratings_iteration(number_posts=None):
         )
 
     logging.info("Oauth token for ratings_iteration")
-    news_flair_posts = get_news_flair(
-        access_token=oauth_token["access_token"]
-        posts_to_return=15)
-    import pdb; pdb.set_trace()
+    '''
+        If number_posts is None we are only looking
+        for the most recent ratings post
+    '''
+    if (number_posts is None):
+        news_flair_posts = get_news_flair(
+            access_token=oauth_token["access_token"],
+            posts_to_return=15)
+    '''
+        Otherwise we need to iterate over the
+        all news posts
+    '''
+    assert type(number_posts) is int, (
+        "news_flair_posts must be passed an int for posts_to_return"
+    )
 
 def main():
     """Entry point into the script
