@@ -309,11 +309,15 @@ class RedditApi(unittest.TestCase):
         #     rating_call_counter=0
         # )
 
-    def test_ratings_iteration(self):
+    @patch("scripts.reddit_ratings.get_news_flair")
+    def test_ratings_iteration(self, news_flair_patch):
         """Tests that we can iterate over most recent posts
 
             Parameters
             ----------
+            news_flair_patch : unittest.mock.MagicMock
+                Mock object used to test how often
+                get_news_flair is called
 
             Returns
             -------
@@ -324,6 +328,14 @@ class RedditApi(unittest.TestCase):
         logging.info("Beginning test_ratings_iteration")
         from scripts.reddit_ratings import ratings_iteration
         ratings_iteration()
+        '''
+            Testing that the get_news_flair
+            meaning we are only looking for the most recent ratings
+        '''
+        self.assertEqual(news_flair_patch.call_count,
+            1
+        )
+        logging.info("get_news_flair only called for most recent ratings")
 
 if __name__ == "__main__":
     unittest.main()
