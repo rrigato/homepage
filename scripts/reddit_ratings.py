@@ -395,15 +395,25 @@ def ratings_iteration(number_posts=None):
         assert type(number_posts) is int, (
             "news_flair_posts must be passed an int for posts_to_return"
         )
-        news_flair_posts = get_news_flair(
-            access_token=oauth_token["access_token"],
-            posts_to_return=75)
         '''
             No more historical posts to search over
         '''
         if news_flair_posts["data"]["dist"] ==0:
-            return("Hello World")
-        #for api_limit in range(round(1200/75)):
+            logging.info("No more posts to iterate")
+            return("Hello WOrlld")
+        '''
+            Logic for how many posts
+            you can search the reddit api for historically
+        '''
+        for api_limit in range(round(120/posts_to_return)):
+            news_flair_posts = get_news_flair(
+                access_token=oauth_token["access_token"],
+                posts_to_return=posts_to_return)
+
+            ratings_post_list = get_ratings_post(news_flair_posts)
+            for ratings_post in ratings_post_list:
+                print(["data"]["children"][ratings_post]["data"]["title"])
+
 
 
 def main():
