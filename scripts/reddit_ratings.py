@@ -324,13 +324,17 @@ def handle_table_body(bs_obj, header_columns):
     return(saturday_ratings)
 
 
-def html_table_parse(reddit_post_html):
-    """Parses reddit html post to get data from table
+def handle_table_clean(reddit_post_html, rating_call_counter):
+    """Cleans the html table reddit post returned
 
         Parameters
         ----------
         reddit_post_html : str
             HTML post for the table
+
+        rating_call_counter : int
+            Sequence starting at 0 that describes
+            how many ratings posts have been called
 
 
         Returns
@@ -342,8 +346,9 @@ def html_table_parse(reddit_post_html):
     """
     bs_obj = BeautifulSoup(reddit_post_html, "html5lib")
     header_columns = handle_table_header(bs_obj)
-    body_dict = handle_table_body(bs_obj)
-    import pdb; pdb.set_trace()
+    body_dict = handle_table_body(bs_obj=bs_obj,
+        header_columns=header_columns)
+    return(body_dict)
 
 
 def main():

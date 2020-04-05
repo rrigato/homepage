@@ -14,7 +14,7 @@ Where the python script was executed from
 WORKING_DIRECTORY = os.getcwd()
 os.sys.path.append(WORKING_DIRECTORY)
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
-
+from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2020
 
 def get_logger():
     """Sets up logger
@@ -284,11 +284,15 @@ class RedditApi(unittest.TestCase):
         logging.info("validated list of table_body")
 
 
-    def test_html_table_parse(self):
-        """Tests that we are able to parse an html table
+    def test_handle_table_clean(self,
+        mock_rating_table=REDDIT_RATING_TABLE_2020):
+        """Tests cleaning of ratings data
 
             Parameters
             ----------
+            mock_rating_table : str
+                Example of an html table returned by the
+                reddit api
 
             Returns
             -------
@@ -296,7 +300,15 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test of oath key")
-        from scripts.reddit_ratings import html_table_parse
+        logging.info("Beginning test of handle_table_clean")
+        from scripts.reddit_ratings import handle_table_clean
+        clean_saturday_ratings = handle_table_clean(mock_rating_table,
+            rating_call_counter=0
+        )
+        # self.assertEqual(clean_saturday_ratings[0]["saturday"],
+        #     rating_call_counter=0
+        # )
+
+
 if __name__ == "__main__":
     unittest.main()
