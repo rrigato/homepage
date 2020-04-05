@@ -348,6 +348,8 @@ def handle_table_clean(reddit_post_html, rating_call_counter):
     header_columns = handle_table_header(bs_obj)
     body_dict = handle_table_body(bs_obj=bs_obj,
         header_columns=header_columns)
+
+    logging.info("Cleaned the ratings post")
     return(body_dict)
 
 def ratings_iteration(number_posts=None):
@@ -366,6 +368,7 @@ def ratings_iteration(number_posts=None):
 
         Raises
         ------
+
     """
     REDDIT_CLIENT_KEY = os.environ.get("REDDIT_CLIENT_KEY")
     REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET")
@@ -395,12 +398,7 @@ def ratings_iteration(number_posts=None):
         assert type(number_posts) is int, (
             "news_flair_posts must be passed an int for posts_to_return"
         )
-        '''
-            No more historical posts to search over
-        '''
-        if news_flair_posts["data"]["dist"] ==0:
-            logging.info("No more posts to iterate")
-            return("Hello WOrlld")
+
         '''
             Logic for how many posts
             you can search the reddit api for historically
@@ -410,9 +408,24 @@ def ratings_iteration(number_posts=None):
                 access_token=oauth_token["access_token"],
                 posts_to_return=posts_to_return)
 
+            '''
+                No more historical posts to search over
+            '''
+            if news_flair_posts["data"]["dist"] ==0:
+                logging.info("No more posts to iterate")
+                return("Hello WOrlld")
+
             ratings_post_list = get_ratings_post(news_flair_posts)
+            '''
+                Iterating over just news flair posts
+                that are ratings posts
+            '''
             for ratings_post in ratings_post_list:
+                clean_ratings_post = handle_table_clean(
+                    reddit_post_html=["data"]["children"][ratings_post]["data"]["selftext_html"],
+                     rating_call_counter=0)
                 print(["data"]["children"][ratings_post]["data"]["title"])
+                
 
 
 
