@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-from dateutil.parser import parse
+from dateutil import parser
+
 import logging
 import os
 import requests
@@ -355,6 +356,25 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
     body_dict = handle_table_body(bs_obj=bs_obj,
         header_columns=header_columns)
     logging.info("Cleaned the ratings post")
+    import pdb; pdb.set_trace()
+    '''
+        Parses a datetime from the title of the
+        post which will originally be something like:
+        "Toonami Ratings for January 18th, 2020"
+    '''
+    ratings_occurred_on = parser.parse(ratings_title)
+
+    logging.info("Date Parse Fuzzy Logic: ")
+    logging.info(ratings_title)
+    loggin.info(ratings_occurred_on)
+
+    '''
+        Iterating over every saturday night ratings
+        which is list of dict and adding a new element
+        for the datetime on which the ratings occurred
+    '''
+    for show_element in body_dict:
+        show_element["ratings_occurred_on"] = ratings_occurred_on
     return(body_dict)
 
 def ratings_iteration(number_posts=None):
