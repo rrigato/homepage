@@ -2,4 +2,5 @@ awscli
 boto3
 bs4
 pandas
+python-dateutil
 requests

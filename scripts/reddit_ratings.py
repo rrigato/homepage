@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from dateutil.parser import parse
 import logging
 import os
 import requests
@@ -324,7 +325,8 @@ def handle_table_body(bs_obj, header_columns):
     return(saturday_ratings)
 
 
-def handle_table_clean(reddit_post_html, rating_call_counter):
+def handle_table_clean(reddit_post_html, rating_call_counter,
+    ratings_title):
     """Cleans the html table reddit post returned
 
         Parameters
@@ -335,6 +337,10 @@ def handle_table_clean(reddit_post_html, rating_call_counter):
         rating_call_counter : int
             Sequence starting at 0 that describes
             how many ratings posts have been called
+
+        ratings_title : str
+            The title we are attempting to parse the
+            date from
 
 
         Returns
@@ -348,7 +354,6 @@ def handle_table_clean(reddit_post_html, rating_call_counter):
     header_columns = handle_table_header(bs_obj)
     body_dict = handle_table_body(bs_obj=bs_obj,
         header_columns=header_columns)
-
     logging.info("Cleaned the ratings post")
     return(body_dict)
 
@@ -423,7 +428,9 @@ def ratings_iteration(number_posts=None):
             for ratings_post in ratings_post_list:
                 clean_ratings_post = handle_table_clean(
                     reddit_post_html=news_flair_posts["data"]["children"][ratings_post]["data"]["selftext_html"],
-                     rating_call_counter=0)
+                     rating_call_counter=0,
+                    ratings_title=news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
+
                 print(news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
                 print(clean_ratings_post[0].keys())
 
