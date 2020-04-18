@@ -430,6 +430,7 @@ def ratings_iteration(number_posts=None):
             "news_flair_posts must be passed an int for posts_to_return"
         )
 
+        fullname_after = None
         '''
             Logic for how many posts
             you can search the reddit api for historically
@@ -437,7 +438,8 @@ def ratings_iteration(number_posts=None):
         for api_limit in range(round(120/number_posts)):
             news_flair_posts = get_news_flair(
                 access_token=oauth_token["access_token"],
-                posts_to_return=number_posts)
+                posts_to_return=number_posts,
+                fullname_after=fullname_after)
 
             '''
                 No more historical posts to search over
@@ -459,8 +461,16 @@ def ratings_iteration(number_posts=None):
 
                 print(news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
                 print(clean_ratings_post[0].keys())
-
-
+            '''
+                Gets the fullname of the last post
+                in the ratings_post_list
+                ratings_post_list[len(ratings_post_list) - 1] =
+                last element in list
+            '''
+            fullname_after=news_flair_posts["data"]["children"][
+                ratings_post_list[len(ratings_post_list) - 1]
+                ]["data"].keys()
+            import pdb; pdb.set_trace()
 
 def main():
     """Entry point into the script
