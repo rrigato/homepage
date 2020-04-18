@@ -435,7 +435,7 @@ def ratings_iteration(number_posts=None):
             Logic for how many posts
             you can search the reddit api for historically
         '''
-        for api_limit in range(round(120/number_posts)):
+        for api_limit in range(round(1200/number_posts)):
             news_flair_posts = get_news_flair(
                 access_token=oauth_token["access_token"],
                 posts_to_return=number_posts,
@@ -446,9 +446,17 @@ def ratings_iteration(number_posts=None):
             '''
             if news_flair_posts["data"]["dist"] ==0:
                 logging.info("No more posts to iterate")
-                return("Hello WOrlld")
+                return("No more news posts")
 
             ratings_post_list = get_ratings_post(news_flair_posts)
+
+            '''
+                Small number of news posts does not
+                have any ratings posts to return
+            '''
+            if len(ratings_post_list) == 0:
+                logging.info("No more posts to iterate")
+                return("No More ratings to list")
             '''
                 Iterating over just news flair posts
                 that are ratings posts
@@ -460,17 +468,15 @@ def ratings_iteration(number_posts=None):
                     ratings_title=news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
 
                 print(news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
-                print(clean_ratings_post[0].keys())
             '''
                 Gets the fullname of the last post
                 in the ratings_post_list
                 ratings_post_list[len(ratings_post_list) - 1] =
                 last element in list
             '''
-            fullname_after=news_flair_posts["data"]["children"][
+            fullname_after = news_flair_posts["data"]["children"][
                 ratings_post_list[len(ratings_post_list) - 1]
-                ]["data"].keys()
-            import pdb; pdb.set_trace()
+                ]["data"]["name"]
 
 def main():
     """Entry point into the script
