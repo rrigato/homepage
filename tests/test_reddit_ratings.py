@@ -303,16 +303,35 @@ class RedditApi(unittest.TestCase):
         logging.info("Beginning test of handle_table_clean")
         from scripts.reddit_ratings import handle_table_clean
         clean_saturday_ratings = handle_table_clean(mock_rating_table,
-            rating_call_counter=0
+            rating_call_counter=0,
+            ratings_title="Toonami Ratings for November 2nd, 2019"
         )
 
+
+        self.assertEqual(clean_saturday_ratings[0]["saturday"],
+            None
+        )
         self.assertEqual(clean_saturday_ratings[2]["Viewers (000)"],
             "453"
         )
         self.assertEqual(
             len(clean_saturday_ratings), 7
         )
+        '''
+            Checking the value of the date parsed from the
+            title for different variations
 
+            ex: 1st, 2nd, 3rd, 5th, etc.
+        '''
+        clean_saturday_st = handle_table_clean(mock_rating_table,
+            rating_call_counter=0,
+            ratings_title="Toonami Ratings for December 21st, 2019"
+        )
+
+        clean_saturday_th = handle_table_clean(mock_rating_table,
+            rating_call_counter=0,
+            ratings_title="Toonami Ratings for January 18th, 2020"
+        )
 
     @patch("scripts.reddit_ratings.get_news_flair")
     def test_ratings_iteration(self, news_flair_patch):
