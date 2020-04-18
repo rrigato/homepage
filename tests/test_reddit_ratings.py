@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
+from datetime import datetime
 from unittest.mock import MagicMock
 from unittest.mock import patch
+
 import json
 import logging
 import os
@@ -308,8 +310,9 @@ class RedditApi(unittest.TestCase):
         )
 
 
-        self.assertEqual(clean_saturday_ratings[0]["saturday"],
-            None
+        self.assertEqual(
+            clean_saturday_ratings[0]["ratings_occurred_on"],
+            datetime.strptime("2019-11-02", "%Y-%m-%d")
         )
         self.assertEqual(clean_saturday_ratings[2]["Viewers (000)"],
             "453"
@@ -327,10 +330,18 @@ class RedditApi(unittest.TestCase):
             rating_call_counter=0,
             ratings_title="Toonami Ratings for December 21st, 2019"
         )
+        self.assertEqual(
+            clean_saturday_st[0]["ratings_occurred_on"],
+            datetime.strptime("2019-12-21", "%Y-%m-%d")
+        )
 
         clean_saturday_th = handle_table_clean(mock_rating_table,
             rating_call_counter=0,
             ratings_title="Toonami Ratings for January 18th, 2020"
+        )
+        self.assertEqual(
+            clean_saturday_th[0]["ratings_occurred_on"],
+            datetime.strptime("2020-01-18", "%Y-%m-%d")
         )
 
     @patch("scripts.reddit_ratings.get_news_flair")
