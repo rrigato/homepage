@@ -305,9 +305,14 @@ class RedditApi(unittest.TestCase):
         clean_saturday_ratings = handle_table_clean(mock_rating_table,
             rating_call_counter=0
         )
-        # self.assertEqual(clean_saturday_ratings[0]["saturday"],
-        #     rating_call_counter=0
-        # )
+
+        self.assertEqual(clean_saturday_ratings[2]["Viewers (000)"],
+            "453"
+        )
+        self.assertEqual(
+            len(clean_saturday_ratings), 7
+        )
+
 
     @patch("scripts.reddit_ratings.get_news_flair")
     def test_ratings_iteration(self, news_flair_patch):
