@@ -583,6 +583,20 @@ Resources:
                 #sets to be changed on
                   Resource:
                     - "arn:aws:route53:::hostedzone/Z3K3UR6983C2YB"
+        #policy needed for serverless transform
+          - PolicyName: BackendDeployPolicy
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Sid: RecordSetsOneHostedZone
+                  Effect: Allow
+                  Action:
+                    - cloudformation:CreateChangeSet
+                    #- cloudformation:ExecuteChangeSet
+                  Resource:
+                    - "*"
+
+
 ####################################
 #Role that will be assumed when
 #CodeBuild runs for Prod
