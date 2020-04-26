@@ -615,6 +615,7 @@ Resources:
                     - ec2:DescribeVpcs
                     - ec2:ModifyVpcAttribute
                     - ec2:createTags
+                    - ec2:DescribeAvailabilityZones
                   Resource:
                     - "*"
 
