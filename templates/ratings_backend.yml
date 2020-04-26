@@ -17,11 +17,22 @@ Parameters:
     Default: demosecret
 
 Resources:
+  RatingsVpc:
+    Type: AWS::EC2::VPC
+    Properties:
+        CidrBlock: 192.168.0.0/20
+        Tags:
+        - Key: keep
+          Value: yes
+        - Key: reason
+          Value: dynamo-private-vpc
+        - Key: region
+          Value: us-east-1
   PrivateDynamoSubnet:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref RDSVPC
-      CidrBlock:
+      VpcId: !Ref RatingsVpc
+      CidrBlock: 192.168.0.0/24
       AvailabilityZone: !Select
         - 0
         - !GetAZs 'us-east-1'
