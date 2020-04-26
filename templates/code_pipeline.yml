@@ -611,6 +611,7 @@ Resources:
                     - ec2:CreateSubnet
                     - ec2:DeleteSubnet
                     - ec2:DeleteVpc
+                    - ec2:DescribeVpcs
                   Resource:
                     - "*"
 
