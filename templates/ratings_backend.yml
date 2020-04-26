@@ -46,3 +46,18 @@ Resources:
         -
           Key: reason
           Value: dynamo-private-subnet
+
+
+  RedditApiSecretsKey:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Secrets string for reddit api key
+      Name: /prod/reddit_api_key
+      SecretString: !Ref RedditApiKey
+      Tags:
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
+          Value: reddit-api-key
