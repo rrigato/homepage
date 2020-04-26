@@ -614,6 +614,7 @@ Resources:
                     - ec2:DeleteVpc
                     - ec2:DescribeVpcs
                     - ec2:ModifyVpcAttribute
+                    - ec2:createTags
                   Resource:
                     - "*"
 
