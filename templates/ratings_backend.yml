@@ -9,9 +9,14 @@ Description: |
   updating ratings
 
 Parameters:
+  ProjectName:
+    Type: String
+    Default: RatingsBackend
+
   RedditApiKey:
     Type: String
     Default: demokey
+
   RedditApiSecret:
     Type: String
     Default: demosecret
@@ -31,6 +36,10 @@ Resources:
           -
             Key: region
             Value: us-east-1
+        #will show up as the name value in the vpc console
+          -
+            Key: Name
+            Value: !Join ['', [!Ref ProjectName, '-vpc']]
   PrivateDynamoSubnet:
     Type: AWS::EC2::Subnet
     Properties:
