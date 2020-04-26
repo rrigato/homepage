@@ -55,6 +55,10 @@ Resources:
         -
           Key: reason
           Value: dynamo-private-subnet
+        #will show up as the name value in the vpc console
+        -
+          Key: Name
+          Value: !Join ['', ['private-subnet-', !Ref ProjectName]]
 
 
   RedditApiSecretsKey:
