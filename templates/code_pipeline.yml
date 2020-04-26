@@ -595,7 +595,12 @@ Resources:
                     #- cloudformation:ExecuteChangeSet
                   Resource:
                     - "*"
-
+                - Sid: !Join ['', [!Ref ProjectName,'SecretsMangerDeploy']]
+                  Effect: Allow
+                  Action:
+                    - secretsmanager:CreateSecret
+                  Resource:
+                    - "*"
 
 ####################################
 #Role that will be assumed when
