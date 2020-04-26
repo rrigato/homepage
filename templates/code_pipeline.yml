@@ -305,6 +305,7 @@ Resources:
               #it will be created, otherwise the stack will be updated
               #with the template provided in TemplatePath
               ActionMode: CREATE_UPDATE
+              Capabilities: CAPABILITY_AUTO_EXPAND
               RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
               StackName: !Join ['', ['dev-backend', !Ref ProjectName]]
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
