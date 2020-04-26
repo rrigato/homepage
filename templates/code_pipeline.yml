@@ -617,6 +617,7 @@ Resources:
                     - ec2:createTags
                     - ec2:DescribeAvailabilityZones
                     - ec2:DescribeAccountAttributes
+                    - ec2:DescribeSubnets
                   Resource:
                     - "*"
 
