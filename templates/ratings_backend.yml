@@ -1,0 +1,32 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+#Transforms any serverless code to cloudformation
+Transform: AWS::Serverless-2016-10-31
+
+Description: |
+  Creates the backend storage and compute necessary for
+  updating ratings
+
+Parameters:
+  RedditApiKey:
+    Type: String
+    Default: demokey
+  RedditApiSecret:
+    Type: String
+    Default: demosecret
+
+Resources:
+  PrivateDynamoSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref RDSVPC
+      CidrBlock:
+      AvailabilityZone: !Select
+        - 0
+        - !GetAZs 'us-east-1'
+      Tags:
+        - Key: keep
+          Value: yes
+        - Key: reason
+          Value: dynamo-private-subnet
