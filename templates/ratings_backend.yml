@@ -22,12 +22,15 @@ Resources:
     Properties:
         CidrBlock: 192.168.0.0/20
         Tags:
-        - Key: keep
-          Value: yes
-        - Key: reason
-          Value: dynamo-private-vpc
-        - Key: region
-          Value: us-east-1
+          -
+            Key: keep
+            Value: "yes"
+          -
+            Key: reason
+            Value: dynamo-private-vpc
+          -
+            Key: region
+            Value: us-east-1
   PrivateDynamoSubnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -37,7 +40,9 @@ Resources:
         - 0
         - !GetAZs 'us-east-1'
       Tags:
-        - Key: keep
-          Value: yes
-        - Key: reason
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
           Value: dynamo-private-subnet
