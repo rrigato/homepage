@@ -620,6 +620,7 @@ Resources:
                     - ec2:DescribeSubnets
                     - ec2:CreateRouteTable
                     - ec2:DeleteRouteTable
+                    - ec2:DescribeRouteTables
                   Resource:
                     - "*"
 
