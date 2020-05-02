@@ -206,6 +206,13 @@ only be deleted and recereated when in [ROLLBACK_COMPLETE state](https://stackov
 - code_pipeline.yml = Creates CodeBuild/Code Pipeline resources
     necessary for Dev/Prod
 
+- prod_resource_import.yml = Importing existing S3 Bucket and Route53 hosted zone to cloudformation
+
+- ratings_backend.yml = Creates the backend storage and compute necessary for
+updating ratings
+
+- ratings_update_lambda.yml = Lambda function that updates dynamodb table from
+  templates/ratings_backend.yml
 
 #### tests
 
