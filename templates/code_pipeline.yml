@@ -622,7 +622,7 @@ Resources:
                     - "*"
 
                 #create vpc privleges
-                - Sid: !Join ['', [!Ref ProjectName,'-DynamoDeploy']]
+                - Sid: !Join ['', [!Ref ProjectName,'DynamoDeploy']]
                   Effect: Allow
                   Action:
                     - dynamodb:DescribeTable
