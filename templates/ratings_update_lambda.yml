@@ -9,10 +9,20 @@ Description: |
   templates/ratings_backend.yml
 
 Parameters:
+  BucketName:
+    Type: String
+    Default: source-code
+
   ProjectName:
     Type: String
-    Default: RatingsUpdateLambda
+    Default: ratings-update-lambda
 Resources:
+
+  WebsiteBucket:
+    Properties:
+      BucketName: !Join ['-', [ !Ref ProjectName, !Ref BucketName]]
+    Type: "AWS::S3::Bucket"
+
 ############
 #Lambda function to update ratings
 #
@@ -29,4 +39,4 @@ Resources:
           Value: "yes"
         -
           Key: reason
-          Value: !Join ['', [ !Ref ProjectName, 'ratings-backend-dynamodb']]
+          Value: !Join ['', [ !Ref ProjectName, 'lambda-function']]
