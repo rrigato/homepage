@@ -85,11 +85,11 @@ Resources:
 #Private subnet association with main route table
 #
 ######################
-  PrivateSubnetRouteAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref PrivateLambdaSubnet
-      RouteTableId: !Ref BackendRouteTable
+  # PrivateSubnetRouteAssociation:
+  #   Type: AWS::EC2::SubnetRouteTableAssociation
+  #   Properties:
+  #     SubnetId: !Ref PrivateLambdaSubnet
+  #     RouteTableId: !Ref BackendRouteTable
 
 
 ######################
