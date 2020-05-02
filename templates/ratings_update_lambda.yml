@@ -1,0 +1,24 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+#Transforms any serverless code to cloudformation
+Transform: AWS::Serverless-2016-10-31
+
+Description: |
+  Lambda function that updates dynamodb table from
+  templates/ratings_backend.yml
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: RatingsBackend
+############
+#Lambda function to update ratings
+#
+############
+  UpdateRatings:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: python3.6
+      CodeUri: s3://bucket/key
