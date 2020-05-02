@@ -22,6 +22,10 @@ Parameters:
     Default: demosecret
 
 Resources:
+######################
+#VPC for  lambda function,
+#and dynamodb table
+######################
   RatingsVpc:
     Type: AWS::EC2::VPC
     Properties:
@@ -40,7 +44,12 @@ Resources:
           -
             Key: Name
             Value: !Join ['', [!Ref ProjectName, '-vpc']]
-  PrivateDynamoSubnet:
+
+######################
+#Private subnet which will include lambda
+#function
+######################
+  PrivateLambdaSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref RatingsVpc
@@ -54,7 +63,7 @@ Resources:
           Value: "yes"
         -
           Key: reason
-          Value: dynamo-private-subnet
+          Value: lambda-private-subnet
         #will show up as the name value in the vpc console
         -
           Key: Name
@@ -69,9 +78,23 @@ Resources:
           Key: keep
           Value: "yes"
         -
-          Key: reason
-          Value: dynamo-private-subnet
+          Key: Name
+          Value: !Join ['', ['vpc-route-table', !Ref ProjectName]]
 
+######################
+#VPC for running lambda functions
+#
+######################
+  PrivateSubnetRouteAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref privateLambdaSubnet1
+      RouteTableId: !Ref BackendRouteTable
+
+######################
+#Reddit API key storage
+#
+######################
   RedditApiSecretsKey:
     Type: AWS::SecretsManager::Secret
     Properties:
