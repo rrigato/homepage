@@ -11,7 +11,8 @@ Description: |
 Parameters:
   ProjectName:
     Type: String
-    Default: RatingsBackend
+    Default: RatingsUpdateLambda
+Resources:
 ############
 #Lambda function to update ratings
 #
@@ -22,3 +23,10 @@ Parameters:
       Handler: index.handler
       Runtime: python3.6
       CodeUri: s3://bucket/key
+    Tags:
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
+          Value: !Join ['', [ !Ref ProjectName, 'ratings-backend-dynamodb']]
