@@ -60,6 +60,17 @@ Resources:
           Key: Name
           Value: !Join ['', ['private-subnet-', !Ref ProjectName]]
 
+  BackendRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref RatingsVpc
+      Tags:
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
+          Value: dynamo-private-subnet
 
   RedditApiSecretsKey:
     Type: AWS::SecretsManager::Secret
