@@ -619,6 +619,7 @@ Resources:
                     - ec2:DescribeAccountAttributes
                     - ec2:DescribeSubnets
                     - ec2:CreateRouteTable
+                    - ec2:DeleteRouteTable
                   Resource:
                     - "*"
 
