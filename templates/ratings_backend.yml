@@ -82,14 +82,15 @@ Resources:
           Value: !Join ['', ['vpc-route-table', !Ref ProjectName]]
 
 ######################
-#VPC for running lambda functions
+#Private subnet association with main route table
 #
 ######################
   PrivateSubnetRouteAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref privateLambdaSubnet1
+      SubnetId: !Ref PrivateLambdaSubnet
       RouteTableId: !Ref BackendRouteTable
+
 
 ######################
 #Reddit API key storage
