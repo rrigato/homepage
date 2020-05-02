@@ -11,7 +11,7 @@ Description: |
 Parameters:
   BucketName:
     Type: String
-    Default: source-code
+    Default: source-code-
 
   ProjectName:
     Type: String
@@ -20,9 +20,15 @@ Resources:
 
   WebsiteBucket:
     Properties:
-      BucketName: !Join ['-', [ !Ref ProjectName, !Ref BucketName]]
+      BucketName: !Join ['', [ !Ref BucketName, !Ref ProjectName ]]
     Type: "AWS::S3::Bucket"
-
+    Tags:
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
+          Value: !Join ['', [ !Ref ProjectName, 'lambda-function']]
 ############
 #Lambda function to update ratings
 #
@@ -32,7 +38,7 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: python3.6
-      CodeUri: s3://bucket/key
+      CodeUri: s3://source-code-ratings-update-lambda #!Join ['', [ "s3://", !Ref BucketName, !Ref ProjectName ]]
     Tags:
         -
           Key: keep
