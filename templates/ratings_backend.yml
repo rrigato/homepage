@@ -125,6 +125,9 @@ Resources:
         -
           AttributeName: "TIME"
           AttributeType: "S"
+
+    #On demand dynamodb
+      BillingMode: PAY_PER_REQUEST
       KeySchema:
         -
           AttributeName: "RATINGS_OCCURRED_ON"
@@ -132,7 +135,14 @@ Resources:
         -
           AttributeName: "TIME"
           KeyType: "RANGE"
-      ProvisionedThroughput:
-        ReadCapacityUnits: "1"
-        WriteCapacityUnits: "1"
+
+      SSESpecification:
+          SSEEnabled: true
       TableName: "toonami_ratings"
+      Tags:
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
+          Value: !Join ['', [ !Ref ProjectName, 'ratings-backend-dynamodb']]
