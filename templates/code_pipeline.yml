@@ -621,6 +621,16 @@ Resources:
                   Resource:
                     - "*"
 
+                #create vpc privleges
+                - Sid: !Join ['', [!Ref ProjectName,'-DynamoDeploy']]
+                  Effect: Allow
+                  Action:
+                    - dynamodb:DescribeTable
+                    - dynamodb:DeleteTable
+                    - dynamodb:CreateTable
+                  Resource:
+                    - "*"
+
 ####################################
 #Role that will be assumed when
 #CodeBuild runs for Prod
