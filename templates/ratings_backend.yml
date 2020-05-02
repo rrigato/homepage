@@ -109,3 +109,30 @@ Resources:
         -
           Key: reason
           Value: reddit-api-key
+
+###############################
+#DynamoDb table to store ratings
+#primary key is a composite of the
+#show name and time
+###############################
+  RatingsTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "RATINGS_OCCURRED_ON"
+          AttributeType: "S"
+        -
+          AttributeName: "TIME"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "RATINGS_OCCURRED_ON"
+          KeyType: "HASH"
+        -
+          AttributeName: "TIME"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "1"
+        WriteCapacityUnits: "1"
+      TableName: "toonami_ratings"
