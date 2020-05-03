@@ -110,6 +110,25 @@ Resources:
           Key: reason
           Value: reddit-api-key
 
+######################
+#Reddit API key secret
+#
+######################
+  RedditApiSecretsSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Secrets string for reddit api secret
+      Name: /prod/reddit_api_secret
+      SecretString: !Ref RedditApiSecret
+      Tags:
+        -
+          Key: keep
+          Value: "yes"
+        -
+          Key: reason
+          Value: reddit-api-secret
+
+
 ###############################
 #DynamoDb table to store ratings
 #primary key is a composite of the
