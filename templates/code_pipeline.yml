@@ -515,6 +515,18 @@ Resources:
 
                   Resource:
                     - "*"
+                #######################
+                #Permissions needed for aws
+                #CodeBuild to access client secrets
+                #######################
+                - Sid: SecretsManagerAccess
+                  Effect: Allow
+                  Action:
+                    - secretsmanager:GetSecretValue
+                  Resource:
+                    - "*"
+
+
 
 
 ####################
