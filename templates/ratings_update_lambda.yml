@@ -38,8 +38,12 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
-      Runtime: python3.6
-      CodeUri: s3://source-code-ratings-update-lambda/fake.zip #!Join ['', [ "s3://", !Ref BucketName, !Ref ProjectName ]]
+      Runtime: python3.7
+      #Default code that will be updated by
+      #CodeBuild Job
+      InlineCode: |
+        def handler(event, context):
+          print("Hello, world!")
     Tags:
         -
           Key: keep
