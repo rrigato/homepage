@@ -25,7 +25,8 @@ phases:
        python: 3.7
     commands:
       - echo Entered the install phase...
-
+      - echo $REDDIT_API_KEY
+      - echo $REDDIT_API_SECRET
       - BUILD_ENVIRONMENT=dev
       - DESTINATION_BUCKET=dev-static-site-homepage
       - RATINGS_UPDATE_STACK=dev-homepage-backend-logic
