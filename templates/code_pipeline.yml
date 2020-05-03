@@ -482,6 +482,8 @@ Resources:
                     - iam:DetachRolePolicy
                     - iam:DeleteRolePolicy
                     - iam:PutRolePolicy
+                    - iam:AttachRolePolicy
+                    - iam:TagRole
                   Resource:
                     - "*"
                 #######################
