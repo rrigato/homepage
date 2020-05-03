@@ -9,11 +9,9 @@
 ############################
 version: 0.2
 
-# env:
-  # variables:
-  #   JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
-  # parameter-store:
-  #   LOGIN_PASSWORD: /CodeBuild/dockerLoginPassword
+env:
+  secrets-manager:
+    REDDIT_API_KEY: /prod/reddit_api_key:secret_key
 
 phases:
   ###########################################
@@ -47,6 +45,9 @@ phases:
           --template-body file://templates/ratings_update_lambda.yml
           --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
 
+      #Running reddit rating tests
+      - python -m unittest tests/test_reddit_ratings.py
+
       #static s3 bucket for testing upload code
       - aws cloudformation create-stack --stack-name $STATIC_WEBPAGE_STACK
        --template-body file://templates/static_webpage.yml
@@ -79,6 +80,8 @@ phases:
 
       - python -m unittest tests/test_dev_aws_resources.py
 
+
+
   post_build:
     commands:
       - echo cleaning up resources if build was successful
@@ -88,7 +91,7 @@ phases:
 
       - aws cloudformation delete-stack --stack-name $STATIC_WEBPAGE_STACK
 
-
+      - aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
 
 artifacts:
   files:
