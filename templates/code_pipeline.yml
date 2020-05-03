@@ -457,8 +457,10 @@ Resources:
             Service: [codebuild.amazonaws.com]
         Version: '2012-10-17'
       ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
         - arn:aws:iam::aws:policy/AWSCodeCommitPowerUser
         - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
       Path: /
       Policies:
           - PolicyName: CodeBuildCustomerManaged
@@ -512,23 +514,6 @@ Resources:
                   Resource:
                     - "*"
 
-                #######################
-                #Permissions needed for aws
-                #CodeBuild to create/delete stacks
-                #######################
-                - Sid: CodeBuildCfCreation
-                  Effect: Allow
-                  #######################################
-                  #Allowing CodeBuild to create
-                  #resources necessary for s3 static webpage
-                  #
-                  #######################################
-                  Action:
-                    - cloudformation:CreateStack
-                    - cloudformation:DeleteStack
-                    - cloudformation:DescribeStacks
-                  Resource:
-                    - "*"
 
 ####################
 #Role assumed by cloudformation
