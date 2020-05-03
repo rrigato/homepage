@@ -101,7 +101,7 @@ Resources:
     Properties:
       Description: Secrets string for reddit api key
       Name: /prod/reddit_api_key
-      #SecretString: !Ref RedditApiKey
+      SecretString: !Ref RedditApiKey
       Tags:
         -
           Key: keep
@@ -119,6 +119,7 @@ Resources:
     Properties:
       Description: Secrets string for reddit api secret
       Name: /prod/reddit_api_secret
+      SecretString: !Ref RedditApiSecret
       Tags:
         -
           Key: keep
