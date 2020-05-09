@@ -221,7 +221,7 @@ class RedditApi(unittest.TestCase):
             and validating the handle_table_header
             function returns a list of column names
         '''
-        bs_obj = BeautifulSoup(mock_rating_table, "html5lib")
+        bs_obj = BeautifulSoup(mock_rating_table, "html.parser")
         header_columns = handle_table_header(bs_obj)
 
         self.assertEqual(header_columns,
@@ -257,7 +257,7 @@ class RedditApi(unittest.TestCase):
             and validating the handle_table_body
             function returns a list of ratings
         '''
-        bs_obj = BeautifulSoup(mock_rating_table, "html5lib")
+        bs_obj = BeautifulSoup(mock_rating_table, "html.parser")
         '''
             Stub of header columns to pass to
             handle_table_body
