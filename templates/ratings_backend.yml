@@ -5,128 +5,52 @@ AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 
 Description: |
-  Creates the backend storage and compute necessary for
-  updating ratings
+  Lambda function that updates dynamodb table from
+  templates/ratings_backend.yml
 
 Parameters:
+  BucketName:
+    Type: String
+    Default: source-code-
+
   ProjectName:
     Type: String
-    Default: RatingsBackend
-
-  RedditApiKey:
-    Type: String
-    Default: demokey
-
-  RedditApiSecret:
-    Type: String
-    Default: demosecret
-
+    Default: ratings-backend
 Resources:
-######################
-#VPC for  lambda function,
-#and dynamodb table
-######################
-  RatingsVpc:
-    Type: AWS::EC2::VPC
-    Properties:
-        CidrBlock: 192.168.0.0/20
-        Tags:
-          -
-            Key: keep
-            Value: "yes"
-          -
-            Key: reason
-            Value: dynamo-private-vpc
-          -
-            Key: region
-            Value: us-east-1
-        #will show up as the name value in the vpc console
-          -
-            Key: Name
-            Value: !Join ['', [!Ref ProjectName, '-vpc']]
 
-######################
-#Private subnet which will include lambda
-#function
-######################
-  PrivateLambdaSubnet:
-    Type: AWS::EC2::Subnet
+  WebsiteBucket:
     Properties:
-      VpcId: !Ref RatingsVpc
-      CidrBlock: 192.168.0.0/24
-      AvailabilityZone: !Select
-        - 0
-        - !GetAZs 'us-east-1'
+      BucketName: !Join ['', [ !Ref BucketName, !Ref ProjectName ]]
       Tags:
         -
           Key: keep
           Value: "yes"
         -
           Key: reason
-          Value: lambda-private-subnet
-        #will show up as the name value in the vpc console
-        -
-          Key: Name
-          Value: !Join ['', ['private-subnet-', !Ref ProjectName]]
+          Value: !Join ['', [ !Ref ProjectName, 'lambda-function']]
+    Type: "AWS::S3::Bucket"
 
-  BackendRouteTable:
-    Type: AWS::EC2::RouteTable
+############
+#Lambda function to update ratings
+#
+############
+  UpdateRatings:
+    Type: AWS::Serverless::Function
     Properties:
-      VpcId: !Ref RatingsVpc
-      Tags:
+      Handler: index.handler
+      Runtime: python3.7
+      #Default code that will be updated by
+      #CodeBuild Job
+      InlineCode: |
+        def handler(event, context):
+          print("Hello, world!")
+    Tags:
         -
           Key: keep
           Value: "yes"
         -
-          Key: Name
-          Value: !Join ['', ['vpc-route-table', !Ref ProjectName]]
-
-######################
-#Private subnet association with main route table
-#
-######################
-  # PrivateSubnetRouteAssociation:
-  #   Type: AWS::EC2::SubnetRouteTableAssociation
-  #   Properties:
-  #     SubnetId: !Ref PrivateLambdaSubnet
-  #     RouteTableId: !Ref BackendRouteTable
-
-
-# ######################
-# #Reddit API key storage
-# #
-# ######################
-#   RedditApiSecretsKey:
-#     Type: AWS::SecretsManager::Secret
-#     Properties:
-#       Description: Secrets string for reddit api key
-#       Name: /prod/reddit_api_key
-#       SecretString: !Ref RedditApiKey
-#       Tags:
-#         -
-#           Key: keep
-#           Value: "yes"
-#         -
-#           Key: reason
-#           Value: reddit-api-key
-#
-# ######################
-# #Reddit API key secret
-# #
-# ######################
-#   RedditApiSecretsSecret:
-#     Type: AWS::SecretsManager::Secret
-#     Properties:
-#       Description: Secrets string for reddit api secret
-#       Name: /prod/reddit_api_secret
-#       SecretString: !Ref RedditApiSecret
-#       Tags:
-#         -
-#           Key: keep
-#           Value: "yes"
-#         -
-#           Key: reason
-#           Value: reddit-api-secret
+          Key: reason
+          Value: !Join ['', [ !Ref ProjectName, 'lambda-function']]
 
 
 ###############################
@@ -164,4 +88,4 @@ Resources:
           Value: "yes"
         -
           Key: reason
-          Value: !Join ['', [ !Ref ProjectName, 'ratings-backend-dynamodb']]
+          Value: !Join ['', [ !Ref ProjectName, '-dynamodb']]
