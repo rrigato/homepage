@@ -30,7 +30,6 @@ phases:
       - RATINGS_UPDATE_STACK=dev-homepage-backend-logic
       - STATIC_WEBPAGE_STACK=dev-homepage-webpage
       - pip install -r tests/requirements.txt
-      - ls -l
   build:
     commands:
       - echo Defined build variables
@@ -77,6 +76,14 @@ phases:
       ##########################################
       - aws s3 sync ./web s3://$DESTINATION_BUCKET
         --exclude "*" --include "include/*" --delete
+
+
+
+    #########################################
+    #Creating deployment package and updating
+    #lambda function code
+    #
+    #########################################
 
       - python -m unittest tests/test_dev_aws_resources.py
 
