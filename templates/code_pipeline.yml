@@ -110,7 +110,7 @@ Resources:
   #unit/integration tests
   #
   ###################################
-  CodeBuildPythonTests:
+  CodeBuildPythonFrontendTests:
     #Need the DevArtifactsBucket Created first before This
     #CodeBuild Project can start
     DependsOn: DevArtifactsBucket
@@ -127,10 +127,6 @@ Resources:
 
       #Where logs are written to from code build
       LogsConfig:
-          CloudWatchLogs:
-              Status: ENABLED
-              GroupName:
-                !Join ['', ['codebuild-dev-', !Ref ProjectName]]
           S3Logs:
               Status: ENABLED
               Location:
@@ -147,7 +143,7 @@ Resources:
       #CodeCommit Git repo used for CodeBuild
       Source:
         #Buildspec file to use for the dev build
-        BuildSpec: builds/buildspec_dev.yml
+        BuildSpec: builds/buildspec_dev_homepage.yml
         Location: !GetAtt GitRepo.CloneUrlHttp
         Type: CODECOMMIT
       TimeoutInMinutes: 5
