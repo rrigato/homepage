@@ -120,7 +120,7 @@ Resources:
       Artifacts:
         Type: S3
         Location:
-            !Join ['', ['codebuild-dev', !Ref ProjectName]]
+            !Join ['', ['codebuild-dev-', !Ref ProjectName]]
         Packaging: NONE
       #Allows for git badge at top of git repo
       BadgeEnabled: true
@@ -138,7 +138,7 @@ Resources:
         Type: LINUX_CONTAINER
         Image: aws/codebuild/standard:2.0
       Name:
-          !Join ['', ['dev-tests-backend', !Ref ProjectName]]
+          !Join ['', ['dev-tests-backend-', !Ref ProjectName]]
       ServiceRole: !Ref CodeBuildRole
       #CodeCommit Git repo used for CodeBuild
       Source:
