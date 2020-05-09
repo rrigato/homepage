@@ -11,7 +11,7 @@ Description: |
 Parameters:
   BucketName:
     Type: String
-    Default: source-code-
+    Default: source-code
 
   DynamoDbTableName:
     Type: String
@@ -19,14 +19,14 @@ Parameters:
 
   ProjectName:
     Type: String
-    Default: ratings-backend
+    Default: dev-ratings-backend
 
 
 Resources:
 
   LambdaCodeBucket:
     Properties:
-      BucketName: !Join ['', [ !Ref BucketName, !Ref ProjectName ]]
+      BucketName: !Join ['-', [ !Ref ProjectName, !Ref BucketName ]]
       Tags:
         -
           Key: keep
@@ -43,6 +43,7 @@ Resources:
   UpdateRatings:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: !Join ['-', [ !Ref ProjectName, 'lambda-poll']]
       Handler: index.handler
       Runtime: python3.7
       #Default code that will be updated by
