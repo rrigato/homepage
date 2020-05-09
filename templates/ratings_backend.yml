@@ -13,9 +13,15 @@ Parameters:
     Type: String
     Default: source-code-
 
+  DynamoDbTableName:
+    Type: String
+    Default: toonami_ratings
+
   ProjectName:
     Type: String
-    Default: ratings-backend
+    Default: ratings-backend-
+
+
 Resources:
 
   WebsiteBucket:
@@ -81,11 +87,11 @@ Resources:
 
       SSESpecification:
           SSEEnabled: true
-      TableName: "toonami_ratings"
+      TableName: !Ref DynamoDbTableName
       Tags:
         -
           Key: keep
           Value: "yes"
         -
           Key: reason
-          Value: !Join ['', [ !Ref ProjectName, '-dynamodb']]
+          Value: !Join ['', [ !Ref ProjectName, 'dynamodb']]
