@@ -259,9 +259,8 @@ Resources:
   # Approval
   # Invoke
   #
-  #Actions for this environment:
+  #Stages for this environment:
   #Stage 1) Source = Get source code repository
-  #Stage 2) Deploy = setup vpc for private dynamodb/lambda
   #Stage 3) Build = Runs these CodeBuild projects in parallel:
   #builds/buildspec_dev_homepage.yml
   #builds/buildspec_dev_backend.yml
@@ -316,49 +315,6 @@ Resources:
                 RepositoryName: !GetAtt GitRepo.Name
               #Run order within stage not between stages
               RunOrder: 1
-          ###################################
-          #Stage 2) Deploys to production
-          #by updating or creating a stack as
-          #necessary
-          ###################################
-        - Name: DeployBackend
-          Actions:
-        ############################
-        #First action of this deploy prod stage
-        #Creates/updates the templates/static_webpage.yml
-        #cloudformation template which was an import
-        #existing cloudresources
-        ############################
-          - Name: DeployBackendImport
-            ActionTypeId:
-              Category: Deploy
-              Owner: AWS
-              Provider: CloudFormation
-              Version: '1'
-            InputArtifacts:
-              - Name: !GetAtt GitRepo.Name
-            OutputArtifacts:
-              - Name: RatingsImportCf
-            ##########################################
-            #configuration properties documentation:
-            #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-action-reference.html
-            ##########################################
-            Configuration:
-              #If the cloudformation stack does not exist
-              #it will be created, otherwise the stack will be updated
-              #with the template provided in TemplatePath
-              ActionMode: CREATE_UPDATE
-              Capabilities: CAPABILITY_AUTO_EXPAND
-              RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
-              StackName: !Join ['', ['dev-backend', !Ref ProjectName]]
-              #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
-              #Artifact::template_file_name
-              #is what the deploy stage is expecting as input for the
-              #cloudformation template location
-              TemplatePath:
-                  !Join ['::', [!Ref ProjectName, 'templates/ratings_backend.yml']]
-            RunOrder: 1
-
 
 
         ###############################
