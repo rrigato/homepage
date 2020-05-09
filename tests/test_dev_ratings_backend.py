@@ -58,6 +58,7 @@ class BackendTests(unittest.TestCase):
         cls.DYNAMO_TABLE_NAME = "toonami_ratings"
         cls.LAMBDA_FUNCTION_NAME = "toonami_ratings"
 
+    @unittest.skip("Skipping for now")
     def test_dynamodb_exists(self):
         '''Tests that the dynamodb table is present
 

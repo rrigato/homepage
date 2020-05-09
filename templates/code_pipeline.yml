@@ -510,6 +510,7 @@ Resources:
                   Action:
                     - iam:PassRole
                     - iam:CreateRole
+                    - iam:DeleteRole
                     - iam:GetRole
                     - iam:UpdateAssumeRolePolicy
                     - iam:DetachRolePolicy
