@@ -88,6 +88,34 @@ class BackendTests(unittest.TestCase):
             self.DYNAMO_TABLE_NAME
         )
 
+        '''
+            Testing primary key, on demand billing type
+            and that encryption is enabled on the dynamodb
+            table
+        '''
+        self.assertEqual(
+            table_configuration["Table"]["SSEDescription"]["Status"],
+            [
+                {
+                    "AttributeName": "RATINGS_OCCURRED_ON",
+                    "AttributeType": "S"
+                },
+                {
+                    "AttributeName": "TIME",
+                    "AttributeType": "S"
+                }
+            ]
+        )
+
+        self.assertEqual(
+            table_configuration["Table"]["BillingModeSummary"],
+            "PAY_PER_REQUEST"
+        )
+
+        self.assertEqual(
+            table_configuration["Table"]["SSEDescription"]["Status"],
+            "ENABLED"
+        )
 
     @unittest.skip("Skipping for now")
     def test_lambda_config(self):
