@@ -41,9 +41,6 @@ phases:
           --template-body file://templates/ratings_backend.yml
           --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
 
-      #Waits until the stack has been successfully created
-      - aws cloudformation wait stack-create-complete
-        --stack-name $RATINGS_UPDATE_STACK
 
       #Running reddit rating tests
       - python -m unittest tests/test_reddit_ratings.py
@@ -54,9 +51,9 @@ phases:
 
   post_build:
     commands:
-      - echo cleaning up resources if build was successful
+      - echo cleaning up resources
 
-      - aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
+#      - aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
 
 artifacts:
   files:
