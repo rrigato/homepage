@@ -92,7 +92,7 @@ class BackendTests(unittest.TestCase):
             Testing primary key, on demand billing type
             and that encryption is enabled on the dynamodb
             table
-        '''
+
         self.assertEqual(
             table_configuration["Table"]["SSEDescription"]["Status"],
             [
@@ -106,6 +106,7 @@ class BackendTests(unittest.TestCase):
                 }
             ]
         )
+        '''
 
         self.assertEqual(
             table_configuration["Table"]["BillingModeSummary"],
