@@ -261,13 +261,13 @@ Resources:
   #
   #Stages for this environment:
   #Stage 1) Source = Get source code repository
-  #Stage 3) Build = Runs these CodeBuild projects in parallel:
+  #stage 2) Build = Runs these CodeBuild projects in parallel:
   #builds/buildspec_dev_homepage.yml
   #builds/buildspec_dev_backend.yml
   #
-  #stage 4) Deploy create/updates the
+  #stage 3) Deploy create/updates the
   #templates/prod_resource_import.yml
-  #stage 5) Build = runs any configuration necessary
+  #stage 4) Build = runs any configuration necessary
   #to deploy built html files to prod
   ###########################################
   CodePipelineStack:
@@ -318,7 +318,7 @@ Resources:
 
 
         ###############################
-        #Stage 3
+        #stage 2
         #Dev CodeBuild jobs in two parallel actions:
         #
         #1st action - CodeBuild Project for
@@ -387,7 +387,7 @@ Resources:
 
 
           ###################################
-          #Stage 4) Deploys to production
+          #stage 3) Deploys to production
           #by updating or creating a stack as
           #necessary
           ###################################
@@ -439,9 +439,9 @@ Resources:
 
 
         ###############################
-        #Stage 5 Builds the prod
+        #stage 4 Builds the prod
         # environment by populating resources created
-        # in stage 3
+        # in stage 2
         ###############################
         - Name: BuildProdEnvironment
           Actions:
@@ -566,7 +566,7 @@ Resources:
 
 ####################
 #Role assumed by cloudformation
-#in stage 3 of the CodePipeline to
+#in stage 2 of the CodePipeline to
 #create/update the templates/prod_resource_import.yml stack
 ####################
   ProdCodeDeployRole:
