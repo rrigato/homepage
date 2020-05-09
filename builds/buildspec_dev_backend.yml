@@ -1,0 +1,57 @@
+############################
+#Logic for creating, updating and testing the
+#aws resources necessary for making the api backend
+#
+#1) Runs the cloudformation template to create the necessary resources
+#2) Runs python coverage function to generate Auto HTML documentation
+##) Runs unit tests of lambda functions, checks aws resources created
+#
+#
+############################
+version: 0.2
+
+env:
+  secrets-manager:
+    REDDIT_CLIENT_KEY: /prod/reddit_api_key
+    REDDIT_CLIENT_SECRET: /prod/reddit_api_secret
+
+phases:
+  ###########################################
+  #Uses a python runtime
+  #Note that you do not need the \ to escape
+  #aws cli commands
+  ###########################################
+  install:
+    runtime-versions:
+       python: 3.7
+    commands:
+      - echo Entered the install phase...
+      - BUILD_ENVIRONMENT=dev-ratings
+      - RATINGS_UPDATE_STACK=dev-homepage-backend-logic
+      - pip install -r tests/requirements.txt
+  build:
+    commands:
+      - echo Defined build variables
+      - echo $BUILD_ENVIRONMENT
+      - echo $RATINGS_UPDATE_STACK
+
+
+      - echo "Creating $RATINGS_UPDATE_STACK"
+      - aws cloudformation create-stack --stack-name $RATINGS_UPDATE_STACK
+          --template-body file://templates/ratings_update_lambda.yml
+          --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
+
+      #Running reddit rating tests
+      - python -m unittest tests/test_reddit_ratings.py
+
+
+
+  post_build:
+    commands:
+      - echo cleaning up resources if build was successful
+
+      - aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
+
+artifacts:
+  files:
+    - ./logs/*
