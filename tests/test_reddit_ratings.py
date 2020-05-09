@@ -14,7 +14,6 @@ import unittest
 Where the python script was executed from
 '''
 WORKING_DIRECTORY = os.getcwd()
-os.sys.path.append(WORKING_DIRECTORY)
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2020
 
