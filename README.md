@@ -104,6 +104,15 @@ Provides information on each directory/ source file
 
 #### builds
 
+- buildspec_dev_homepage.yml = Creates templates/static_webpage.yml
+and tests static html/webpage configuration
+
+- buildspec_dev_backend.yml = Creates templates/ratings_backend.yml
+and Tests backend ratings logic
+
+
+- buildspec_prod.yml = Prod homepage deployment
+
 ##### py
     Directory for custom python scripts that setup build configuration
 
