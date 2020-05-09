@@ -83,6 +83,11 @@ class BackendTests(unittest.TestCase):
             TableName=self.DYNAMO_TABLE_NAME
         )
 
+        self.assertEqual(
+            table_configuration["Table"]["TableName"],
+            self.DYNAMO_TABLE_NAME
+        )
+
 
     @unittest.skip("Skipping for now")
     def test_lambda_config(self):
