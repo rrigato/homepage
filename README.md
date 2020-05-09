@@ -225,6 +225,17 @@ updating ratings
 
 #### tests
 
+- test_dev_aws_resources.py = tests dev website
+
+- test_dev_ratings_backend.py = tests backend resources for storing
+calling televison ratings api
+
+- test_reddit_ratings.py = tests logic for making api call to
+return television ratings
+
+- test_prod_aws_resources.py = ryanrigato.com resources and webpage
+testing
+
 ##### util
 - reddit_search_response.json = Reddit search api json response using the
 following api query:
