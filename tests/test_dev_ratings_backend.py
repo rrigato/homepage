@@ -109,7 +109,7 @@ class BackendTests(unittest.TestCase):
         '''
 
         self.assertEqual(
-            table_configuration["Table"]["BillingModeSummary"],
+            table_configuration["Table"]["BillingModeSummary"]["BillingMode"],
             "PAY_PER_REQUEST"
         )
 
