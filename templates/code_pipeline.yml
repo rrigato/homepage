@@ -357,10 +357,13 @@ Resources:
                   !Join ['::', [!Ref ProjectName, 'templates/ratings_backend.yml']]
             RunOrder: 1
 
+
+
         ###############################
         #Stage 3 Builds the code in the
-        #Dev environment
-        #
+        #Dev environment in two parallel actions:
+        #1st action - CodeBuild Project for builds/buildspec_dev_homepage.yml
+        #2nd action - CodeBuild Project for builds/buildspec_dev_backend.yml
         ###############################
         - Name: BuildDevEnvironment
           Actions:
@@ -381,14 +384,42 @@ Resources:
             OutputArtifacts:
               - Name: BuildDev
 
-            #########################################
-            #Configuration Details by provider can be found here:
-            #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#structure-configuration-examples
-            #
-            #########################################
+
+            #Name of CodeBuild defined previously
             Configuration:
                 ProjectName:
                     !Join ['', ['dev-tests-', !Ref ProjectName]]
+            RunOrder: 1
+
+        ##################################
+        #Running the CodeBuild actions in parallel
+        #This CodeBuild corresponds to
+        #builds/buildspec_dev_backend.yml
+        #
+        ##################################
+          - Name: BuildBackend
+              ######################################
+              #List of valid action type providers
+              #by action can be found here:
+              #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers
+              ######################################
+            ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: '1'
+                Provider: CodeBuild
+
+            InputArtifacts:
+              - Name: !GetAtt GitRepo.Name
+            OutputArtifacts:
+              - Name: BuildDevBackend
+
+            #Name of CodeBuild defined previously
+            Configuration:
+                ProjectName:
+                    !Join ['', ['dev-tests-backend-', !Ref ProjectName]]
+            #Same runorder results in parallel CodeBuild
+            #projects
             RunOrder: 1
 
 
