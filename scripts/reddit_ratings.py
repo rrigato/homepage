@@ -352,7 +352,7 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
         Raises
         ------
     """
-    bs_obj = BeautifulSoup(reddit_post_html, "html5lib")
+    bs_obj = BeautifulSoup(reddit_post_html, "html.parser")
     header_columns = handle_table_header(bs_obj)
     body_dict = handle_table_body(bs_obj=bs_obj,
         header_columns=header_columns)
