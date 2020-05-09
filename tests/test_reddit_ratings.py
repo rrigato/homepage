@@ -309,10 +309,15 @@ class RedditApi(unittest.TestCase):
             ratings_title="Toonami Ratings for November 2nd, 2019"
         )
 
-
+        '''
+        todo change to datetime like the
+        following:
+            datetime.strptime("2019-11-02", "%Y-%m-%d") 
+        '''
         self.assertEqual(
             clean_saturday_ratings[0]["ratings_occurred_on"],
-            datetime.strptime("2019-11-02", "%Y-%m-%d")
+            "2019-11-02"
+
         )
         self.assertEqual(clean_saturday_ratings[2]["Viewers (000)"],
             "453"
