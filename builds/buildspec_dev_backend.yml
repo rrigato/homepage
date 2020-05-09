@@ -38,7 +38,7 @@ phases:
 
       - echo "Creating $RATINGS_UPDATE_STACK"
       - aws cloudformation create-stack --stack-name $RATINGS_UPDATE_STACK
-          --template-body file://templates/ratings_update_lambda.yml
+          --template-body file://templates/ratings_backend.yml
           --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
 
       #Running reddit rating tests
