@@ -43,7 +43,7 @@ class BackendTests(unittest.TestCase):
         ------
     """
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         '''Unitest function that is run once for the class
 
             Parameters
@@ -55,9 +55,9 @@ class BackendTests(unittest.TestCase):
             Raises
             ------
         '''
-        get_logger()
+        cls.DYNAMO_TABLE_NAME = "toonami_ratings"
 
-    def test_dynamodb(self):
+    def test_dynamodb_exists(self):
         '''Tests that the dynamodb table is present
 
             Parameters
@@ -78,7 +78,7 @@ class BackendTests(unittest.TestCase):
         region_name='us-east-1')
 
         table_configuration = dynamo_client.describe_table(
-            cls.DYNAMO_TABLE_NAME
+            TableName=self.DYNAMO_TABLE_NAME
         )
 
 
