@@ -19,12 +19,12 @@ Parameters:
 
   ProjectName:
     Type: String
-    Default: ratings-backend-
+    Default: ratings-backend
 
 
 Resources:
 
-  WebsiteBucket:
+  LambdaCodeBucket:
     Properties:
       BucketName: !Join ['', [ !Ref BucketName, !Ref ProjectName ]]
       Tags:
@@ -33,7 +33,7 @@ Resources:
           Value: "yes"
         -
           Key: reason
-          Value: !Join ['', [ !Ref ProjectName, 'lambda-function']]
+          Value: !Join ['-', [ !Ref ProjectName, 'lambda-function']]
     Type: "AWS::S3::Bucket"
 
 ############
@@ -56,7 +56,7 @@ Resources:
           Value: "yes"
         -
           Key: reason
-          Value: !Join ['', [ !Ref ProjectName, 'lambda-function']]
+          Value: !Join ['-', [ !Ref ProjectName, 'lambda-function']]
 
 
 ###############################
@@ -94,4 +94,4 @@ Resources:
           Value: "yes"
         -
           Key: reason
-          Value: !Join ['', [ !Ref ProjectName, 'dynamodb']]
+          Value: !Join ['-', [ !Ref ProjectName, 'dynamodb']]
