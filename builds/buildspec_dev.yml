@@ -27,7 +27,6 @@ phases:
       - echo Entered the install phase...
       - BUILD_ENVIRONMENT=dev
       - DESTINATION_BUCKET=dev-static-site-homepage
-      - RATINGS_UPDATE_STACK=dev-homepage-backend-logic
       - STATIC_WEBPAGE_STACK=dev-homepage-webpage
       - pip install -r tests/requirements.txt
   build:
@@ -35,17 +34,10 @@ phases:
       - echo Defined build variables
       - echo $BUILD_ENVIRONMENT
       - echo $DESTINATION_BUCKET
-      - echo $RATINGS_UPDATE_STACK
       - echo $STATIC_WEBPAGE_STACK
 
 
-      - echo "Creating $RATINGS_UPDATE_STACK"
-      - aws cloudformation create-stack --stack-name $RATINGS_UPDATE_STACK
-          --template-body file://templates/ratings_update_lambda.yml
-          --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
 
-      #Running reddit rating tests
-      - python -m unittest tests/test_reddit_ratings.py
 
       #static s3 bucket for testing upload code
       - aws cloudformation create-stack --stack-name $STATIC_WEBPAGE_STACK
@@ -97,8 +89,6 @@ phases:
       - aws s3 rm s3://$DESTINATION_BUCKET --recursive
 
       - aws cloudformation delete-stack --stack-name $STATIC_WEBPAGE_STACK
-
-      - aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
 
 artifacts:
   files:
