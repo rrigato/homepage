@@ -310,9 +310,8 @@ class RedditApi(unittest.TestCase):
         )
 
         '''
-        todo change to datetime like the
-        following:
-            datetime.strptime("2019-11-02", "%Y-%m-%d") 
+            Using date format that aligns with
+            historical ratings
         '''
         self.assertEqual(
             clean_saturday_ratings[0]["ratings_occurred_on"],
@@ -335,18 +334,26 @@ class RedditApi(unittest.TestCase):
             rating_call_counter=0,
             ratings_title="Toonami Ratings for December 21st, 2019"
         )
+        '''
+            Using date format that aligns with
+            historical ratings
+        '''
         self.assertEqual(
             clean_saturday_st[0]["ratings_occurred_on"],
-            datetime.strptime("2019-12-21", "%Y-%m-%d")
+            "2019-12-21"
         )
 
         clean_saturday_th = handle_table_clean(mock_rating_table,
             rating_call_counter=0,
             ratings_title="Toonami Ratings for January 18th, 2020"
         )
+        '''
+            Using date format that aligns with
+            historical ratings
+        '''
         self.assertEqual(
             clean_saturday_th[0]["ratings_occurred_on"],
-            datetime.strptime("2020-01-18", "%Y-%m-%d")
+            "2020-01-18"
         )
 
     @patch("scripts.reddit_ratings.get_news_flair")
