@@ -56,6 +56,7 @@ class BackendTests(unittest.TestCase):
             ------
         '''
         cls.DYNAMO_TABLE_NAME = "toonami_ratings"
+        cls.LAMBDA_FUNCTION_NAME = "toonami_ratings"
 
     def test_dynamodb_exists(self):
         '''Tests that the dynamodb table is present
@@ -81,6 +82,31 @@ class BackendTests(unittest.TestCase):
             TableName=self.DYNAMO_TABLE_NAME
         )
 
+
+
+    def test_lambda_config(self):
+        '''Tests that the lambda function configuration
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        '''
+
+        """
+            Creates dynamodb resource and
+            puts an item in the table
+        """
+        dynamo_client = get_boto_clients(resource_name='dynamodb',
+        region_name='us-east-1')
+
+        table_configuration = dynamo_client.describe_table(
+            TableName=self.DYNAMO_TABLE_NAME
+        )
 
     @unittest.skip("Skipping for now")
     def test_dynamodb(self):
