@@ -262,8 +262,10 @@ Resources:
   #Actions for this environment:
   #Stage 1) Source = Get source code repository
   #Stage 2) Deploy = setup vpc for private dynamodb/lambda
-  #Stage s) Build = Build and test a dev environment
-  #Generate html files from markdown, store output for next stage
+  #Stage 3) Build = Runs these CodeBuild projects in parallel:
+  #builds/buildspec_dev_homepage.yml
+  #builds/buildspec_dev_backend.yml
+  #
   #stage 4) Deploy create/updates the
   #templates/prod_resource_import.yml
   #stage 5) Build = runs any configuration necessary
@@ -360,10 +362,14 @@ Resources:
 
 
         ###############################
-        #Stage 3 Builds the code in the
-        #Dev environment in two parallel actions:
-        #1st action - CodeBuild Project for builds/buildspec_dev_homepage.yml
-        #2nd action - CodeBuild Project for builds/buildspec_dev_backend.yml
+        #Stage 3
+        #Dev CodeBuild jobs in two parallel actions:
+        #
+        #1st action - CodeBuild Project for
+        #builds/buildspec_dev_homepage.yml
+        #
+        #2nd action - CodeBuild Project for
+        #builds/buildspec_dev_backend.yml
         ###############################
         - Name: BuildDevEnvironment
           Actions:
