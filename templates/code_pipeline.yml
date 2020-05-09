@@ -524,6 +524,7 @@ Resources:
                   Action:
                     - secretsmanager:GetSecretValue
                     - secretsmanager:UpdateSecret
+                    - secretsmanager:DeleteSecret
                   Resource:
                     - "*"
 
