@@ -56,8 +56,8 @@ class BackendTests(unittest.TestCase):
             ------
         '''
         cls.DYNAMO_TABLE_NAME = "toonami_ratings"
-        cls.LAMBDA_FUNCTION_NAME = "toonami_ratings"
-        cls.S3_CODE_BUCKET = "toonami_ratings"
+        cls.LAMBDA_FUNCTION_NAME = "dev-ratings-backend-lambda-poll"
+        cls.S3_CODE_BUCKET = "dev-ratings-backend-source-code"
 
     def test_dynamodb_config(self):
         '''Tests that the dynamodb table is present
@@ -88,7 +88,6 @@ class BackendTests(unittest.TestCase):
             self.DYNAMO_TABLE_NAME
         )
 
-        import pdb; pdb.set_trace()
 
         '''
             Checking that primary key configuration is valid
@@ -130,7 +129,7 @@ class BackendTests(unittest.TestCase):
             "ENABLED"
         )
 
-    @unittest.skip("Skipping for now")
+
     def test_lambda_config(self):
         '''Tests that the lambda function configuration
 
@@ -148,13 +147,16 @@ class BackendTests(unittest.TestCase):
             Creates dynamodb resource and
             puts an item in the table
         """
-        lambda_client = get_boto_clients(resource_name='lambda',
-        region_name='us-east-1')
+        lambda_client = get_boto_clients(
+            resource_name='lambda',
+            region_name='us-east-1'
+        )
 
 
         lambda_function_configuration = lambda_client.describe_table(
             TableName=self.LAMBDA_FUNCTION_NAME
         )
+        import pdb; pdb.set_trace()
 
 
     @unittest.skip("Skipping for now")
