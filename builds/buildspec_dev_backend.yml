@@ -27,12 +27,14 @@ phases:
     commands:
       - echo Entered the install phase...
       - BUILD_ENVIRONMENT=dev-ratings
+      - LAMBDA_FUNCTION_NAME=dev-ratings-backend-lambda-poll
       - RATINGS_UPDATE_STACK=dev-homepage-backend-logic
       - pip install -r tests/requirements.txt
   build:
     commands:
       - echo Defined build variables
       - echo $BUILD_ENVIRONMENT
+      - echo $LAMBDA_FUNCTION_NAME
       - echo $RATINGS_UPDATE_STACK
 
 
@@ -58,7 +60,14 @@ phases:
 
       - pip install --target ./deploypkg bs4
 
+      #zip depenedencies and add source code
       - zip -r9 built_lambda.zip ./deploypkg
+
+      - zip -g built_lambda.zip lambda/index.py
+
+      - aws lambda update-function-code
+        --function-name $LAMBDA_FUNCTION_NAME
+        --zip-file fileb://built_lambda.zip
 
 
 
