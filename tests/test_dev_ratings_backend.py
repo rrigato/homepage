@@ -92,30 +92,34 @@ class BackendTests(unittest.TestCase):
 
         '''
             Checking that primary key configuration is valid
+            Only two primary keys:
+            HASH Key - RATINGS_OCCURRED_ON
+            RANGE Key - TIME
         '''
-        attribute_name_list = []
+        self.assertEqual(
+            len(table_configuration["Table"]["KeySchema"]),
+            2
+        )
         for primary_key in table_configuration["Table"]["KeySchema"]:
-            attribute_name.append(primary_key["AttributeName"])
+            if (primary_key["AttributeName"] == "RATINGS_OCCURRED_ON"):
+                self.assertEqual(
+                    primary_key["KeyType"],
+                    "HASH"
+                )
+            else:
+                self.assertEqual(
+                    primary_key["AttributeName"],
+                    "TIME"
+                )
+                self.assertEqual(
+                    primary_key["KeyType"],
+                    "RANGE"
+                )
         '''
             Testing on demand billing type
             and that encryption is enabled on the dynamodb
             table
         '''
-        self.assertEqual(
-            table_configuration["Table"]["SSEDescription"]["Status"],
-            [
-                {
-                    "AttributeName": "RATINGS_OCCURRED_ON",
-                    "AttributeType": "S"
-                },
-                {
-                    "AttributeName": "TIME",
-                    "AttributeType": "S"
-                }
-            ]
-        )
-
-
         self.assertEqual(
             table_configuration["Table"]["BillingModeSummary"]["BillingMode"],
             "PAY_PER_REQUEST"
