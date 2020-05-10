@@ -153,13 +153,30 @@ class BackendTests(unittest.TestCase):
         )
 
 
-        lambda_function_configuration = lambda_client.describe_table(
-            TableName=self.LAMBDA_FUNCTION_NAME
+        lambda_configuration = lambda_client.get_function(
+            FunctionName=self.LAMBDA_FUNCTION_NAME
         )
-        import pdb; pdb.set_trace()
 
 
-    @unittest.skip("Skipping for now")
+        '''
+            Testing state, runtime, and handler config
+        '''
+        self.assertEqual(
+            lambda_configuration["Configuration"]["Runtime"],
+            "python3.7"
+        )
+
+        self.assertEqual(
+            lambda_configuration["Configuration"]["State"],
+            "Active"
+        )
+
+        self.assertEqual(
+            lambda_configuration["Configuration"]["Handler"],
+            "index.handler"
+        )
+
+
     def test_s3_code_bucket(self):
         '''s3 bucket configuration that stores lambda code test
 
@@ -179,10 +196,11 @@ class BackendTests(unittest.TestCase):
         s3_client = get_boto_clients(resource_name='s3',
         region_name='us-east-1')
 
-        s3_lambda_code_configuration = s3_client.describe_table(
+        s3_code_configuration = s3_client.describe_table(
             TableName=self.S3_CODE_BUCKET
         )
 
+        import pdb; pdb.set_trace()
 
     @unittest.skip("Skipping for now")
     def test_dynamodb(self):
