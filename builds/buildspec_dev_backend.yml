@@ -50,6 +50,16 @@ phases:
 
       - python -m unittest tests/test_dev_ratings_backend.py
 
+      #Creating Deployment package for lambda dependencies
+      - mkdir deploypkg
+
+      #install dependencies into local deploypkg folder
+      - pip install --target ./deploypkg requests
+
+      - pip install --target ./deploypkg bs4
+
+      - zip -r9 built_lambda.zip ./deploypkg
+
 
 
   post_build:
