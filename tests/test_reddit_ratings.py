@@ -456,7 +456,7 @@ class RedditApi(unittest.TestCase):
 
         news_flair_patch.return_value = self.news_flair_fixture
         
-        ratings_post_list = ratings_iteration()
+        all_ratings_posts = ratings_iteration()
         '''
             Testing that the get_news_flair
             meaning we are only looking for the most recent ratings
@@ -471,7 +471,17 @@ class RedditApi(unittest.TestCase):
 
         news_flair_patch.assert_called_once_with(
             access_token="FIXTURETOKEN123",
-            posts_to_return=15
+            posts_to_return=10
+        )
+
+        self.assertEqual(
+            all_ratings_posts[5]["Time"],
+            "2:30a"
+        )
+
+        self.assertEqual(
+            12,
+            len(all_ratings_posts)
         )
 
 
