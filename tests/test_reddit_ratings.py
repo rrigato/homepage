@@ -517,16 +517,27 @@ class RedditApi(unittest.TestCase):
             Used to make sure the posts are iterated the 
             correct number of times
         '''
-        news_flair_patch.return_value = {
-            "data":{
-                "dist":5
-            }
-        }
+        news_flair_patch.return_value = self.news_flair_fixture
+
+
+        get_ratings_post_mock.return_value = [0,3]
 
         all_ratings_posts = ratings_iteration(number_posts=100)
 
+        '''
+            Should be called 4 times each if 
+            100 posts are being iterated
+        '''
+        self.assertEqual(
+            news_flair_patch.call_count,
+            4
+        )
 
-        # import pdb; pdb.set_trace()
+        self.assertEqual(
+            get_ratings_post_mock.call_count,
+            4
+        )        
+
 
 
 if __name__ == "__main__":
