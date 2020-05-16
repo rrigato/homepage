@@ -3,6 +3,7 @@ from dateutil import parser
 
 import json
 import logging
+import math
 import os
 import requests
 
@@ -493,7 +494,7 @@ def ratings_iteration(number_posts=15):
         If number_posts is None we are only looking
         for the most recent ratings post
     '''
-    if (number_posts < 50):
+    if (number_posts <= 25):
         news_flair_posts = get_news_flair(
             access_token=oauth_token["access_token"],
             posts_to_return=number_posts)
@@ -522,7 +523,7 @@ def ratings_iteration(number_posts=15):
             Logic for how many posts
             you can search the reddit api for historically
         '''
-        for api_limit in range(round(1200/number_posts)):
+        for api_limit in range(math.ceil(number_posts/25)):
             news_flair_posts = get_news_flair(
                 access_token=oauth_token["access_token"],
                 posts_to_return=number_posts,
