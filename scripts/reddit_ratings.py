@@ -116,7 +116,9 @@ def get_news_flair(access_token,
         Returns
         -------
         news_flair_posts : dict
-            Dict of all posts after fullname_after
+            Dict of all posts with a news reddit flair
+            after fullname_after
+
 
 
         Raises
@@ -386,6 +388,23 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
     for show_element in body_dict:
         show_element["ratings_occurred_on"] = ratings_occurred_on[0].strftime("%Y-%m-%d")
     return(body_dict)
+
+def iterate_handle_table_clean(news_flair_posts, ):
+    """Tests cleaning of ratings data
+
+        Parameters
+        ----------
+        news_flair_posts : dict
+            Dict of all posts with a news reddit flair
+            after fullname_after
+        Returns
+        -------
+
+        Raises
+        ------
+    """
+    from scripts.reddit_ratings import iterate_handle_table_clean
+
 
 def ratings_iteration(number_posts=15):
     """Handles rating iteration
