@@ -468,6 +468,13 @@ def ratings_iteration(number_posts=15):
         client_secret=REDDIT_CLIENT_SECRET
         )
 
+    '''
+        Initializing ratings post name tracker
+        and list
+    '''
+    fullname_after = None
+    all_ratings_list = []
+
     logging.info("Oauth token for ratings_iteration")
     '''
         If number_posts is None we are only looking
@@ -480,6 +487,12 @@ def ratings_iteration(number_posts=15):
 
         ratings_post_list = get_ratings_post(news_flair_posts)
 
+        all_ratings_list = iterate_handle_table_clean(
+            news_flair_posts=news_flair_posts,
+            ratings_post_list=ratings_post_list,
+            ratings_list_to_append=all_ratings_list
+        )
+
         return(ratings_post_list)
 
     else:
@@ -491,12 +504,7 @@ def ratings_iteration(number_posts=15):
             "news_flair_posts must be passed an int for posts_to_return"
         )
 
-        '''
-            Initializing ratings post name tracker
-            and list
-        '''
-        fullname_after = None
-        all_ratings_list = []
+
         '''
             Logic for how many posts
             you can search the reddit api for historically
