@@ -484,11 +484,11 @@ class RedditApi(unittest.TestCase):
             len(all_ratings_posts)
         )
 
-
+    @patch("scripts.reddit_ratings.get_ratings_post")
     @patch("scripts.reddit_ratings.get_oauth_token")
     @patch("scripts.reddit_ratings.get_news_flair")
     def test_ratings_iteration_historical(self, news_flair_patch,
-         oauth_token_mock):
+         oauth_token_mock, get_ratings_post_mock):
         """Test for historical rating iterations
 
             Parameters
@@ -501,6 +501,10 @@ class RedditApi(unittest.TestCase):
                 Mock object used to patch
                 get_oauth_token
 
+            get_ratings_post_mock : unittest.mock.MagicMock
+                Mock object used to patch
+                get_ratings_post
+
             Returns
             -------
 
@@ -508,6 +512,21 @@ class RedditApi(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import ratings_iteration
+
+        '''
+            Used to make sure the posts are iterated the 
+            correct number of times
+        '''
+        news_flair_patch.return_value = {
+            "data":{
+                "dist":5
+            }
+        }
+
+        all_ratings_posts = ratings_iteration(number_posts=100)
+
+
+        # import pdb; pdb.set_trace()
 
 
 if __name__ == "__main__":
