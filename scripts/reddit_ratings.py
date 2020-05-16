@@ -454,13 +454,13 @@ def iterate_handle_table_clean(news_flair_posts, ratings_post_list,
 
 
 
-def ratings_iteration(number_posts=15):
+def ratings_iteration(number_posts=10):
     """Handles rating iteration
 
         Parameters
         ----------
         number_posts : int
-            Defaults to 15, the number of news posts to 
+            Defaults to 10, the number of news posts to 
             search over for ratings.
 
         Returns
