@@ -397,9 +397,25 @@ class RedditApi(unittest.TestCase):
             ratings_post_list=[0,3],
             ratings_list_to_append=existing_ratings_list
         )
+
         self.assertEqual(len(all_ratings_list),
             14
-        )
+        ) 
+
+        '''
+            Checking that the primary keys used are unique
+
+            set(["x", "x"])
+            
+            returns unique values
+            {"x"}
+        '''
+        primary_key_list = []
+        for show_rating in all_ratings_list:
+            primary_key_list.append(
+                str(show_rating["Time"]) + 
+                str(show_rating["ratings_occurred_on"])
+            )
 
 
 
