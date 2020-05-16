@@ -511,8 +511,8 @@ def ratings_iteration(number_posts=15):
 
     else:
         '''
-            Otherwise we need to iterate over the
-            all news posts
+            Iterate in batches of 25 if we want to 
+            iterate all posts
         '''
         assert type(number_posts) is int, (
             "news_flair_posts must be passed an int for posts_to_return"
@@ -520,10 +520,9 @@ def ratings_iteration(number_posts=15):
 
 
         '''
-            Logic for how many posts
-            you can search the reddit api for historically
+            Logic for breaking apart the historical api calls
         '''
-        for api_limit in range(math.ceil(number_posts/25)):
+        for api_call_count in range(math.ceil(number_posts/25)):
             news_flair_posts = get_news_flair(
                 access_token=oauth_token["access_token"],
                 posts_to_return=number_posts,
@@ -532,7 +531,7 @@ def ratings_iteration(number_posts=15):
             '''
                 No more historical posts to search over
             '''
-            if news_flair_posts["data"]["dist"] ==0:
+            if news_flair_posts["data"]["dist"] == 0:
                 logging.info("No more posts to iterate")
                 return(all_ratings_list)
 
@@ -573,7 +572,7 @@ def main():
         ------
     """
     get_logger()
-    all_ratings_list = ratings_iteration(number_posts=15)
+    all_ratings_list = ratings_iteration(number_posts=10)
 
     with open("ratings_placeholder.json", "w") as output_file:
         output_file.write(json.dumps(all_ratings_list))
