@@ -405,9 +405,9 @@ def iterate_handle_table_clean(news_flair_posts, ratings_post_list,
             search api response that are ratings posts
             Ex: [0, 3, 8]
 
-        all_ratings_list : list
-            List of dict where each element is
-            one saturday night ratings
+        ratings_list_to_append : list
+            Existing list of dict where each element is
+            one saturday night ratings that will be appended to
 
         Returns
         -------
@@ -437,8 +437,7 @@ def iterate_handle_table_clean(news_flair_posts, ratings_post_list,
         all_ratings_list.extend(clean_ratings_post)
 
     return(all_ratings_list)
-    import pdb; pdb.set_trace()
-    pass
+
 
 
 def ratings_iteration(number_posts=15):
@@ -525,6 +524,11 @@ def ratings_iteration(number_posts=15):
                 logging.info("No more posts to iterate")
                 return(all_ratings_list)
 
+            all_ratings_list = iterate_handle_table_clean(
+                news_flair_posts=news_flair_posts,
+                ratings_post_list=ratings_post_list,
+                ratings_list_to_append=all_ratings_list
+            )
             '''
                 Gets the fullname of the last post
                 in the ratings_post_list
