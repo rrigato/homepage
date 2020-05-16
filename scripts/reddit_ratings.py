@@ -350,7 +350,17 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
 
         Returns
         -------
-
+        body_dict : dict
+            Dict of individual show ratings
+            Ex:
+            {
+                "Time": "12:00a",
+                "Show": "My Hero Academia (r)", 
+                "Viewers (000)": "590", 
+                "18-49 Rating": "0.29", 
+                "18-49 Views (000)": "380", 
+                "ratings_occurred_on": "2020-05-09"
+            }
 
         Raises
         ------
