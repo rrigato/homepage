@@ -47,9 +47,14 @@ class RedditApi(unittest.TestCase):
             a dict that represents news posts
         '''
         with open("util/news_flair_fixture.json", "r") as news_flair:
-            cls.new_flair_fixture = json.load(news_flair)
+            cls.news_flair_fixture = json.load(news_flair)
         
-
+        cls.oauth_token_fixture = {
+            "access_token": "FIXTURETOKEN123",
+            "token_type": "bearer",
+            "expires_in": 3600,
+            "scope": "*"
+        }
 
     def test_get_oath_token(self):
         """Tests oath token returned from reddit api
@@ -323,6 +328,7 @@ class RedditApi(unittest.TestCase):
             "2020-01-18"
         )
 
+    @patch("scripts.reddit_ratings.get_oauth_token")
     @patch("scripts.reddit_ratings.get_news_flair")
     def test_ratings_iteration(self, news_flair_patch):
         """Tests that we can iterate over most recent posts
@@ -341,8 +347,10 @@ class RedditApi(unittest.TestCase):
         """
         from scripts.reddit_ratings import ratings_iteration
 
-        news_flair_patch.return_value = 
-        ratings_iteration()
+        
+        news_flair_patch.return_value = self.news_flair_fixture
+        
+        ratings_post_list = ratings_iteration()
         '''
             Testing that the get_news_flair
             meaning we are only looking for the most recent ratings
@@ -350,6 +358,16 @@ class RedditApi(unittest.TestCase):
         self.assertEqual(news_flair_patch.call_count,
             1
         )
+
+
+        '''
+            Only one news post in the fixture
+        '''
+        self.assertEqual(news_flair_patch.call_count,
+            [0]
+        )
+
+        import pdb; pdb.set_trace()
 
 if __name__ == "__main__":
     unittest.main()

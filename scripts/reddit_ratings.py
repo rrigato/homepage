@@ -427,6 +427,8 @@ def ratings_iteration(number_posts=15):
 
         ratings_post_list = get_ratings_post(news_flair_posts)
 
+        return(ratings_post_list)
+
     else:
         '''
             Otherwise we need to iterate over the
