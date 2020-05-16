@@ -485,6 +485,30 @@ class RedditApi(unittest.TestCase):
         )
 
 
+    @patch("scripts.reddit_ratings.get_oauth_token")
+    @patch("scripts.reddit_ratings.get_news_flair")
+    def test_ratings_iteration_historical(self, news_flair_patch,
+         oauth_token_mock):
+        """Test for historical rating iterations
+
+            Parameters
+            ----------
+            news_flair_patch : unittest.mock.MagicMock
+                Mock object used to test how often
+                get_news_flair is called
+
+            oauth_token_mock : unittest.mock.MagicMock
+                Mock object used to patch
+                get_oauth_token
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from scripts.reddit_ratings import ratings_iteration
+
 
 if __name__ == "__main__":
     unittest.main()
