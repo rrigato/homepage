@@ -342,11 +342,17 @@ class RedditApi(unittest.TestCase):
         """
         from scripts.reddit_ratings import iterate_handle_table_clean
 
-
+        
+        '''
+            Checking the iteration returns 12 seperate ratings dicts
+        '''
         all_ratings_list = iterate_handle_table_clean(
             news_flair_posts=self.news_flair_fixture,
             ratings_post_list=[0,3],
             ratings_list_to_append=[]
+        )
+        self.assertEqual(len(all_ratings_list),
+            12
         )
 
         
@@ -400,7 +406,7 @@ class RedditApi(unittest.TestCase):
             posts_to_return=15
         )
 
-        import pdb; pdb.set_trace()
+
 
 if __name__ == "__main__":
     unittest.main()
