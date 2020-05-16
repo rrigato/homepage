@@ -343,6 +343,15 @@ class RedditApi(unittest.TestCase):
         from scripts.reddit_ratings import iterate_handle_table_clean
 
 
+        all_ratings_list = iterate_handle_table_clean(
+            news_flair_posts=self.news_flair_fixture,
+            ratings_post_list=[0,3],
+            ratings_list_to_append=[]
+        )
+
+        
+
+
     @patch("scripts.reddit_ratings.get_oauth_token")
     @patch("scripts.reddit_ratings.get_news_flair")
     def test_ratings_iteration(self, news_flair_patch, oauth_token_mock):
