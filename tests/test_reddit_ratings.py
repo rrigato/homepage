@@ -328,6 +328,21 @@ class RedditApi(unittest.TestCase):
             "2020-01-18"
         )
 
+    def test_iterate_handle_table_clean(self):
+        """Tests cleaning of ratings data
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from scripts.reddit_ratings import iterate_handle_table_clean
+
+
     @patch("scripts.reddit_ratings.get_oauth_token")
     @patch("scripts.reddit_ratings.get_news_flair")
     def test_ratings_iteration(self, news_flair_patch, oauth_token_mock):
