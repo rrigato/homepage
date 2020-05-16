@@ -387,15 +387,14 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
         show_element["ratings_occurred_on"] = ratings_occurred_on[0].strftime("%Y-%m-%d")
     return(body_dict)
 
-def ratings_iteration(number_posts=None):
+def ratings_iteration(number_posts=15):
     """Handles rating iteration
 
         Parameters
         ----------
         number_posts : int
-            Optional arguement, if this is not None
-            we only go looking for the most recent ratings,
-            otherwise we iterate all posts
+            Defaults to 15, the number of news posts to 
+            search over for ratings.
 
         Returns
         -------
@@ -421,10 +420,10 @@ def ratings_iteration(number_posts=None):
         If number_posts is None we are only looking
         for the most recent ratings post
     '''
-    if (number_posts is None):
+    if (number_posts < 50):
         news_flair_posts = get_news_flair(
             access_token=oauth_token["access_token"],
-            posts_to_return=15)
+            posts_to_return=number_posts)
 
         ratings_post_list = get_ratings_post(news_flair_posts)
 

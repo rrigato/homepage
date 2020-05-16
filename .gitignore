@@ -1,0 +1,4 @@
+devops/CI.sh
+logs/*
+templates/lambda_edge.yml
+templates/ratings_vpc.yml
