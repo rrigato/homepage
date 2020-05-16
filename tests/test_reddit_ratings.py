@@ -29,6 +29,26 @@ class RedditApi(unittest.TestCase):
         Raises
         ------
     """
+    @classmethod
+    def setUpClass(cls):
+        """Unitest function that is run once for the class
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        '''
+            Assigns a class attribute which is 
+            a dict that represents news posts
+        '''
+        with open("util/news_flair_fixture.json", "r") as news_flair:
+            cls.new_flair_fixture = json.load(news_flair)
+        
 
 
     def test_get_oath_token(self):
@@ -320,6 +340,8 @@ class RedditApi(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import ratings_iteration
+
+        news_flair_patch.return_value = 
         ratings_iteration()
         '''
             Testing that the get_news_flair
