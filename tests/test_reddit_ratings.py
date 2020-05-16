@@ -10,36 +10,12 @@ import requests
 import unittest
 
 
-'''
-Where the python script was executed from
-'''
-WORKING_DIRECTORY = os.getcwd()
+
+
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2020
 
-def get_logger():
-    """Sets up logger
 
-        Parameters
-        ----------
-
-        Returns
-        -------
-
-        Raises
-        ------
-    """
-    '''
-        Adds the file name to the logs/ directory without
-        the extension
-    '''
-    logging.basicConfig(
-        filename=os.path.join(WORKING_DIRECTORY, "logs/",
-        os.path.basename(__file__).split(".")[0]),
-        format="%(asctime)s %(message)s",
-         datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.DEBUG
-         )
-    logging.info("\n")
 
 class RedditApi(unittest.TestCase):
     """Testing the reddit api pull
@@ -53,20 +29,6 @@ class RedditApi(unittest.TestCase):
         Raises
         ------
     """
-    @classmethod
-    def setUpClass(self):
-        """Unitest function that is run once for the class
-
-            Parameters
-            ----------
-
-            Returns
-            -------
-
-            Raises
-            ------
-        """
-        get_logger()
 
 
     def test_get_oath_token(self):
@@ -81,7 +43,7 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test of oath key")
+
         from scripts.reddit_ratings import get_oauth_token
         self.assertIsNotNone(os.environ.get(
             "REDDIT_CLIENT_KEY"
@@ -89,14 +51,12 @@ class RedditApi(unittest.TestCase):
         self.assertIsNotNone(os.environ.get(
             "REDDIT_CLIENT_SECRET"
         ))
-        logging.info("Validated environment variables")
         oauth_token = get_oauth_token(
             client_key=os.environ.get("REDDIT_CLIENT_KEY"),
             client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
         )
         self.assertIsNotNone(oauth_token["access_token"])
 
-        logging.info("Got an oauth token")
 
     def test_get_news_flair(self):
         """Tests that we are retriving posts with a news flair
@@ -111,7 +71,6 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test_get_news_flair")
         from scripts.reddit_ratings import get_oauth_token
         from scripts.reddit_ratings import get_news_flair
 
@@ -126,7 +85,6 @@ class RedditApi(unittest.TestCase):
             client_key=os.environ.get("REDDIT_CLIENT_KEY"),
             client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
         )
-        logging.info("got oauth token for /search api call")
         '''
             The fullname will anchor this search to
             ensure the api always returns the same news
@@ -153,7 +111,6 @@ class RedditApi(unittest.TestCase):
             len(news_search["data"]["children"]),
             7
         )
-        logging.info("Validated the last post returned")
         '''
             Unique id of the first post returned
         '''
@@ -161,7 +118,6 @@ class RedditApi(unittest.TestCase):
             news_search["data"]["children"][0]["data"]["name"],
             "t3_dlyuen"
         )
-        logging.info("Validated get_news_flair function")
 
     def test_get_ratings_post(self):
         """Tests that only reddit ratings news posts are returned
@@ -176,7 +132,6 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test_get_news_flair")
         from scripts.reddit_ratings import get_ratings_post
         '''
             loading a mock reddit api response to
@@ -185,7 +140,6 @@ class RedditApi(unittest.TestCase):
         '''
         with open("util/reddit_search_response.json") as static_response:
             mock_response = json.load(static_response)
-            logging.info("Loaded mock reddit api response")
             ratings_post_list = get_ratings_post(mock_response)
         '''
             Elements of the ["data"]["children"]
@@ -193,7 +147,6 @@ class RedditApi(unittest.TestCase):
         '''
         self.assertEqual(ratings_post_list,
             [0, 4, 13, 17, 19, 20, 22, 23])
-        logging.info("All ratings post in reddit search response")
 
     def test_handle_table_header(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
@@ -211,7 +164,6 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test of oath key")
         from scripts.reddit_ratings import handle_table_header
 
         '''
@@ -229,7 +181,6 @@ class RedditApi(unittest.TestCase):
                 "18-49 Rating", "18-49 Views (000)"
             ]
         )
-        logging.info("validated header columns returned from rest api")
 
     def test_handle_table_body(self,
         mock_rating_table=REDDIT_RATING_TABLE_2019):
@@ -247,7 +198,6 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test of oath key")
         from scripts.reddit_ratings import handle_table_body
 
         '''
@@ -282,7 +232,6 @@ class RedditApi(unittest.TestCase):
             "282"
         )
 
-        logging.info("validated list of table_body")
 
 
     def test_handle_table_clean(self,
@@ -301,7 +250,6 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test of handle_table_clean")
         from scripts.reddit_ratings import handle_table_clean
         clean_saturday_ratings = handle_table_clean(mock_rating_table,
             rating_call_counter=0,
@@ -371,7 +319,6 @@ class RedditApi(unittest.TestCase):
             Raises
             ------
         """
-        logging.info("Beginning test_ratings_iteration")
         from scripts.reddit_ratings import ratings_iteration
         ratings_iteration()
         '''
@@ -381,7 +328,6 @@ class RedditApi(unittest.TestCase):
         self.assertEqual(news_flair_patch.call_count,
             1
         )
-        logging.info("get_news_flair only called for most recent ratings")
 
 if __name__ == "__main__":
     unittest.main()
