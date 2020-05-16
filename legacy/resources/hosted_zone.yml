@@ -1,0 +1,40 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description:
+  Route53 hosted zone to cloudformation
+
+
+Resources:
+  WebsiteBucket:
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: ryanrigato.com
+      LoggingConfiguration:
+        DestinationBucketName: logs.ryanrigato.com
+        LogFilePrefix: /root
+      Tags:
+          -
+              Key: websiteReason
+              Value: portfolio
+          -
+              Key: use
+              Value: website
+      VersioningConfiguration:
+        Status: Enabled
+      WebsiteConfiguration:
+        IndexDocument: index.html
+    Type: "AWS::S3::Bucket"
+
+  # WebsiteBucketPolicy:
+  #   Properties:
+  #     Bucket: !Ref WebsiteBucket
+  #     PolicyDocument:
+  #       Version: 2012-10-17
+  #       Statement:
+  #         -
+  #           Effect: Allow
+  #           Principal: "*"
+  #           Action: s3:GetObject
+  #           Resource: !Sub "arn:aws:s3:::${WebsiteBucket}/*"
+  #   Type: "AWS::S3::BucketPolicy"
