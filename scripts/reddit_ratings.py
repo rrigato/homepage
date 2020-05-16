@@ -391,7 +391,7 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
     return(body_dict)
 
 def iterate_handle_table_clean(news_flair_posts, ratings_post_list,
-    all_ratings_list):
+    ratings_list_to_append):
     """Tests cleaning of ratings data
 
         Parameters
@@ -419,24 +419,27 @@ def iterate_handle_table_clean(news_flair_posts, ratings_post_list,
         Raises
         ------
     """
+
     '''
         Iterating over just news flair posts
         that are ratings posts
     '''
     for ratings_post in ratings_post_list:
+        
         clean_ratings_post = handle_table_clean(
             reddit_post_html=news_flair_posts["data"]["children"][ratings_post]["data"]["selftext_html"],
-                rating_call_counter=0,
-            ratings_title=news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
-
+            rating_call_counter=0,
+            ratings_title=news_flair_posts["data"]["children"][ratings_post]["data"]["title"]
+        )
         '''
             extend takes all dicts from
             clean_ratings_post and puts them in
             all_ratings_list
         '''
-        all_ratings_list.extend(clean_ratings_post)
+        ratings_list_to_append.extend(clean_ratings_post)
 
-    return(all_ratings_list)
+
+    return(ratings_list_to_append)
 
 
 
