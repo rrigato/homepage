@@ -398,8 +398,9 @@ class RedditApi(unittest.TestCase):
             ratings_list_to_append=existing_ratings_list
         )
         self.assertEqual(len(all_ratings_list),
-            12
+            14
         )
+
 
 
     @patch("scripts.reddit_ratings.get_oauth_token")
