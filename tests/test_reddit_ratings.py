@@ -371,6 +371,11 @@ class RedditApi(unittest.TestCase):
             1
         )
 
+        news_flair_patch.assert_called_once_with(
+            access_token="FIXTURETOKEN123",
+            posts_to_return=15
+        )
+
         import pdb; pdb.set_trace()
 
 if __name__ == "__main__":
