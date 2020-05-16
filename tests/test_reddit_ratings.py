@@ -412,12 +412,19 @@ class RedditApi(unittest.TestCase):
         '''
         primary_key_list = []
         for show_rating in all_ratings_list:
+            '''
+                Concatening the two fields that should be 
+                unique
+            '''
             primary_key_list.append(
                 str(show_rating["Time"]) + 
                 str(show_rating["ratings_occurred_on"])
             )
 
-
+        self.assertEqual(
+            14,
+            len(set(primary_key_list))
+        )
 
     @patch("scripts.reddit_ratings.get_oauth_token")
     @patch("scripts.reddit_ratings.get_news_flair")
