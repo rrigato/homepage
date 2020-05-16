@@ -390,7 +390,8 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
         show_element["ratings_occurred_on"] = ratings_occurred_on[0].strftime("%Y-%m-%d")
     return(body_dict)
 
-def iterate_handle_table_clean(news_flair_posts, ratings_post_list):
+def iterate_handle_table_clean(news_flair_posts, ratings_post_list,
+    all_ratings_list):
     """Tests cleaning of ratings data
 
         Parameters
@@ -418,6 +419,25 @@ def iterate_handle_table_clean(news_flair_posts, ratings_post_list):
         Raises
         ------
     """
+    '''
+        Iterating over just news flair posts
+        that are ratings posts
+    '''
+    for ratings_post in ratings_post_list:
+        clean_ratings_post = handle_table_clean(
+            reddit_post_html=news_flair_posts["data"]["children"][ratings_post]["data"]["selftext_html"],
+                rating_call_counter=0,
+            ratings_title=news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
+
+        '''
+            extend takes all dicts from
+            clean_ratings_post and puts them in
+            all_ratings_list
+        '''
+        all_ratings_list.extend(clean_ratings_post)
+
+    return(all_ratings_list)
+    import pdb; pdb.set_trace()
     pass
 
 
@@ -504,22 +524,6 @@ def ratings_iteration(number_posts=15):
             if len(ratings_post_list) == 0:
                 logging.info("No more posts to iterate")
                 return(all_ratings_list)
-            '''
-                Iterating over just news flair posts
-                that are ratings posts
-            '''
-            for ratings_post in ratings_post_list:
-                clean_ratings_post = handle_table_clean(
-                    reddit_post_html=news_flair_posts["data"]["children"][ratings_post]["data"]["selftext_html"],
-                     rating_call_counter=0,
-                    ratings_title=news_flair_posts["data"]["children"][ratings_post]["data"]["title"])
-
-                '''
-                    extend takes all dicts from
-                    clean_ratings_post and puts them in
-                    all_ratings_list
-                '''
-                all_ratings_list.extend(clean_ratings_post)
 
             '''
                 Gets the fullname of the last post
