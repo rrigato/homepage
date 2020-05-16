@@ -380,7 +380,7 @@ class RedditApi(unittest.TestCase):
                 "ratings_occurred_on": "2020-04-25"
             },
             {
-                "Time": "11:30pm",
+                "Time": "11:30",
                 "Show": "ExampleShow1", 
                 "Viewers (000)": "59", 
                 "18-49 Rating": "0.14", 
