@@ -330,7 +330,7 @@ class RedditApi(unittest.TestCase):
 
     @patch("scripts.reddit_ratings.get_oauth_token")
     @patch("scripts.reddit_ratings.get_news_flair")
-    def test_ratings_iteration(self, news_flair_patch):
+    def test_ratings_iteration(self, news_flair_patch, oauth_token_mock):
         """Tests that we can iterate over most recent posts
 
             Parameters
@@ -338,6 +338,10 @@ class RedditApi(unittest.TestCase):
             news_flair_patch : unittest.mock.MagicMock
                 Mock object used to test how often
                 get_news_flair is called
+
+            oauth_token_mock : unittest.mock.MagicMock
+                Mock object used to patch
+                get_oauth_token
 
             Returns
             -------
@@ -347,7 +351,11 @@ class RedditApi(unittest.TestCase):
         """
         from scripts.reddit_ratings import ratings_iteration
 
-        
+        '''
+            setting return values for mock
+        '''
+        oauth_token_mock.return_value = self.oauth_token_fixture
+
         news_flair_patch.return_value = self.news_flair_fixture
         
         ratings_post_list = ratings_iteration()
@@ -359,12 +367,8 @@ class RedditApi(unittest.TestCase):
             1
         )
 
-
-        '''
-            Only one news post in the fixture
-        '''
-        self.assertEqual(news_flair_patch.call_count,
-            [0]
+        self.assertEqual(oauth_token_mock.call_count,
+            1
         )
 
         import pdb; pdb.set_trace()
