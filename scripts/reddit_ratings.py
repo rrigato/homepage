@@ -506,7 +506,7 @@ def ratings_iteration(number_posts=15):
             ratings_list_to_append=all_ratings_list
         )
 
-        return(ratings_post_list)
+        return(all_ratings_list)
 
     else:
         '''

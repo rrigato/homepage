@@ -329,7 +329,7 @@ class RedditApi(unittest.TestCase):
         )
 
     def test_iterate_handle_table_clean(self):
-        """Tests cleaning of ratings data
+        """Tests iteration of ratings data with empty list
 
             Parameters
             ----------
@@ -356,6 +356,50 @@ class RedditApi(unittest.TestCase):
         )
 
         
+    def test_iterate_handle_table_clean_list_populated(self):
+        """Tests iteration of ratings data with list that has ratings
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from scripts.reddit_ratings import iterate_handle_table_clean
+
+        existing_ratings_list =[
+            {
+                "Time": "12:00a",
+                "Show": "My Hero Academia (r)", 
+                "Viewers (000)": "590", 
+                "18-49 Rating": "0.29", 
+                "18-49 Views (000)": "380", 
+                "ratings_occurred_on": "2020-04-25"
+            },
+            {
+                "Time": "11:30pm",
+                "Show": "ExampleShow1", 
+                "Viewers (000)": "59", 
+                "18-49 Rating": "0.14", 
+                "18-49 Views (000)": "380", 
+                "ratings_occurred_on": "2020-05-02"
+            }            
+
+        ]
+        '''
+            Checking the iteration returns 12 seperate ratings dicts
+        '''
+        all_ratings_list = iterate_handle_table_clean(
+            news_flair_posts=self.news_flair_fixture,
+            ratings_post_list=[0,3],
+            ratings_list_to_append=existing_ratings_list
+        )
+        self.assertEqual(len(all_ratings_list),
+            12
+        )
 
 
     @patch("scripts.reddit_ratings.get_oauth_token")
