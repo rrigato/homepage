@@ -76,8 +76,10 @@ class BackendTests(unittest.TestCase):
             Creates dynamodb resource and
             puts an item in the table
         """
-        dynamo_client = get_boto_clients(resource_name='dynamodb',
-        region_name='us-east-1')
+        dynamo_client = get_boto_clients(
+            resource_name="dynamodb",
+            region_name="us-east-1"
+        )
 
         table_configuration = dynamo_client.describe_table(
             TableName=self.DYNAMO_TABLE_NAME
@@ -148,8 +150,8 @@ class BackendTests(unittest.TestCase):
             puts an item in the table
         """
         lambda_client = get_boto_clients(
-            resource_name='lambda',
-            region_name='us-east-1'
+            resource_name="lambda",
+            region_name="us-east-1"
         )
 
 
@@ -193,8 +195,10 @@ class BackendTests(unittest.TestCase):
         """
             gets s3 bucket information
         """
-        s3_client = get_boto_clients(resource_name='s3',
-        region_name='us-east-1')
+        s3_client = get_boto_clients(
+            resource_name="s3",
+            region_name="us-east-1"
+        )
 
         s3_code_configuration = s3_client.describe_table(
             TableName=self.S3_CODE_BUCKET
