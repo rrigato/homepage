@@ -196,6 +196,7 @@ def get_ratings_post(news_flair_posts):
         ratings_post_list : list
             list providing the elements of the reddit
             search api response that are ratings posts
+            Ex: [0, 3, 8]
 
         Raises
         ------
@@ -389,7 +390,7 @@ def handle_table_clean(reddit_post_html, rating_call_counter,
         show_element["ratings_occurred_on"] = ratings_occurred_on[0].strftime("%Y-%m-%d")
     return(body_dict)
 
-def iterate_handle_table_clean(news_flair_posts, ):
+def iterate_handle_table_clean(news_flair_posts, ratings_post_list):
     """Tests cleaning of ratings data
 
         Parameters
@@ -397,13 +398,27 @@ def iterate_handle_table_clean(news_flair_posts, ):
         news_flair_posts : dict
             Dict of all posts with a news reddit flair
             after fullname_after
+
+        ratings_post_list : list
+            list providing the elements of the reddit
+            search api response that are ratings posts
+            Ex: [0, 3, 8]
+
+        all_ratings_list : list
+            List of dict where each element is
+            one saturday night ratings
+
         Returns
         -------
+        all_ratings_list : list
+            List of dict where each element is
+            one saturday night ratings populated from
+            news_flair_list
 
         Raises
         ------
     """
-    from scripts.reddit_ratings import iterate_handle_table_clean
+    pass
 
 
 def ratings_iteration(number_posts=15):
