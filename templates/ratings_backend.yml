@@ -73,7 +73,8 @@ Resources:
               - secretsmanager:GetSecret
 
             Resource:
-              - "*"                      
+              - "*"    
+                                
       Description: |
         Makes reddit api call on schedule to check for 
         updated ratings

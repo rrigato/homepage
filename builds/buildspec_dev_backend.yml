@@ -50,7 +50,7 @@ phases:
       #Running reddit rating tests
       - python -m unittest tests/test_reddit_ratings.py
 
-      #- python -m unittest tests/test_dev_ratings_backend.py
+
 
       #Creating Deployment package for lambda dependencies
       - mkdir deploypkg
@@ -83,11 +83,13 @@ phases:
         --function-name $LAMBDA_FUNCTION_NAME
         --handler "reddit_ratings.lambda_handler"
 
+      - python -m unittest tests/test_dev_ratings_backend.py
+
   post_build:
     commands:
       - echo cleaning up resources
 
-      #- aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
+      - aws cloudformation delete-stack --stack-name $RATINGS_UPDATE_STACK
 
 artifacts:
   files:
