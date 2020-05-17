@@ -48,6 +48,17 @@ Resources:
   UpdateRatings:
     Type: AWS::Serverless::Function
     Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:      
+          - Sid: !Sub '${ProjectName}LambdaDyanmoAllow'
+            Effect: Allow
+            Action:
+              - dynamodb:DescribeTable
+              - dynamodb:DeleteTable
+              - dynamodb:CreateTable
+            Resource:
+              - "*"        
       Description: |
         Makes reddit api call on schedule to check for 
         updated ratings
