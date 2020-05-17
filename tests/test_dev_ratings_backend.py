@@ -175,12 +175,12 @@ class BackendTests(unittest.TestCase):
 
         self.assertEqual(
             lambda_configuration["Configuration"]["Handler"],
-            "index.handler"
+            "reddit_ratings.lambda_handler"
         )
 
-    @unittest.skip("Skipping for now")
-    def test_s3_code_bucket(self):
-        '''s3 bucket configuration that stores lambda code test
+
+    def test_s3_code_object(self):
+        '''s3 zip file used to update lambda function code
 
             Parameters
             ----------
