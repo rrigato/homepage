@@ -48,15 +48,21 @@ Resources:
   UpdateRatings:
     Type: AWS::Serverless::Function
     Properties:
+      #Additional privleges for the lambda basic execution role
+      #created by SAM
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
-        Statement:      
+        Statement: 
+          #dynamodb permissions     
           - Sid: !Sub '${ProjectName}LambdaDyanmoAllow'
             Effect: Allow
             Action:
-              - dynamodb:DescribeTable
-              - dynamodb:DeleteTable
-              - dynamodb:CreateTable
+              - dynamodb:DeleteItem
+              - dynamodb:ListTables
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:Query
+
             Resource:
               - "*"        
       Description: |
