@@ -575,7 +575,7 @@ class LambdaHandler(unittest.TestCase):
     @patch("scripts.reddit_ratings.ratings_iteration")
     @patch("scripts.reddit_ratings.get_logger")
     def test_lambda_handler_event(self, get_logger_mock,
-        rating_iteration_mock):
+        ratings_iteration_mock):
         """Tests passing sample event to lambda_handler
 
             Parameters
@@ -583,7 +583,7 @@ class LambdaHandler(unittest.TestCase):
             get_logger_mock : unittest.mock.MagicMock
                 Mock object used to patch get_logger
 
-            rating_iteration_mock : unittest.mock.MagicMock
+            ratings_iteration_mock : unittest.mock.MagicMock
                  Mock object used to patch ratings_iteration
 
             Returns
@@ -598,6 +598,19 @@ class LambdaHandler(unittest.TestCase):
             event=self.lambda_event_fixture,
             context={}
         )
+
+        '''
+            Testing call count and args passed
+        '''
+        self.assertEqual(
+            get_logger_mock.call_count,
+            1
+        )
+
+        ratings_iteration_mock.assert_called_once_with(
+            number_posts=10
+        )
+
 
 
 
