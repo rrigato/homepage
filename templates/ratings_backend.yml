@@ -48,30 +48,8 @@ Resources:
   UpdateRatings:
     Type: AWS::Serverless::Function
     Properties:
-      #Additional privleges for the lambda basic execution role
-      #created by SAM
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement: 
-          #dynamodb permissions     
-          - Sid: !Sub '${ProjectName}LambdaDynamoDbAllow'
-            Effect: Allow
-            Action:
-              - dynamodb:DeleteItem
-              - dynamodb:ListTables
-              - dynamodb:GetItem
-              - dynamodb:PutItem
-              - dynamodb:Query
-
-       
-
-          #Secrets Manager GetSecret permissions     
-          - Sid: !Sub '${ProjectName}LambdaSecretsMangerAllow'
-            Effect: Allow
-            Action:
-              - secretsmanager:GetSecret
-    
-
+ 
+                                
       Description: |
         Makes reddit api call on schedule to check for 
         updated ratings
@@ -88,6 +66,34 @@ Resources:
 
       FunctionName: !Join ['-', [ !Ref ProjectName, 'lambda-poll']]
       Handler: index.handler
+
+      #Policies to include in the lambda basic execution role
+      #created by SAM
+      Policies:
+        Version: "2012-10-17"
+        Statement: 
+          #dynamodb permissions     
+          - Sid: !Sub '${ProjectName}LambdaDynamoDbAllow'
+            Effect: Allow
+            Action:
+              - dynamodb:DeleteItem
+              - dynamodb:ListTables
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:Query
+
+            Resource:
+              - "*"        
+
+          #Secrets Manager GetSecret permissions     
+          - Sid: !Sub '${ProjectName}LambdaSecretsMangerAllow'
+            Effect: Allow
+            Action:
+              - secretsmanager:GetSecret
+
+            Resource:
+              - "*"         
+
       Runtime: python3.7
       #Default code that will be updated by
       #CodeBuild Job
