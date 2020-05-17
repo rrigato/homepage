@@ -54,7 +54,7 @@ Resources:
         Version: "2012-10-17"
         Statement: 
           #dynamodb permissions     
-          - Sid: !Sub '${ProjectName}LambdaDyanmoAllow'
+          - Sid: !Sub '${ProjectName}LambdaDynamoDbAllow'
             Effect: Allow
             Action:
               - dynamodb:DeleteItem
@@ -65,6 +65,15 @@ Resources:
 
             Resource:
               - "*"        
+
+          #Secrets Manager GetSecret permissions     
+          - Sid: !Sub '${ProjectName}LambdaSecretsMangerAllow'
+            Effect: Allow
+            Action:
+              - secretsmanager:GetSecret
+
+            Resource:
+              - "*"                      
       Description: |
         Makes reddit api call on schedule to check for 
         updated ratings
