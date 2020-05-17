@@ -201,11 +201,12 @@ class BackendTests(unittest.TestCase):
             region_name="us-east-1"
         )
 
-        # s3_code_configuration = s3_client.describe_table(
-        #     Bucket=self.S3_CODE_BUCKET
-        # )
+        s3_code_configuration = s3_client.head_object(
+            Bucket=self.S3_CODE_BUCKET,
+            Key=self.S3_CODE_ZIP_FILE
+        )
 
-        # import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace()
 
     @unittest.skip("Skipping for now")
     def test_dynamodb(self):
