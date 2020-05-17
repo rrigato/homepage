@@ -22,6 +22,12 @@ Parameters:
     Default: false 
     Description: Determines whether lambda function event is enabled   
 
+
+  PolicyPrefix:
+    Type: String
+    Default: DevRatingsBackend 
+    Description: Policy statements must be AlphaNumeric   
+
   ProjectName:
     Type: String
     Default: dev-ratings-backend
@@ -73,7 +79,7 @@ Resources:
         Version: "2012-10-17"
         Statement: 
           #dynamodb permissions     
-          - Sid: !Sub '${ProjectName}LambdaDynamoDbAllow'
+          - Sid: !Sub '${PolicyPrefix}LambdaDynamoDbAllow'
             Effect: Allow
             Action:
               - dynamodb:DeleteItem
@@ -86,7 +92,7 @@ Resources:
               - "*"        
 
           #Secrets Manager GetSecret permissions     
-          - Sid: !Sub '${ProjectName}LambdaSecretsMangerAllow'
+          - Sid: !Sub '${PolicyPrefix}LambdaSecretsMangerAllow'
             Effect: Allow
             Action:
               - secretsmanager:GetSecret
