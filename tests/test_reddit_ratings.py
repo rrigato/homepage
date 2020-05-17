@@ -565,7 +565,12 @@ class LambdaHandler(unittest.TestCase):
             Raises
             ------
         """
-        pass
+        '''
+            Assigns a class attribute which is 
+            a dict that represents news posts
+        '''
+        with open("util/lambda_cw_event.json", "r") as news_flair:
+            cls.lambda_event_fixture = json.load(news_flair)
 
     def test_lambda_handler_event(self):
         """Tests passing sample event to lambda_handler
@@ -580,6 +585,12 @@ class LambdaHandler(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import lambda_handler
+
+        lambda_handler(
+            event=self.lambda_event_fixture,
+            context={}
+        )
+
 
 
 
