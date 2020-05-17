@@ -74,7 +74,7 @@ phases:
       #lambda_handler function
       - aws lambda update-function-configuration
         --function-name $LAMBDA_FUNCTION_NAME
-        --handler "reddit_ratings.lambda_handler"
+        --handler "scripts.reddit_ratings.lambda_handler"
 
   post_build:
     commands:

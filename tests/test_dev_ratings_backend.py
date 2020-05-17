@@ -58,6 +58,7 @@ class BackendTests(unittest.TestCase):
         cls.DYNAMO_TABLE_NAME = "toonami_ratings"
         cls.LAMBDA_FUNCTION_NAME = "dev-ratings-backend-lambda-poll"
         cls.S3_CODE_BUCKET = "dev-ratings-backend-source-code"
+        cls.S3_CODE_ZIP_FILE = "built_lambda.zip"
 
     def test_dynamodb_config(self):
         '''Tests that the dynamodb table is present
@@ -200,11 +201,11 @@ class BackendTests(unittest.TestCase):
             region_name="us-east-1"
         )
 
-        s3_code_configuration = s3_client.describe_table(
-            TableName=self.S3_CODE_BUCKET
-        )
+        # s3_code_configuration = s3_client.describe_table(
+        #     Bucket=self.S3_CODE_BUCKET
+        # )
 
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
 
     @unittest.skip("Skipping for now")
     def test_dynamodb(self):
