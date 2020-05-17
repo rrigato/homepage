@@ -560,6 +560,21 @@ def ratings_iteration(number_posts=10):
                 ratings_post_list[len(ratings_post_list) - 1]
                 ]["data"]["name"]
 
+def lambda_handler(event, context):
+    """Handles lambda invocation from cloudwatch events rule
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+
+        Raises
+        ------
+    """
+    get_logger()
+    all_ratings_list = ratings_iteration(number_posts=10)
+
 def main():
     """Entry point into the script
         Parameters

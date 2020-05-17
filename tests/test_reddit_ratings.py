@@ -579,7 +579,7 @@ class LambdaHandler(unittest.TestCase):
             Raises
             ------
         """
-        from reddit_ratings import lambda_handler
+        from scripts.reddit_ratings import lambda_handler
 
 
 
