@@ -60,21 +60,28 @@ phases:
 
       - pip install --target ./deploypkg bs4
 
-      #zip depenedencies and add source code
-      - zip -r9 built_lambda.zip ./deploypkg
+      #copy runtime script to deployment package
+      - cp scripts/reddit_ratings.py deploypkg
 
-      - zip -g built_lambda.zip scripts/reddit_ratings.py
+      - cd deploypkg
+
+      #zip depenedencies and source code in directory
+      - zip -r9 built_lambda.zip .
+
+      - cd ..
+
+      #- zip -g built_lambda.zip scripts/reddit_ratings.py
 
       #updates zip deployment package
       - aws lambda update-function-code
         --function-name $LAMBDA_FUNCTION_NAME
-        --zip-file fileb://built_lambda.zip
+        --zip-file fileb://deploypkg/built_lambda.zip
 
       #changes lambda handler to scripts/reddit_ratings.py
       #lambda_handler function
       - aws lambda update-function-configuration
         --function-name $LAMBDA_FUNCTION_NAME
-        --handler "scripts.reddit_ratings.lambda_handler"
+        --handler "reddit_ratings.lambda_handler"
 
   post_build:
     commands:
