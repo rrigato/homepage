@@ -48,6 +48,9 @@ Resources:
   UpdateRatings:
     Type: AWS::Serverless::Function
     Properties:
+      Description: |
+        Makes reddit api call on schedule to check for 
+        updated ratings
       Events:
         #cloudwatch event rule that runs 
         #every 3 hours        
