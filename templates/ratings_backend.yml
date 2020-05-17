@@ -54,7 +54,7 @@ Resources:
         ThreeHourCWEvent:
           Type: Schedule
           Properties:
-            Schedule: 'rate(3 hour)'
+            Schedule: 'rate(3 hours)'
             Name: !Sub '${ProjectName}-lambda-poll-trigger'
             Description: Runs reddit_ratings.lambda_handler once every 3 hours
             Enabled: !Ref EnableLambdaSchedule        
