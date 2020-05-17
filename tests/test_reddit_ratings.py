@@ -539,6 +539,49 @@ class RedditApi(unittest.TestCase):
         )        
 
 
+class LambdaHandler(unittest.TestCase):
+    """Tests specific to when the script is run from a lambda
+        function
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+
+        Raises
+        ------
+    """
+    @classmethod
+    def setUpClass(cls):
+        """Unitest function that is run once for the class
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        pass
+
+    def test_lambda_handler_event(self):
+        """Tests passing sample event to lambda_handler
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from reddit_ratings import lambda_handler
+
+
 
 if __name__ == "__main__":
     unittest.main()
