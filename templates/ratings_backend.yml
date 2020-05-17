@@ -63,18 +63,15 @@ Resources:
               - dynamodb:PutItem
               - dynamodb:Query
 
-            Resource:
-              - "*"        
+       
 
           #Secrets Manager GetSecret permissions     
           - Sid: !Sub '${ProjectName}LambdaSecretsMangerAllow'
             Effect: Allow
             Action:
               - secretsmanager:GetSecret
+    
 
-            Resource:
-              - "*"    
-                                
       Description: |
         Makes reddit api call on schedule to check for 
         updated ratings
