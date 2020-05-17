@@ -17,6 +17,10 @@ Parameters:
     Type: String
     Default: toonami_ratings
 
+  EnableLambdaSchedule:
+    Type: Boolean
+    Default: false    
+
   ProjectName:
     Type: String
     Default: dev-ratings-backend
@@ -43,6 +47,15 @@ Resources:
   UpdateRatings:
     Type: AWS::Serverless::Function
     Properties:
+      #cloudwatch event rule that runs 
+      #every 3 hours
+      Events:
+        ThreeHourCWEvent:
+          Schedule: 'rate(3 hour)'
+          Name: !Join ['-', [ !Ref ProjectName, 'lambda-poll-trigger']]
+          Description: Runs reddit_ratings.lambda_handler once every 3 hours
+          Enabled: False        
+
       FunctionName: !Join ['-', [ !Ref ProjectName, 'lambda-poll']]
       Handler: index.handler
       Runtime: python3.7
