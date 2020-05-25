@@ -150,7 +150,7 @@ def get_oauth_token(client_key, client_secret):
         auth basic auth where key is reddit client key
         and password is reddit client secret
     '''
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     oauth_token = requests.post(
         url="https://www.reddit.com/api/v1/access_token",
         auth=(client_key, client_secret),
@@ -541,12 +541,12 @@ def ratings_iteration(number_posts=10):
         ------
 
     """
-    REDDIT_CLIENT_KEY = os.environ.get("REDDIT_CLIENT_KEY")
-    REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET")
+    reddit_client_key, reddit_client_secret = get_client_secrets()
+
 
     oauth_token = get_oauth_token(
-        client_key=REDDIT_CLIENT_KEY,
-        client_secret=REDDIT_CLIENT_SECRET
+        client_key=reddit_client_key,
+        client_secret=reddit_client_secret
         )
 
     '''
