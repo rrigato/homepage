@@ -275,8 +275,15 @@ class RedditApi(unittest.TestCase):
 
         '''
             json returned by http post
+            will be the class oauth_token fixture
         '''
-        requests_post_mock.json.return_value = self.oauth_token_fixture
+        json_mock = MagicMock()
+
+        requests_post_mock.return_value = json_mock
+
+        json_mock.json.return_value = self.oauth_token_fixture
+        print(json_mock)
+
 
 
         test_client_key="fakeid"
