@@ -146,6 +146,36 @@ class RedditApi(unittest.TestCase):
         )
 
 
+    @patch("boto3.client")
+    def test_get_boto_clients_with_region(self, boto3_client_mock):
+        '''Tests outgoing boto3 client generation when a region is passed
+
+            Parameters
+            ----------
+            boto3_client_mock : unittest.mock.MagicMock
+                Mock object used to patch
+                AWS Python SDK
+
+            Returns
+            -------
+
+
+            Raises
+            ------
+        '''
+        from scripts.reddit_ratings import get_boto_clients
+
+        test_service_name = "s3"
+        test_region_name = "us-west-1"
+        get_boto_clients(
+            resource_name=test_service_name
+            region_name=test_region_name
+        )
+
+        boto3_client_mock.assert_called_once_with(
+            service_name=test_service_name,
+            region_name=test_region_name
+        )
 
 
     def test_get_news_flair(self):
