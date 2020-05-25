@@ -68,7 +68,7 @@ class IntegrationRedditApi(unittest.TestCase):
         """
 
         from scripts.reddit_ratings import get_oauth_token
-
+        from scripts.reddit_ratings import get_client_secrets
         reddit_client_key, reddit_client_secret = get_client_secrets()
 
         oauth_token = get_oauth_token(
@@ -90,11 +90,13 @@ class IntegrationRedditApi(unittest.TestCase):
             Raises
             ------
         """
-
+        from scripts.reddit_ratings import get_client_secrets
         from scripts.reddit_ratings import get_news_flair
-        
+
         from scripts.reddit_ratings import get_oauth_token
-        
+
+        reddit_client_key, reddit_client_secret = get_client_secrets()
+
         '''
             Getting an Oauth token and testing for
             a specific fullname which is a unique
@@ -103,8 +105,8 @@ class IntegrationRedditApi(unittest.TestCase):
             each time
         '''
         oauth_token = get_oauth_token(
-            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
-            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
+            client_key=reddit_client_key,
+            client_secret=reddit_client_secret
         )
         '''
             The fullname will anchor this search to
