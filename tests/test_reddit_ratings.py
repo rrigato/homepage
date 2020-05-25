@@ -275,11 +275,21 @@ class RedditApi(unittest.TestCase):
 
         test_client_key="fakeid"
         test_client_secret="fakesecret"
-        
+
         get_oauth_token(client_key=test_client_key, client_secret=test_client_secret)
 
-
-
+        '''
+            Testing the outbound HTTP POST arguements
+            to the reddit token endpoint
+        '''
+        requests_post_mock.assert_called_once_with(
+            url="https://www.reddit.com/api/v1/access_token",
+            auth=(test_client_key, test_client_secret),
+            data={"grant_type":"client_credentials"},
+            headers={
+                "user-agent":"Lambda:toonamiratings:v1.0 (by /u/toonamiratings)"
+            }
+        )
 
 
     def test_get_ratings_post(self):
