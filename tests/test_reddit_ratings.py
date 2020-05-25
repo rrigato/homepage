@@ -69,9 +69,11 @@ class IntegrationRedditApi(unittest.TestCase):
 
         from scripts.reddit_ratings import get_oauth_token
 
+        reddit_client_key, reddit_client_secret = get_client_secrets()
+
         oauth_token = get_oauth_token(
-            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
-            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
+            client_key=reddit_client_key,
+            client_secret=reddit_client_secret
         )
         self.assertIsNotNone(oauth_token["access_token"])
 
@@ -204,7 +206,9 @@ class RedditApi(unittest.TestCase):
             ------
         '''
         from scripts.reddit_ratings import get_oauth_token
-        import pdb; pdb.set_trace()
+
+        #get_oauth_token()
+
 
 
 

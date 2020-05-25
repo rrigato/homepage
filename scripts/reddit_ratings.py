@@ -150,6 +150,7 @@ def get_oauth_token(client_key, client_secret):
         auth basic auth where key is reddit client key
         and password is reddit client secret
     '''
+    import pdb; pdb.set_trace()
     oauth_token = requests.post(
         url="https://www.reddit.com/api/v1/access_token",
         auth=(client_key, client_secret),
