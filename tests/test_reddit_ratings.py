@@ -118,6 +118,26 @@ class RedditApi(unittest.TestCase):
             "scope": "*"
         }
 
+    @patch("boto3.client")
+    def test_get_boto_clients(self, boto3_client_mock):
+        '''Returns the boto client for various aws resources
+
+            Parameters
+            ----------
+            boto3_client_mock : unittest.mock.MagicMock
+                Mock object used to patch
+                AWS Python SDK
+
+            Returns
+            -------
+
+
+            Raises
+            ------
+        '''
+        from scripts.reddit_ratings import get_boto_clients
+
+
 
     def test_get_news_flair(self):
         """Tests that we are retriving posts with a news flair
