@@ -60,7 +60,12 @@ def get_boto_clients(resource_name, region_name='us-east-1'):
         Raises
         ------
     '''
-    return(boto3.client(resource_name, region_name))
+    return(
+        boto3.client(
+            service_name=resource_name, 
+            region_name=region_name
+        )
+    )
 
 
 
