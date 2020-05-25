@@ -11,18 +11,23 @@
 <!DOCTYPE html>
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    
+
  <script>
-     //Ensuring http 200 status is returned
+     /* Cors error
+     Ensuring http 200 status is returned
     $(document).ready(function(){
-        $.get("https://s3-ats-migration-test.s3.eu-west-3.amazonaws.com/test.jpg", function(data, status){
-          
+        $.get(
+            "https://s3-ats-migration-test.s3.eu-west-3.amazonaws.com/test.jpg", 
+            function(data){
+          console.log(data);
         });
     });
+    */
     </script>
     <body>
         
         <img src="https://s3-ats-migration-test.s3.eu-west-3.amazonaws.com/test.jpg" 
         width="850" height="500">
     </body>
+
 </html>
