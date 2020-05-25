@@ -87,7 +87,24 @@ def get_client_secrets(self):
         Raises
         ------
     """
-    pass
+    secrets_manager_client = get_boto_clients(resource_name="secretsmanager")
+
+
+    '''
+        Passing the Name of the string to the boto client
+    '''
+    reddit_client_key = secrets_manager_client.get_secret_value(
+        SecretId="/prod/reddit_api_key"
+    )
+
+    reddit_client_secret = secrets_manager_client.get_secret_value(
+        SecretId="/prod/reddit_api_secret"
+    )
+
+    return(
+        reddit_client_key["SecretString"],
+        reddit_client_secret["SecretString"]
+    )
 
 
 def get_oauth_token(client_key, client_secret):
