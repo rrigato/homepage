@@ -273,10 +273,19 @@ class RedditApi(unittest.TestCase):
         '''
         from scripts.reddit_ratings import get_oauth_token
 
+        '''
+            json returned by http post
+        '''
+        requests_post_mock.json.return_value = self.oauth_token_fixture
+
+
         test_client_key="fakeid"
         test_client_secret="fakesecret"
 
-        get_oauth_token(client_key=test_client_key, client_secret=test_client_secret)
+        oauth_token = get_oauth_token(
+            client_key=test_client_key, 
+            client_secret=test_client_secret
+        )
 
         '''
             Testing the outbound HTTP POST arguements
@@ -291,6 +300,10 @@ class RedditApi(unittest.TestCase):
             }
         )
 
+        self.assertEqual(
+            oauth_token,
+            self.oauth_token_fixture
+        )
 
     def test_get_ratings_post(self):
         """Tests that only reddit ratings news posts are returned
