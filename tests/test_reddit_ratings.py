@@ -77,6 +77,70 @@ class IntegrationRedditApi(unittest.TestCase):
         )
         self.assertIsNotNone(oauth_token["access_token"])
 
+    def test_get_news_flair(self):
+        """Tests that we are retriving posts with a news flair
+
+            Parameters
+            ----------
+
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+
+        from scripts.reddit_ratings import get_news_flair
+        
+        from scripts.reddit_ratings import get_oauth_token
+        
+        '''
+            Getting an Oauth token and testing for
+            a specific fullname which is a unique
+            identifier for a given reddit api object
+            which ensures the same post will be returned
+            each time
+        '''
+        oauth_token = get_oauth_token(
+            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
+            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
+        )
+        '''
+            The fullname will anchor this search to
+            ensure the api always returns the same news
+            posts
+        '''
+        news_search = get_news_flair(
+            access_token=oauth_token["access_token"],
+            posts_to_return=7,
+            fullname_after="t3_dm3brn"
+        )
+
+        '''
+            testing last reddit post in the
+            list
+        '''
+        self.assertEqual(
+            news_search["data"]["children"][6]["data"]["created_utc"],
+            1570559167.0
+        )
+        '''
+            Testing there is 7 posts returned
+        '''
+        self.assertEqual(
+            len(news_search["data"]["children"]),
+            7
+        )
+        '''
+            Unique id of the first post returned
+        '''
+        self.assertEqual(
+            news_search["data"]["children"][0]["data"]["name"],
+            "t3_dlyuen"
+        )
+
+
 
 
 
@@ -212,66 +276,6 @@ class RedditApi(unittest.TestCase):
 
 
 
-    def test_get_news_flair(self):
-        """Tests that we are retriving posts with a news flair
-
-            Parameters
-            ----------
-
-
-            Returns
-            -------
-
-            Raises
-            ------
-        """
-        from scripts.reddit_ratings import get_oauth_token
-        from scripts.reddit_ratings import get_news_flair
-
-        '''
-            Getting an Oauth token and testing for
-            a specific fullname which is a unique
-            identifier for a given reddit api object
-            which ensures the same post will be returned
-            each time
-        '''
-        oauth_token = get_oauth_token(
-            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
-            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
-        )
-        '''
-            The fullname will anchor this search to
-            ensure the api always returns the same news
-            posts
-        '''
-        news_search = get_news_flair(
-            access_token=oauth_token["access_token"],
-            posts_to_return=7,
-            fullname_after="t3_dm3brn"
-        )
-
-        '''
-            testing last reddit post in the
-            list
-        '''
-        self.assertEqual(
-            news_search["data"]["children"][6]["data"]["created_utc"],
-            1570559167.0
-        )
-        '''
-            Testing there is 7 posts returned
-        '''
-        self.assertEqual(
-            len(news_search["data"]["children"]),
-            7
-        )
-        '''
-            Unique id of the first post returned
-        '''
-        self.assertEqual(
-            news_search["data"]["children"][0]["data"]["name"],
-            "t3_dlyuen"
-        )
 
     def test_get_ratings_post(self):
         """Tests that only reddit ratings news posts are returned
