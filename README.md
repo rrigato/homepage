@@ -1,4 +1,4 @@
-![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiOEdUdVZ2KzI0d3MxRXZvMGVXWDhnb0lRUnViZ0U0ZURrVFJDSnRSbHlqMEtRaWllWHZ0ZlVqZlBZdWZzNDdsMWNGOU5YWHF2VVBjYTlHclYydHhQelc0PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF0ZnVhSFdWWE8zREdVMTAiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiOEdUdVZ2KzI0d3MxRXZvMGVXWDhnb0lRUnViZ0U0ZURrVFJDSnRSbHlqMEtRaWllWHZ0ZlVqZlBZdWZzNDdsMWNGOU5YWHF2VVBjYTlHclYydHhQelc0PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF0ZnVhSFdWWE8zREdVMTAiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) ![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)
 
 Personal website homepage.
 
