@@ -156,6 +156,7 @@ def get_oauth_token(client_key, client_secret):
         data={"grant_type":"client_credentials"},
         headers=reddit_headers
     )
+    
     return(oauth_token.json())
 
 def get_news_flair(access_token,

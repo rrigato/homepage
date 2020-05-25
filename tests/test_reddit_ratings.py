@@ -282,7 +282,6 @@ class RedditApi(unittest.TestCase):
         requests_post_mock.return_value = json_mock
 
         json_mock.json.return_value = self.oauth_token_fixture
-        print(json_mock)
 
 
 
