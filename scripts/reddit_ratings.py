@@ -41,6 +41,26 @@ def get_logger(working_directory=os.getcwd()):
          )
     logging.info("\n")
 
+def get_client_secrets(self):
+    """Returns reddit client key and reddit client secret 
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        reddit_client_key : str
+            Reddit client key
+
+        reddit_client_secret : str
+            Reddit client secret        
+
+        Raises
+        ------
+    """
+    pass
+
+
 def get_oauth_token(client_key, client_secret):
     """Gets an Oath token from the reddit API
 
