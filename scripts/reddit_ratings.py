@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from dateutil import parser
 
+import boto3
 import json
 import logging
 import math
