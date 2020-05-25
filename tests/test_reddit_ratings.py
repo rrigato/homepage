@@ -29,9 +29,8 @@ class IntegrationRedditApi(unittest.TestCase):
         ------
     """
 
-    def test_get_oath_token(self):
-        """Integration test for the oath token 
-            Ensures it is returned from reddit api
+    def test_get_client_secrets(self):
+        """Integration test for the get_client_secrets function
 
             Parameters
             ----------
@@ -42,8 +41,13 @@ class IntegrationRedditApi(unittest.TestCase):
             Raises
             ------
         """
+        from scripts.reddit_ratings import get_client_secrets
 
-        from scripts.reddit_ratings import get_oauth_token
+        reddit_client_key, reddit_client_secret = get_client_secrets()
+
+        self.assertEqual(type(reddit_client_key), str)
+
+        self.assertEqual(type(reddit_client_secret), str)
 
 
 
