@@ -16,6 +16,64 @@ from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2020
 
 
+class IntegrationRedditApi(unittest.TestCase):
+    """Integration test for the reddit api pull
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+
+        Raises
+        ------
+    """
+
+    def test_get_oath_token(self):
+        """Integration test for the oath token 
+            Ensures it is returned from reddit api
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+
+        from scripts.reddit_ratings import get_oauth_token
+
+
+
+
+
+    @unittest.skip("Skipping for now")
+    def test_get_oath_token(self):
+        """Integration test for the oath token 
+            Ensures it is returned from reddit api
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+
+        from scripts.reddit_ratings import get_oauth_token
+
+        oauth_token = get_oauth_token(
+            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
+            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
+        )
+        self.assertIsNotNone(oauth_token["access_token"])
+
+
+
 
 class RedditApi(unittest.TestCase):
     """Testing the reddit api pull
@@ -55,32 +113,6 @@ class RedditApi(unittest.TestCase):
             "expires_in": 3600,
             "scope": "*"
         }
-
-    def test_get_oath_token(self):
-        """Tests oath token returned from reddit api
-
-            Parameters
-            ----------
-
-            Returns
-            -------
-
-            Raises
-            ------
-        """
-
-        from scripts.reddit_ratings import get_oauth_token
-        self.assertIsNotNone(os.environ.get(
-            "REDDIT_CLIENT_KEY"
-        ))
-        self.assertIsNotNone(os.environ.get(
-            "REDDIT_CLIENT_SECRET"
-        ))
-        oauth_token = get_oauth_token(
-            client_key=os.environ.get("REDDIT_CLIENT_KEY"),
-            client_secret=os.environ.get("REDDIT_CLIENT_SECRET")
-        )
-        self.assertIsNotNone(oauth_token["access_token"])
 
 
     def test_get_news_flair(self):
