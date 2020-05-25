@@ -140,6 +140,11 @@ class RedditApi(unittest.TestCase):
         test_service_name="lambda"
         get_boto_clients(resource_name=test_service_name)
 
+
+        '''
+            Default region is us-east-1 for 
+            get_boto_clients
+        '''
         boto3_client_mock.assert_called_once_with(
             service_name=test_service_name,
             region_name="us-east-1"
@@ -167,11 +172,17 @@ class RedditApi(unittest.TestCase):
 
         test_service_name = "s3"
         test_region_name = "us-west-1"
+
+        
         get_boto_clients(
-            resource_name=test_service_name
+            resource_name=test_service_name,
             region_name=test_region_name
         )
 
+        '''
+            patch outgoing args should match
+            wrapper function
+        '''
         boto3_client_mock.assert_called_once_with(
             service_name=test_service_name,
             region_name=test_region_name
