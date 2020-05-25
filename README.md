@@ -92,6 +92,12 @@ Configuring git secrets as a web hook will ensure that git secrets runs on every
 ```
 
 
+Allow the sample lambda cloudwatch event since it uses a fake 
+account
+```
+    git config --add secrets.allowed "util/lambda_cw_event.json"
+```
+
 - Run a git secrets check recursively on all files in directory
 
 ```
