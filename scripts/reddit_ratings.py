@@ -70,7 +70,7 @@ def get_boto_clients(resource_name, region_name='us-east-1'):
 
 
 
-def get_client_secrets(self):
+def get_client_secrets():
     """Returns reddit client key and reddit client secret 
 
         Parameters

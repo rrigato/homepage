@@ -28,7 +28,6 @@ class IntegrationRedditApi(unittest.TestCase):
         Raises
         ------
     """
-    @unittest.skip("skipping for now")
     def test_get_client_secrets(self):
         """Integration test for the get_client_secrets function
 
