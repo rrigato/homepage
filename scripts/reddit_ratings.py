@@ -138,7 +138,7 @@ def get_oauth_token(client_key, client_secret):
         https://github.com/reddit-archive/reddit/wiki/API
     '''
     reddit_headers = {
-        "user-agent":REDDIT_USER_AGENT
+        "user-agent": REDDIT_USER_AGENT
     }
     logging.info("Custom Headers: ")
     logging.info(reddit_headers)
@@ -151,7 +151,7 @@ def get_oauth_token(client_key, client_secret):
         and password is reddit client secret
     '''
     oauth_token = requests.post(
-        "https://www.reddit.com/api/v1/access_token",
+        url="https://www.reddit.com/api/v1/access_token",
         auth=(client_key, client_secret),
         data={"grant_type":"client_credentials"},
         headers=reddit_headers

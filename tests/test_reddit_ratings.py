@@ -52,7 +52,7 @@ class IntegrationRedditApi(unittest.TestCase):
 
 
 
-    @unittest.skip("Skipping for now")
+
     def test_get_oath_token(self):
         """Integration test for the oath token 
             Ensures it is returned from reddit api
@@ -186,6 +186,26 @@ class RedditApi(unittest.TestCase):
             service_name=test_service_name,
             region_name=test_region_name
         )
+
+    @patch("requests.post")
+    def test_get_oauth_token_unit(self, requests_post_mock):
+        '''Unittest for get_oauth_token
+
+            Parameters
+            ----------
+            requests_post_mock : unittest.mock.MagicMock
+                Mock object used to patch http post to reddit
+                api client service
+
+            Returns
+            -------
+
+            Raises
+            ------
+        '''
+        from scripts.reddit_ratings import get_oauth_token
+        import pdb; pdb.set_trace()
+
 
 
     def test_get_news_flair(self):
