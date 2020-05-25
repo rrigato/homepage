@@ -28,7 +28,7 @@ class IntegrationRedditApi(unittest.TestCase):
         Raises
         ------
     """
-
+    @unittest.skip("skipping for now")
     def test_get_client_secrets(self):
         """Integration test for the get_client_secrets function
 
@@ -119,8 +119,8 @@ class RedditApi(unittest.TestCase):
         }
 
     @patch("boto3.client")
-    def test_get_boto_clients(self, boto3_client_mock):
-        '''Returns the boto client for various aws resources
+    def test_get_boto_clients_no_region(self, boto3_client_mock):
+        '''Tests outgoing boto3 client generation when no region is passed
 
             Parameters
             ----------
@@ -136,6 +136,15 @@ class RedditApi(unittest.TestCase):
             ------
         '''
         from scripts.reddit_ratings import get_boto_clients
+
+        test_service_name="lambda"
+        get_boto_clients(resource_name=test_service_name)
+
+        boto3_client_mock.assert_called_once_with(
+            service_name=test_service_name,
+            region_name="us-east-1"
+        )
+
 
 
 
