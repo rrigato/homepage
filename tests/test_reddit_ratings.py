@@ -273,7 +273,10 @@ class RedditApi(unittest.TestCase):
         '''
         from scripts.reddit_ratings import get_oauth_token
 
-        #get_oauth_token()
+        test_client_key="fakeid"
+        test_client_secret="fakesecret"
+        
+        get_oauth_token(client_key=test_client_key, client_secret=test_client_secret)
 
 
 
