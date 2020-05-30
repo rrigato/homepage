@@ -702,6 +702,22 @@ def dict_key_mapping(pre_clean_ratings_keys):
 
     return(clean_ratings_columns)
 
+def clean_dict_value(self):
+    """Overrides for ratings data
+
+        Parameters
+        ----------
+        ratings_values_to_clean : list
+            list of dict where each dict has already been
+            passed through dict_key_mapping
+
+        Returns
+        -------
+
+        Raises
+        ------
+    """
+
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
 
