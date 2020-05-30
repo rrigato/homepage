@@ -805,7 +805,14 @@ class RedditApi(unittest.TestCase):
             in the dynamodb list 
         '''
         for cleaned_show_dict in clean_original_values:
-
+            '''
+                Making sure the unique key values is 5 or 
+                6 for MOCK_RATING_LIST
+            '''
+            self.assertIn(
+                len(tuple(cleaned_show_dict.keys())),
+                [5, 6]
+            )
             for cleaned_key in cleaned_show_dict.keys():
                 '''
                     Making sure all keys are in the list
