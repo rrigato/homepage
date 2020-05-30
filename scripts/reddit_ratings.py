@@ -713,10 +713,24 @@ def clean_dict_value(self):
 
         Returns
         -------
+        clean_ratings_values : list
+            list of dict where the values have been cleaned
 
         Raises
         ------
     """
+    clean_ratings_values = []
+    for dict_to_clean in ratings_values_to_clean:
+        dict_to_clean["IS_RERUN"] = None
+        '''
+            If we are able to find " (r)" in the 
+            SHOW string that indicates a rerun
+            removing everthing before the space and
+            marking IS_RERUN as True
+        '''
+        if dict_to_clean["SHOW"].find(" (r)") > 0:
+            dict_to_clean["SHOW"] = dict_to_clean["SHOW"].split(" (r)")[0]
+            dict_to_clean["IS_RERUN"] = True
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
