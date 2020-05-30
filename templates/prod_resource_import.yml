@@ -170,12 +170,11 @@ Resources:
         Comment: OAI to ensure S3 bucket can only be accessed from distribution
 
 
-  # DevCertificate:
-  #   Type: AWS::CertificateManager::Certificate
-  #   Properties:
-  #     DomainName: !Join ['', ['dev.', !Ref BucketName]]
-  #     DomainValidationOptions:
-  #         - DomainName: !Join ['', ['test.','dev.', !Ref BucketName]]
-  #           ValidationDomain: !Ref BucketName
-  #
-  
+
+Outputs:
+  OaiS3CanonicalUserId:
+    Description: |
+      Canonical ID which can be used to restrict s3 bucket access to go 
+      through cloudfront
+
+    Value: !GetAtt CloudFrontOai.S3CanonicalUserId
