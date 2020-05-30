@@ -758,10 +758,17 @@ class RedditApi(unittest.TestCase):
         ]
 
         clean_original_values = dict_key_mapping(
-            pre_clean_ratings_list=original_json_list_example
+            pre_clean_ratings_keys=original_json_list_example
         )
 
-        import pdb; pdb.set_trace()
+        '''
+            Iterates first over each dict in the list
+            then over each key to validate all keys are 
+            in the dynamodb list 
+        '''
+        for cleaned_show_dict in clean_original_values:
+            for cleaned_key in cleaned_show_dict.keys():
+                self.assertIn(cleaned_key, valid_column_names)
 
 class LambdaHandler(unittest.TestCase):
     """Tests specific to when the script is run from a lambda

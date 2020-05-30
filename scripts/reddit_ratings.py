@@ -674,7 +674,7 @@ def dict_key_mapping(pre_clean_ratings_keys):
         '''
             Iterates over all keys in each dict
         '''
-        for original_key in dict_to_clean.keys():
+        for original_key in list(dict_to_clean.keys()):
             '''
                 static mapping to standardize dynamodb
                 keys that removes old key and adds the correct dynamo
@@ -690,7 +690,12 @@ def dict_key_mapping(pre_clean_ratings_keys):
             dict_to_clean[key_to_dynamo_column_map[original_key]] =  dict_to_clean.pop(
                 original_key
             )
+        '''
+            Append each cleaned dict
+        '''
         clean_ratings_columns.append(dict_to_clean)
+        
+    return(clean_ratings_columns)
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
