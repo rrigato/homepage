@@ -654,6 +654,10 @@ def dict_key_mapping(pre_clean_ratings_keys):
 
         Raises
         ------
+        KeyError :
+            KeyError is raised if the keys for a dict
+            in pre_clean_ratings_keys cannot be mapped 
+            back to a dynamodb column listed in key_to_dynamo_column_map
     """
     key_to_dynamo_column_map = {
         "ATotal": "TOTAL_VIEWERS_AGE_18_49",
