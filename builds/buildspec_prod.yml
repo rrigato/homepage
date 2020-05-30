@@ -51,7 +51,7 @@ phases:
       - aws s3 sync ./web s3://$DESTINATION_BUCKET
         --exclude "*" --include "include/*" --delete
 
-      - python tests/test_prod_aws_resources.py
+      - python -m unittest tests/test_prod_aws_resources.py
 
       #merges dev branch into master now that all tests have
       #been passed and artifacts created
