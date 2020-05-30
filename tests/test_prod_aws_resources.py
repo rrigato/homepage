@@ -125,14 +125,13 @@ class WebappLive(unittest.TestCase):
         logging.info("Output url for webpage is correct")
 
 
-    def test_cloudfront_oai(self, domain_url=HOMEPAGE_URL):
+    def test_cloudfront_oai(self):
         """Tests website static s3 bucket can only be accessed through
             cloudfront distribution
 
             Parameters
             ----------
-                domain_url : str
-                    Url string to send the request to
+
             Returns
             -------
 
@@ -143,7 +142,11 @@ class WebappLive(unittest.TestCase):
             "https://s3.amazonaws.com/ryanrigato.com/index.html"
         )
 
-        self.assertEqual(r.status_code, 400)
+        '''
+            We should have a 403 error if we try to 
+            access the bucket directly
+        '''
+        self.assertEqual(r.status_code, 403)
 
 
 
