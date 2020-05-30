@@ -664,7 +664,7 @@ def batch_json_upload(json_file_location, table_name):
         for individual_item in historical_ratings:
             individual_item["TIME"] = individual_item.pop("Time")
             individual_item["RATINGS_OCCURRED_ON"] = individual_item.pop("ratings_occurred_on")
-            #import pdb; pdb.set_trace()
+            import pdb; pdb.set_trace()
             dynamo_table.put_item(
                 TableName=table_name,
                 Item=individual_item

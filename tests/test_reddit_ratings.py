@@ -734,6 +734,14 @@ class RedditApi(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import dict_key_mapping
+        valid_column_names = [
+            "TIME", 
+            "RATINGS_OCCURRED_ON",
+            "TOTAL_VIEWERS", 
+            "PERCENTAGE_OF_HOUSEHOLDS",
+            "TOTAL_VIEWERS_AGE_18_49",
+            "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"
+        ]
 
 class LambdaHandler(unittest.TestCase):
     """Tests specific to when the script is run from a lambda
