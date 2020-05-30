@@ -465,8 +465,9 @@ Resources:
               #Used to pass parameters to Cloudformation template
               ParameterOverrides: |
                 {
+                    "DynamoDbTableName": "prod_toonami_ratings",
                     "PolicyPrefix": "ProdRatingsBackend",
-                    "ProjectName" : "prod-ratings-backend"
+                    "ProjectName": "prod-ratings-backend"
                 }              
               StackName: !Sub "${ProdStackName}-backend-logic"
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"

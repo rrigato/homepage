@@ -15,7 +15,7 @@ Parameters:
 
   DynamoDbTableName:
     Type: String
-    Default: toonami_ratings
+    Default: dev_toonami_ratings
 
   EnableLambdaSchedule:
     Type: String
