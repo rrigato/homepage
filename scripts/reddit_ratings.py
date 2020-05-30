@@ -627,6 +627,19 @@ def ratings_iteration(number_posts=10):
                 ratings_post_list[len(ratings_post_list) - 1]
                 ]["data"]["name"]
 
+    def dict_key_mapping(self):
+        """Maps inconsistent source data to column names for dynamodb
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table

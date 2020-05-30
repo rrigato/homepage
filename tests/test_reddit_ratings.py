@@ -743,6 +743,24 @@ class RedditApi(unittest.TestCase):
             "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"
         ]
 
+        original_json_list_example = [
+            {
+                "Time": "12",
+                "Total": "1036"
+                "Household": "0.70",
+                "ATotal": "630",
+                "AHousehold": "0.20"
+                "Show": "sample show",
+                "Date": "2014-09-06",
+
+            }
+        ]
+
+        clean_original_values = dict_key_mapping(
+            pre_clean_ratings_list=original_json_list_example
+        )
+
+
 class LambdaHandler(unittest.TestCase):
     """Tests specific to when the script is run from a lambda
         function
