@@ -12,12 +12,7 @@ import unittest
 ENVIRON_DEF = "prod"
 
 HOMEPAGE_URL = "https://ryanrigato.com/"
-'''
-    Defaults to $CODEBUILD_SRC_DIR
-    which is the working directory where the
-    code repository is built in codebuild
-'''
-WORKING_DIRECTORY = os.getcwd()
+
 
 def get_logger():
     """Returns a boto cloudformation describe_stacks api call
@@ -39,7 +34,7 @@ def get_logger():
         the extension
     '''
     logging.basicConfig(
-        filename=os.path.join(WORKING_DIRECTORY, "logs/",
+        filename=os.path.join(".", "logs/",
         os.path.basename(__file__).split(".")[0]),
         format="%(asctime)s %(message)s",
          datefmt="%m/%d/%Y %I:%M:%S %p", level=logging.DEBUG
@@ -99,20 +94,8 @@ class WebappLive(unittest.TestCase):
             ------
         """
         get_logger()
-        os.sys.path.append(WORKING_DIRECTORY)
 
-    def setUp(self):
-        """Unitest function that is run once before each function
-            Parameters
-            ----------
 
-            Returns
-            -------
-
-            Raises
-            ------
-        """
-        os.chdir(WORKING_DIRECTORY)
 
     @unittest.skip("Skipping for now")
     def test_bucket_stack_exists(self,
