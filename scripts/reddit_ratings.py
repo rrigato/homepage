@@ -656,13 +656,13 @@ def ratings_iteration(number_posts=10):
             ------
         """
         key_to_dynamo_column_map = {
-            "Household": "PERCENTAGE_OF_HOUSEHOLDS",
+            "ATotal": "TOTAL_VIEWERS_AGE_18_49",
             "AHousehold": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
             "Date": "RATINGS_OCCURRED_ON",
+            "Household": "PERCENTAGE_OF_HOUSEHOLDS",
             "Show": "SHOW",
-                    "TIME", 
-                    "TOTAL_VIEWERS", 
-            "ATotal": "TOTAL_VIEWERS_AGE_18_49"
+            "Time": "TIME", 
+            "Total": "TOTAL_VIEWERS", 
 
         }
 
