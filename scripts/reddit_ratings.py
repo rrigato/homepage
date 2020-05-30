@@ -627,18 +627,37 @@ def ratings_iteration(number_posts=10):
                 ratings_post_list[len(ratings_post_list) - 1]
                 ]["data"]["name"]
 
-    def dict_key_mapping(self):
+    def dict_key_mapping(pre_clean_ratings_keys):
         """Maps inconsistent source data to column names for dynamodb
 
             Parameters
             ----------
+            pre_clean_ratings_keys : list
+                list of dict whose 
 
             Returns
             -------
+            clean_ratings_keys : list
+                list of dict with standardized column names
+                matching one of the following 7:
+                [
+                    "TIME", 
+                    "RATINGS_OCCURRED_ON",
+                    "TOTAL_VIEWERS", 
+                    "PERCENTAGE_OF_HOUSEHOLDS",
+                    "TOTAL_VIEWERS_AGE_18_49",
+                    "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"
+                ]
+
 
             Raises
             ------
         """
+        clean_ratings_keys = []
+        for dict_to_clean in pre_clean_ratings_keys:
+            '''
+                static
+            '''
 
 
 def batch_json_upload(json_file_location, table_name):
