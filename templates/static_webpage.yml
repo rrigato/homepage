@@ -15,12 +15,6 @@ Parameters:
     Default: dev-static-site
     Description: String for prefixing resources to differentiate prod/dev
 
-  SslCert:
-    Type: String
-    Default: dev-static-site
-    Description: String for prefixing resources to differentiate prod/dev
-
-
   WebsiteDomainName:
     Type: String
     Default: "http://*.amazonaws.com"
@@ -58,8 +52,17 @@ Resources:
             #allowed origin domain names
             AllowedOrigins:
               - !Ref WebsiteDomainName
+      Tags:
+        -
+            Key: accessType
+            Value: bucketPolicyToOai
+        -
+            Key: use
+            Value: website
+
       WebsiteConfiguration:
         IndexDocument: index.html
+
     Type: "AWS::S3::Bucket"
 
   WebsiteBucketPolicy:
