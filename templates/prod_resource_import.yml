@@ -42,14 +42,15 @@ Resources:
         LogFilePrefix: root/
       Tags:
           -
-            Key: accessType
-            Value: bucketPolicyNoOAI      
-          -
-              Key: websiteReason
-              Value: portfolio
+              Key: accessType
+              Value: bucketPolicyWithOAI      
           -
               Key: use
               Value: website
+          -
+              Key: websiteReason
+              Value: portfolio
+
       VersioningConfiguration:
         Status: Enabled
       WebsiteConfiguration:
@@ -69,19 +70,8 @@ Resources:
             Resource: !Sub "arn:aws:s3:::${BucketName}/*"
     Type: "AWS::S3::BucketPolicy"
 
-  # HomepageHostedZone:
-  #   Type: AWS::Route53::HostedZone
-  #   Properties:
-  #       DeletionPolicy: Retain
-  #       HostedZoneConfig:
-  #           Comment: HostedZone created by Route53 Registrar
-  #       #For some reason you need a trailing dot here
-  #       #ex: ryanrigato.com.
-  #       Name:
-  #           !Join ['', [!Ref BucketName, '.']]
-  #
 ##################################
-#Hosted Zone that handles domain name
+#DNS records that handles domain name
 #mapping, originally created outside of
 #cloudformation but imported into
 #cloudformation in March, 2020
