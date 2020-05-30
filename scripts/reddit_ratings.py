@@ -627,6 +627,30 @@ def ratings_iteration(number_posts=10):
                 ratings_post_list[len(ratings_post_list) - 1]
                 ]["data"]["name"]
 
+
+def batch_json_upload(json_file, table_name):
+    """Batch inserts json file into dynamodb table
+
+        Parameters
+        ----------
+        json_file : str
+            Where the json file is located on local disk
+        
+        table_name : str
+            Name of the dynamodb table to insert into
+
+        Returns
+        -------
+
+        Raises
+        ------
+
+    """
+    dynamo_client = get_boto_clients(
+            resource_name="dynamodb",
+            region_name="us-east-1"
+    )
+
 def handle_ratings_insertion(all_ratings_list):
     """Handles inserting ratings into dynamodb
 
@@ -647,7 +671,9 @@ def handle_ratings_insertion(all_ratings_list):
             resource_name="dynamodb",
             region_name="us-east-1"
     )
-    
+    #import pdb; pdb.set_trace()
+
+
 def lambda_handler(event, context):
     """Handles lambda invocation from cloudwatch events rule
 
