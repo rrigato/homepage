@@ -627,69 +627,70 @@ def ratings_iteration(number_posts=10):
                 ratings_post_list[len(ratings_post_list) - 1]
                 ]["data"]["name"]
 
-    def dict_key_mapping(pre_clean_ratings_keys):
-        """Maps inconsistent source data to column names for dynamodb
+def dict_key_mapping(pre_clean_ratings_keys):
+    """Maps inconsistent source data to column names for dynamodb
 
-            Parameters
-            ----------
-            pre_clean_ratings_keys : list
-                list of dict whose 
+        Parameters
+        ----------
+        pre_clean_ratings_keys : list
+            list of dict whose 
 
-            Returns
-            -------
-            clean_ratings_columns : list
-                list of dict with standardized column names
-                matching one of the following 7:
-                [
-                    "PERCENTAGE_OF_HOUSEHOLDS",
-                    "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
-                    "RATINGS_OCCURRED_ON",
-                    "SHOW",
-                    "TIME", 
-                    "TOTAL_VIEWERS", 
-                    "TOTAL_VIEWERS_AGE_18_49"
+        Returns
+        -------
+        clean_ratings_columns : list
+            list of dict with standardized column names
+            matching one of the following 7:
+            [
+                "PERCENTAGE_OF_HOUSEHOLDS",
+                "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
+                "RATINGS_OCCURRED_ON",
+                "SHOW",
+                "TIME", 
+                "TOTAL_VIEWERS", 
+                "TOTAL_VIEWERS_AGE_18_49"
 
-                ]
+            ]
 
 
-            Raises
-            ------
-        """
-        key_to_dynamo_column_map = {
-            "ATotal": "TOTAL_VIEWERS_AGE_18_49",
-            "AHousehold": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
-            "Date": "RATINGS_OCCURRED_ON",
-            "Household": "PERCENTAGE_OF_HOUSEHOLDS",
-            "Show": "SHOW",
-            "Time": "TIME", 
-            "Total": "TOTAL_VIEWERS", 
-            "Viewers (000)": "TOTAL_VIEWERS",
-            "18-49 Rating": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
-            "18-49 Views (000)": "TOTAL_VIEWERS_AGE_18_49"
+        Raises
+        ------
+    """
+    key_to_dynamo_column_map = {
+        "ATotal": "TOTAL_VIEWERS_AGE_18_49",
+        "AHousehold": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
+        "Date": "RATINGS_OCCURRED_ON",
+        "Household": "PERCENTAGE_OF_HOUSEHOLDS",
+        "Show": "SHOW",
+        "Time": "TIME", 
+        "Total": "TOTAL_VIEWERS", 
+        "Viewers (000)": "TOTAL_VIEWERS",
+        "18-49 Rating": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
+        "18-49 Views (000)": "TOTAL_VIEWERS_AGE_18_49"
 
-        }
+    }
 
-        clean_ratings_columns = []
-        for dict_to_clean in pre_clean_ratings_keys:
+    clean_ratings_columns = []
+    for dict_to_clean in pre_clean_ratings_keys:
+        '''
+            Iterates over all keys in each dict
+        '''
+        for original_key in dict_to_clean.keys():
             '''
-                Iterates over all keys in each dict
+                static mapping to standardize dynamodb
+                keys that removes old key and adds the correct dynamo
+                column name mapping
+
+                original_key will be one of the keys in key_to_dynamo_column_map
+
+                Will pop (remove) that key from original dict and 
+                assign the corresponding value for original_key 
+                in key_to_dynamo_column_map to dict_to_clean
             '''
-            for original_key in dict_to_clean.keys():
-                '''
-                    static mapping to standardize dynamodb
-                    keys that removes old key and adds the correct dynamo
-                    column name mapping
 
-                    original_key will be one of the keys in key_to_dynamo_column_map
-
-                    Will pop (remove) that key from original dict and 
-                    assign the corresponding value for original_key 
-                    in key_to_dynamo_column_map to dict_to_clean
-                '''
-
-                dict_to_clean[key_to_dynamo_column_map[original_key]] =  dict_to_clean.pop(
-                    original_key
-                )
+            dict_to_clean[key_to_dynamo_column_map[original_key]] =  dict_to_clean.pop(
+                original_key
+            )
+    
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
