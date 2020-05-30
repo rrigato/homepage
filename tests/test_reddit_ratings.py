@@ -835,6 +835,7 @@ class RedditApi(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import clean_dict_value
+
         list_with_rerun_and_bad_household = [
             {
                 "TIME": "12",
@@ -885,7 +886,15 @@ class RedditApi(unittest.TestCase):
         )
         self.assertTrue(clean_ratings_list[1]["IS_RERUN"]) 
 
-    
+        '''
+            Testing what happens if PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49
+            is not present
+        '''
+        self.assertEqual(
+            clean_ratings_list[2]["SHOW"],
+            "sample show without adult household (r"
+        )
+        self.assertIsNone(clean_ratings_list[2]["IS_RERUN"])     
 
 
 class LambdaHandler(unittest.TestCase):

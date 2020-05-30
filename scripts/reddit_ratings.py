@@ -738,7 +738,12 @@ def clean_dict_value(ratings_values_to_clean):
         '''
         try:
             if dict_to_clean["PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"] == "9.99":
+                dict_to_clean["PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"] = None
         except KeyError:
+            '''
+                do nothing if PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49
+                is not present
+            '''
             pass
         clean_ratings_values.append(dict_to_clean)
 
