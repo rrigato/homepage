@@ -858,7 +858,16 @@ class RedditApi(unittest.TestCase):
         clean_ratings_list = clean_dict_value(
             ratings_values_to_clean=list_with_rerun_and_bad_household
         )
-        import pdb; pdb.set_trace()
+
+        '''
+            Testing string split and 
+            new key for dict
+        '''
+        self.assertEqual(
+            clean_ratings_list[1]["SHOW"],
+            "My Hero Academia"
+        )
+        self.assertTrue(clean_ratings_list[1]["IS_RERUN"])        
 
 
 class LambdaHandler(unittest.TestCase):
