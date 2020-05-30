@@ -55,7 +55,7 @@ class BackendTests(unittest.TestCase):
             Raises
             ------
         '''
-        cls.DYNAMO_TABLE_NAME = "toonami_ratings"
+        cls.DYNAMO_TABLE_NAME = "dev_toonami_ratings"
         cls.LAMBDA_FUNCTION_NAME = "dev-ratings-backend-lambda-poll"
         cls.S3_CODE_BUCKET = "dev-ratings-backend-source-code"
         cls.S3_CODE_ZIP_FILE = "built_lambda.zip"
