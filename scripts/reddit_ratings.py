@@ -628,12 +628,12 @@ def ratings_iteration(number_posts=10):
                 ]["data"]["name"]
 
 
-def batch_json_upload(json_file, table_name):
+def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
 
         Parameters
         ----------
-        json_file : str
+        json_file_location : str
             Where the json file is located on local disk
         
         table_name : str
@@ -646,10 +646,30 @@ def batch_json_upload(json_file, table_name):
         ------
 
     """
-    dynamo_client = get_boto_clients(
-            resource_name="dynamodb",
+    dynamo_resource = boto3.resource(
+            "dynamodb",
             region_name="us-east-1"
     )
+
+    dynamo_table = dynamo_resource.Table(table_name)
+    '''
+        Open and load historical file
+    '''
+    with open(json_file_location, "r") as json_file:
+
+        historical_ratings = json.load(json_file)
+        '''
+            Iterate over all items for upload
+        '''
+        for individual_item in historical_ratings:
+            individual_item["TIME"] = individual_item.pop("Time")
+            individual_item["RATINGS_OCCURRED_ON"] = individual_item.pop("ratings_occurred_on")
+            #import pdb; pdb.set_trace()
+            dynamo_table.put_item(
+                TableName=table_name,
+                Item=individual_item
+            )
+            import pdb; pdb.set_trace()
 
 def handle_ratings_insertion(all_ratings_list):
     """Handles inserting ratings into dynamodb
@@ -671,7 +691,8 @@ def handle_ratings_insertion(all_ratings_list):
             resource_name="dynamodb",
             region_name="us-east-1"
     )
-    #import pdb; pdb.set_trace()
+    
+
 
 
 def lambda_handler(event, context):
@@ -689,6 +710,7 @@ def lambda_handler(event, context):
     get_logger()
     all_ratings_list = ratings_iteration(number_posts=10)
 
+
 def main():
     """Entry point into the script
         Parameters
@@ -702,7 +724,11 @@ def main():
     """
     get_logger()
     all_ratings_list = ratings_iteration(number_posts=10)
-    import pdb; pdb.set_trace()
+    batch_json_upload(
+        json_file_location="ratings_earliest_november_11_2018.json",
+        table_name="dev_toonami_ratings"
+    )
+
     with open("ratings_placeholder.json", "w") as output_file:
         output_file.write(json.dumps(all_ratings_list))
     #html_table_parse("""<!-- SC_OFF --><div class=\"md\"><table><thead>\n<tr>\n<th align=\"center\">Time</th>\n<th align=\"center\">Show</th>\n<th align=\"center\">Viewers (000)</th>\n<th align=\"center\">18-49 Rating</th>\n<th align=\"center\">18-49 Views (000)</th>\n</tr>\n</thead><tbody>\n<tr>\n<td align=\"center\">11:30</td>\n<td align=\"center\">My Hero Academia</td>\n<td align=\"center\">543</td>\n<td align=\"center\">0.26</td>\n<td align=\"center\">332</td>\n</tr>\n<tr>\n<td align=\"center\">12:00a</td>\n<td align=\"center\">Sword Art Online: Alicization - War of Underworld</td>\n<td align=\"center\">385</td>\n<td align=\"center\">0.19</td>\n<td align=\"center\">245</td>\n</tr>\n<tr>\n<td align=\"center\">12:30a</td>\n<td align=\"center\">Demon Slayer</td>\n<td align=\"center\">358</td>\n<td align=\"center\">0.18</td>\n<td align=\"center\">232</td>\n</tr>\n<tr>\n<td align=\"center\">1:00a</td>\n<td align=\"center\">Food Wars!</td>\n<td align=\"center\">306</td>\n<td align=\"center\">0.16</td>\n<td align=\"center\">207</td>\n</tr>\n<tr>\n<td align=\"center\">1:30a</td>\n<td align=\"center\">Black Clover</td>\n<td align=\"center\">275</td>\n<td align=\"center\">0.15</td>\n<td align=\"center\">196</td>\n</tr>\n<tr>\n<td align=\"center\">2:00a</td>\n<td align=\"center\">Jojo’s Bizarre Adventure: Golden Wind</td>\n<td align=\"center\">235</td>\n<td align=\"center\">0.13</td>\n<td align=\"center\">170</td>\n</tr>\n<tr>\n<td align=\"center\">2:30a</td>\n<td align=\"center\">Naruto: Shippuden</td>\n<td align=\"center\">236</td>\n<td align=\"center\">0.13</td>\n<td align=\"center\">170</td>\n</tr>\n</tbody></table>\n\n<p>Source: <a href=\"https://programminginsider.com/saturday-final-ratings-hbo-premiere-of-hobbs-shaw-beats-nbc-telecast-of-its-parent-2017-film-the-fate-of-the-furious-among-adults-18-49/\">https://programminginsider.com/saturday-final-ratings-hbo-premiere-of-hobbs-shaw-beats-nbc-telecast-of-its-parent-2017-film-the-fate-of-the-furious-among-adults-18-49/</a></p>\n</div><!-- SC_ON -->""")
