@@ -62,6 +62,7 @@ Resources:
       Bucket: !Ref BucketName
       PolicyDocument:
         Version: 2012-10-17
+        Id: RestrictToOAI
         Statement:
           -
             Effect: Allow
