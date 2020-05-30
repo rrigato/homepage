@@ -872,9 +872,9 @@ class RedditApi(unittest.TestCase):
             is replaced with None
         '''
         self.assertIsNone(
-            clean_ratings_list[0]["PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"],
+            clean_ratings_list[0]["PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"]
         )   
-
+        self.assertIsNone(clean_ratings_list[0]["IS_RERUN"])
 
         '''
             Testing string split and 
