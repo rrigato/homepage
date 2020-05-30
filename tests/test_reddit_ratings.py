@@ -850,12 +850,14 @@ class RedditApi(unittest.TestCase):
                 "TIME": "12:00a", 
                 "SHOW": "My Hero Academia (r)", 
                 "TOTAL_VIEWERS": "590", 
-                "18-49 Rating": "0.29", 
-                "18-49 Views (000)": "380", 
-                "ratings_occurred_on": "2020-05-09"
+                "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49": "0.29", 
+                "TOTAL_VIEWERS_AGE_18_49": "380", 
+                "RATINGS_OCCURRED_ON": "2020-05-09"
             }
         ]
-
+        clean_ratings_list = clean_dict_value(
+            ratings_values_to_clean=list_with_rerun_and_bad_household
+        )
 
 
 
