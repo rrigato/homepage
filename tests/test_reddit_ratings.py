@@ -736,10 +736,10 @@ class RedditApi(unittest.TestCase):
         from scripts.reddit_ratings import dict_key_mapping
         valid_column_names = [
             "PERCENTAGE_OF_HOUSEHOLDS",
-            "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"
+            "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
             "RATINGS_OCCURRED_ON",
             "SHOW",
-            "TIME" 
+            "TIME", 
             "TOTAL_VIEWERS", 
             "TOTAL_VIEWERS_AGE_18_49"
 

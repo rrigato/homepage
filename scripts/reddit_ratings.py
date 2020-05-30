@@ -642,10 +642,10 @@ def ratings_iteration(number_posts=10):
                 matching one of the following 7:
                 [
                     "PERCENTAGE_OF_HOUSEHOLDS",
-                    "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"
+                    "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
                     "RATINGS_OCCURRED_ON",
                     "SHOW",
-                    "TIME" 
+                    "TIME", 
                     "TOTAL_VIEWERS", 
                     "TOTAL_VIEWERS_AGE_18_49"
 
@@ -655,6 +655,17 @@ def ratings_iteration(number_posts=10):
             Raises
             ------
         """
+        key_to_dynamo_column_map = {
+            "Household": "PERCENTAGE_OF_HOUSEHOLDS",
+            "AHousehold": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
+            "Date": "RATINGS_OCCURRED_ON",
+            "Show": "SHOW",
+                    "TIME", 
+                    "TOTAL_VIEWERS", 
+            "ATotal": "TOTAL_VIEWERS_AGE_18_49"
+
+        }
+
         clean_ratings_columns = []
         for dict_to_clean in pre_clean_ratings_keys:
             '''
