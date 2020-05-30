@@ -627,7 +627,7 @@ def ratings_iteration(number_posts=10):
                 ratings_post_list[len(ratings_post_list) - 1]
                 ]["data"]["name"]
 
-def handle_ratings_insertion():
+def handle_ratings_insertion(all_ratings_list):
     """Handles inserting ratings into dynamodb
 
         Parameters
@@ -647,7 +647,7 @@ def handle_ratings_insertion():
             resource_name="dynamodb",
             region_name="us-east-1"
     )
-
+    
 def lambda_handler(event, context):
     """Handles lambda invocation from cloudwatch events rule
 

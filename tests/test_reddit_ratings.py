@@ -11,7 +11,7 @@ import unittest
 
 
 
-
+from util.test_reddit_rating_config import MOCK_RATINGS_LIST
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2019
 from util.test_reddit_rating_config import REDDIT_RATING_TABLE_2020
 
@@ -718,6 +718,9 @@ class RedditApi(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import handle_ratings_insertion
+        handle_ratings_insertion(all_ratings_list=MOCK_RATINGS_LIST)
+
+
 
 
 class LambdaHandler(unittest.TestCase):
