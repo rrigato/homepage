@@ -690,7 +690,7 @@ def dict_key_mapping(pre_clean_ratings_keys):
             dict_to_clean[key_to_dynamo_column_map[original_key]] =  dict_to_clean.pop(
                 original_key
             )
-    
+        clean_ratings_columns.append(dict_to_clean)
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
@@ -728,7 +728,6 @@ def batch_json_upload(json_file_location, table_name):
         for individual_item in historical_ratings:
             individual_item["TIME"] = individual_item.pop("Time")
             individual_item["RATINGS_OCCURRED_ON"] = individual_item.pop("ratings_occurred_on")
-            import pdb; pdb.set_trace()
             dynamo_table.put_item(
                 TableName=table_name,
                 Item=individual_item
@@ -788,10 +787,10 @@ def main():
     """
     get_logger()
     all_ratings_list = ratings_iteration(number_posts=10)
-    batch_json_upload(
-        json_file_location="ratings_earliest_november_11_2018.json",
-        table_name="dev_toonami_ratings"
-    )
+    # batch_json_upload(
+    #     json_file_location="ratings_earliest_november_11_2018.json",
+    #     table_name="dev_toonami_ratings"
+    # )
 
     with open("ratings_placeholder.json", "w") as output_file:
         output_file.write(json.dumps(all_ratings_list))

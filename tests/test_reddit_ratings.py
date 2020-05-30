@@ -747,12 +747,12 @@ class RedditApi(unittest.TestCase):
         original_json_list_example = [
             {
                 "Time": "12",
-                "Total": "1036"
+                "Total": "1036",
                 "Household": "0.70",
                 "ATotal": "630",
-                "AHousehold": "0.20"
+                "AHousehold": "0.20",
                 "Show": "sample show",
-                "Date": "2014-09-06",
+                "Date": "2014-09-06"
 
             }
         ]
@@ -761,6 +761,7 @@ class RedditApi(unittest.TestCase):
             pre_clean_ratings_list=original_json_list_example
         )
 
+        import pdb; pdb.set_trace()
 
 class LambdaHandler(unittest.TestCase):
     """Tests specific to when the script is run from a lambda
