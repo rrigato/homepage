@@ -65,8 +65,10 @@ Resources:
         Statement:
           -
             Effect: Allow
-            Principal: "*"
             Action: s3:GetObject
+            # ensuring that the static s3 bucket can only be accessed
+            # through cloudfront
+            Principal: !GetAtt CloudFrontOai.S3CanonicalUserId
             Resource: !Sub "arn:aws:s3:::${BucketName}/*"
     Type: "AWS::S3::BucketPolicy"
 
