@@ -822,6 +822,33 @@ class RedditApi(unittest.TestCase):
 
                 self.assertTrue(cleaned_key.isupper())
 
+    def test_clean_dict_value(self):
+        """Validates handling of bad ratings data
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from scripts.reddit_ratings import clean_dict_value
+        original_json_list_example = [
+            {
+                "Time": "12",
+                "Total": "1036",
+                "Household": "0.70",
+                "ATotal": "630",
+                "AHousehold": "0.20",
+                "Show": "sample show",
+                "Date": "2014-09-06"
+
+            }
+        ]
+
+
 
 
 class LambdaHandler(unittest.TestCase):
