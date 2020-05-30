@@ -841,7 +841,7 @@ class RedditApi(unittest.TestCase):
                 "TOTAL_VIEWERS": "1036",
                 "PERCENTAGE_OF_HOUSEHOLDS": "0.70",
                 "TOTAL_VIEWERS_AGE_18_49": "630",
-                "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49": "0.20",
+                "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49": "9.99",
                 "SHOW": "sample show",
                 "RATINGS_OCCURRED_ON": "2014-09-06"
 
@@ -858,6 +858,14 @@ class RedditApi(unittest.TestCase):
         clean_ratings_list = clean_dict_value(
             ratings_values_to_clean=list_with_rerun_and_bad_household
         )
+        '''
+            Testing that household rating value of 9.99 
+            is replaced with None
+        '''
+        self.assertIsNone(
+            clean_ratings_list[0]["PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"],
+        )   
+
 
         '''
             Testing string split and 
@@ -867,7 +875,9 @@ class RedditApi(unittest.TestCase):
             clean_ratings_list[1]["SHOW"],
             "My Hero Academia"
         )
-        self.assertTrue(clean_ratings_list[1]["IS_RERUN"])        
+        self.assertTrue(clean_ratings_list[1]["IS_RERUN"]) 
+
+    
 
 
 class LambdaHandler(unittest.TestCase):
