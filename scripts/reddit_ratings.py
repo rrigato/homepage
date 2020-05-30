@@ -669,7 +669,7 @@ def batch_json_upload(json_file_location, table_name):
                 TableName=table_name,
                 Item=individual_item
             )
-            import pdb; pdb.set_trace()
+
 
 def handle_ratings_insertion(all_ratings_list):
     """Handles inserting ratings into dynamodb

@@ -721,7 +721,19 @@ class RedditApi(unittest.TestCase):
         handle_ratings_insertion(all_ratings_list=MOCK_RATINGS_LIST)
 
 
+    def test_dict_key_mapping(self):
+        """Validating mapping of rating keys to dynamodb columns
 
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from scripts.reddit_ratings import dict_key_mapping
 
 class LambdaHandler(unittest.TestCase):
     """Tests specific to when the script is run from a lambda
