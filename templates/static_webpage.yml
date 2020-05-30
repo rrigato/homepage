@@ -55,10 +55,10 @@ Resources:
       Tags:
         -
             Key: accessType
-            Value: bucketPolicyToOai
+            Value: bucketPolicyNoOAI
         -
             Key: use
-            Value: website
+            Value: devTesting
 
       WebsiteConfiguration:
         IndexDocument: index.html
