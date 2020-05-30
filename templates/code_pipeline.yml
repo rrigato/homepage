@@ -463,14 +463,11 @@ Resources:
               ActionMode: CREATE_UPDATE
               RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
               #Used to pass parameters to Cloudformation template
-              #referenced in TemplatePath
-              #Fn:GetParam pass it the Artifact name,
-              #json file name and the parameter in that file
-              #And it will retrieve it for parameter overrides
-              # ParameterOverrides: |
-              #   {
-              #      "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
-              #   }              
+              ParameterOverrides: |
+                {
+                    "PolicyPrefix": "ProdRatingsBackend",
+                    "ProjectName" : "prod-ratings-backend"
+                }              
               StackName: !Sub "${ProdStackName}-backend-logic"
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
               #Artifact::template_file_name
