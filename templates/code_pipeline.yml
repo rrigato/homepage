@@ -438,9 +438,9 @@ Resources:
             RunOrder: 1
         ############################
         #Second action of this deploy prod stage
-        #Creates/updates the templates/static_webpage.yml
-        #cloudformation template which is the s3 bucket and 
-        #and policy referenced by cloudfront 
+        #Creates/updates the templates/ratings_backend.yml
+        #cloudformation template which is for the backend
+        #lambda/dynamo logic
         ############################
           - Name: DeployProdStaticWebpage
             ActionTypeId:
@@ -461,6 +461,7 @@ Resources:
               #it will be created, otherwise the stack will be updated
               #with the template provided in TemplatePath
               ActionMode: CREATE_UPDATE
+              RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
               #Used to pass parameters to Cloudformation template
               #referenced in TemplatePath
               #Fn:GetParam pass it the Artifact name,
@@ -469,16 +470,15 @@ Resources:
               # ParameterOverrides: |
               #   {
               #      "BucketName" : { "Fn::GetParam" : [ "sneakpeek", "util/prod_config.json", "ParameterValue" ] }
-              #   }
-              RoleArn: !GetAtt [ProdCodeDeployRole, Arn]
-              StackName: prod-homepage
+              #   }              
+              StackName: !Sub "${ProdStackName}-backend-logic"
               #TemplatePath: !Ref GitRepoName !Sub "TemplateSource::${ProdStackConfig}"
               #Artifact::template_file_name
               #is what the deploy stage is expecting as input for the
               #cloudformation template location
               TemplatePath:
-                  !Join ['::', [!Ref ProjectName, 'templates/prod_resource_import.yml']]
-            RunOrder: 1
+                  !Join ['::', [!Ref ProjectName, 'templates/ratings_backend.yml']]
+            RunOrder: 2
 
 
 
