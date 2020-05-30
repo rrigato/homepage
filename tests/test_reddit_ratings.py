@@ -835,16 +835,24 @@ class RedditApi(unittest.TestCase):
             ------
         """
         from scripts.reddit_ratings import clean_dict_value
-        original_json_list_example = [
+        list_with_rerun_and_bad_household = [
             {
-                "Time": "12",
-                "Total": "1036",
-                "Household": "0.70",
-                "ATotal": "630",
-                "AHousehold": "0.20",
-                "Show": "sample show",
-                "Date": "2014-09-06"
+                "TIME": "12",
+                "TOTAL_VIEWERS": "1036",
+                "PERCENTAGE_OF_HOUSEHOLDS": "0.70",
+                "TOTAL_VIEWERS_AGE_18_49": "630",
+                "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49": "0.20",
+                "SHOW": "sample show",
+                "RATINGS_OCCURRED_ON": "2014-09-06"
 
+            },
+            {
+                "TIME": "12:00a", 
+                "SHOW": "My Hero Academia (r)", 
+                "TOTAL_VIEWERS": "590", 
+                "18-49 Rating": "0.29", 
+                "18-49 Views (000)": "380", 
+                "ratings_occurred_on": "2020-05-09"
             }
         ]
 
