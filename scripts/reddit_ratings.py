@@ -660,6 +660,7 @@ def dict_key_mapping(pre_clean_ratings_keys):
         "AHousehold": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
         "Date": "RATINGS_OCCURRED_ON",
         "Household": "PERCENTAGE_OF_HOUSEHOLDS",
+        "ratings_occurred_on": "RATINGS_OCCURRED_ON",
         "Show": "SHOW",
         "Time": "TIME", 
         "Total": "TOTAL_VIEWERS", 
@@ -694,7 +695,7 @@ def dict_key_mapping(pre_clean_ratings_keys):
             Append each cleaned dict
         '''
         clean_ratings_columns.append(dict_to_clean)
-        
+
     return(clean_ratings_columns)
 
 def batch_json_upload(json_file_location, table_name):
