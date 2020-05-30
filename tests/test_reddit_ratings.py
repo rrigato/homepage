@@ -705,6 +705,20 @@ class RedditApi(unittest.TestCase):
             4
         )        
 
+    def test_handle_ratings_insertion(self):
+        """Tests outbound arguements for ratings put item in dynamodb
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        from scripts.reddit_ratings import handle_ratings_insertion
+
 
 class LambdaHandler(unittest.TestCase):
     """Tests specific to when the script is run from a lambda
