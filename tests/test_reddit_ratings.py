@@ -777,9 +777,11 @@ class RedditApi(unittest.TestCase):
             )
             for cleaned_key in cleaned_show_dict.keys():
                 self.assertIn(cleaned_key, self.valid_column_names)
+                self.assertTrue(cleaned_key.isupper())
+
 
     def test_dict_key_mapping_recent(self):
-        """Validates recent ratings keys
+        """Validates recent ratings keys using MOCK_RATINGS_LIST
 
             Parameters
             ----------
@@ -803,15 +805,15 @@ class RedditApi(unittest.TestCase):
             in the dynamodb list 
         '''
         for cleaned_show_dict in clean_original_values:
-            '''
-                Making sure the unique key values is 7
-            '''
-            # self.assertEqual(
-            #     len(tuple(cleaned_show_dict.keys())),
-            #     7
-            # )
+
             for cleaned_key in cleaned_show_dict.keys():
+                '''
+                    Making sure all keys are in the list
+                    and all values are upper case
+                '''
                 self.assertIn(cleaned_key, self.valid_column_names)
+
+                self.assertTrue(cleaned_key.isupper())
 
 
 
