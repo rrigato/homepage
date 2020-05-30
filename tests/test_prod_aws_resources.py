@@ -125,6 +125,26 @@ class WebappLive(unittest.TestCase):
         logging.info("Output url for webpage is correct")
 
 
+    def test_cloudfront_oai(self, domain_url=HOMEPAGE_URL):
+        """Tests website static s3 bucket can only be accessed through
+            cloudfront distribution
+
+            Parameters
+            ----------
+                domain_url : str
+                    Url string to send the request to
+            Returns
+            -------
+
+            Raises
+            ------
+        """
+        r = requests.get(
+            "https://s3.amazonaws.com/ryanrigato.com/index.html"
+        )
+
+        self.assertEqual(r.status_code, 400)
+
 
 
 
