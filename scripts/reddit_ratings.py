@@ -702,7 +702,7 @@ def dict_key_mapping(pre_clean_ratings_keys):
 
     return(clean_ratings_columns)
 
-def clean_dict_value(self):
+def clean_dict_value(ratings_values_to_clean):
     """Overrides for ratings data
 
         Parameters
@@ -731,6 +731,9 @@ def clean_dict_value(self):
         if dict_to_clean["SHOW"].find(" (r)") > 0:
             dict_to_clean["SHOW"] = dict_to_clean["SHOW"].split(" (r)")[0]
             dict_to_clean["IS_RERUN"] = True
+        clean_ratings_values.append(dict_to_clean)
+
+    return(clean_ratings_values)
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table

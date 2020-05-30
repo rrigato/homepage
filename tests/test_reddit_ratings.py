@@ -858,7 +858,7 @@ class RedditApi(unittest.TestCase):
         clean_ratings_list = clean_dict_value(
             ratings_values_to_clean=list_with_rerun_and_bad_household
         )
-
+        import pdb; pdb.set_trace()
 
 
 class LambdaHandler(unittest.TestCase):
