@@ -731,6 +731,15 @@ def clean_dict_value(ratings_values_to_clean):
         if dict_to_clean["SHOW"].find(" (r)") > 0:
             dict_to_clean["SHOW"] = dict_to_clean["SHOW"].split(" (r)")[0]
             dict_to_clean["IS_RERUN"] = True
+        
+        '''
+            Try catch handles if PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49
+            is not included in the list of keys
+        '''
+        try:
+            if dict_to_clean["PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"] == "9.99":
+        except KeyError:
+            pass
         clean_ratings_values.append(dict_to_clean)
 
     return(clean_ratings_values)

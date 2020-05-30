@@ -853,6 +853,14 @@ class RedditApi(unittest.TestCase):
                 "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49": "0.29", 
                 "TOTAL_VIEWERS_AGE_18_49": "380", 
                 "RATINGS_OCCURRED_ON": "2020-05-09"
+            },{
+                "TIME": "12",
+                "TOTAL_VIEWERS": "1036",
+                "PERCENTAGE_OF_HOUSEHOLDS": "0.70",
+                "TOTAL_VIEWERS_AGE_18_49": "630",
+                "SHOW": "sample show without adult household (r",
+                "RATINGS_OCCURRED_ON": "2014-09-06"
+
             }
         ]
         clean_ratings_list = clean_dict_value(
