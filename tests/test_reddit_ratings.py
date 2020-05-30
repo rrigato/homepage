@@ -767,6 +767,13 @@ class RedditApi(unittest.TestCase):
             in the dynamodb list 
         '''
         for cleaned_show_dict in clean_original_values:
+            '''
+                Making sure the unique key values is 7
+            '''
+            self.assertEqual(
+                len(tuple(cleaned_show_dict.keys())),
+                7
+            )
             for cleaned_key in cleaned_show_dict.keys():
                 self.assertIn(cleaned_key, valid_column_names)
 
