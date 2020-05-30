@@ -663,22 +663,33 @@ def ratings_iteration(number_posts=10):
             "Show": "SHOW",
             "Time": "TIME", 
             "Total": "TOTAL_VIEWERS", 
+            "Viewers (000)": "TOTAL_VIEWERS",
+            "18-49 Rating": "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49",
+            "18-49 Views (000)": "TOTAL_VIEWERS_AGE_18_49"
 
         }
 
         clean_ratings_columns = []
         for dict_to_clean in pre_clean_ratings_keys:
             '''
-                Iterates over 
+                Iterates over all keys in each dict
             '''
-            '''
-                static mapping to standardize dynamodb
-                keys that removes old key and adds the correct dynamo
-                column name mapping
-            '''
-            try:
-                dict_to_clean[""] 
-            except KeyError: 
+            for original_key in dict_to_clean.keys():
+                '''
+                    static mapping to standardize dynamodb
+                    keys that removes old key and adds the correct dynamo
+                    column name mapping
+
+                    original_key will be one of the keys in key_to_dynamo_column_map
+
+                    Will pop (remove) that key from original dict and 
+                    assign the corresponding value for original_key 
+                    in key_to_dynamo_column_map to dict_to_clean
+                '''
+
+                dict_to_clean[key_to_dynamo_column_map[original_key]] =  dict_to_clean.pop(
+                    original_key
+                )
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
