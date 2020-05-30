@@ -637,28 +637,37 @@ def ratings_iteration(number_posts=10):
 
             Returns
             -------
-            clean_ratings_keys : list
+            clean_ratings_columns : list
                 list of dict with standardized column names
                 matching one of the following 7:
                 [
-                    "TIME", 
-                    "RATINGS_OCCURRED_ON",
-                    "TOTAL_VIEWERS", 
                     "PERCENTAGE_OF_HOUSEHOLDS",
-                    "TOTAL_VIEWERS_AGE_18_49",
                     "PERCENTAGE_OF_HOUSEHOLDS_AGE_18_49"
+                    "RATINGS_OCCURRED_ON",
+                    "SHOW",
+                    "TIME" 
+                    "TOTAL_VIEWERS", 
+                    "TOTAL_VIEWERS_AGE_18_49"
+
                 ]
 
 
             Raises
             ------
         """
-        clean_ratings_keys = []
+        clean_ratings_columns = []
         for dict_to_clean in pre_clean_ratings_keys:
             '''
-                static
+                Iterates over 
             '''
-
+            '''
+                static mapping to standardize dynamodb
+                keys that removes old key and adds the correct dynamo
+                column name mapping
+            '''
+            try:
+                dict_to_clean[""] 
+            except KeyError: 
 
 def batch_json_upload(json_file_location, table_name):
     """Batch inserts json file into dynamodb table
