@@ -261,9 +261,9 @@ Resources:
   #
   #Stages for this environment:
   #Stage 1) Source = Get source code repository
-  #stage 2) Build = Runs these CodeBuild projects in parallel:
+  #stage 2) Build = Runs CodeBuildPythonTests CodeBuild Project
+  # from this buildspec:
   #builds/buildspec_dev_homepage.yml
-  #builds/buildspec_dev_backend.yml
   #
   #stage 3) Deploy create/updates the
   #templates/prod_resource_import.yml
