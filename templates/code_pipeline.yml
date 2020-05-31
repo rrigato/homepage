@@ -408,7 +408,6 @@ Resources:
         - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
         - arn:aws:iam::aws:policy/AWSCodeCommitPowerUser
         - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
-        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
       Path: /
       Policies:
           - PolicyName: CodeBuildCustomerManaged
@@ -694,10 +693,6 @@ Resources:
             Service: [cloudformation.amazonaws.com]
         Version: '2012-10-17'
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        #lambda full access managed policy also provides
-        #access to all dynamodb apis
-        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
         - arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator
         - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
       Path: /
