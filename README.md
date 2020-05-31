@@ -92,11 +92,6 @@ Configuring git secrets as a web hook will ensure that git secrets runs on every
 ```
 
 
-Allow the sample lambda cloudwatch event since it uses a fake 
-account
-```
-    git config --add secrets.allowed "util/lambda_cw_event.json"
-```
 
 - Run a git secrets check recursively on all files in directory
 
@@ -113,9 +108,6 @@ Provides information on each directory/ source file
 - buildspec_dev_homepage.yml = Creates templates/static_webpage.yml
 and tests static html/webpage configuration
 
-- buildspec_dev_backend.yml = Creates templates/ratings_backend.yml
-and Tests backend ratings logic
-
 
 - buildspec_prod.yml = Prod homepage deployment
 
@@ -130,7 +122,6 @@ and Tests backend ratings logic
 
 - buildspec_prod.yml = Buildspec to use for the prod deployment CodeBuild project
 
-#### docs
 
 
 #### devops
@@ -223,29 +214,15 @@ only be deleted and recereated when in [ROLLBACK_COMPLETE state](https://stackov
 
 - prod_resource_import.yml = Importing existing S3 Bucket and Route53 hosted zone to cloudformation
 
-- ratings_backend.yml = Creates the backend storage and compute necessary for
-updating ratings
 
-- ratings_update_lambda.yml = Lambda function that updates dynamodb table from
-  templates/ratings_backend.yml
 
 #### tests
 
 - test_dev_aws_resources.py = tests dev website
 
-- test_dev_ratings_backend.py = tests backend resources for storing
-calling televison ratings api
-
-- test_reddit_ratings.py = tests logic for making api call to
-return television ratings
 
 - test_prod_aws_resources.py = ryanrigato.com resources and webpage
 testing
-
-##### util
-- reddit_search_response.json = Reddit search api json response using the
-following api query:
-https://oauth.reddit.com/r/toonami/search.json?limit=25&q=flair:news&sort=new&restrict_sr=on&t=all&raw_json=1&after=t3_a19qyq
 
 #### web
 Static html/js/css hosted in the s3 bucket
@@ -273,4 +250,3 @@ has any references you do not
 
 
 
-#### Setup Infrastructure
