@@ -779,12 +779,18 @@ def batch_json_upload(json_file_location, table_name):
     with open(json_file_location, "r") as json_file:
 
         historical_ratings = json.load(json_file)
+
+        clean_rating_keys = dict_key_mapping(
+            pre_clean_ratings_keys=historical_ratings
+        )
+
+        clean_rating_values = clean_dict_value(
+            ratings_values_to_clean=clean_rating_keys
+        )
         '''
             Iterate over all items for upload
         '''
-        for individual_item in historical_ratings:
-            individual_item["TIME"] = individual_item.pop("Time")
-            individual_item["RATINGS_OCCURRED_ON"] = individual_item.pop("ratings_occurred_on")
+        for individual_item in clean_rating_values:
             dynamo_table.put_item(
                 TableName=table_name,
                 Item=individual_item
