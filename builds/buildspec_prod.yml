@@ -3,7 +3,6 @@
 #
 #1) Runs the cloudformation template to create the necessary resources
 #2) Runs python coverage function to generate Auto HTML documentation
-##) Runs unit tests of lambda functions, checks aws resources created
 #
 #
 ############################
