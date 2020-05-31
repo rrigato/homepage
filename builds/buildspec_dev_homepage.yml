@@ -3,7 +3,6 @@
 #
 #1) Runs the cloudformation template to create the necessary resources
 #2) Runs python coverage function to generate Auto HTML documentation
-##) Runs unit tests of lambda functions, checks aws resources created
 #
 #
 ############################
@@ -63,14 +62,6 @@ phases:
       ##########################################
       - aws s3 sync ./web s3://$DESTINATION_BUCKET
         --exclude "*" --include "include/*" --delete
-
-
-
-    #########################################
-    #Creating deployment package and updating
-    #lambda function code
-    #
-    #########################################
 
       - python -m unittest tests/test_dev_aws_resources.py
 
