@@ -353,37 +353,6 @@ Resources:
                     !Join ['', ['dev-tests-', !Ref ProjectName]]
             RunOrder: 1
 
-        ##################################
-        #Running the CodeBuild actions in parallel
-        #This CodeBuild corresponds to
-        #builds/buildspec_dev_backend.yml
-        #
-        ##################################
-          - Name: BuildBackend
-              ######################################
-              #List of valid action type providers
-              #by action can be found here:
-              #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers
-              ######################################
-            ActionTypeId:
-                Category: Build
-                Owner: AWS
-                Version: '1'
-                Provider: CodeBuild
-
-            InputArtifacts:
-              - Name: !GetAtt GitRepo.Name
-            OutputArtifacts:
-              - Name: BuildDevBackend
-
-            #Name of CodeBuild defined previously
-            Configuration:
-                ProjectName:
-                    !Join ['', ['dev-tests-backend-', !Ref ProjectName]]
-            #Same runorder results in parallel CodeBuild
-            #projects
-            RunOrder: 1
-
 
 
           ###################################
