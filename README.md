@@ -111,8 +111,6 @@ and tests static html/webpage configuration
 
 - buildspec_prod.yml = Prod homepage deployment
 
-##### py
-    Directory for custom python scripts that setup build configuration
 
 
 
