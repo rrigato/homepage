@@ -1,4 +1,4 @@
-name: readme svg for special repo
+name: Add favicon images to web application
 on: 
   push: 
     branches:
@@ -17,7 +17,7 @@ jobs:
       - name: script-execution-permissions
         run: chmod +x ${{env.ORCHESTRATION_SCRIPT}}
 
-      - name: persist-image-artifacts
+      - name: upload-favicon-artifacts
         shell: bash
         env: 
           AWS_ACCESS_KEY_ID: ${{secrets.PERSISTANT_STORAGE_ID}}
