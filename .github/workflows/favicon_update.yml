@@ -2,7 +2,7 @@ name: readme svg for special repo
 on: 
   push: 
     branches:
-      - master
+      - dev
 
 jobs:
   publish-commit-artifact:

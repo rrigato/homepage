@@ -1,3 +1,7 @@
 devops/CI.sh
 logs/*
-
+/avenv
+__pycache__/
+/deployment
+*.zip
+.DS_Store
