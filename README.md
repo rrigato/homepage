@@ -225,26 +225,6 @@ testing
 #### web
 Static html/js/css hosted in the s3 bucket
 
-#### Setup Continuous Integration
-
-Add the remote repo using the following:
-```
-git init
-
-git remote add origin <origin_url_or_ssh>
-
-```
-
-
-Fetch origin repo locally and merge if the remote
-
-has any references you do not
-
-```
-    git fetch origin
-
-    git merge origin/<branch_name>
-```
 
 
 
