@@ -12,5 +12,5 @@ aws s3api put-object --bucket $AWS_S3_BUCKET_NAME \
 aws s3api put-object --bucket $AWS_S3_BUCKET_NAME \
   --key "favicon.png" \
   --body "web/images/favicon.png" \
-  --content-type "image/svg+xml" \
+  --content-type "image/png" \
   --cache-control "max-age 60"

@@ -1,0 +1,29 @@
+name: readme svg for special repo
+on: 
+  push: 
+    branches:
+      - master
+
+jobs:
+  publish-commit-artifact:
+    runs-on: ubuntu-latest
+    env: 
+      ORCHESTRATION_SCRIPT: './.github/scripts/orchestrate_artifacts.sh'
+
+    steps:
+      - name: checkout-current-branch
+        uses: actions/checkout@v3
+
+      - name: script-execution-permissions
+        run: chmod +x ${{env.ORCHESTRATION_SCRIPT}}
+
+      - name: persist-image-artifacts
+        shell: bash
+        env: 
+          AWS_ACCESS_KEY_ID: ${{secrets.PERSISTANT_STORAGE_ID}}
+          AWS_DEFAULT_OUTPUT: json
+          AWS_DEFAULT_REGION: 'us-east-1'
+          AWS_S3_BUCKET_NAME: 'ryanrigato.com'
+          AWS_SECRET_ACCESS_KEY: ${{secrets.PERSISTANT_STORAGE_KEY}}
+        run: ${{env.ORCHESTRATION_SCRIPT}}
+
