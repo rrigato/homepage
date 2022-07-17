@@ -248,3 +248,13 @@ has any references you do not
 
 
 
+# detect-secrets-scan
+
+```bash
+
+detect-secrets scan > .secrets.baseline
+
+detect-secrets scan | \
+python3 -c "import sys, json; print(json.load(sys.stdin)['results'])"
+
+```
