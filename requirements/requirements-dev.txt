@@ -1,1 +1,2 @@
-detect-secrets==1.2.0
+cfn-lint
+detect-secrets==1.3.0
