@@ -2,7 +2,7 @@ name: Add favicon images to web application
 on: 
   push: 
     branches:
-      - dev
+      - master
 
 jobs:
   publish-commit-artifact:
