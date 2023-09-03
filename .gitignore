@@ -1,7 +1,8 @@
+__pycache__/
+.DS_Store
+*.zip
+/avenv
+/deployment
 devops/CI.sh
 logs/*
-/avenv
-__pycache__/
-/deployment
-*.zip
-.DS_Store
+node_modules/
