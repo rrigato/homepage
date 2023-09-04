@@ -1,7 +1,4 @@
-from bs4 import BeautifulSoup
-import argparse
 import boto3
-import json
 import logging
 import os
 import requests
