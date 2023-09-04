@@ -14,4 +14,4 @@ if [ "${secret_scan_results}" != "{}" ]; then
     exit 125
 fi
 
-git push origin master
+git push origin dev
