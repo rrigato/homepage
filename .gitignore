@@ -3,6 +3,7 @@ __pycache__/
 *.zip
 /avenv
 /deployment
+dist/
 devops/CI.sh
 logs/*
 node_modules/
