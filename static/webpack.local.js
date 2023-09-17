@@ -7,10 +7,6 @@ module.exports = merge(
     
     {
         devServer: {
-            static: {
-                directory: path.join(
-                    __dirname, 'static', 'dist'),
-            },
             open: true
         },
         mode: 'development'
