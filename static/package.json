@@ -5,6 +5,7 @@
     },
     "description": "personal homepage",
     "devDependencies": {
+        "@testing-library/react": "^14.0.0",
         "html-loader": "^4.2.0",
         "html-webpack-plugin": "^5.5.3",
         "jest": "^29.6.4",
