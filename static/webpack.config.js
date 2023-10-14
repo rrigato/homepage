@@ -7,8 +7,20 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/i,
-                loader: "html-loader",
+                loader: 'html-loader',
             },
+            {
+                test: /\.(?:js|jsx|cjs)$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [
+                        '@babel/preset-react'
+                    ]
+                  }
+                }
+            }
         ],
     },
     
