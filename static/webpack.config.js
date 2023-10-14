@@ -10,7 +10,7 @@ module.exports = {
                 loader: 'html-loader',
             },
             {
-                test: /\.(?:js|jsx|cjs)$/,
+                test: /\.(?:js|cjs)$/,
                 exclude: /node_modules/,
                 use: {
                   loader: 'babel-loader',
@@ -26,7 +26,7 @@ module.exports = {
     
     plugins: [
         new HtmlWebpackPlugin({
-            filename: 'index.html'
+            template: 'index.html'
         })
     ],
 };
