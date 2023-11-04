@@ -1,9 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { App } from '../App.jsx';
 
 
 
 const root = createRoot(
     document.getElementById('app-entry-point')
 );
-root.render(<h1>react initial setup</h1>);
+root.render(<App/>);
