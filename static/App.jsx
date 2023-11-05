@@ -3,6 +3,6 @@ import './css/main.css';
 
 export function App(){
     return(
-        <h1>react initial setup</h1>
+        <h1>initial homepage setup</h1>
     );
 }

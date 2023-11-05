@@ -1,7 +1,4 @@
-background {
-    color: black;
-}
-
-text {
+body {
+    background-color: black;
     color: white;
 }

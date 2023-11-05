@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import {App} from '../App.jsx';
+import { App } from '../App.jsx';
 
 describe('entry point for app', () => {
     test('HomePageToggle called', () => {
@@ -7,8 +7,8 @@ describe('entry point for app', () => {
         
         const renderedHomepage = render(<App/>);
 
-
-        renderedHomepage.findByText('react initial setup');
+        // TODO - next step call HomePageToggle component
+        renderedHomepage.findByText('initial homepage setup');
 
     });
 });
