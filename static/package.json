@@ -23,6 +23,11 @@
         "test": "tests"
     },
     "jest": {
+        "moduleNameMapper": {
+            "\\.(jpg|jpeg|png|gif|eot|webp|svg|mp4|webm|wav|mp3|m4a)$":
+              "<rootDir>/__mocks__/fileMocks.js",
+            "\\.(css|less)$": "<rootDir>/__mocks__/styleMocks.js"
+        },
         "testEnvironment": "jsdom"
     },
     "homepage": "https://github.com/rrigato/homepage#readme",
