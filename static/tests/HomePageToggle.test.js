@@ -2,13 +2,15 @@ import { render } from '@testing-library/react';
 import { HomePageToggle } from '../js/HomePageToggle.jsx';
 
 describe('Central Content for site', () => {
-    test('HomePageToggle default render', () => {
+    test('HomePageToggle default render', async () => {
         
         
-        const {findByText} = render(<HomePageToggle/>);
+        const {getByRole} = render(<HomePageToggle/>);
 
         
-        findByText(RegExp('Latest Projects'));
+        const projectButton = await getByRole(
+            'button', {name: 'Projects'}
+        );
 
     });
 });
