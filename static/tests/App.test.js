@@ -2,6 +2,9 @@ import { render } from '@testing-library/react';
 import { App } from '../js/App.jsx';
 
 describe('entry point for app', () => {
+    afterEach(() => {
+        jest.resetMocks();
+    });
     test('HomePageToggle called', () => {
         
         
