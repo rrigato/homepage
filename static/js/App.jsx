@@ -1,8 +1,11 @@
 import React from 'react';
 import '../css/main.css';
+import { HomePageToggle } from './HomePageToggle';
 
 export function App(){
     return(
-        <h1>initial homepage setup</h1>
+        <div id='app-entry-point'>
+            <HomePageToggle/>
+        </div>
     );
 }
