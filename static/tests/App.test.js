@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { App } from '../App.jsx';
+import { App } from '../js/App.jsx';
 
 describe('entry point for app', () => {
     test('HomePageToggle called', () => {
