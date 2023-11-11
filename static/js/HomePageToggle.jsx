@@ -11,21 +11,35 @@ export function HomePageToggle(){
         <div id='home-page-toggle-component'  className='full-height'>
             <div className='toggle-container'>
                 <button
-                    // onClick={
-                    //     setSelectedSelection(0)
-                    // }
-                >Projects
-                </button>
-                {/* <button
                     onClick={
-                        setSelectedSelection(1)
+                        () => {
+                            setSelectedSelection(0);
+                        }
                     }
-                >About</button>
+                >
+                Projects
+                </button>
+                
                 <button
                     onClick={
-                        setSelectedSelection(2)
+                        () => {
+                            setSelectedSelection(1)
+                        }
                     }
-                >Blog</button> */}
+                >
+                About
+                </button>
+                
+                <button
+                    onClick={
+                        () => {
+                            setSelectedSelection(2)
+                        }
+                    }
+                >
+                Blog
+                </button>
+
                 <br/>
                 <div 
                     id='toggle-0' 
