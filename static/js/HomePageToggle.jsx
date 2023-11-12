@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
 import '../css/main.css';
 
-/**Determines button class name based on section
- * 
- * @param {Number} selectedSection 
- * @returns {String} className property values
- */
-function determineButtonClass(selectedSection){
-    if (selectedSection === 0){
-        return(
-            'toggle-button ' +
-            'toggle-currently-selected-button'
-        )
-    }
-    return('toggle-button');
-}
+
 /**Toggle button for different sections of homepage
  * 
  * @returns react jsx 
