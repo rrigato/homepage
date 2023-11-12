@@ -8,9 +8,13 @@ describe('Central Content for site', () => {
         const {getByRole} = render(<HomePageToggle/>);
 
         
+        const aboutButton = await getByRole(
+            'button', {name: 'About'}
+        );
         const projectButton = await getByRole(
             'button', {name: 'Projects'}
         );
+
 
     });
 });
