@@ -17,7 +17,6 @@ export function HomePageToggle(){
                 <div id='button-container' className='flex-container'>
                     <div className='toggle-button-container'>
                         <button
-                            autoFocus={selectedSection === 0}
                             className={
                                 selectedSection === 0 ?
                                 'toggle-button toggle-currently-selected-button':
@@ -37,7 +36,6 @@ export function HomePageToggle(){
                     
                     <div className='toggle-button-container'>
                         <button
-                            autoFocus={selectedSection === 1}
                             className={
                                 selectedSection === 1 ?
                                 'toggle-button toggle-currently-selected-button':
@@ -56,7 +54,6 @@ export function HomePageToggle(){
                     
                     <div className='toggle-button-container'>
                         <button
-                            autoFocus={selectedSection === 2}
                             className={
                                 selectedSection === 2 ?  
                                 'toggle-button toggle-currently-selected-button':
