@@ -9,42 +9,53 @@ export function HomePageToggle(){
     return(
         <div id='home-page-toggle-component'  className='full-height'>
             <div className='toggle-container'>
-                <div id='button-container'>
-                    <button
-                        className='toggle-button'
-                        onClick={
-                            () => {
-                                setSelectedSelection(0);
+                <div id='button-container' className='flex-container'>
+                    <div className='toggle-button-container'>
+                        <button
+                            autoFocus={selectedSection === 0}
+                            className='toggle-button'
+                            onClick={
+                                () => {
+                                    setSelectedSelection(0);
+                                }
                             }
-                        }
-                    >
-                    Projects
-                    </button>
+                        
+                        >
+                        Projects
+                        </button>
+                    </div>
                     
-                    <button
-                        className='toggle-button'
-                        onClick={
-                            () => {
-                                setSelectedSelection(1)
+                    <div className='toggle-button-container'>
+                        <button
+                            autoFocus={selectedSection === 1}
+                            className='toggle-button'
+                            onClick={
+                                () => {
+                                    setSelectedSelection(1)
+                                }
                             }
-                        }
-                    >
-                    About
-                    </button>
+                        >
+                        About
+                        </button>
+                    </div>
                     
-                    <button
-                        className='toggle-button'
-                        onClick={
-                            () => {
-                                setSelectedSelection(2)
+                    <div className='toggle-button-container'>
+                        <button
+                            autoFocus={selectedSection === 2}
+                            className='toggle-button'
+                            onClick={
+                                () => {
+                                    setSelectedSelection(2)
+                                }
                             }
-                        }
-                    >
-                    Blog
-                    </button>
+                        >
+                        Blog
+                        </button>
+                    </div>
                 </div>
                 <div 
                     id='toggle-0' 
+                    
                     hidden= {
                         selectedSection !== 0
                     }>

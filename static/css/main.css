@@ -9,15 +9,34 @@ body, html {
 }
 
 .toggle-button{
+    background-color: #554d3a;    
     border-radius: 10px;
-    background-color: gray;
-    height: 30px;
-    width: 150px;
+    color: white;
+    font-size: large;
+    height: 40px;
+    margin: 5px;
+    width: 170px;
+}
+
+@media (min-width: 650px){
+    .toggle-button-container{
+        display: inline;
+    }
+}
+.toggle-button:hover {
+    background-color: #fff2d2;
+    color: black;
+}
+
+.toggle-button:focus {
+    background-color: #c1b291;
+    color: black;
 }
 
 .toggle-container{
     align-items: center;
     display: flex;
+    flex-direction: column;
     height: 80%;
     justify-content: center;
 }
