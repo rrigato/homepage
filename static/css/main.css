@@ -8,6 +8,13 @@ body, html {
     height: 100%;
 }
 
+.toggle-button{
+    border-radius: 10px;
+    background-color: gray;
+    height: 30px;
+    width: 150px;
+}
+
 .toggle-container{
     align-items: center;
     display: flex;

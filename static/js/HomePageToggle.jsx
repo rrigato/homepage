@@ -1,5 +1,4 @@
-import React from 'react';
-import {useState} from 'react';
+import React, { useState } from 'react';
 import '../css/main.css';
 
 export function HomePageToggle(){
@@ -10,37 +9,40 @@ export function HomePageToggle(){
     return(
         <div id='home-page-toggle-component'  className='full-height'>
             <div className='toggle-container'>
-                <button
-                    onClick={
-                        () => {
-                            setSelectedSelection(0);
+                <div id='button-container'>
+                    <button
+                        className='toggle-button'
+                        onClick={
+                            () => {
+                                setSelectedSelection(0);
+                            }
                         }
-                    }
-                >
-                Projects
-                </button>
-                
-                <button
-                    onClick={
-                        () => {
-                            setSelectedSelection(1)
+                    >
+                    Projects
+                    </button>
+                    
+                    <button
+                        className='toggle-button'
+                        onClick={
+                            () => {
+                                setSelectedSelection(1)
+                            }
                         }
-                    }
-                >
-                About
-                </button>
-                
-                <button
-                    onClick={
-                        () => {
-                            setSelectedSelection(2)
+                    >
+                    About
+                    </button>
+                    
+                    <button
+                        className='toggle-button'
+                        onClick={
+                            () => {
+                                setSelectedSelection(2)
+                            }
                         }
-                    }
-                >
-                Blog
-                </button>
-
-                <br/>
+                    >
+                    Blog
+                    </button>
+                </div>
                 <div 
                     id='toggle-0' 
                     hidden= {
