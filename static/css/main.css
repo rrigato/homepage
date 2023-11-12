@@ -28,7 +28,7 @@ body, html {
     color: black;
 }
 
-.toggle-button:focus {
+.toggle-currently-selected-button {
     background-color: #c1b291;
     color: black;
 }

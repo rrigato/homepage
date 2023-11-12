@@ -1,6 +1,24 @@
 import React, { useState } from 'react';
 import '../css/main.css';
 
+/**Determines button class name based on section
+ * 
+ * @param {Number} selectedSection 
+ * @returns {String} className property values
+ */
+function determineButtonClass(selectedSection){
+    if (selectedSection === 0){
+        return(
+            'toggle-button ' +
+            'toggle-currently-selected-button'
+        )
+    }
+    return('toggle-button');
+}
+/**Toggle button for different sections of homepage
+ * 
+ * @returns react jsx 
+ */
 export function HomePageToggle(){
     /**
      * @type {[Number, Function]}
@@ -13,9 +31,14 @@ export function HomePageToggle(){
                     <div className='toggle-button-container'>
                         <button
                             autoFocus={selectedSection === 0}
-                            className='toggle-button'
+                            className={
+                                selectedSection === 0 ?
+                                'toggle-button toggle-currently-selected-button':
+                                'toggle-button'
+                            }
                             onClick={
-                                () => {
+                                (buttonEvent) => {
+                                    buttonEvent.preventDefault();
                                     setSelectedSelection(0);
                                 }
                             }
@@ -28,10 +51,15 @@ export function HomePageToggle(){
                     <div className='toggle-button-container'>
                         <button
                             autoFocus={selectedSection === 1}
-                            className='toggle-button'
+                            className={
+                                selectedSection === 1 ?
+                                'toggle-button toggle-currently-selected-button':
+                                'toggle-button'
+                            }
                             onClick={
-                                () => {
-                                    setSelectedSelection(1)
+                                (buttonEvent) => {
+                                    buttonEvent.preventDefault();
+                                    setSelectedSelection(1);
                                 }
                             }
                         >
@@ -42,10 +70,15 @@ export function HomePageToggle(){
                     <div className='toggle-button-container'>
                         <button
                             autoFocus={selectedSection === 2}
-                            className='toggle-button'
+                            className={
+                                selectedSection === 2 ?  
+                                'toggle-button toggle-currently-selected-button':
+                                'toggle-button'
+                            }
                             onClick={
-                                () => {
-                                    setSelectedSelection(2)
+                                (buttonEvent) => {
+                                    buttonEvent.preventDefault();
+                                    setSelectedSelection(2);
                                 }
                             }
                         >
