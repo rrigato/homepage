@@ -8,6 +8,11 @@ body, html {
     height: 100%;
 }
 
+.homepage-content{
+    background-color: silver;
+    color:black;
+}
+
 .toggle-button{
     background-color: #554d3a;    
     border-radius: 10px;
