@@ -66,7 +66,7 @@ export function HomePageToggle(){
                                 }
                             }
                         >
-                        Blog
+                        Book Recommendations
                         </button>
                     </div>
                 </div>
@@ -77,6 +77,22 @@ export function HomePageToggle(){
                         selectedSection !== 0
                     }>
                     Latest Projects
+                </div>
+                <div 
+                    id='toggle-1' 
+                    
+                    hidden= {
+                        selectedSection !== 1
+                    }>
+                    About me
+                </div>
+                <div 
+                    id='toggle-2' 
+                    
+                    hidden= {
+                        selectedSection !== 2
+                    }>
+                    Latest Books
                 </div>
             </div>
         </div>
