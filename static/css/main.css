@@ -8,14 +8,19 @@ body, html {
     height: 100%;
 }
 
+.homepage-content{
+    background-color: silver;
+    color:black;
+}
+
 .toggle-button{
     background-color: #554d3a;    
     border-radius: 10px;
     color: white;
     font-size: large;
-    height: 40px;
+    height: 50px;
     margin: 5px;
-    width: 170px;
+    width: 220px;
 }
 
 @media (min-width: 650px){
