@@ -3,8 +3,8 @@ body, html {
     color: white;
     height: 100%;
 }
-li{
-    margin-right: 20px;
+ul{
+    margin-right: 10px;
 }
 .full-height{
     height: 100%;

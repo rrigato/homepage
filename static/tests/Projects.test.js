@@ -9,15 +9,13 @@ describe('Projects displayed on screen', () => {
       
     test('Number of project sections', async () => {        
         
+
         const {getAllByRole} = render(<Projects/>);
 
         
         const numProjectHeaders = getAllByRole(
             'heading'
         );
-
-
         expect(numProjectHeaders.length).toBe(5);
-
     });
 });
