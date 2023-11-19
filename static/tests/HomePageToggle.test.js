@@ -1,23 +1,34 @@
 import { render } from '@testing-library/react';
 import { HomePageToggle } from '../js/HomePageToggle.jsx';
+import { Projects } from '../js/Projects.jsx';
+
+jest.mock('../js/Projects.jsx');
 
 describe('Central Content for site', () => {
+    afterEach(() => {
+        jest.resetAllMocks();
+    });
+      
     test('HomePageToggle default render', async () => {
+        console.log(Projects);
+        Projects.mockReturnValue(<div>mock-projects</div>);
+
         
         
         const {getByRole} = render(<HomePageToggle/>);
 
         
-        const aboutButton = await getByRole(
+        getByRole(
             'button', {name: 'About'}
         );
-        const projectButton = await getByRole(
+        getByRole(
             'button', {name: 'Projects'}
         );
-        const bookRecommendationsButton = await getByRole(
+        getByRole(
             'button', {name: 'Book Recommendations'}
         );
 
+        expect(Projects).toHaveBeenCalled()
 
     });
 });
