@@ -15,13 +15,17 @@ export function Projects(){
                 <li>
                     <a
                         href='https://www.amazon.com/dp/B0B5596H7C/'
-                        target={'_blank'}>Application link
+                        target={'_blank'}
+                    >
+                        application link
                     </a>
                 </li>
                 <li>
                     <a
                         href='https://github.com/rrigato/tvratings'
-                        target={'_blank'}>Source Code
+                        target={'_blank'}
+                    >
+                        source code
                     </a>
                 </li>
 
@@ -30,13 +34,17 @@ export function Projects(){
                 <li>
                     <a
                         href='https://www.amazon.com/dp/B09PVD9VSC/'
-                        target={'_blank'}>Application link
+                        target={'_blank'}
+                    >
+                        application link
                     </a>
                 </li>
                 <li>
                     <a
                         href='https://github.com/rrigato/burnday'
-                        target={'_blank'}>Source Code
+                        target={'_blank'}
+                    >
+                        source code
                     </a>
                 </li>
 
@@ -47,7 +55,9 @@ export function Projects(){
                 <li>
                     <a
                         href='https://github.com/rrigato/ratings'
-                        target={'_blank'}>Source Code
+                        target={'_blank'}
+                    >
+                        source code
                     </a>
                 </li>
 
@@ -56,13 +66,17 @@ export function Projects(){
                 <li>
                     <a
                         href='https://github.com/rrigato/rrigato/blob/master/README.md'
-                        target={'_blank'}>Application link
+                        target={'_blank'}
+                    >
+                        application link
                     </a>
                 </li>
                 <li>
                     <a
                         href='https://github.com/rrigato/rrigato/'
-                        target={'_blank'}>Source Code
+                        target={'_blank'}
+                    >
+                        source code
                     </a>
                 </li>
 
@@ -71,7 +85,9 @@ export function Projects(){
                 <li>
                     <a
                         href='https://github.com/rrigato/devdocs'
-                        target={'_blank'}>Source Code
+                        target={'_blank'}
+                    >
+                        source code
                     </a>
                 </li>
             </ul>
