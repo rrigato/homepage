@@ -14,6 +14,9 @@ describe('Central Content for site', () => {
         const projectButton = await getByRole(
             'button', {name: 'Projects'}
         );
+        const bookRecommendationsButton = await getByRole(
+            'button', {name: 'Book Recommendations'}
+        );
 
 
     });
