@@ -10,7 +10,6 @@ describe('Central Content for site', () => {
     });
       
     test('HomePageToggle default render', async () => {
-        console.log(Projects);
         Projects.mockReturnValue(<div>mock-projects</div>);
 
         
