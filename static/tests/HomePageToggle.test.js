@@ -14,19 +14,18 @@ describe('Central Content for site', () => {
 
         
         
-        const {getByRole} = render(<HomePageToggle/>);
+        const {findByRole} = render(<HomePageToggle/>);
 
         
-        getByRole(
+        await findByRole(
             'button', {name: 'About'}
         );
-        getByRole(
+        await findByRole(
             'button', {name: 'Projects'}
         );
-        getByRole(
+        await findByRole(
             'button', {name: 'Book Recommendations'}
         );
-
         expect(Projects).toHaveBeenCalled()
 
     });
