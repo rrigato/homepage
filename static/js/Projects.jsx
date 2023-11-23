@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/main.css';
+import '../css/homepageSection.css';
 
 
 /**homepage project details and links

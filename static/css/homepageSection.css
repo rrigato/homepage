@@ -1,0 +1,29 @@
+a{
+    background-color: white;
+    border-radius: 10%;
+    border: 2px solid #262847;
+    color: black;
+    display: inline-block;
+    font-size: small;
+    margin: 2px;
+    padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+}
+a:active, a:hover {
+    background-color: #262847;
+    color: white;
+}
+
+
+ul{
+    margin-right: 10px;
+}
+
+.homepage-content{
+    background-color: 	#aaaaaa;
+    border-radius: 5%;
+    color:black;
+
+}
+

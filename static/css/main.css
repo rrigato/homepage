@@ -1,40 +1,12 @@
-a{
-    font-size: small;
-}
-a:link, a:visited {
-    background-color: white;
-    border: 2px solid #262847;
-    border-radius: 10%;
-    color: black;
-    display: inline-block;
-    padding: 2px 4px;
-    text-align: center;
-    text-decoration: none;
-}
-a:hover, a:active {
-    background-color: #262847;
-    border-radius: 10%;
-    color: white;
-}
-
 body, html {
     background-color: black;
     color: white;
     height: 100%;
 }
-ul{
-    margin-right: 10px;
-}
 .full-height{
     height: 100%;
 }
 
-.homepage-content{
-    background-color: 	#aaaaaa;
-    border-radius: 5%;
-    color:black;
-
-}
 
 .toggle-button{
     background-color: #554d3a;    
