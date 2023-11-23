@@ -48,6 +48,7 @@ describe('Central Content for site', () => {
         );
 
         await userStep.click(aboutButton);
+        expect(About).toHaveBeenCalled()
 
     });
 });
