@@ -1,7 +1,10 @@
 import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { About } from '../js/About.jsx';
 import { HomePageToggle } from '../js/HomePageToggle.jsx';
 import { Projects } from '../js/Projects.jsx';
 
+jest.mock('../js/About.jsx');
 jest.mock('../js/Projects.jsx');
 
 describe('Central Content for site', () => {
@@ -27,6 +30,24 @@ describe('Central Content for site', () => {
             'button', {name: 'Book Recommendations'}
         );
         expect(Projects).toHaveBeenCalled()
+
+    });
+
+    test('About component  default render', async () => {
+        const userStep = userEvent.setup();
+        Projects.mockReturnValue(<div>mock-projects</div>);
+        About.mockReturnValue(<div>mock-about</div>);
+
+        
+        
+        const {findByRole} = render(<HomePageToggle/>);
+
+        
+        const aboutButton = await findByRole(
+            'button', {name: 'About'}
+        );
+
+        await userStep.click(aboutButton);
 
     });
 });
