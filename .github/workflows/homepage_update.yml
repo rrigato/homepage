@@ -5,7 +5,29 @@ on:
       - master
 
 jobs:
+  deploy-website-source-files:
+    runs-on: ubuntu-latest
+    name: web source files to s3
+    defaults:
+      run:
+        working-directory: ./static
+    steps:
+      - name: checkout-current-branch
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - run: npm install
+
+      - run: npm run test
+
+      - run: npm run build
+
+
   publish-commit-artifact:
+    needs: deploy-website-source-files
     runs-on: ubuntu-latest
     name: favicon to s3 bucket
     env: 
@@ -28,24 +50,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.PERSISTANT_STORAGE_KEY}}
         run: ${{env.ORCHESTRATION_SCRIPT}}
 
-
-  deploy-website-source-files:
-    runs-on: ubuntu-latest
-    name: web source files to s3
-    defaults:
-      run:
-        working-directory: ./static
-    steps:
-      - name: checkout-current-branch
-        uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      
-      - run: npm install
-
-      - run: npm run test
-
-      - run: npm run build
 

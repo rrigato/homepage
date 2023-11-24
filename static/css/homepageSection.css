@@ -15,7 +15,9 @@ a:active, a:hover {
     color: white;
 }
 
-
+code{
+    background-color: #8e8786;
+}
 ul{
     margin-right: 10px;
 }
