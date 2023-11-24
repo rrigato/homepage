@@ -16,5 +16,8 @@ describe('About displayed on screen', () => {
         const numProjectHeaders = getAllByRole(
             'heading'
         );
+        const aboutImage = getAllByRole(
+            'img'
+        );
     });
 });

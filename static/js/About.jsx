@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/homepageSection.css';
-
+import aboutPhoto from '../img/aboutPhoto.jpg';
 
 /**Details about the website
  * 
@@ -12,7 +12,7 @@ export function About(){
             <div>
                 <ul>
                     <h3>What do I need to know about this website?</h3>
-                    <li>
+                    <li>Website
                         <a href='https://github.com/rrigato/homepage'>source code </a>
                     </li>
                     <li>I strive to be embarrassed by the quality of the architecture of any application I have built that is more than a year old. </li>
@@ -26,6 +26,14 @@ export function About(){
                     <li>The world's largest tuned mass damper is at the 
                         <a href='https://en.wikipedia.org/wiki/Tuned_mass_damper'>Taipei 101</a>
                     </li>
+                    <h3>What do I need to know about this website?</h3>
+                    <div>
+                        <img
+                            alt='Image of website author' 
+                            src={aboutPhoto}
+
+                        ></img>
+                    </div>
                 </ul>
             </div>
         </div>
