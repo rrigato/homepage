@@ -13,8 +13,8 @@ describe('Central Content for site', () => {
     });
       
     test('HomePageToggle default render', async () => {
-        Projects.mockReturnValue(<div>mock-projects</div>);
-
+        Projects.mockReturnValue(<div>mock-projects-component</div>);
+        About.mockReturnValue(<div>mock-about-component</div>);
         
         
         const {findByRole} = render(<HomePageToggle/>);
@@ -33,12 +33,11 @@ describe('Central Content for site', () => {
 
     });
 
-    test('About component  default render', async () => {
+    test('About component called when clicked', async () => {
         const userStep = userEvent.setup();
-        Projects.mockReturnValue(<div>mock-projects</div>);
-        About.mockReturnValue(<div>mock-about</div>);
+        Projects.mockReturnValue(<div>mock-projects-component</div>);
+        About.mockReturnValue(<div>mock-about-component</div>);
 
-        
         
         const {findByRole} = render(<HomePageToggle/>);
 
@@ -46,7 +45,6 @@ describe('Central Content for site', () => {
         const aboutButton = await findByRole(
             'button', {name: 'About'}
         );
-
         await userStep.click(aboutButton);
         expect(About).toHaveBeenCalled()
 
