@@ -10,14 +10,15 @@ describe('About displayed on screen', () => {
     test('About section', async () => {        
         
 
-        const {getAllByRole} = render(<About/>);
+        const {getAllByRole, getByRole} = render(<About/>);
 
         
         const numProjectHeaders = getAllByRole(
             'heading'
         );
-        const aboutImage = getAllByRole(
+        const aboutImage = getByRole(
             'img'
         );
+        expect(numProjectHeaders.length).toBe(2);
     });
 });
