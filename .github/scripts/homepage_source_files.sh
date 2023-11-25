@@ -2,5 +2,9 @@
 
 set -e
 
+cd dist
 
-aws s3 ls --bucket $AWS_S3_BUCKET_NAME 
+ls
+
+aws s3 cp --dry-run . $AWS_S3_BUCKET_NAME \
+--recursive

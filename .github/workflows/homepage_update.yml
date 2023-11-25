@@ -28,11 +28,10 @@ jobs:
       - name: script-execution-permissions
         run: chmod +x '.github/scripts/homepage_source_files.sh'
 
-      - name: upload-favicon-artifacts
+      - name: upload-webpack-artifacts
         shell: bash
         env: 
           AWS_ACCESS_KEY_ID: ${{secrets.PERSISTANT_STORAGE_ID}}
-          AWS_DEFAULT_OUTPUT: json
           AWS_DEFAULT_REGION: 'us-east-1'
           AWS_S3_BUCKET_NAME: 'ryanrigato.com'
           AWS_SECRET_ACCESS_KEY: ${{secrets.PERSISTANT_STORAGE_KEY}}
