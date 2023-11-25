@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../css/main.css';
-import { Projects } from './Projects.jsx';
 import { About } from './About.jsx';
+import { BookRecommendations } from './BookRecommendations.jsx';
+import { Projects } from './Projects.jsx';
 
 
 /**Toggle button for different sections of homepage
@@ -82,14 +83,13 @@ export function HomePageToggle(){
                     <div hidden={true}></div>
                 }
                 </div>
-                <div 
-                    id='toggle-2' 
-                    
-                    hidden= {
-                        selectedSection !== 2
-                    }>
-                    Latest Books
+                <div>
+                {
+                    selectedSection === 2 ? <BookRecommendations/> :
+                    <div hidden={true}></div>
+                }
                 </div>
+                
             </div>
         </div>
     );
