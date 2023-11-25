@@ -14,6 +14,10 @@ module.exports = {
                 loader: 'html-loader',
             },
             {
+                test: /\.jpg$/i,
+                type: 'asset/resource',
+            },
+            {
                 test: /\.(?:js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
