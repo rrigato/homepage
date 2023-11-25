@@ -2,6 +2,7 @@ name: Updates web application
 on: 
   push: 
     branches:
+      - dev
       - master
 
 jobs:
@@ -26,7 +27,7 @@ jobs:
       - run: npm run build
 
       - name: script-execution-permissions
-        run: chmod +x '.github/scripts/homepage_source_files.sh'
+        run: chmod +x '../.github/scripts/homepage_source_files.sh'
 
       - name: upload-webpack-artifacts
         shell: bash
@@ -35,7 +36,7 @@ jobs:
           AWS_DEFAULT_REGION: 'us-east-1'
           AWS_S3_BUCKET_NAME: 'ryanrigato.com'
           AWS_SECRET_ACCESS_KEY: ${{secrets.PERSISTANT_STORAGE_KEY}}
-        run: '.github/scripts/homepage_source_files.sh'
+        run: '../.github/scripts/homepage_source_files.sh'
 
 
 

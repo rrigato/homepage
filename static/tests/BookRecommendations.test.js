@@ -1,5 +1,5 @@
 import {  render } from '@testing-library/react';
-// import { BookRecommendations } from '../js/BookRecommendations.jsx';
+import { BookRecommendations } from '../js/BookRecommendations.jsx';
 
 
 describe('BookRecommendations displayed on screen', () => {
@@ -7,7 +7,7 @@ describe('BookRecommendations displayed on screen', () => {
         jest.resetAllMocks();
     });
       
-    test.skip('BookRecommendations section', async () => {        
+    test('BookRecommendations section', async () => {        
         
 
         const {getAllByRole, getByRole} = render(<BookRecommendations/>);
@@ -16,6 +16,6 @@ describe('BookRecommendations displayed on screen', () => {
         const numHeaders = getAllByRole(
             'heading'
         );
-        expect(numHeaders.length).toBe(1);
+        expect(numHeaders.length).toBe(2);
     });
 });
