@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/homepageSection.css';
-import aboutPhoto from '../img/aboutPhoto.jpg';
 
 /**Book Recommendations
  * 
