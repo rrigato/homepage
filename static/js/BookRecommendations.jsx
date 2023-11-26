@@ -2,8 +2,8 @@ import React from 'react';
 import '../css/homepageSection.css';
 
 /**Book Recommendations
- * 
- * @returns react jsx 
+ *
+ * @returns react jsx
  */
 export function BookRecommendations(){
     return(
@@ -16,13 +16,12 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        Five book collection centered around the understanding of randomness in your everyday life.
-                        
+                        Five book collection centered around the understanding the impacts of randomness.
                     </li>
 
 
                     <h3>Software Engineering</h3>
-                    
+
                     <li>Clean Architecture by
                         <a href='https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164'>Bob Martin</a>
                     </li>
@@ -37,7 +36,7 @@ export function BookRecommendations(){
                     <li className='book-details'>
                         Outlines office culture for working remote
                     </li>
-                    
+
                     <li>Shape Up by
                         <a href='https://basecamp.com/shapeup'>Ryan Singer</a>
                     </li>
