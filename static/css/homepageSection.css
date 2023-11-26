@@ -22,6 +22,10 @@ ul{
     margin-right: 10px;
 }
 
+.book-details{
+    list-style-position: inside;
+}
+
 .homepage-content{
     background-color: 	#aaaaaa;
     border-radius: 5%;

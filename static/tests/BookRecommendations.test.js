@@ -13,9 +13,14 @@ describe('BookRecommendations displayed on screen', () => {
         const {getAllByRole, getByRole} = render(<BookRecommendations/>);
 
         
+        const bookLinks = getAllByRole(
+            'link'
+        );
         const numHeaders = getAllByRole(
             'heading'
         );
+        expect(bookLinks.length).toBe(1);
         expect(numHeaders.length).toBe(2);
+
     });
 });
