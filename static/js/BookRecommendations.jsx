@@ -19,6 +19,33 @@ export function BookRecommendations(){
                         Five book collection centered around the understanding the impacts of randomness.
                     </li>
 
+                    <li>Outlive by
+                        <a href='https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'
+                        >Peter Attia</a>
+
+                    </li>
+                    <li className='book-details'>
+                        View health span as a constant downward slope instead of constant as years pass by
+                    </li>
+
+                    <li>The Life cleaning magic of tidying up by
+                        <a href='https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'
+                        >Marie Kondo</a>
+
+                    </li>
+                    <li className='book-details'>
+                        Remove any items in your life if they do not bring you joy.
+                    </li>
+
+                    <li>The power of bad by
+                        <a href='https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ'
+                        > John Tierney and Roy Baumeister</a>
+
+                    </li>
+                    <li className='book-details'>
+                        Having 1 friend with a negative personality is asymmetrically harmful to your well being.
+                    </li>
+
 
                     <h3>Software Engineering</h3>
 
