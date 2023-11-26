@@ -30,7 +30,7 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        View health span as a constant downward slope instead of constant as years pass by
+                        View health span as a constant downward slope instead of a constant as years pass by.
                     </li>
 
                     <li>The Life cleaning magic of tidying up by
@@ -41,7 +41,7 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        Remove any items in your life if they do not bring you joy.
+                        Evaluate each item in your life for whether it continues to bring you joy.
                     </li>
 
                     <li>The power of bad by
@@ -96,7 +96,8 @@ export function BookRecommendations(){
                         >Fred Brooks</a>
                     </li>
                     <li className='book-details'>
-                        Scaling software engineering team size leads to increased communication overhead and might make the project later.
+                        Scaling software engineering team size leads to increased communication overhead 
+                        and might cause the project miss deadlines.
                     </li>
 
                 </ul>
