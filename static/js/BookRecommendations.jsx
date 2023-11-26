@@ -24,7 +24,7 @@ export function BookRecommendations(){
 
                     <li>Outlive by
                         <a 
-                            href='https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'                        
+                            href='https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599'                        
                             target={'_blank'}
                         >Peter Attia</a>
 
@@ -33,7 +33,7 @@ export function BookRecommendations(){
                         View health span as a constant downward slope instead of a constant as years pass by.
                     </li>
 
-                    <li>The Life cleaning magic of tidying up by
+                    <li>The Life Cleaning Magic Of Tidying Up by
                         <a 
                             href='https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'                        
                             target={'_blank'}
@@ -44,7 +44,7 @@ export function BookRecommendations(){
                         Evaluate each item in your life for whether it continues to bring you joy.
                     </li>
 
-                    <li>The power of bad by
+                    <li>The Power Of Bad by
                         <a 
                             href='https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ'                        
                             target={'_blank'}
