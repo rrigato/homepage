@@ -19,7 +19,7 @@ describe('BookRecommendations displayed on screen', () => {
         const numHeaders = getAllByRole(
             'heading'
         );
-        expect(bookLinks.length).toBe(1);
+        expect(bookLinks.length).toBe(4);
         expect(numHeaders.length).toBe(2);
 
     });
