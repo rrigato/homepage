@@ -13,52 +13,17 @@ Personal website homepage.
 
 - 2023 frontend built in ReactJS
 
-### CloudFormation Limitations
 
 
-#### DeletionPolicy attribute must be string
-[According to this forum post](https://forums.aws.amazon.com/message.jspa?messageID=560586)
-The DeletionPolicy must be a string, this limits flexibility when trying to pass it as a parameter dependent on environment...
+## scan-git-repo-for-secrets
 
-### Development Tooling Overview
-
-Followed [this aws example](https://forums.aws.amazon.com/thread.jspa?threadID=228206) on how to have multiple rsa key pairs in the same local machine being used with different accounts
+[git secrets](https://github.com/awslabs/git-secrets.git) command line utility adds a git hook to make sure you haven't commited any aws credentials
 
 
-#### Git Secrets Scan
-
-[git secrets](https://github.com/awslabs/git-secrets.git) is a command line utility for validating that you do not have any git credentials stored in your git repo commit history
-
-This is useful for not only open source projects, but also to make sure best practices are being followed with limited duration credentials (IAM roles) instead of long term access keys
-
-- Global install
-
-```
-    git init
-
-    git remote add origin https://github.com/awslabs/git-secrets.git
-
-    git fetch origin
-
-    git merge origin/master
-
-    sudo make install
-```
-
-- Web Hook install
-
-Configuring git secrets as a web hook will ensure that git secrets runs on every commit, scanning for credentials
-```
-    cd ~/Documents/devdocs
-
-    git secrets --install
-
-    git secrets --register-aws
-```
+- [install script](requirements/git_secrets.sh)
 
 
-
-- Run a git secrets check recursively on all files in directory
+- Adhoc git secrets scan
 
 ```
 git secrets --scan -r .
