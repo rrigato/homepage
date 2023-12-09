@@ -1,5 +1,3 @@
-![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiOEdUdVZ2KzI0d3MxRXZvMGVXWDhnb0lRUnViZ0U0ZURrVFJDSnRSbHlqMEtRaWllWHZ0ZlVqZlBZdWZzNDdsMWNGOU5YWHF2VVBjYTlHclYydHhQelc0PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF0ZnVhSFdWWE8zREdVMTAiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) ![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)
-
 Personal website homepage.
 
 - 2015 Originally a J2EE application hosted on google app engine.
@@ -11,24 +9,12 @@ Personal website homepage.
 - 2020 Refactoring to get all (or at least most) resources into cloudformation now that you can import resources that were not originally created in cloudformation.
     - Adding a CI/CD code pipeline to accomplish this
 
+- 2022 migrate to github actions for ci/cd 
+
+- 2023 frontend built in ReactJS
 
 ### CloudFormation Limitations
 
-#### Deploying Stack Updates from CodePipeline
-CloudFormation is a best practice that allows you to
-define your aws resources as code.
-
-Unfortunately I did not always use CloudFormation and it really came back to haunt me when refactoring my webpage to accomdate a more test driven development style.
-
-The AWS re:Invent 2019 announcement to allow you to import existing resources not backed by cloudformation templates to be [imported into cloudformation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import.html) is a great opportunity for refactoring.
-
-One issue I wanted to document is that if the stack you imported has some drift detected after the import, the code pipeline deploy stage will not provide an intuitive error message
-
-![Code Pipelin CloudFormation Deploy Action](devops/images/error_if_stack_import_has_drift.jpg)
-
-I am unsure if this generic InternalFailure error was because the stack was in IMPORT_COMPLETE status and had the drift present in the stack is the or just any stack with drift cannot be updated via a Deploy ActionTypeID in Code Pipeline.
-
-Best practice going forward will be to ensure all stacks do not have any drift when being updated by a CodePipeline Stage.
 
 #### DeletionPolicy attribute must be string
 [According to this forum post](https://forums.aws.amazon.com/message.jspa?messageID=560586)
@@ -37,27 +23,6 @@ The DeletionPolicy must be a string, this limits flexibility when trying to pass
 ### Development Tooling Overview
 
 Followed [this aws example](https://forums.aws.amazon.com/thread.jspa?threadID=228206) on how to have multiple rsa key pairs in the same local machine being used with different accounts
-
-#### cfn-lint (cloudformation Linting)
-[cfn-lint](https://github.com/aws-cloudformation/cfn-python-lint.git) Provides yaml/json cloudformation validation and checks for best practices
-
-- Install
-
-```
-    pip install cfn-lint
-```
-
-- Run on a file
-```
-    cfn-lint <filename.yml>
-
-    cfn-lint templates/code_pipeline.yml
-```
-
-- Run on all files in Directory
-```
-    cfn-lint templates/*.yml
-```
 
 
 #### Git Secrets Scan
