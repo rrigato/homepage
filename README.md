@@ -51,20 +51,6 @@ and tests static html/webpage configuration
 - buildspec_prod.yml = Buildspec to use for the prod deployment CodeBuild project
 
 
-
-
-#### legacy
-
-##### Prepare Existing CloudFront for migration
-
-
-#### logs
-- directory for python log files
-
-
-
-
-
 #### templates
 
 
