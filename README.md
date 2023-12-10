@@ -23,10 +23,10 @@ Personal website homepage.
 - [install script](requirements/git_secrets.sh)
 
 
-- Adhoc git secrets scan
+- Scan before making repo public
 
 ```
-git secrets --scan -r .
+git secrets --scan-history
 ```
 
 
@@ -49,80 +49,6 @@ and tests static html/webpage configuration
     CodeBuild project
 
 - buildspec_prod.yml = Buildspec to use for the prod deployment CodeBuild project
-
-
-
-#### devops
-
-##### images
-Repository for images that relate to resources for our code pipeline
-
-#### legacy
-awscli bash scripts used to import existing resources into
-cloudformation templates.
-
-Since the website implementation was originally created outside of
-cloudformation
-
-[List of resources that can be imported into cloudformation](
-    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html
-    )
-
-##### Prepare Existing CloudFront for migration
-
-Documenting various one-time setup procedures that
-were required when creating a new cloudfront distribution
-via cloudformation because cloudformation resource import
-does not support cloudfront
-
-Get the existing CloudFront Distribution config via
-the cli:
-
-```
-aws cloudfront get-distribution-config \
---id <distribution_id> > distribution_config_backup.json
-```
-
-Lower the default and max ttl (time to live ) json file from the get-distribution-config api call as you prepare to
-change the distribution.
-
-```
-aws cloudfront update-distribution \
---id <distribution_id> \
---distribution-config file://<new_distribution_config.json>\
---if-match <ETag_value_returned_by_get_config>
-```
-
-Get the existing Route53 hosted zone and associated
-record sets using the following cli command:
-
-```
-#hosted zone info
-aws route53 get-hosted-zone \
---id <hosted_zone_id>
-
-#record set info
-aws route53 list-resource-record-sets
---hosted-zone-id <hosted_zone_id>
-```
-
-Note that the domain servers associated with your NS
-and SOA record sets must match what is listed for the domain
-names you own in Route53 "Registered Domains" listing.
-
-You can create a new hosted zone for a subdomain
-Ex:
-example.com
-test.example.com
-
-Each having a distinct hosted zone, just the
-NS and SOA record sets must match
-
-#### logs
-- directory for python log files
-
-
-
 
 
 #### templates
