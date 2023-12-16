@@ -2,12 +2,6 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Creates a CodePipeline for a CI/CD pipeline
 Parameters:
 
-  ProdCrossAccountArn:
-    Default: arn/placeholder
-    Description:
-        Arn of the role that will be used to update prod resources
-    Type: String
-
   #Default project name that
   #the git repo will be called
   ProjectName:
@@ -76,28 +70,7 @@ Resources:
         -
           Key: project
           Value: !Ref ProjectName
-  ##########################
-  #Build logs for ProdCodeBuildDeploy
-  #CodeBuild stage
-  #
-  #
-  ##########################
-  ProdArtifactsBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName:
-         !Join ['', ['prod-build-', !Ref ProjectName]]
-      Tags:
-        -
-          Key: stage
-          Value: prod
-        -
-          Key: retain
-          Value: "false"
-        -
-          Key: project
-          Value: !Ref ProjectName
-
+          
 
   #################################
   #Code Build Project that runs python
