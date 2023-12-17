@@ -39,17 +39,6 @@ Provides information on each directory/ source file
 and tests static html/webpage configuration
 
 
-- buildspec_prod.yml = Prod homepage deployment
-
-
-
-
-##### Buildspec Files
-- buildspec_dev.yml = Buildspec to use for the development (QA)
-    CodeBuild project
-
-- buildspec_prod.yml = Buildspec to use for the prod deployment CodeBuild project
-
 
 #### templates
 
@@ -74,9 +63,6 @@ only be deleted and recereated when in [ROLLBACK_COMPLETE state](https://stackov
 
 - test_dev_aws_resources.py = tests dev website
 
-
-- test_prod_aws_resources.py = ryanrigato.com resources and webpage
-testing
 
 #### web
 Static html/js/css hosted in the s3 bucket

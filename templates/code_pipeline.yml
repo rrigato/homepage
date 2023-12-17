@@ -185,42 +185,6 @@ Resources:
               RunOrder: 1
 
 
-        ###############################
-        #stage 2
-        #Dev CodeBuild jobs in two parallel actions:
-        #
-        #1st action - CodeBuild Project for
-        #builds/buildspec_dev_homepage.yml
-        #
-        ###############################
-        - Name: BuildDevEnvironment
-          Actions:
-          - Name: Build
-              ######################################
-              #List of valid action type providers
-              #by action can be found here:
-              #https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers
-              ######################################
-            ActionTypeId:
-                Category: Build
-                Owner: AWS
-                Version: '1'
-                Provider: CodeBuild
-
-            InputArtifacts:
-              - Name: !GetAtt GitRepo.Name
-            OutputArtifacts:
-              - Name: BuildDev
-
-
-            #Name of CodeBuild defined previously
-            Configuration:
-                ProjectName:
-                    !Join ['', ['dev-tests-', !Ref ProjectName]]
-            RunOrder: 1
-
-
-
           ###################################
           #stage 3) Deploys to production
           #by updating or creating a stack as
