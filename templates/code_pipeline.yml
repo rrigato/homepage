@@ -49,28 +49,6 @@ Resources:
             !Join [' ', ['Repo for ', !Ref ProjectName,
             !Ref RepositoryDescription]]
         RepositoryName: !Ref ProjectName
-  ##########################
-  #Build logs for CodeBuildPythonTests
-  #CodeBuild stage
-  #
-  #
-  ##########################
-  DevArtifactsBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName:
-        !Join ['', ['codebuild-dev-', !Ref ProjectName]]
-      Tags:
-        -
-          Key: stage
-          Value: dev
-        -
-          Key: retain
-          Value: "false"
-        -
-          Key: project
-          Value: !Ref ProjectName
-          
 
   ##########################################
   #Code Pipeline Is broken down into stages
