@@ -55,10 +55,6 @@ only be deleted and recereated when in [ROLLBACK_COMPLETE state](https://stackov
 
 
 
-#### tests
-
-- test_dev_aws_resources.py = tests dev website
-
 
 #### web
 Static html/js/css hosted in the s3 bucket
