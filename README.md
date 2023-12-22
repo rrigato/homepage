@@ -33,10 +33,6 @@ git secrets --scan-history
 ### Project Directory Overview
 Provides information on each directory/ source file
 
-#### builds
-
-- buildspec_dev_homepage.yml = Creates templates/static_webpage.yml
-and tests static html/webpage configuration
 
 
 
