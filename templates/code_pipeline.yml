@@ -128,7 +128,6 @@ Resources:
           Actions:
         ############################
         #First action of this deploy prod stage
-        #Creates/updates the templates/static_webpage.yml
         #cloudformation template which was an import
         #existing cloudresources
         ############################

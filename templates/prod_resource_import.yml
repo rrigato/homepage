@@ -161,7 +161,7 @@ Resources:
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOai}"
         ViewerCertificate:
           AcmCertificateArn: !Join ['', ['arn:aws:acm:us-east-1:', !Ref 'AWS::AccountId',
-          ':certificate/', !Ref CertificateId]]
+            ':certificate/', !Ref CertificateId]]
 
           #Server Name Identification (SNI) =
           #Allow cloudfront edge servers to
