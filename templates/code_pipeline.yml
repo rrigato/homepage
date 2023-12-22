@@ -63,14 +63,9 @@ Resources:
   #
   #Stages for this environment:
   #Stage 1) Source = Get source code repository
-  #stage 2) Build = Runs CodeBuildPythonTests CodeBuild Project
-  # from this buildspec:
-  #builds/buildspec_dev_homepage.yml
   #
-  #stage 3) Deploy create/updates the
+  #stage 2) Deploy create/updates the
   #templates/prod_resource_import.yml
-  #stage 4) Build = runs any configuration necessary
-  #to deploy built html files to prod
   ###########################################
   CodePipelineStack:
     Type: AWS::CodePipeline::Pipeline
@@ -128,7 +123,6 @@ Resources:
           Actions:
         ############################
         #First action of this deploy prod stage
-        #Creates/updates the templates/static_webpage.yml
         #cloudformation template which was an import
         #existing cloudresources
         ############################
