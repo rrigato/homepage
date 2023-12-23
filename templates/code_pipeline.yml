@@ -181,41 +181,6 @@ Resources:
                   Resource:
                     - "*"
 
-  CodePipelineRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          Effect: Allow
-          Principal:
-            Service: codepipeline.amazonaws.com
-          Action: sts:AssumeRole
-      Path: /
-      #List of Policies for Code Pipeline
-      ManagedPolicyArns:
-          - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
-          - arn:aws:iam::aws:policy/AWSCodeCommitFullAccess
-          - arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess
-          - arn:aws:iam::aws:policy/AmazonS3FullAccess
-          - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
-      Policies:
-          - PolicyName: PipelinePassRole
-            PolicyDocument:
-              Version: "2012-10-17"
-              Statement:
-                - Sid: IamPassRoleAllow
-                  Effect: Allow
-                  #######################################
-                  #Allowing lambda to perform a PutItem on
-                  #DynamoDB
-                  #
-                  #######################################
-                  Action:
-                    - iam:PassRole
-                  Resource:
-                    - "*"
-
 
 Outputs:
   CodeCommitURL:
