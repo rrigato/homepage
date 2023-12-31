@@ -1,6 +1,18 @@
 import React from 'react';
 import '../css/homepageSection.css';
 
+/**
+ * @type {string[]} bookUrls list of book urls
+ */
+const bookUrls = [
+    'https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb#Writing_career',
+    'https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599',
+    'https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308',
+    'https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ',
+    'https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164',
+    'https://basecamp.com/books/rework',
+    'https://basecamp.com/shapeup'
+]
 /**Book Recommendations
  *
  * @returns react jsx
@@ -13,7 +25,7 @@ export function BookRecommendations(){
                     <h3>Everyday Reads</h3>
                     <li>Incerto by
                         <a 
-                            href='https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb#Writing_career'
+                            href={book[0]}
                             target={'_blank'}
                         >Nassim Taleb</a>
 
@@ -24,7 +36,7 @@ export function BookRecommendations(){
 
                     <li>Outlive by
                         <a 
-                            href='https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599'                        
+                            href={book[1]}
                             target={'_blank'}
                         >Peter Attia</a>
 
@@ -35,7 +47,7 @@ export function BookRecommendations(){
 
                     <li>The Life Cleaning Magic Of Tidying Up by
                         <a 
-                            href='https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'                        
+                            href={book[2]}
                             target={'_blank'}
                         >Marie Kondo</a>
 
@@ -46,7 +58,7 @@ export function BookRecommendations(){
 
                     <li>The Power Of Bad by
                         <a 
-                            href='https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ'                        
+                            href={book[3]}
                             target={'_blank'}
                         > John Tierney and Roy Baumeister</a>
 
@@ -60,7 +72,7 @@ export function BookRecommendations(){
 
                     <li>Clean Architecture by
                         <a 
-                            href='https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164'
+                            href={book[4]}
                             target={'_blank'}
                         >Bob Martin</a>
                     </li>
@@ -70,7 +82,7 @@ export function BookRecommendations(){
 
                     <li>Rework by
                         <a 
-                            href='https://basecamp.com/books/rework'                        
+                            href={book[5]}
                             target={'_blank'}
                         >DHH and Jason Fried</a>
                     </li>
@@ -80,7 +92,7 @@ export function BookRecommendations(){
 
                     <li>Shape Up by
                         <a 
-                            href='https://basecamp.com/shapeup'
+                            href={book[6]}
                             target={'_blank'}
                         >Ryan Singer</a>
                     </li>
@@ -91,7 +103,7 @@ export function BookRecommendations(){
 
                     <li>The Mythical Man Month by
                         <a 
-                            href='https://en.wikipedia.org/wiki/The_Mythical_Man-Month'                        
+                            href={book[7]}
                             target={'_blank'}
                         >Fred Brooks</a>
                     </li>
