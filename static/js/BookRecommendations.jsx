@@ -2,6 +2,20 @@ import React from 'react';
 import '../css/homepageSection.css';
 
 /**
+ * @type {string[]} bookDescriptions summary of book
+ */
+const bookDescriptions = [
+    'Five book collection centered around the understanding the impacts of randomness.',
+    'View health span as a constant downward slope instead of a constant as years pass by.',
+    'Evaluate each item in your life for whether it continues to bring you joy.',
+    'Having 1 friend with a negative personality is asymmetrically harmful to your well being.',
+    'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
+    'Outlines office culture for working remote',
+    'Outside of the fact that he objectively has the coolest first name a human can have, this is the definitive guide on how iterations should be structured in any devops oriented team.',
+    'Scaling software engineering team size leads to increased communication overhead and might cause the project miss deadlines.'    
+]
+
+/**
  * @type {string[]} bookTitles list of book titles
  */
 const bookTitles = [
@@ -14,6 +28,7 @@ const bookTitles = [
     'Shape Up by',
     'The Mythical Man Month by'
 ]
+
 /**
  * @type {string[]} bookUrls list of book urls
  */
@@ -44,7 +59,7 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        Five book collection centered around the understanding the impacts of randomness.
+                        {bookDescriptions[0]}
                     </li>
 
                     <li>{bookTitles[1]}
@@ -55,7 +70,7 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        View health span as a constant downward slope instead of a constant as years pass by.
+                        {bookDescriptions[1]}
                     </li>
 
                     <li>{bookTitles[2]}
@@ -66,7 +81,7 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        Evaluate each item in your life for whether it continues to bring you joy.
+                        {bookDescriptions[2]}
                     </li>
 
                     <li>{bookTitles[3]}
@@ -77,7 +92,7 @@ export function BookRecommendations(){
 
                     </li>
                     <li className='book-details'>
-                        Having 1 friend with a negative personality is asymmetrically harmful to your well being.
+                        {bookDescriptions[3]}
                     </li>
 
 
@@ -90,7 +105,7 @@ export function BookRecommendations(){
                         >Bob Martin</a>
                     </li>
                     <li className='book-details'>
-                        The goal of software architecture is to minimize the human resources required to build and maintain the desired application.
+                        {bookDescriptions[4]}
                     </li>
 
                     <li>{bookTitles[5]}
@@ -100,7 +115,7 @@ export function BookRecommendations(){
                         >DHH and Jason Fried</a>
                     </li>
                     <li className='book-details'>
-                        Outlines office culture for working remote
+                        {bookDescriptions[5]}
                     </li>
 
                     <li>{bookTitles[6]}
@@ -110,7 +125,7 @@ export function BookRecommendations(){
                         >Ryan Singer</a>
                     </li>
                     <li className='book-details'>
-                        Outside of the fact that he objectively has the coolest first name a human can have,
+                        {bookDescriptions[6]}
                         this is the definitive guide on how iterations should be structured in any devops oriented team.
                     </li>
 
@@ -121,7 +136,7 @@ export function BookRecommendations(){
                         >Fred Brooks</a>
                     </li>
                     <li className='book-details'>
-                        Scaling software engineering team size leads to increased communication overhead 
+                        {bookDescriptions[7]}
                         and might cause the project miss deadlines.
                     </li>
 
