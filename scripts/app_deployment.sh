@@ -14,4 +14,13 @@ if [ "${secret_scan_results}" != "{}" ]; then
     exit 125
 fi
 
+
+git secrets --scan
+
+if [ $? != 0 ]; then
+    echo "git-secrets scan failed"
+    exit 125
+fi
+
+
 git push origin dev
