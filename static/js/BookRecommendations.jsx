@@ -12,7 +12,7 @@ const bookDescriptions = [
     'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
     'Outlines office culture for working remote',
     'Outside of the fact that he objectively has the coolest first name a human can have, this is the definitive guide on how iterations should be structured in any devops oriented team.',
-    'Scaling software engineering team size leads to increased communication overhead and might cause the project miss deadlines.'    
+    'Scaling software engineering team size leads to increased communication overhead and might cause the project to miss deadlines.'    
 ]
 
 /**
@@ -39,7 +39,9 @@ const bookUrls = [
     'https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ',
     'https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164',
     'https://basecamp.com/books/rework',
-    'https://basecamp.com/shapeup'
+    'https://basecamp.com/shapeup',
+    'https://en.wikipedia.org/wiki/The_Mythical_Man-Month'
+
 ]
 /**Book Recommendations
  *
@@ -53,7 +55,7 @@ export function BookRecommendations(){
                     <h3>Everyday Reads</h3>
                     <li>{bookTitles[0]}
                         <a 
-                            href={book[0]}
+                            href={bookUrls[0]}
                             target={'_blank'}
                         >Nassim Taleb</a>
 
@@ -64,7 +66,7 @@ export function BookRecommendations(){
 
                     <li>{bookTitles[1]}
                         <a 
-                            href={book[1]}
+                            href={bookUrls[1]}
                             target={'_blank'}
                         >Peter Attia</a>
 
@@ -75,7 +77,7 @@ export function BookRecommendations(){
 
                     <li>{bookTitles[2]}
                         <a 
-                            href={book[2]}
+                            href={bookUrls[2]}
                             target={'_blank'}
                         >Marie Kondo</a>
 
@@ -86,7 +88,7 @@ export function BookRecommendations(){
 
                     <li>{bookTitles[3]}
                         <a 
-                            href={book[3]}
+                            href={bookUrls[3]}
                             target={'_blank'}
                         > John Tierney and Roy Baumeister</a>
 
@@ -100,7 +102,7 @@ export function BookRecommendations(){
 
                     <li>{bookTitles[4]}
                         <a 
-                            href={book[4]}
+                            href={bookUrls[4]}
                             target={'_blank'}
                         >Bob Martin</a>
                     </li>
@@ -110,7 +112,7 @@ export function BookRecommendations(){
 
                     <li>{bookTitles[5]}
                         <a 
-                            href={book[5]}
+                            href={bookUrls[5]}
                             target={'_blank'}
                         >DHH and Jason Fried</a>
                     </li>
@@ -120,24 +122,22 @@ export function BookRecommendations(){
 
                     <li>{bookTitles[6]}
                         <a 
-                            href={book[6]}
+                            href={bookUrls[6]}
                             target={'_blank'}
                         >Ryan Singer</a>
                     </li>
                     <li className='book-details'>
                         {bookDescriptions[6]}
-                        this is the definitive guide on how iterations should be structured in any devops oriented team.
                     </li>
 
                     <li>{bookTitles[7]}
                         <a 
-                            href={book[7]}
+                            href={bookUrls[7]}
                             target={'_blank'}
                         >Fred Brooks</a>
                     </li>
                     <li className='book-details'>
                         {bookDescriptions[7]}
-                        and might cause the project miss deadlines.
                     </li>
 
                 </ul>
