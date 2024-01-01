@@ -2,6 +2,19 @@ import React from 'react';
 import '../css/homepageSection.css';
 
 /**
+ * @type {string[]} bookTitles list of book titles
+ */
+const bookTitles = [
+    'Incerto by',
+    'Outlive by',
+    'The Life Cleaning Magic Of Tidying Up by',
+    'The Power Of Bad by',
+    'Clean Architecture by',
+    'Rework by',
+    'Shape Up by',
+    'The Mythical Man Month by'
+]
+/**
  * @type {string[]} bookUrls list of book urls
  */
 const bookUrls = [
@@ -23,7 +36,7 @@ export function BookRecommendations(){
             <div>
                 <ul>
                     <h3>Everyday Reads</h3>
-                    <li>Incerto by
+                    <li>{bookTitles[0]}
                         <a 
                             href={book[0]}
                             target={'_blank'}
@@ -34,7 +47,7 @@ export function BookRecommendations(){
                         Five book collection centered around the understanding the impacts of randomness.
                     </li>
 
-                    <li>Outlive by
+                    <li>{bookTitles[1]}
                         <a 
                             href={book[1]}
                             target={'_blank'}
@@ -45,7 +58,7 @@ export function BookRecommendations(){
                         View health span as a constant downward slope instead of a constant as years pass by.
                     </li>
 
-                    <li>The Life Cleaning Magic Of Tidying Up by
+                    <li>{bookTitles[2]}
                         <a 
                             href={book[2]}
                             target={'_blank'}
@@ -56,7 +69,7 @@ export function BookRecommendations(){
                         Evaluate each item in your life for whether it continues to bring you joy.
                     </li>
 
-                    <li>The Power Of Bad by
+                    <li>{bookTitles[3]}
                         <a 
                             href={book[3]}
                             target={'_blank'}
@@ -70,7 +83,7 @@ export function BookRecommendations(){
 
                     <h3>Software Engineering</h3>
 
-                    <li>Clean Architecture by
+                    <li>{bookTitles[4]}
                         <a 
                             href={book[4]}
                             target={'_blank'}
@@ -80,7 +93,7 @@ export function BookRecommendations(){
                         The goal of software architecture is to minimize the human resources required to build and maintain the desired application.
                     </li>
 
-                    <li>Rework by
+                    <li>{bookTitles[5]}
                         <a 
                             href={book[5]}
                             target={'_blank'}
@@ -90,7 +103,7 @@ export function BookRecommendations(){
                         Outlines office culture for working remote
                     </li>
 
-                    <li>Shape Up by
+                    <li>{bookTitles[6]}
                         <a 
                             href={book[6]}
                             target={'_blank'}
@@ -101,7 +114,7 @@ export function BookRecommendations(){
                         this is the definitive guide on how iterations should be structured in any devops oriented team.
                     </li>
 
-                    <li>The Mythical Man Month by
+                    <li>{bookTitles[7]}
                         <a 
                             href={book[7]}
                             target={'_blank'}
