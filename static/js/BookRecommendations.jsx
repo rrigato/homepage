@@ -2,11 +2,25 @@ import React from 'react';
 import '../css/homepageSection.css';
 
 /**
+ * @type {string[]} bookAuthors Authors of books
+ */
+const bookAuthors = [
+    'Nassim Taleb',
+    'Peter Attia',
+    'Marie Kondo',
+    'John Tierney and Roy Baumeister',
+    'Bob Martin',
+    'DHH and Jason Fried',
+    'Ryan Singer',
+    'Fred Brooks'
+]
+
+/**
  * @type {string[]} bookDescriptions summary of book
  */
 const bookDescriptions = [
     'Five book collection centered around the understanding the impacts of randomness.',
-    'View health span as a constant downward slope instead of a constant as years pass by.',
+    'View health span as a downward slope instead of a constant as the years pass by.',
     'Evaluate each item in your life for whether it continues to bring you joy.',
     'Having 1 friend with a negative personality is asymmetrically harmful to your well being.',
     'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
@@ -57,7 +71,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[0]}
                             target={'_blank'}
-                        >Nassim Taleb</a>
+                        >{bookAuthors[0]}</a>
 
                     </li>
                     <li className='book-details'>
@@ -68,7 +82,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[1]}
                             target={'_blank'}
-                        >Peter Attia</a>
+                        >{bookAuthors[1]}</a>
 
                     </li>
                     <li className='book-details'>
@@ -79,7 +93,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[2]}
                             target={'_blank'}
-                        >Marie Kondo</a>
+                        >{bookAuthors[2]}</a>
 
                     </li>
                     <li className='book-details'>
@@ -90,7 +104,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[3]}
                             target={'_blank'}
-                        > John Tierney and Roy Baumeister</a>
+                        >{bookAuthors[3]}</a>
 
                     </li>
                     <li className='book-details'>
@@ -104,7 +118,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[4]}
                             target={'_blank'}
-                        >Bob Martin</a>
+                        >{bookAuthors[4]}</a>
                     </li>
                     <li className='book-details'>
                         {bookDescriptions[4]}
@@ -114,7 +128,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[5]}
                             target={'_blank'}
-                        >DHH and Jason Fried</a>
+                        >{bookAuthors[5]}</a>
                     </li>
                     <li className='book-details'>
                         {bookDescriptions[5]}
@@ -124,7 +138,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[6]}
                             target={'_blank'}
-                        >Ryan Singer</a>
+                        >{bookAuthors[6]}</a>
                     </li>
                     <li className='book-details'>
                         {bookDescriptions[6]}
@@ -134,7 +148,7 @@ export function BookRecommendations(){
                         <a 
                             href={bookUrls[7]}
                             target={'_blank'}
-                        >Fred Brooks</a>
+                        >{bookAuthors[7]}</a>
                     </li>
                     <li className='book-details'>
                         {bookDescriptions[7]}
