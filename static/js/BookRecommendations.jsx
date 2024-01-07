@@ -130,91 +130,91 @@ export function BookRecommendations(){
             <div>
                 <ul>
                     <h3>Everyday Reads</h3>
-                    <li>{bookTitles[0]}
+                    <li>{bookData[0].bookTitle}
                         <a 
-                            href={bookUrls[0]}
+                            href={bookData[0].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[0]}</a>
+                        >{bookData[0].bookAuthor}</a>
 
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[0]}
+                        {bookData[0].bookDescription}
                     </li>
 
-                    <li>{bookTitles[1]}
+                    <li>{bookData[1].bookTitle}
                         <a 
-                            href={bookUrls[1]}
+                            href={bookData[1].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[1]}</a>
+                        >{bookData[1].bookAuthor}</a>
 
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[1]}
+                        {bookData[1].bookDescription}
                     </li>
 
-                    <li>{bookTitles[2]}
+                    <li>{bookData[2].bookTitle}
                         <a 
-                            href={bookUrls[2]}
+                            href={bookData[2].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[2]}</a>
+                        >{bookData[2].bookAuthor}</a>
 
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[2]}
+                        {bookData[2].bookDescription}
                     </li>
 
-                    <li>{bookTitles[3]}
+                    <li>{bookData[3].bookTitle}
                         <a 
-                            href={bookUrls[3]}
+                            href={bookData[3].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[3]}</a>
+                        >{bookData[3].bookAuthor}</a>
 
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[3]}
+                        {bookData[3].bookDescription}
                     </li>
 
 
                     <h3>Software Engineering</h3>
 
-                    <li>{bookTitles[4]}
+                    <li>{bookData[4].bookTitle}
                         <a 
-                            href={bookUrls[4]}
+                            href={bookData[4].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[4]}</a>
+                        >{bookData[4].bookAuthor}</a>
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[4]}
+                        {bookData[4].bookDescription}
                     </li>
 
-                    <li>{bookTitles[5]}
+                    <li>{bookData[5].bookTitle}
                         <a 
-                            href={bookUrls[5]}
+                            href={bookData[5].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[5]}</a>
+                        >{bookData[5].bookAuthor}</a>
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[5]}
+                        {bookData[5].bookDescription}
                     </li>
 
-                    <li>{bookTitles[6]}
+                    <li>{bookData[6].bookTitle}
                         <a 
-                            href={bookUrls[6]}
+                            href={bookData[6].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[6]}</a>
+                        >{bookData[6].bookAuthor}</a>
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[6]}
+                        {bookData[6].bookDescription}
                     </li>
 
-                    <li>{bookTitles[7]}
+                    <li>{bookData[7].bookTitle}
                         <a 
-                            href={bookUrls[7]}
+                            href={bookData[7].bookUrl}
                             target={'_blank'}
-                        >{bookAuthors[7]}</a>
+                        >{bookData[7].bookAuthor}</a>
                     </li>
                     <li className='book-details'>
-                        {bookDescriptions[7]}
+                        {bookData[7].bookDescription}
                     </li>
 
                 </ul>
