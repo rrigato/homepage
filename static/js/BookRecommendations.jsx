@@ -60,54 +60,65 @@ const bookUrls = [
 
 /**
  * @type {Array.<{
- *  bookAuthor: string, bookTitle: string, 
- *  bookDescription: string, bookUrl: string
+ *  bookAuthor: string, 
+ *  bookDescription: string, 
+ *  bookTitle: string, 
+ *  bookUrl: string
  * }>} bookData
  */
-//rewrite bookData with actual values from bookUrls, bookTitles, bookDescriptions, bookAuthors
+//alphabatize keys of each object in the bookData array
 const bookData = [
     {
         bookAuthor: 'Nassim Taleb',
-        bookTitle: 'Incerto',
         bookDescription: 'Five book collection centered around the understanding the impacts of randomness.',
+        bookTitle: 'Incerto',
         bookUrl: 'https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb#Writing_career'
     },
     {
         bookAuthor: 'Peter Attia',
-        bookTitle: 'Outlive',
         bookDescription: 'View health span as a downward slope instead of a constant as the years pass by.',
+        bookTitle: 'Outlive',
         bookUrl: 'https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599'
     },
     {
         bookAuthor: 'Marie Kondo',
-        bookTitle: 'The Life Cleaning Magic Of Tidying Up',
         bookDescription: 'Evaluate each item in your life for whether it continues to bring you joy.',
+        bookTitle: 'The Life Cleaning Magic Of Tidying Up',
         bookUrl: 'https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'
     },
     {
         bookAuthor: 'John Tierney and Roy Baumeister',
-        bookTitle: 'The Power Of Bad',
         bookDescription: 'Having 1 friend with a negative personality is asymmetrically harmful to your well being.',
+        bookTitle: 'The Power Of Bad',
         bookUrl: 'https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ'
     },
     {
         bookAuthor: 'Bob Martin',
-        bookTitle: 'Clean Architecture',
         bookDescription: 'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
+        bookTitle: 'Clean Architecture',
         bookUrl: 'https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164'
     },
     {
         bookAuthor: 'DHH and Jason Fried',
-        bookTitle: 'Rework',
         bookDescription: 'Outlines office culture for working remote',
+        bookTitle: 'Rework',
         bookUrl: 'https://basecamp.com/books/rework'
     },
     {
         bookAuthor: 'Ryan Singer',
-        bookTitle: 'Shape Up',
         bookDescription: 'Outside of the fact that he objectively has the coolest first name a human can have, this is the definitive guide on how iterations should be structured in any devops oriented team.',
-        bookUrl: 'https://base
-
+        bookTitle: 'Shape Up',
+        bookUrl: 'https://basecamp.com/shapeup'
+    },
+    
+    {
+        bookAuthor: 'Fred Brooks',
+        bookDescription: 'Scaling software engineering team size leads to increased communication overhead and might cause the project to miss deadlines.',
+        bookTitle: 'The Mythical Man Month by',
+        bookUrl: 'https://en.wikipedia.org/wiki/The_Mythical_Man-Month'
+        
+    },
+]
 
 /**Book Recommendations
  *
