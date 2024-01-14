@@ -1,64 +1,9 @@
 import React from 'react';
 import '../css/homepageSection.css';
 
-/**
- * @type {string[]} bookAuthors Authors of books
- */
-const bookAuthors = [
-    'Nassim Taleb',
-    'Peter Attia',
-    'Marie Kondo',
-    'John Tierney and Roy Baumeister',
-    'Bob Martin',
-    'DHH and Jason Fried',
-    'Ryan Singer',
-    'Fred Brooks'
-]
 
-/**
- * @type {string[]} bookDescriptions summary of book
- */
-const bookDescriptions = [
-    'Five book collection centered around the understanding the impacts of randomness.',
-    'View health span as a downward slope instead of a constant as the years pass by.',
-    'Evaluate each item in your life for whether it continues to bring you joy.',
-    'Having 1 friend with a negative personality is asymmetrically harmful to your well being.',
-    'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
-    'Outlines office culture for working remote',
-    'Outside of the fact that he objectively has the coolest first name a human can have, this is the definitive guide on how iterations should be structured in any devops oriented team.',
-    'Scaling software engineering team size leads to increased communication overhead and might cause the project to miss deadlines.'    
-]
-
-/**
- * @type {string[]} bookTitles list of book titles
- */
-const bookTitles = [
-    'Incerto by',
-    'Outlive by',
-    'The Life Cleaning Magic Of Tidying Up by',
-    'The Power Of Bad by',
-    'Clean Architecture by',
-    'Rework by',
-    'Shape Up by',
-    'The Mythical Man Month by'
-]
-
-/**
- * @type {string[]} bookUrls list of book urls
- */
-const bookUrls = [
-    'https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb#Writing_career',
-    'https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599',
-    'https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308',
-    'https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ',
-    'https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164',
-    'https://basecamp.com/books/rework',
-    'https://basecamp.com/shapeup',
-    'https://en.wikipedia.org/wiki/The_Mythical_Man-Month'
-
-]
-
-/**
+/**Books to recommend and meta data
+ * 
  * @type {Array.<{
  *  bookAuthor: string, 
  *  bookDescription: string, 
@@ -66,7 +11,6 @@ const bookUrls = [
  *  bookUrl: string
  * }>} bookData
  */
-//alphabatize keys of each object in the bookData array
 const bookData = [
     {
         bookAuthor: 'Nassim Taleb',
@@ -83,7 +27,7 @@ const bookData = [
     {
         bookAuthor: 'Marie Kondo',
         bookDescription: 'Evaluate each item in your life for whether it continues to bring you joy.',
-        bookTitle: 'The Life Cleaning Magic Of Tidying Up',
+        bookTitle: 'The Life Changing Magic Of Tidying Up',
         bookUrl: 'https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'
     },
     {
