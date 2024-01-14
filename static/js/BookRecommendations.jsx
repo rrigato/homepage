@@ -125,6 +125,27 @@ const bookData = [
  * @returns react jsx
  */
 export function BookRecommendations(){
+    /**
+     * @type {Array.<JSX.Element>} bookJsxListItems list of li from bookData
+     */ 
+    const bookJsxListItems = [];
+    
+    //for loop over bookData array
+    for(let i = 0; i < bookData.length; i++){
+        bookJsxListItems.push(
+            <div>
+                <li>{bookData[i].bookTitle}
+                    <a
+                        href={bookData[i].bookUrl}
+                        target={'_blank'}
+                    >{bookData[i].bookAuthor}</a>
+                </li>
+                <li className='book-details'>
+                    {bookData[i].bookDescription}
+                </li>
+            </div>
+        );
+    }
     return(
         <div className='homepage-content'>
             <div>
