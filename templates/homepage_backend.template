@@ -1,14 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
-Description: Backend aws resources 
+Description: Backend aws resources
 
 Parameters:
 
-  githubUser:
+  githubOrganization:
     Default: rrigato
-    Description: 'GitHub organization name'
+    Description: 'Often is the same as the GitHub username'
     Type: String
-
 
   oidcAudience:
     Default: 'sts.amazonaws.com'
@@ -38,7 +37,7 @@ Resources:
               StringEquals:
                 token.actions.githubusercontent.com:aud: !Ref oidcAudience
               StringLike:
-                token.actions.githubusercontent.com:sub: !Sub repo:${githubUser}/${projectName}:*
+                token.actions.githubusercontent.com:sub: !Sub repo:${githubOrganization}/${projectName}:*
       Description: !Sub '${projectName} GitHub Actions role to assume'
       ManagedPolicyArns:
         - !Sub arn:aws:iam::${AWS::AccountId}:policy/${projectName}_pipeline_permissions

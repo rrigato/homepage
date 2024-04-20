@@ -1,6 +1,6 @@
 name: Updates web application
-on: 
-  push: 
+on:
+  push:
     branches:
       - master
 
@@ -18,19 +18,26 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      
+
       - run: npm install
 
       - run: npm run test
 
       - run: npm run build
 
+      - name: assume-github-actions-role
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ${{vars.REGION_NAME}}
+          role-to-assume: arn:aws:iam::${{secrets.AWS_ACCOUNT_ID}}:role/${{secrets.PIPELINE_ROLE_NAME}}
+
       - name: script-execution-permissions
         run: chmod +x '../.github/scripts/homepage_source_files.sh'
 
       - name: upload-webpack-artifacts
         shell: bash
-        env: 
+        env:
           AWS_ACCESS_KEY_ID: ${{secrets.PERSISTANT_STORAGE_ID}}
           AWS_DEFAULT_REGION: 'us-east-1'
           AWS_SECRET_ACCESS_KEY: ${{secrets.PERSISTANT_STORAGE_KEY}}
@@ -42,7 +49,7 @@ jobs:
     needs: deploy-website-source-files
     runs-on: ubuntu-latest
     name: favicon to s3 bucket
-    env: 
+    env:
       ORCHESTRATION_SCRIPT: './.github/scripts/orchestrate_artifacts.sh'
 
     steps:
@@ -54,7 +61,7 @@ jobs:
 
       - name: upload-favicon-artifacts
         shell: bash
-        env: 
+        env:
           AWS_ACCESS_KEY_ID: ${{secrets.PERSISTANT_STORAGE_ID}}
           AWS_DEFAULT_OUTPUT: json
           AWS_DEFAULT_REGION: 'us-east-1'
