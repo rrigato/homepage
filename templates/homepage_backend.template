@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: Backend aws resources 
+
+Parameters:
+
+  githubUser:
+    Default: rrigato
+    Description: 'GitHub organization name'
+    Type: String
+
+
+  oidcAudience:
+    Default: 'sts.amazonaws.com'
+    Description: 'The audience for the OIDC provider'
+    Type: String
+
+  projectName:
+    Type: String
+    Default: homepage
+
+
+Resources:
+
+
+  projectRoleForGitHubActions:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRoleWithWebIdentity
+            Principal:
+              Federated:
+                Fn::ImportValue:
+                  githubOidcProviderArn
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: !Ref oidcAudience
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${githubUser}/${projectName}:*
+      Description: !Sub '${projectName} GitHub Actions role to assume'
+      ManagedPolicyArns:
+        - !Sub arn:aws:iam::${AWS::AccountId}:policy/${projectName}_pipeline_permissions
+      RoleName: !Sub ${projectName}-github-actions-role
+
