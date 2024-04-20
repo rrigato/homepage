@@ -6,13 +6,13 @@ describe('Projects displayed on screen', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
-      
-    test('Number of project sections', async () => {        
-        
+
+    test('Number of project sections', async () => {
+
 
         const {getAllByRole} = render(<Projects/>);
 
-        
+        getAllByRole('heading', {level: 2});
         const numProjectHeaders = getAllByRole(
             'heading'
         );
