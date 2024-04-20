@@ -13,15 +13,15 @@ describe('Central Content for site', () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
-      
+
     test('HomePageToggle default render', async () => {
         Projects.mockReturnValue(<div>mock-projects-component</div>);
         About.mockReturnValue(<div>mock-about-component</div>);
-        
-        
+
+
         const {findByRole} = render(<HomePageToggle/>);
 
-        
+
         await findByRole(
             'button', {name: 'About'}
         );
@@ -40,15 +40,15 @@ describe('Central Content for site', () => {
         Projects.mockReturnValue(<div>mock-projects-component</div>);
         About.mockReturnValue(<div>mock-about-component</div>);
 
-        
-        const {findByRole} = render(<HomePageToggle/>);
 
-        
+        const {findByRole, findByText} = render(<HomePageToggle/>);
+
+
         const aboutButton = await findByRole(
             'button', {name: 'About'}
         );
-        await userStep.click(aboutButton);
-        expect(About).toHaveBeenCalled()
+        userStep.click(aboutButton);
+        await findByText('mock-about-component');
 
     });
 
@@ -60,15 +60,16 @@ describe('Central Content for site', () => {
             <div>mock-book-recommendations-component</div>
         );
 
-        
-        const {findByRole} = render(<HomePageToggle/>);
 
-        
+        const {findByRole, findByText} = render(<HomePageToggle/>);
+
+
         const bookRecommendationsButton = await findByRole(
             'button', {name: 'Book Recommendations'}
         );
-        await userStep.click(bookRecommendationsButton);
-        expect(BookRecommendations).toHaveBeenCalled()
+        userStep.click(bookRecommendationsButton);
+
+        await findByText('mock-book-recommendations-component');
 
     });
 });
