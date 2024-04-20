@@ -12,7 +12,7 @@ describe('Projects displayed on screen', () => {
 
         const {getAllByRole} = render(<Projects/>);
 
-        getAllByRole('heading', {level: 2});
+        
         const numProjectHeaders = getAllByRole(
             'heading'
         );
