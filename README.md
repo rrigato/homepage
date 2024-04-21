@@ -9,10 +9,11 @@ Personal website homepage.
 - 2020 Refactoring to get all (or at least most) resources into cloudformation now that you can import resources that were not originally created in cloudformation.
     - Adding a CI/CD code pipeline to accomplish this
 
-- 2022 migrate to github actions for ci/cd 
+- 2022 migrate to github actions for ci/cd
 
 - 2023 frontend built in ReactJS
 
+- 2024 github OIDC provider as a principal for assuming an IAM role instead of using long term credentials
 
 
 ## scan-git-repo-for-secrets
