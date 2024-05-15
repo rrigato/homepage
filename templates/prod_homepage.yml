@@ -20,6 +20,10 @@ Parameters:
     Default: Z2FDTNDATAQYW2
     Description: Route 53 Hosted Zone id
 
+  ProjectName:
+    Type: String
+    Default: homepage
+
 
 
 
@@ -28,6 +32,11 @@ Conditions:
       !Equals [ !Ref BucketName, ryanrigato.com ]
 
 Resources:
+  ApplicationLogBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-logging'
+
   WebsiteBucket:
     Condition: RetainResourcesCreated
     Properties:
@@ -43,7 +52,7 @@ Resources:
       Tags:
           -
               Key: accessType
-              Value: bucketPolicyWithOAI      
+              Value: bucketPolicyWithOAI
           -
               Key: use
               Value: website
@@ -69,7 +78,7 @@ Resources:
             Action: s3:GetObject
             # ensuring that the static s3 bucket can only be accessed
             # through cloudfront
-            Principal: 
+            Principal:
               CanonicalUser:
                 !GetAtt CloudFrontOai.S3CanonicalUserId
             Resource: !Sub "arn:aws:s3:::${BucketName}/*"
@@ -117,7 +126,7 @@ Resources:
 ###########################
 #Content delivery network
 #for the static (html/css/js) content
-#
+#TODO - add Logging property for s3 bucket
 ##########################
   StaticWebpageCdn:
     DependsOn: CloudFrontOai
@@ -185,7 +194,7 @@ Resources:
 Outputs:
   OaiS3CanonicalUserId:
     Description: |
-      Canonical ID which can be used to restrict s3 bucket access to go 
+      Canonical ID which can be used to restrict s3 bucket access to go
       through cloudfront
 
     Value: !GetAtt CloudFrontOai.S3CanonicalUserId
