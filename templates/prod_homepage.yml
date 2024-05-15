@@ -36,6 +36,10 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub '${ProjectName}-logging'
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+
 
   WebsiteBucket:
     Condition: RetainResourcesCreated
@@ -126,7 +130,6 @@ Resources:
 ###########################
 #Content delivery network
 #for the static (html/css/js) content
-#TODO - add Logging property for s3 bucket
 ##########################
   StaticWebpageCdn:
     DependsOn: CloudFrontOai
@@ -146,6 +149,10 @@ Resources:
               - - 'www'
                 - !Ref BucketName
         Enabled: true
+        Logging:
+          Bucket: !GetAtt ApplicationLogBucket.DomainName
+          IncludeCookies: false
+          Prefix: cdnlogs/
         DefaultCacheBehavior:
           ForwardedValues:
             QueryString: true
