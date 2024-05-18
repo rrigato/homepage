@@ -20,11 +20,13 @@ Parameters:
     Default: Z2FDTNDATAQYW2
     Description: Route 53 Hosted Zone id
 
+  LogFileExpirationInDays:
+    Type: Number
+    Default: 90
+
   ProjectName:
     Type: String
     Default: homepage
-
-
 
 
 Conditions:
@@ -36,6 +38,14 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub '${ProjectName}-logging'
+      LifecycleConfiguration:
+        Rules:
+          - Id: LogFileExpirationRule
+            Status: Enabled
+            ExpirationInDays: !Ref LogFileExpirationInDays
+            NoncurrentVersionExpirationInDays: !Ref LogFileExpirationInDays
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: !Ref LogFileExpirationInDays
       OwnershipControls:
         Rules:
           - ObjectOwnership: BucketOwnerPreferred
