@@ -1,2 +1,2 @@
 cfn-lint
-detect-secrets==1.4.0
+detect-secrets==1.5.0
