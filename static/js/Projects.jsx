@@ -62,7 +62,7 @@ export function Projects() {
                     {projects.map((project, index) => (
                         <div key={project.id} className="project-card">
                             <div className="project-image">
-                                Project {project.id} Preview
+                                {/* TODO: Add project images */}
                             </div>
                             <div className="project-content">
                                 <h3 className="project-title">{project.title}</h3>

@@ -334,6 +334,58 @@ body, html {
     color: #4a9eff;
 }
 
+/* Books Carousel */
+.books-carousel {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.books-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+}
+
+.book-card {
+    min-width: 200px;
+    height: 300px;
+    background: linear-gradient(45deg, #2a2a3e, #3a3a4e);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease;
+    font-size: 14px;
+    opacity: 0.7;
+    color: inherit;
+    text-decoration: none;
+    padding: 24px;
+    text-align: left;
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+}
+
+.book-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.book-author {
+    color: #4a9eff;
+    font-weight: 600;
+}
+
+.book-description {
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .header {

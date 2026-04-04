@@ -5,7 +5,7 @@ export function About() {
     return (
         <div>
             <div className="section-title">ABOUT ME</div>
-            <h2 className="section-heading">I'm a software engineer who loves solving complex problems.</h2>
+            <h2 className="section-heading">Software engineer who enjoys reading</h2>
 
             <div className="about-content">
                 <div className="about-text">
@@ -16,10 +16,15 @@ export function About() {
                     <p className="about-description">
                         Look closely at my photo and you will notice that is not a clip on tie **drops mic and walks off stage**.
                     </p>
-                    <button className="cta-button">
-                        GET TO KNOW ME
+                    <a
+                        href="https://github.com/rrigato/homepage"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cta-button"
+                    >
+                        SOURCE CODE FOR THIS WEBSITE
                         <span>→</span>
-                    </button>
+                    </a>
 
                     <div className="social-links">
                         <a
