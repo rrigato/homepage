@@ -1,188 +1,123 @@
-import React from 'react';
-import '../css/homepageSection.css';
+import React, { useState } from 'react';
 
-
-/**Books to recommend and meta data
- * 
- * @type {Array.<{
- *  bookAuthor: string, 
- *  bookDescription: string, 
- *  bookTitle: string, 
- *  bookUrl: string
- * }>} bookData
- */
 const bookData = [
     {
-        bookAuthor: 'Nassim Taleb',
-        bookDescription: 'Five book collection centered around the understanding the impacts of randomness.',
-        bookTitle: 'Incerto',
-        bookUrl: 'https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb#Writing_career'
+        id: 1,
+        title: 'Incerto',
+        author: 'Nassim Taleb',
+        description: 'Five book collection centered around the understanding the impacts of randomness.',
+        url: 'https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb#Writing_career'
     },
     {
-        bookAuthor: 'Peter Attia',
-        bookDescription: 'View health span as a downward slope instead of a constant as the years pass by.',
-        bookTitle: 'Outlive',
-        bookUrl: 'https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599'
+        id: 2,
+        title: 'Outlive',
+        author: 'Peter Attia',
+        description: 'View health span as a downward slope instead of a constant as the years pass by.',
+        url: 'https://www.amazon.com/Outlive-Longevity-Peter-Attia-MD/dp/0593236599'
     },
     {
-        bookAuthor: 'Marie Kondo',
-        bookDescription: 'Evaluate each item in your life for whether it continues to bring you joy.',
-        bookTitle: 'The Life Changing Magic Of Tidying Up',
-        bookUrl: 'https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'
+        id: 3,
+        title: 'The Life Changing Magic Of Tidying Up',
+        author: 'Marie Kondo',
+        description: 'Evaluate each item in your life for whether it continues to bring you joy.',
+        url: 'https://www.amazon.com/Life-Changing-Magic-Tidying-Decluttering-Organizing/dp/1607747308'
     },
     {
-        bookAuthor: 'John Tierney and Roy Baumeister',
-        bookDescription: 'Having 1 friend with a negative personality is asymmetrically harmful to your well being.',
-        bookTitle: 'The Power Of Bad',
-        bookUrl: 'https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ'
+        id: 4,
+        title: 'The Power Of Bad',
+        author: 'John Tierney and Roy Baumeister',
+        description: 'Having 1 friend with a negative personality is asymmetrically harmful to your well being.',
+        url: 'https://www.amazon.com/Power-Bad-Negativity-Effect-Rules-ebook/dp/B07Q3NHPGZ'
     },
     {
-        bookAuthor: 'Bob Martin',
-        bookDescription: 'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
-        bookTitle: 'Clean Architecture',
-        bookUrl: 'https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164'
+        id: 5,
+        title: 'Clean Architecture',
+        author: 'Bob Martin',
+        description: 'The goal of software architecture is to minimize the human resources required to build and maintain the desired application.',
+        url: 'https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164'
     },
     {
-        bookAuthor: 'DHH and Jason Fried',
-        bookDescription: 'Outlines office culture for working remote',
-        bookTitle: 'Rework',
-        bookUrl: 'https://basecamp.com/books/rework'
+        id: 6,
+        title: 'Rework',
+        author: 'DHH and Jason Fried',
+        description: 'Outlines office culture for working remote',
+        url: 'https://basecamp.com/books/rework'
     },
     {
-        bookAuthor: 'Ryan Singer',
-        bookDescription: 'Outside of the fact that he objectively has the coolest first name a human can have, this is the definitive guide on how iterations should be structured in any devops oriented team.',
-        bookTitle: 'Shape Up',
-        bookUrl: 'https://basecamp.com/shapeup'
+        id: 7,
+        title: 'Shape Up',
+        author: 'Ryan Singer',
+        description: 'The definitive guide on how iterations should be structured in any devops oriented team.',
+        url: 'https://basecamp.com/shapeup'
     },
-    
     {
-        bookAuthor: 'Fred Brooks',
-        bookDescription: 'Scaling software engineering team size leads to increased communication overhead and might cause the project to miss deadlines.',
-        bookTitle: 'The Mythical Man Month by',
-        bookUrl: 'https://en.wikipedia.org/wiki/The_Mythical_Man-Month'
-        
-    },
-]
-
-/**Book Recommendations
- *
- * @returns react jsx
- */
-export function BookRecommendations(){
-    /**
-     * @type {Array.<JSX.Element>} bookJsxListItems list of li from bookData
-     */ 
-    const bookJsxListItems = [];
-    
-    //for loop over bookData array
-    for(let i = 0; i < bookData.length; i++){
-        bookJsxListItems.push(
-            <div>
-                <li>{bookData[i].bookTitle}
-                    <a
-                        href={bookData[i].bookUrl}
-                        target={'_blank'}
-                    >{bookData[i].bookAuthor}</a>
-                </li>
-                <li className='book-details'>
-                    {bookData[i].bookDescription}
-                </li>
-            </div>
-        );
+        id: 8,
+        title: 'The Mythical Man Month',
+        author: 'Fred Brooks',
+        description: 'Scaling software engineering team size leads to increased communication overhead and might cause the project to miss deadlines.',
+        url: 'https://en.wikipedia.org/wiki/The_Mythical_Man-Month'
     }
-    return(
-        <div className='homepage-content'>
-            <div>
-                <ul>
-                    <h3>Everyday Reads</h3>
-                    <li>{bookData[0].bookTitle}
-                        <a 
-                            href={bookData[0].bookUrl}
-                            target={'_blank'}
-                        >{bookData[0].bookAuthor}</a>
+];
 
-                    </li>
-                    <li className='book-details'>
-                        {bookData[0].bookDescription}
-                    </li>
+export function BookRecommendations() {
+    const [activeBook, setActiveBook] = useState(0);
 
-                    <li>{bookData[1].bookTitle}
-                        <a 
-                            href={bookData[1].bookUrl}
-                            target={'_blank'}
-                        >{bookData[1].bookAuthor}</a>
+    const scrollToBook = (index) => {
+        setActiveBook(index);
+        const container = document.querySelector('.books-container');
+        if (container) {
+            const firstCard = container.querySelector('.book-card');
+            const cardWidth = firstCard ? firstCard.getBoundingClientRect().width + 20 : 220;
+            container.scrollTo({
+                left: index * cardWidth,
+                behavior: 'smooth'
+            });
+        }
+    };
 
-                    </li>
-                    <li className='book-details'>
-                        {bookData[1].bookDescription}
-                    </li>
+    return (
+        <div>
+            <div className="section-title">RECOMMENDATIONS</div>
+            <h2 className="section-heading">Book Recommendations</h2>
+            <p className="about-description">
+                Books that have shaped the way I think about software, systems, and life.
+            </p>
 
-                    <li>{bookData[2].bookTitle}
-                        <a 
-                            href={bookData[2].bookUrl}
-                            target={'_blank'}
-                        >{bookData[2].bookAuthor}</a>
+            <button className="cta-button" style={{ marginBottom: '60px' }}>
+                BROWSE MY LIST
+                <span>+</span>
+            </button>
 
-                    </li>
-                    <li className='book-details'>
-                        {bookData[2].bookDescription}
-                    </li>
+            <div className="books-carousel">
+                <div className="books-container">
+                    {bookData.map((book, index) => (
+                        <a
+                            key={book.id}
+                            className="book-card"
+                            href={book.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div className="book-content">
+                                <h4 className="book-title">{book.title}</h4>
+                                <p className="book-author">{book.author}</p>
+                                <p className="book-description">{book.description}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
 
-                    <li>{bookData[3].bookTitle}
-                        <a 
-                            href={bookData[3].bookUrl}
-                            target={'_blank'}
-                        >{bookData[3].bookAuthor}</a>
-
-                    </li>
-                    <li className='book-details'>
-                        {bookData[3].bookDescription}
-                    </li>
-
-
-                    <h3>Software Engineering</h3>
-
-                    <li>{bookData[4].bookTitle}
-                        <a 
-                            href={bookData[4].bookUrl}
-                            target={'_blank'}
-                        >{bookData[4].bookAuthor}</a>
-                    </li>
-                    <li className='book-details'>
-                        {bookData[4].bookDescription}
-                    </li>
-
-                    <li>{bookData[5].bookTitle}
-                        <a 
-                            href={bookData[5].bookUrl}
-                            target={'_blank'}
-                        >{bookData[5].bookAuthor}</a>
-                    </li>
-                    <li className='book-details'>
-                        {bookData[5].bookDescription}
-                    </li>
-
-                    <li>{bookData[6].bookTitle}
-                        <a 
-                            href={bookData[6].bookUrl}
-                            target={'_blank'}
-                        >{bookData[6].bookAuthor}</a>
-                    </li>
-                    <li className='book-details'>
-                        {bookData[6].bookDescription}
-                    </li>
-
-                    <li>{bookData[7].bookTitle}
-                        <a 
-                            href={bookData[7].bookUrl}
-                            target={'_blank'}
-                        >{bookData[7].bookAuthor}</a>
-                    </li>
-                    <li className='book-details'>
-                        {bookData[7].bookDescription}
-                    </li>
-
-                </ul>
+                <div className="carousel-pagination">
+                    {bookData.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`pagination-dot ${activeBook === index ? 'active' : ''}`}
+                            onClick={() => scrollToBook(index)}
+                        >
+                            {String(index + 1).padStart(2, '0')}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     );
