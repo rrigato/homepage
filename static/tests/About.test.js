@@ -14,13 +14,12 @@ describe('About displayed on screen', () => {
 
         const numHeaders = getAllByRole('heading');
         const aboutImage = getByRole('img');
-        const numButtons = getAllByRole('button');
+        const numLinks = getAllByRole('link');
 
         // Should have 1 heading (main heading)
         expect(numHeaders.length).toBe(1);
         // Should have the about image
         expect(aboutImage).toBeInTheDocument();
-        // Should have 1 CTA button
-        expect(numButtons.length).toBe(1);
+        expect(numLinks.length).toBe(3);
     });
 });
