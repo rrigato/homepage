@@ -1,97 +1,112 @@
 import React, { useState } from 'react';
-import '../css/homepageSection.css';
 
+export function Projects() {
+    const [activeProject, setActiveProject] = useState(0);
 
-/**homepage project details and links
- * 
- * @returns react jsx 
- */
-export function Projects(){
-    return(
-        <div className='homepage-content'>
-            <ul>
-                <h3>Amazon Alexa Skill To retrieve Television Ratings</h3>
-                <li>Provides television ratings for the Adult Swim Saturday night Toonami television block.</li>
-                <li>
-                    <a
-                        href='https://www.amazon.com/dp/B0B5596H7C/'
-                        target={'_blank'}
-                    >
-                        application link
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href='https://github.com/rrigato/tvratings'
-                        target={'_blank'}
-                    >
-                        source code
-                    </a>
-                </li>
+    const projects = [
+        {
+            id: 1,
+            title: "Amazon Alexa Skill - Television Ratings",
+            description: "Provides television ratings for the Adult Swim Saturday night Toonami television block.",
+            applicationLink: "https://www.amazon.com/dp/B0B5596H7C/",
+            sourceLink: "https://github.com/rrigato/tvratings"
+        },
+        {
+            id: 2,
+            title: "Air Quality Fuel Burning Restrictions",
+            description: "Amazon Alexa skill to determine if a zip code has any fuel burning restrictions for heating your home.",
+            applicationLink: "https://www.amazon.com/dp/B09PVD9VSC/",
+            sourceLink: "https://github.com/rrigato/burnday"
+        },
+        {
+            id: 3,
+            title: "Web Scraper - TV Network Ratings",
+            description: "Only location on the internet that has an archive of Adult Swim Toonami Ratings in a programmable format.",
+            sourceLink: "https://github.com/rrigato/ratings"
+        },
+        {
+            id: 4,
+            title: "GitHub 3D Commit History",
+            description: "Automates creation of 3D commit history to populate web application artifacts.",
+            applicationLink: "https://github.com/rrigato/rrigato/blob/master/README.md",
+            sourceLink: "https://github.com/rrigato/rrigato/"
+        },
+        {
+            id: 5,
+            title: "Markdown to HTML Converter",
+            description: "Used to reduce documentation redundancy when hosting markdown documentation.",
+            sourceLink: "https://github.com/rrigato/devdocs"
+        }
+    ];
 
-                <h3>Amazon Alexa Air Quality Caused Fuel Burning Restriction Skill</h3>
-                <li>Amazon Alexa skill to determine if a zip code has any fuel burning restrictions for heating your home in the winter.</li>
-                <li>
-                    <a
-                        href='https://www.amazon.com/dp/B09PVD9VSC/'
-                        target={'_blank'}
-                    >
-                        application link
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href='https://github.com/rrigato/burnday'
-                        target={'_blank'}
-                    >
-                        source code
-                    </a>
-                </li>
+    const scrollToProject = (index) => {
+        setActiveProject(index);
+        const container = document.querySelector('.carousel-container');
+        if (container) {
+            const firstCard = container.querySelector('.project-card');
+            const cardWidth = firstCard ? firstCard.getBoundingClientRect().width + 30 : 430;
+            container.scrollTo({
+                left: index * cardWidth,
+                behavior: 'smooth'
+            });
+        }
+    };
 
-                <h3>Web scrapper television network ratings</h3>
-                <li>Only location on the internet that has an archive of Adult Swim Toonami Ratings in a programmable format.</li>
-                <li>Reach out to me on github if you would like access.</li>
-                <li><sup><sup>First rule of building a sustainable web scraping application is to never build a web scrapping application.</sup></sup></li>
-                <li>
-                    <a
-                        href='https://github.com/rrigato/ratings'
-                        target={'_blank'}
-                    >
-                        source code
-                    </a>
-                </li>
+    return (
+        <div>
+            <div className="section-title">WORK</div>
+            <h2 className="section-heading">Featured Projects</h2>
 
-                <h3>Github 3d commit history webpage</h3>
-                <li>Automates creation of 3D commit history to populate web application artifacts.</li>
-                <li>
-                    <a
-                        href='https://github.com/rrigato/rrigato/blob/master/README.md'
-                        target={'_blank'}
-                    >
-                        application link
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href='https://github.com/rrigato/rrigato/'
-                        target={'_blank'}
-                    >
-                        source code
-                    </a>
-                </li>
+            <div className="projects-carousel">
+                <div className="carousel-container">
+                    {projects.map((project, index) => (
+                        <div key={project.id} className="project-card">
+                            <div className="project-image">
+                                Project {project.id} Preview
+                            </div>
+                            <div className="project-content">
+                                <h3 className="project-title">{project.title}</h3>
+                                <p className="project-description">{project.description}</p>
+                                <div className="project-links">
+                                    {project.applicationLink && (
+                                        <a
+                                            href={project.applicationLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="project-link"
+                                        >
+                                            View Project →
+                                        </a>
+                                    )}
+                                    {project.sourceLink && (
+                                        <a
+                                            href={project.sourceLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="project-link"
+                                            style={{ marginLeft: project.applicationLink ? '20px' : '0' }}
+                                        >
+                                            Source Code →
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
-                <h3>Markdown to html converter</h3>
-                <li>Used to reduce documentation redundancy when hosting markdown documentation</li>
-                <li>
-                    <a
-                        href='https://github.com/rrigato/devdocs'
-                        target={'_blank'}
-                    >
-                        source code
-                    </a>
-                </li>
-            </ul>
-
+                <div className="carousel-pagination">
+                    {projects.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`pagination-dot ${activeProject === index ? 'active' : ''}`}
+                            onClick={() => scrollToProject(index)}
+                        >
+                            {String(index + 1).padStart(2, '0')}
+                        </button>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
