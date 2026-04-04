@@ -1,8 +1,12 @@
 import { render } from '@testing-library/react';
 import { App } from '../js/App.jsx';
-import { HomePageToggle } from '../js/HomePageToggle.jsx';
+import { Header } from '../js/Header.jsx';
+import { Hero } from '../js/Hero.jsx';
+import { SectionNav } from '../js/SectionNav.jsx';
 
-jest.mock('../js/HomePageToggle.jsx');
+jest.mock('../js/Header.jsx');
+jest.mock('../js/Hero.jsx');
+jest.mock('../js/SectionNav.jsx');
 
 describe('entry point for app', () => {
 
@@ -10,12 +14,13 @@ describe('entry point for app', () => {
         jest.resetAllMocks();
     });
 
-    test('HomePageToggle called', () => {
-        
-        
+    test('All components rendered', () => {
+
         const renderedHomepage = render(<App/>);
 
-        expect(HomePageToggle).toHaveBeenCalled();
+        expect(Header).toHaveBeenCalled();
+        expect(Hero).toHaveBeenCalled();
+        expect(SectionNav).toHaveBeenCalled();
 
     });
 });
