@@ -15,6 +15,7 @@ Personal website homepage.
 
 - 2024 github OIDC provider as a principal for assuming an IAM role instead of using long term credentials
 
+- 2026 Gave the redesign implementation over to our AI overlords
 
 ## scan-git-repo-for-secrets
 

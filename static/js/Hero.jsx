@@ -13,7 +13,7 @@ export function Hero() {
             <div className="hero-bg-effect"></div>
             <div className="hero-content">
                 <h1 className="hero-title">
-                    Welcome to Ryan's homepage, definitely not designed and built by the windsurf IDE AI agent.
+                    Welcome to Ryan's homepage, definitely not designed and built by the windsurf AI agent.
                 </h1>
                 <button className="cta-button" onClick={scrollToWork}>
                     VIEW MY WORK
