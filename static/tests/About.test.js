@@ -20,6 +20,6 @@ describe('About displayed on screen', () => {
         expect(numHeaders.length).toBe(1);
         // Should have the about image
         expect(aboutImage).toBeInTheDocument();
-        expect(numLinks.length).toBe(3);
+        expect(numLinks.length).toBe(4);
     });
 });
