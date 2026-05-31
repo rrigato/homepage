@@ -26,6 +26,9 @@
     "directories": {
         "test": "tests"
     },
+    "overrides": {
+        "uuid": "11.1.1"
+    },
     "jest": {
         "moduleNameMapper": {
             "\\.(jpg|jpeg|png|gif|eot|webp|svg|mp4|webm|wav|mp3|m4a)$": "<rootDir>/__mocks__/fileMocks.js",
