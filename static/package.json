@@ -5,7 +5,7 @@
     },
     "description": "personal homepage",
     "devDependencies": {
-        "@babel/core": "^7.24.4",
+        "@babel/core": "^7.29.6",
         "@babel/preset-env": "^7.24.4",
         "@babel/preset-react": "^7.24.1",
         "@testing-library/jest-dom": "^6.9.1",
@@ -20,7 +20,7 @@
         "style-loader": "^4.0.0",
         "webpack": "^5.105.3",
         "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^5.2.4",
+        "webpack-dev-server": "^5.2.6",
         "webpack-merge": "^5.9.0"
     },
     "directories": {
